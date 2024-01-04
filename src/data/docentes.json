@@ -1,0 +1,163 @@
+{
+    "docentesList": [
+        {
+            "name": "Álvaro Taype Rondán, MD MSc",
+            "id": 1,
+            "description": "Médico epidemiólogo. Investigador distinguido en RENACYT. Investigador en la Universidad San Ignacio de Loyola. Ha publicado más de 130 artículos en revistas científicas. Ha participado en la elaboración y revisión de guías de práctica clínica para el Ministerio de Salud del Perú, el Seguro Social de Salud, y la Unión Europea. Ha sido reconocido dentro del 2% de los investigadores más citados a nivel mundial.",
+            "linkedin": "https://www.linkedin.com/in/alvaro-taype-rondan-a907791b4/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=ARVc2YQAAAAJ&hl=es&oi=ao",
+            "job": "Médico epidemiólogo.",
+            "image":"/assets/img/docentes/Alvaro Taype AI.jpg"
+        },
+        {
+            "name": "Sergio Goicochea Lugo, MD MSc(c)",
+            "id": 2,
+            "description": "Médico. Investigador en RENACYT y en la Universidad San Ignacio de Loyola. Egresado de la maestría en Ciencias en Investigación Epidemiológica en la Universidad Peruana Cayetano Heredia, del diplomado internacional de Principios y práctica de investigación clínica en las Escuelas de Salud Pública y Medicina de la Universidad de Harvard, y del diplomado de gestión de servicios en salud de la Universidad ESAN. Ha sido autor y revisor de guías de práctica clínica para el Seguro Social de Salud del Perú y de evaluaciones de tecnología sanitaria para el Instituto Nacional de Salud de Perú.",
+            "linkedin": "https://www.linkedin.com/in/sergio-goicochea-lugo-155929178/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=o3opG44AAAAJ&hl=es&oi=ao",
+            "job": "Médico",
+            "image":"/assets/img/docentes/Sergio Goicochea AI.jpg"
+        },
+        {
+            "name": "Naysha Becerra Chauca, CM MPH(c)",
+            "id": 3,
+            "description": "Obstetra. Diplomado en Sexualidad, Derechos Humanos y Políticas en Educación y Salud; y estudios de Maestría en Salud Pública y Salud Global. Ha sido autora de guías de práctica clínica para el seguro social del Perú.",
+            "linkedin": "https://www.linkedin.com/in/naysha-yamilet-becerra-chauca-a48185120/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=fTWsKG8AAAAJ&hl=es&oi=ao",
+            "job": "Médico"
+        },
+        {
+            "name": "Jhonatan R. Mejía, MD MSc(c)",
+            "id": 4,
+            "description": "Médico. Maestrando en Efectividad Clínica y Sanitaria por la Universidad de Buenos Aires, becario de investigación del Instituto de Efectividad Clínica Sanitaria (IECS) de Argentina y docente en la Universidad Científica del Sur. Cuenta con un diplomado en Investigación Clínica por la UPCH. Ha sido pasante en CRONICAS-UPCH, editor de la revista científica CIMEL, y ha participado en la elaboración de guías de práctica clínica y evaluaciones de tecnologías sanitarias para el seguro social del Perú.",
+            "linkedin": "https://www.linkedin.com/in/jhonatan-mej%C3%ADa-santiv%C3%A1%C3%B1ez-929332153/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=O26F82YAAAAJ&hl=es&oi=sra",
+            "job": "Médico"
+        },
+        {
+            "name": "Jessica Zafra Tanaka, MD MSc",
+            "id": 5,
+            "description": "Médica epidemióloga. Es investigadora en CRONICAS Centro de Excelencia en Enfermedades Crónicas de la Universidad Peruana Cayetano Heredia. Ha publicado más de 30 artículos en revistas científicas. Ha participado en la elaboración y revisión de guías de práctica clínica para el Ministerio de Salud del Perú, el Seguro Social de Salud, y la Unión Europea",
+            "linkedin": "https://www.linkedin.com/in/jessica-hanae-zafra-tanaka-943a88124/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=HMtanwsAAAAJ&hl=es&oi=ao",
+            "job": "Médica epidemióloga"
+        },
+        {
+            "name": "José Montes Alvis, MD MSc(c)",
+            "id": 6,
+            "description": "Médico. Ha realizado la maestría en Ciencias en Investigación Epidemiológica en la Universidad Peruana Cayetano Heredia. Ha sido autor y revisor de guías de práctica clínica para el Seguro Social de Salud del Perú.",
+            "linkedin": "https://www.linkedin.com/in/jos%C3%A9-montes-alvis-19492a9a/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=AtjQYekAAAAJ&hl=es&oi=ao",
+            "job": "Médico",
+            "image":"/assets/img/docentes/Jose Montes AI.jfif"
+
+        },
+        {
+            "name": "Christopher A. Alarcón Ruiz, MD MSc",
+            "id": 7,
+            "description": "Médico. Ha realizado la maestría en Ciencias en Investigación Epidemiológica en la Universidad Peruana Cayetano Heredia. Es investigador asociado en la Universidad Científica del Sur. Ha publicado más de 20 artículos en revistas científicas y ha sido autor de guías de práctica clínica para el Ministerio de Salud y el Seguro Social de Salud del Perú.",
+            "linkedin": "https://www.linkedin.com/posts/christoperalarconruiz_elife-latest-applications-open-for-new-reviewing-activity-6914807141237202944-7BJd/",
+            "posts": "https://scholar.google.com/citations?user=i-bYoloAAAAJ&hl=es&oi=ao",
+            "job": "Médico",
+            "image":"/assets/img/docentes/Christoper Alarcon AI.jpg"
+
+        },
+        {
+            "name": "Daniel Fernandez Guzman, MD",
+            "id": 8,
+            "description": "Médico. Investigador en RENACYT. Ha sido pasante en Lancet Countdown South America, cursó el diplomado en Bioestadística Avanzada en la Pontificia Universidad Católica de Chile, actualmente maestrando en Ciencias en Investigación Epidemiológica (UPCH). Ha publicado diversos estudios en revistas indexadas nacionales e internacionales",
+            "linkedin": "https://www.linkedin.com/in/daniel-aar%C3%B3n-fern%C3%A1ndez-guzm%C3%A1n-33a75a132/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=s2otnJsAAAAJ&hl=es&oi=ao",
+            "job": "Médico",
+            "image":"/assets/img/docentes/Daniel Fernandez AI.jpg"
+
+        },
+        {
+            "name": "Rubí Paredes Angeles, BS",
+            "id": 9,
+            "description": "Bachiller en psicología. Ha sido asistente de investigación en CRONICAS Centro de Excelencia en Enfermedades Crónicas, UPCH. Maestrando en Ciencias en Investigación Epidemiológica por la Universidad Peruana Cayetano Heredia. Cuenta con publicaciones en Scopus en el área de salud mental.",
+            "linkedin": "https://www.linkedin.com/in/rub%C3%AD-paredes-angeles-115aa1170/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=dkNhHDQAAAAJ&hl=es&oi=ao",
+            "job": "Bachiller en psicología",
+            "image":"/assets/img/docentes/Rubi Paredes AI.jpg"
+
+        },
+        {
+            "name": "Jackeline García Serna, BS",
+            "id": 10,
+            "description":"Bachiller en Psicología por la Universidad Nacional Mayor de San Marcos. Labora como asistente de investigación en la Unidad de Investigación en Salud Mental del Instituto Peruano de Orientación Psicológica (IPOPS).Con intereses en el área de la salud mental, salud pública y salud digital. Usuaria de R desde el 2017",
+            "linkedin": "https://www.linkedin.com/in/jackeline-garcia-serna-588584140/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=t9RAzQoAAAAJ&hl=es&oi=ao",
+            "job": "Bachiller en psicología"
+        },
+        {
+            "name": "Arnold Tafur, BS MSc(c)",
+            "id": 11,
+            "description":"Bachiller en Psicología por la Universidad Nacional Mayor de San Marcos. Estudiante del Máster en Metodología de las Ciencias del Comportamiento y de la Salud en la Universidad Autónoma de Madrid (UAM), la Universidad Complutense de Madrid (UCM) y la Universidad Nacional de Educación a Distancia (UNED). Estudiante de la Maestría en Educación con mención en Docencia e Investigación en Educación Superior en la Universidad Peruana Cayetano Heredia (UPCH). Asistente de docencia en la Universidad Peruana de Ciencias Aplicadas (UPC)",
+            "linkedin": "https://www.linkedin.com/in/arnold-tafur-mendoza/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=CRJ1IasAAAAJ&hl=es&oi=ao",
+            "job": "Bachiller en psicología"
+        },
+        {
+            "name": "Leonardo Albitres Flores, MD, MSc(c)",
+            "id": 12,
+            "description": "Médico.Investigador RENACYT, maestrando en Ciencias en Investigación Epidemiológica por la Universidad Peruana Cayetano Heredia. Actualmente asistente de investigación en CRONICAS-UPCH. Ha publicado diversos estudios en revistas nacionales e internacionales.",
+            "linkedin": "https://www.linkedin.com/in/leonardoalbitres-flores/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=YPKyO5UAAAAJ&hl=es&oi=ao",
+            "job": "Médico",
+            "image":"/assets/img/docentes/Leonardo Albitres IA.jpg"
+        },
+        {
+            "name": "Renato Soriano Moreno, MS",
+            "id": 13,
+            "description": "Estudiante de medicina humana, director de la Línea de Revisiones Sistemáticas de la Unidad de Investigación Clínica y Epidemiológica de la Universidad Peruana Unión. Es investigador RENACYT nivel II con decenas de artículos publicados en Scopus. Además, ha participado en la elaboración de guías de práctica clínica para el seguro social del Perú.",
+            "linkedin": "https://www.linkedin.com/in/jhonatan-mej%C3%ADa-santiv%C3%A1%C3%B1ez-929332153/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com.pe/citations?hl=es&user=iJqNR0sAAAAJ&view_op=list_works&sortby=pubdate",
+            "job": "Estudiante de medicina humana",
+            "image":"/assets/img/docentes/Renato Soriano IA.jpg"
+
+        },
+        {
+            "name": "Víctor A. Velásquez Rimachi MD, MSc",
+            "id": 14,
+            "description": "Médico con maestría en Epidemiología Clínica, docente investigador de la Universidad Científica del Sur. Con más de 20 artículos publicados en Scopus que actualmente colabora en la elaboración de Evaluaciones de Tecnologías Sanitarias y Guías de Práctica Clínica para el Seguro Social de Salud.",
+            "linkedin": "https://www.linkedin.com/in/victorvelasquezr/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=CeqfImsAAAAJ&hl=en",
+            "job": "Medico"
+        },
+        {
+            "name": "Ana Brañez Condorena, MD",
+            "id": 15,
+            "description": "Médica con formación en metodología de la investigación y medicina basada en eviden.cias. Ha publicado diversos artículos científicos. Ha participado en la elaboración de guías de práctica clínica para  el Seguro Social de Salud. Con interés en investigación en los campos de salud pública, epidemiología, y medicina basada en evidencias",
+            "linkedin": "http://www.linkedin.com/in/ana-lida-brañez-condorena-701025299",
+            "posts": "https://scholar.google.com.pe/citations?user=p24rfgsAAAAJ&hl=en",
+            "job": "Medica",
+            "image":"/assets/img/docentes/Ana Brañez AI.jpg"
+
+        },
+        {
+            "name": "Raúl Timaná Ruiz, MD MSc(c)",
+            "id": 16,
+            "description": "Médico especialista de gestión en salud. Ha realizado una maestría en Economía de la Salud y del Medicamento en la Universidad de Pompeu Fabra, Barcelona, España. Fue director de la Dirección de Guías de Práctica Clínica, Farmacovigilancia y Tecnovigilancia en IETSI-EsSalud. Ex ejecutivo adjunto de la DIGEMID. Ex Director General de la Oficina General de Investigación y Transferencia Tecnológica del INS y Ex Asesor de la Jefatura Institucional del SIS.",
+            "linkedin": "https://www.linkedin.com/in/ra%C3%BAl-timan%C3%A1-ruiz-35a642106/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=tkOn6nkAAAAJ&hl=es&oi=ao",
+            "job": "Medico"
+        },
+        {
+            "name": "Pedro Guerra Canchari, MD",
+            "id": 17,
+            "description": "Médico egresado de la Universidad Nacional Mayor de San Marcos. Miembro investigador de Latin American Network for Cancer Research (LAN CANCER), past director científico de la FELSOCEM. Autor de casos clínicos en el área de oncología, medicina interna y pediatría",
+            "linkedin": "https://www.linkedin.com/in/pedro-guerra-canchari-861bbb1a3/?originalSubdomain=pe",
+            "posts": "https://scholar.google.com/citations?user=fGVokLsAAAAJ",
+            "job": "Medico"
+        },
+        {
+            "name": "Lesly Chávez Rimache, DDS, MSc(c)",
+            "id": 18,
+            "description": "Cirujana Dentista egresada de las maestrías de ciencias en investigación epidemiológica y control de enfermedades infecciosas y tropicales de la Universidad Peruana Cayetano Heredia. Desarrolla labores de investigación en la Universidad Nacional Mayor de San Marcos y en la Universidad San Ignacio de Loyola. Además, desarrolla labores de docencia en la Universidad Nacional Mayor de San Marcos y Universidad Peruana Cayetano Heredia. Ha publicado más de 40 artículos en revistas científicas. Ha participado en la elaboración, desarrollo y monitorización de guías de práctica clínica con metodología GRADE para el Seguro Social y Ministerio de Salud del Perú (Instituto Nacional de Salud)",
+            "linkedin": "https://www.linkedin.com/in/lesly-karem-ch%C3%A1vez-rimache-648a3018a/",
+            "posts": "https://scholar.google.com/citations?user=P0RWytQAAAAJ&hl=es&oi=ao",
+            "job": "Cirujana Dentista"
+        }
+    ]
+}

@@ -1,0 +1,518 @@
+{
+    "coursesTypes": [
+        {
+            "title": "Cursos de Investigacion",
+            "id": 1
+        },
+        {
+            "title": "Cursos de Medicina Basada en Evidencias",
+            "id": 2
+        }
+    ],
+    "coursesList": [
+        {
+            "id": 1,
+            "type": 1,
+            "title": "Redacción de protocolos de investigación en salud",
+            "description": "Entenderás los principios de metodología de la investigación, a generar ideas de investigación sólidas y redactar paso a paso tu protocolo de investigación.",
+            "frase": "Si eres un profesional o estudiante de la salud, y estás deseoso de realizar estudios científicos, como tesis o para publicaciones científicas, ¡este curso es para ti!",
+            "schedule": "Lunes a viernes de 8:00 a.m. a 12:00 m.",
+            "info": {
+                "Inicio": "11 de febrero del 2024.",
+                "Duracion": "5 semanas.",
+                "Clases": "Las clases serán asincrónicas, para que el participante pueda revisarlas en cualquier momento.",
+                "Reuniones sincronicas": "El curso incluye 5 reuniones sincrónicas virtuales, a desarrollarse los sábados de 4:00 pm a 5:30 pm. (Hora Perú, GMT -5).",
+                "Dirigido a": "Profesionales y estudiantes de diversas áreas de la salud (medicina, enfermería, obstetricia, odontología, psicología, biología, tecnología médica, entre otros)",
+                "Requisitos": "No requiere conocimientos previos."
+            },
+            "contenido": [
+                "Metodología de la investigación científica en salud",
+                "Cómo generar una idea sólida de investigación",
+                "Redactar cada sección del protocolo de investigación",
+                "Identificar los sesgos y limitaciones del estudio",
+                "Principios y procedimientos éticos en investigación"
+            ],
+            "videoUrl": "https://www.youtube.com/embed/jrbX0YOyfKk",
+            "docentes": [
+                {
+                    "name": "Álvaro Taype Rondán, MD MSc",
+                    "id": 1
+                },
+                {
+                    "name": "Sergio Goicochea Lugo, MD MSc(c)",
+                    "id": 2
+                },
+                {
+                    "name": "Naysha Becerra Chauca, CM MPH(c)",
+                    "id": 3
+                },
+                {
+                    "name": "Jhonatan R. Mejía, MD MSc(c)",
+                    "id": 4
+                }
+            ],
+            "img": "/assets/img/courses/protocolos.jpg",
+            "pricePen": 420,
+            "priceUsd": 125,
+            "color": "#1971B8",
+            "color2":"rgba(25, 113, 184, 0.50)", 
+            "brochureUrl": "/assets/files/protocolos.pdf"
+        },
+        {
+            "id": 2,
+            "type": 1,
+            "title": "Análisis estadístico con STATA*",
+            "description": "Aprenderás a utilizar el programa RStudio para limpiar tu base de datos, armar las tablas necesarias para presentar tus resultados descriptivos, bivariados y de regresión; para su publicación en formato de artículo científico.",
+            "frase": "Si eres un profesional o estudiante de la salud, y estás deseoso de realizar análisis estadísticos para tu tesis o tus publicaciones utilizando el programa STATA, ¡este curso es para ti!",
+            "schedule": "Lunes a viernes de 8:00 a.m. a 12:00 m.",
+            "img": "/assets/img/courses/stata.jpg",
+            "pricePen": 420,
+            "priceUsd": 125,
+            "color": "#BED31E",
+            "color2":"rgba(190, 211, 30, 0.50)", 
+            "brochureUrl": "/assets/files/stata.pdf",
+            "info": {
+                "Inicio": "14 de enero del 2024.",
+                "Duracion": "5 semanas.",
+                "Clases": "Las clases serán asincrónicas, para que el participante pueda revisarlas en cualquier momento.",
+                "Reuniones sincronicas": "El curso incluye 5 reuniones sincrónicas virtuales, a desarrollarse los ssábados de 5:30 pm a 7:00 pm (Hora Perú, GMT -5)",
+                "Dirigido a": "Profesionales y estudiantes de diversas áreas de la salud (medicina, enfermería, obstetricia, odontología, psicología, biología, tecnología médica, entre otros)",
+                "Requisitos": "Requiere que el participante cuente con el programa STATA. EviSalud no proporciona el programa. No requiere conocimientos previos."
+            },
+            "contenido": [
+                "Limpieza de la base de datos",
+                "Análisis descriptivo",
+                "Pruebas bivariadas",
+                "Regresión lineal cruda y ajustada.",
+                "Regresiones crudas y ajustadas para calcular RR, OR, RP",
+                "Creación de tablas y figuras para un artículo científico."
+            ],
+            "videoUrl": "https://www.youtube.com/embed/hjxhs2HrwWA",
+            "docentes": [
+                {
+                    "name": "Álvaro Taype Rondán, MD MSc",
+                    "id": 1
+                },
+                {
+                    "name": "Jessica Zafra Tanaka, MD MSc",
+                    "id": 5
+                },
+                {
+                    "name": "José Montes Alvis, MD MSc(c)",
+                    "id": 6
+                },
+                {
+                    "name": "Christopher A. Alarcón Ruiz, MD MSc",
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "type": 1,
+            "title": "Análisis estadístico con RStudio*",
+            "description": "Aprenderás a redactar artículos científicos originales en áreas de la salud y realizar el proceso de publicación en una revista científica indizada.",
+            "frase": "Si eres un profesional o estudiante de la salud, y estás deseoso de realizar análisis estadísticos para tu tesis o tus publicaciones utilizando el programa RStudio, ¡este curso es para ti!",
+            "schedule": "Lunes a viernes de 8:00 a.m. a 12:00 m.",
+            "img": "/assets/img/courses/rstudio.jpg",
+            "pricePen": 420,
+            "priceUsd": 125,
+            "color": "#60B744",
+            "color2":"rgba(96, 183, 68, 0.50)", 
+            "brochureUrl": "/assets/files/rstudio.pdf",
+            "info": {
+                "Inicio": "26 de noviembre de 2023",
+                "Duracion": "5 semanas.",
+                "Clases": "Las clases serán asincrónicas, para que el participante pueda revisarlas en cualquier momento.",
+                "Reuniones sincronicas": "El curso incluye 5 reuniones sincrónicas virtuales, a desarrollarse los sábados de 3:00 pm a 4:30 pm (Hora Perú, GMT -5).",
+                "Dirigido a": "Profesionales y estudiantes de diversas áreas de la salud (medicina, enfermería, obstetricia, odontología, psicología, biología, tecnología médica, entre otros)",
+                "Requisitos": "No requiere conocimientos previos."
+            },
+            "contenido": [
+                "Uso de RStudio y limpieza de la base de datos",
+                "Análisis descriptivo",
+                "Pruebas bivariadas",
+                "Regresión lineal cruda y ajustada",
+                "Regresiones crudas y ajustadas para calcular RR, OR, RP",
+                "Creación de tablas para un artículo científico"
+            ],
+            "videoUrl": "https://www.youtube.com/embed/MIUBuxuAU2I",
+            "docentes": [
+                {
+                    "name": "Daniel Fernandez Guzman, MD",
+                    "id": 8
+                },
+                {
+                    "name": "Rubí Paredes Angeles, BS",
+                    "id": 9
+                },
+                {
+                    "name": "Jackeline García Serna, BS",
+                    "id": 10
+                },
+                {
+                    "name": "Arnold Tafur, BS MSc(c)",
+                    "id": 11
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "type": 1,
+            "title": "Redacción y publicación de artículos científicos biomédicos",
+            "description": "Aprenderás a redactar artículos científicos originales en áreas de la salud y realizar el proceso de publicación en una revista científica indizada.",
+            "frase": "Si eres un profesional o estudiante de la salud, y estás deseoso de publicar artículos científicos en revistas indizadas, ¡este curso es para ti!",
+            "schedule": "Lunes a viernes de 8:00 a.m. a 12:00 m.",
+            "img": "/assets/img/courses/redaccion.jpg",
+            "pricePen": 420,
+            "priceUsd": 125,
+            "color": "#1AABE4",
+            "color2":"rgba(26, 171, 228, 0.50) ",
+            "brochureUrl": "/assets/files/redaccion.pdf",
+            "info": {
+                "Inicio": "17 de diciembre de 2023.",
+                "Duracion": "5 semanas.",
+                "Clases": "Las clases serán asincrónicas, para que el participante pueda revisarlas en cualquier momento.",
+                "Reuniones sincronicas": " El curso incluye 5 reuniones sincrónicas virtuales, a desarrollarse los sábados de 5:30 pm a 7:00 pm (Hora Perú, GMT -5).",
+                "Dirigido a": "Profesionales y estudiantes de diversas áreas de la salud (medicina, enfermería, obstetricia, odontología, psicología, biología, tecnología médica, entre otros)",
+                "Requisitos": " No requiere conocimientos previos."
+            },
+            "contenido": [
+                "Principios de redacción científica.",
+                "Redacción de los resultados.",
+                "Redacción de los métodos.",
+                "Redacción de introducción y discusión.",
+                "Redacción del manuscrito final.",
+                "Búsqueda de revistas indizadas para publicación.",
+                "Proceso de publicación en revistas científicas"
+            ],
+            "videoUrl": "https://www.youtube.com/embed/kZTrvCgbMiM",
+            "docentes": [
+                {
+                    "name": "Álvaro Taype Rondán, MD MSc",
+                    "id": 1
+                },
+                {
+                    "name": "Jessica Zafra Tanaka, MD MSc",
+                    "id": 5
+                },
+                {
+                    "name": "José Montes Alvis, MD MSc(c)",
+                    "id": 6
+                },
+                {
+                    "name": "Sergio Goicochea Lugo, MD MSc(c)",
+                    "id": 2
+                },
+                {
+                    "name": "José Montes Alvis, MD MSc(c)",
+                    "id": 6
+                },
+                {
+                    "name": "Christopher A. Alarcón Ruiz, MD MSc",
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "type": 1,
+            "title": "Búsqueda bibliográfica y uso de Zotero",
+            "description": "Aprenderás a buscar estudios en PubMed y Google Académico. Así como a usar Zotero para citar todo tipo de documentos (artículos, libros, páginas web, leyes, entre otros), verificar que las citas estén correctas, usar sus distintas herramientas, y cómo utilizarlo de forma colaborativa en Google Docs.",
+            "frase": "Si eres un profesional o estudiante de la salud, y estás deseoso de aprender a buscar estudios y citar las referencias bibliográficas de tus trabajos o artículos adecuadamente, ¡este curso es para ti!",
+            "schedule": "Lunes a viernes de 8:00 a.m. a 12:00 m.",
+            "img": "/assets/img/courses/zotero.jpg",
+            "pricePen": 250,
+            "priceUsd": 75,
+            "color": "#AD5CA1",
+            "color2":"rgba(173, 92, 161, 0.50)", 
+            "brochureUrl": "/assets/files/zotero.pdf",
+            "info": {
+                "Inicio": "5 de noviembre de 2023.",
+                "Duracion": "3 semanas",
+                "Clases": "Las clases serán asincrónicas, para que el participante pueda revisarlas en cualquier momento.",
+                "Reuniones sincronicas": " El curso incluye 5 reuniones sincrónicas virtuales, a desarrollarse los sábados de 5:30 pm a 7:00 pm (Hora Perú, GMT -5).",
+                "Dirigido a": "Profesionales y estudiantes de diversas áreas de la salud (medicina, enfermería, obstetricia, odontología, psicología, biología, tecnología médica, entre otros)",
+                "Requisitos": "No requiere conocimientos previos."
+            },
+            "contenido": [
+                "Búsqueda bibliográfica de estudios para investigación y toma de decisiones clínicas.",
+                "Instalación de Zotero.",
+                "Insertar referencias en Word con Zotero.",
+                "Correcta referenciación usando Vancouver.",
+                "Herramientas, carpetas y grupos en Zotero.",
+                "Uso colaborativo de Zotero en Google Docs."
+            ],
+            "videoUrl": "https://www.youtube.com/embed/-hssT7NTCZg",
+            "docentes": [
+                {
+                    "name": "Leonardo Albitres Flores, MD, MSc(c)",
+                    "id": 12
+                },
+                {
+                    "name": "Álvaro Taype Rondán, MD MSc",
+                    "id": 1
+                },
+                {
+                    "name": "Renato Soriano Moreno, MS",
+                    "id": 13
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "type": 2,
+            "title": "Elaboración de revisiones sistemáticas y meta-análisis",
+            "description": "Aprenderás paso a paso a diseñar, elaborar y publicar revisiones sistemáticas y meta-análisis de alta calidad. Para ello, aprenderás a elaborar estrategias de búsqueda avanzadas, procesos adecuados de selección y extracción de datos, evaluación de los sesgos de los estudios incluídos, métodos para realizar meta-análisis y cómo reportar los resultados.",
+            "frase": "Si eres un profesional o estudiante de la salud deseoso de elaborar y publicar revisiones sistemáticas y meta-análisis, ¡este curso es para ti!",
+            "schedule": "Lunes a viernes de 8:00 a.m. a 12:00 m.",
+            "img": "/assets/img/courses/sistematica.jpg",
+            "pricePen": 420,
+            "priceUsd": 125,
+            "color": "#189EC3",
+            "color2":"rgba(24, 158, 195, 0.50)",          
+            "brochureUrl": "/assets/files/sistematica.pdf",
+            "info": {
+                "Inicio": "7 de enero de 2024.",
+                "Duracion": "5 semanas",
+                "Clases": "Las clases serán asincrónicas, para que el participante pueda revisarlas en cualquier momento.",
+                "Reuniones sincronicas": "El curso incluye 5 reuniones sincrónicas virtuales, a desarrollarse los sábados de 4:00 pm a 5:30 pm (Hora Perú, GMT -5).",
+                "Dirigido a": "Profesionales y estudiantes de diversas áreas de la salud (medicina, enfermería, obstetricia, odontología, psicología, biología, tecnología médica, entre otros)",
+                "Requisitos": "No requiere conocimientos previos."
+            },
+            "contenido": [
+                "Plantear una RS",
+                "Realizar la estrategia de búsqueda",
+                "Evaluar el riesgo de sesgo de los estudios incluidos",
+                "Realizar meta-análisis",
+                "Evaluar sesgo de publicación",
+                "Construir tablas summary of findings (SoF) estimando la certeza de la evidencia con metodología GRADE",
+                "Redactar el artículo final de la RS"
+            ],
+            "videoUrl": "https://www.youtube.com/embed/khRwaxy0434",
+            "docentes": [
+                {
+                    "name": "Álvaro Taype Rondán, MD MSc",
+                    "id": 1
+                },
+                {
+                    "name": "Renato Soriano Moreno, MS",
+                    "id": 13
+                },
+                {
+                    "name": "Víctor A. Velásquez Rimachi MD, MSc",
+                    "id": 14
+                },
+                {
+                    "name": "Daniel Fernandez Guzman, MD",
+                    "id": 8
+                },
+                {
+                    "name": "Ana Brañez Condorena, MD",
+                    "id": 15
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "type": 2,
+            "title": "Introducción a la medicina basada en evidencias",
+            "description": "Aprenderás a buscar ensayos clínicos y revisiones sistemáticas en PubMed, conceptos básicos de estadística, leer críticamente e interpretar los principales resultados y limitaciones de ensayos clínicos aleatorizados y revisiones sistemáticas; así como aprender a tomar decisiones en salud basadas en evidencia utilizando tablas SoF.",
+            "frase": "Si eres un profesional o estudiante de la salud, y estás deseoso de tomar decisiones basadas en evidencias para el beneficio de tus pacientes, ¡este curso es para ti!",
+            "schedule": "Lunes a viernes de  8:00 a.m. a 12:00 m.",
+            "img": "/assets/img/courses/course.png",
+            "pricePen": 420,
+            "priceUsd": 125,
+            "color": "#2F4F9A",
+            "color2":"rgba(47, 80, 154, 0.50)",
+            "brochureUrl": "/assets/files/evidencia.pdf",
+            "info": {
+                "Inicio": "7 de enero de 2024.",
+                "Duracion": "5 semanas",
+                "Clases": "Las clases serán asincrónicas, para que el participante pueda revisarlas en cualquier momento.",
+                "Reuniones sincronicas": "El curso incluye 5 reuniones sincrónicas virtuales, a desarrollarse los sábados de 4:00 pm a 5:30 pm (Hora Perú, GMT -5).",
+                "Dirigido a": "Profesionales y estudiantes de diversas áreas de la salud (medicina, enfermería, obstetricia, odontología, psicología, biología, tecnología médica, entre otros)",
+                "Requisitos": "No requiere conocimientos previos."
+            },
+            "contenido": [
+                "Planteamiento de la pregunta PICO.",
+                "Búsqueda de estudios en Pubmed.",
+                "Estadística para entender estudios de intervención.",
+                "Lectura crítica de ensayos clínicos aleatorizados.",
+                " Lectura crítica de revisiones sistemáticas.",
+                "Toma de decisiones basadas en evidencias."
+            ],
+            "videoUrl": "https://www.youtube.com/embed/Dd-0iYs-4Pc",
+            "docentes": [
+                {
+                    "name": "Álvaro Taype Rondán, MD MSc",
+                    "id": 1
+                },
+                {
+                    "name": "Jessica Zafra Tanaka, MD MSc",
+                    "id": 5
+                },
+                {
+                    "name": "Sergio Goicochea Lugo, MD MSc(c)",
+                    "id": 2
+                },
+                {
+                    "name": "José Montes Alvis, MD MSc(c)",
+                    "id": 6
+                },
+                {
+                    "name": "Christopher A. Alarcón Ruiz, MD MSc",
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "type": 2,
+            "title": "Búsqueda y lectura de crítica estudios de exactitud diagnóstica",
+            "description": "Aprenderás a tomar decisiones sobre el uso de pruebas diagnósticas, interpretando y usando conceptos como sensibilidad, especificidad, ROC, LR, entre otros. Además, aprenderás a usar nomogramas para trazar un plan de acción personalizado con tus pacientes",
+            "frase": "Si eres un profesional o estudiante de la salud, y estás deseoso de tomar decisiones basadas en evidencias sobre el uso de pruebas diagnósticas para el beneficio de tus pacientes, ¡este curso es para ti!",
+            "schedule": "Lunes a viernes de 8:00 a.m. a 12:00 m.",
+            "img": "/assets/img/courses/course.png",
+            "pricePen": 420,
+            "priceUsd": 125,
+            "color": "#ECB14D",
+            "color2":"rgba(236, 177, 77, 0.50)",
+            "brochureUrl": "/assets/files/lectura.pdf",
+            "info": {
+                "Inicio": "31 de diciembre de 2023.",
+                "Duracion": "5 semanas",
+                "Clases": "Las clases serán asincrónicas, para que el participante pueda revisarlas en cualquier momento.",
+                "Reuniones sincronicas": "Reuniones sincrónicas: El curso incluye 5 reuniones sincrónicas virtuales, a desarrollarse los sábados de 8:00 pm a 9:30 pm (Hora Perú, GMT -5).",
+                "Dirigido a": "Profesionales y estudiantes de diversas áreas de la salud (medicina, enfermería, obstetricia, odontología, psicología, biología, tecnología médica, entre otros)",
+                "Requisitos": "No requiere conocimientos previos."
+            },
+            "contenido": [
+                "Planteamiento de pregunta diagnóstica.",
+                "Búsqueda de estudios en Pubmed.",
+                "Estadística para entender estudios de diagnóstico.",
+                "Lectura crítica de ensayos de diagnóstico.",
+                "Lectura crítica de revisiones sistemáticas de diagnóstico.",
+                "Toma de decisiones basadas en evidencias sobre el uso de pruebas diagnósticas."
+            ],
+            "videoUrl": "https://www.youtube.com/embed/cY4Cn9IOLs4",
+            "docentes": [
+                {
+                    "name": "Álvaro Taype Rondán, MD MSc",
+                    "id": 1
+                },
+                {
+                    "name": "Naysha Becerra Chauca, CM MPH(c)",
+                    "id": 3
+                },
+                {
+                    "name": "Sergio Goicochea Lugo, MD MSc(c)",
+                    "id": 2
+                },
+                {
+                    "name": "Jhonatan R. Mejía, MD MSc(c)",
+                    "id": 4
+                },
+                {
+                    "name": "Renato Soriano Moreno, MS",
+                    "id": 13
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "type": 2,
+            "title": "Búsqueda y lectura crítica de guías de práctica clínica",
+            "description": "Aprenderás a buscar guías de práctica clínica, saber identificarlas y poder elegir la más confiable, leerlas críticamente, entender sus recomendaciones, y aplicarlas de la mejor manera en la práctica clínica.",
+            "frase": "Si eres un profesional o estudiante de la salud deseoso de tomar decisiones basadas en evidencias utilizando guías de práctica clínica confiables para el beneficio de tus pacientes, ¡este curso es para ti!",
+            "schedule": "Lunes a viernes de 8:00 a.m. a 12:00 m.",
+            "img": "/assets/img/courses/course.png",
+            "pricePen": 420,
+            "priceUsd": 125,
+            "color": "#1AB2C9",
+            "color2":"rgba(26, 178, 201, 0.50)",
+            "brochureUrl": "/assets/files/critica.pdf",
+            "info": {
+                "Inicio": "19 de noviembre de 2023.",
+                "Duracion": "5 semanas",
+                "Clases": "Las clases serán asincrónicas, para que el participante pueda revisarlas en cualquier momento.",
+                "Reuniones sincronicas": "Reuniones sincrónicas: El curso incluye 5 reuniones sincrónicas virtuales, a desarrollarse los sábados de 8:00 pm a 9:30 pm (Hora Perú, GMT -5).",
+                "Dirigido a": "Profesionales y estudiantes de diversas áreas de la salud (medicina, enfermería, obstetricia, odontología, psicología, biología, tecnología médica, entre otros)",
+                "Requisitos": "No requiere conocimientos previos."
+            },
+            "contenido": [
+                "Interpretación de Tablas summary of findings (SoF)",
+                "Metodología GRADE",
+                "Lectura e interpretación de la herramienta Evidence to Decision (EtD)",
+                "Búsqueda y evaluación de calidad de Guías de Práctica Clínica (GPC)",
+                "Lectura crítica de GPC",
+                "Aplicación de las recomendaciones de una GPC en la práctica de salud"
+            ],
+            "videoUrl": "https://www.youtube.com/embed/BpVj9b2ibIg",
+            "docentes": [
+                {
+                    "name": "Álvaro Taype Rondán, MD MSc",
+                    "id": 1
+                },
+                {
+                    "name": "Jessica Zafra Tanaka, MD MSc",
+                    "id": 5
+                },
+                {
+                    "name": "Sergio Goicochea Lugo, MD MSc(c)",
+                    "id": 2
+                },
+                {
+                    "name": "José Montes Alvis, MD MSc(c)",
+                    "id": 6
+                },
+                {
+                    "name": "Raúl Timaná Ruiz, MD MSc(c)",
+                    "id": 16
+                },
+                {
+                    "name": "Christopher A. Alarcón Ruiz, MD MSc",
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "type": 2,
+            "title": "Redacción y publicación de casos clínicos",
+            "description": "Aprenderás a encontrar casos clínicos publicables en tu práctica clínica y cómo redactarlos para publicarlos en revistas científicas indizadas",
+            "frase": "Si eres un profesional o estudiante de la salud, y estás deseoso de publicar reportes de casos clínicos en revistas indizadas, ¡este curso es para ti!",
+            "schedule": "Lunes a viernes de 8:00 a.m. a 12:00 m.",
+            "img": "/assets/img/courses/course.png",
+            "pricePen": 250,
+            "priceUsd": 75,
+            "color": "#6B60A5",
+            "color2":"rgba(107, 96, 165, 0.50)",   
+            "brochureUrl": "/assets/files/clinicos.pdf",
+            "info": {
+                "Inicio": "4 de febrero de 2023.",
+                "Duracion": "3 semanas",
+                "Clases": "Las clases serán asincrónicas, para que el participante pueda revisarlas en cualquier momento.",
+                "Reuniones sincronicas": "Reuniones sincrónicas: El curso incluye 5 reuniones sincrónicas virtuales, a desarrollarse los sábados de 8:00 pm a 9:30 pm (Hora Perú, GMT -5).",
+                "Dirigido a": "Profesionales y estudiantes de diversas áreas de la salud (medicina, enfermería, obstetricia, odontología, psicología, biología, tecnología médica, entre otros)",
+                "Requisitos": "No requiere conocimientos previos."
+            },
+            "contenido": [
+                "Principios de redacción científica.",
+                "Redacción del relato del caso clínico.",
+                "Redacción de la introducción y discusión",
+                "Redacción del manuscrito final",
+                "Búsqueda de revistas indizadas para publicación de casos clínicos.",
+                "Proceso de publicación en revistas científicas"
+            ],
+            "videoUrl": "https://www.youtube.com/embed/QzBrqAbbomw",
+            "docentes": [
+                {
+                    "name": "Álvaro Taype Rondán, MD MSc",
+                    "id": 1
+                }
+               
+            ]
+        }
+    ]
+}

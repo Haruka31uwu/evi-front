@@ -1,0 +1,2001 @@
+$EVI100: #00A9C3;
+$EVI200: #0393AA;
+$EVIDARK001: #13131A;
+$EVIDARK002: #0A5E6F;
+$EVIDARK003: #171F3D;
+$EVIDARK004: #515166;
+$EVIDARK005: #1C1C24;
+$EVI400: #F0F0F0;
+$EVI500: #515166;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+@font-face {
+    font-family: "Axiforma";
+    src: local("Axiforma Bold"), local("Axiforma-Bold"),
+        url("/assets/fonts/Axiforma-Bold.woff2") format("woff2"),
+        url("/assets/fonts/Axiforma-Bold.woff") format("woff"),
+        url("/assets/fonts/Axiforma-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Axiforma";
+    src: local("Axiforma Semi Bold"), local("Axiforma-Semi-Bold"),
+        url("/assets/fonts/Axiforma-SemiBold.woff2") format("woff2"),
+        url("/assets/fonts/Axiforma-SemiBold.woff") format("woff"),
+        url("/assets/fonts/Axiforma-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Axiforma";
+    src: local("Axiforma Black"), local("Axiforma-Black"),
+        url("/assets/fonts/Axiforma-Black.woff2") format("woff2"),
+        url("/assets/fonts/Axiforma-Black.woff") format("woff"),
+        url("/assets/fonts/Axiforma-Black.ttf") format("truetype");
+    font-weight: bolder;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Axiforma";
+    src: local("Axiforma Medium"), local("Axiforma-Medium"),
+        url("/assets/fonts/Axiforma-Medium.woff2") format("woff2"),
+        url("/assets/fonts/Axiforma-Medium.woff") format("woff"),
+        url("/assets/fonts/Axiforma-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Axiforma";
+    src: local("Axiforma Regular"), local("Axiforma-Regular"),
+        url("/assets/fonts/Axiforma-Regular.woff2") format("woff2"),
+        url("/assets/fonts/Axiforma-Regular.woff") format("woff"),
+        url("/assets/fonts/Axiforma-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@mixin font($weight, $size, $lineHeight, $color, $family: "Axiforma") {
+    font-family: $family, sans-serif;
+    font-weight: $weight;
+    font-size: $size;
+    line-height: $lineHeight;
+    color: $color;
+}
+
+@mixin theme($color, $bgColor) {
+    color: $color;
+    background-color: $bgColor;
+}
+
+@mixin searchInput() {
+    background: $EVIDARK001;
+    border-radius: 50px;
+    border: 1px solid $EVIDARK004;
+    padding: 10px 8px 10px 15px;
+}
+
+@mixin btn($background, $radius, $border, $color, $hovercolor, $hoverbackground) {
+    background-color: $background;
+    border-radius: $radius;
+    border: $border;
+    padding: 0.8em 1em;
+    width: 100%;
+    max-width: 448px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        text-align: center;
+        @include font(700, 14px, 1.5em, $color);
+
+        &:hover {
+            @include font(700, 14px, 1.5em, $hovercolor);
+        }
+
+        a {
+            @include font(700, 14px, 1.5em, $color);
+
+        }
+    }
+
+    a {
+        @include font(700, 14px, 1.5em, $color);
+
+        &:hover {
+            @include font(700, 14px, 1.5em, $hovercolor);
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: $hoverbackground;
+
+        span {
+            @include font(700, 14px, 1.5em, $hovercolor);
+        }
+    }
+
+    @media (max-width: 768px) {
+        width: 328px;
+
+    }
+}
+
+body {
+    margin: 0;
+}
+
+.navbar {
+    @include theme($EVI400, black);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5em 2em;
+    position: relative;
+
+    .navbar-options {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 1em;
+
+        a {
+            text-decoration: none;
+
+            div {
+                @include font(700, 14px, 1.5em, $EVIDARK004);
+            }
+        }
+    }
+
+    .navbar-options-collapsed {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 1em;
+        position: absolute;
+        top: 4.2em;
+        left: 0;
+        z-index: 999;
+
+        width: 100%;
+
+        a {
+            text-decoration: none;
+
+            div {
+                @include font(700, 14px, 1.5em, $EVIDARK004);
+            }
+        }
+    }
+}
+
+.hero-content-text {
+    margin-left: 5em;
+    width: 80%;
+
+    h1 {
+        @include font(500, 50px, 1.4em, $EVI400);
+    }
+
+    @media (max-width: 768px) {
+        margin-left: 2em;
+        width: 70%;
+
+        h1 {
+            @include font(500, 44px, 1.4em, $EVI400);
+        }
+    }
+}
+
+.btn-white {
+    @include btn($EVI400, 1.5em, none, $EVI100, $EVI400, $EVI500);
+
+    span {
+        a {
+            @include font(700, 14px, 1.5em, $EVIDARK001);
+
+        }
+    }
+}
+
+.btn-blue {
+    @include btn($EVI100, 1.5em, none, $EVI400, $EVI100, $EVI500);
+
+}
+
+.btn-blue-outline {
+    @include btn(transparent, 1.5em, 1px solid $EVI100, transparent, transparent, $EVI100);
+
+}
+
+.btn-gray-outline {
+    @include btn(transparent, 1.5em, 1px solid $EVI400, $EVI400, $EVI400, $EVI100);
+    @include font(700, 14px, 1.5em, $EVI400);
+}
+
+.btn-course {
+    @include btn($EVI500, 1.5em, none, $EVI400, $EVI400, $EVI100);
+    @include font(700, 14px, 1.5em, $EVI400);
+
+}
+
+.btn-gray {
+    @include btn($EVIDARK004, 1.5em, none, $EVI400, $EVI400, $EVI100);
+    @include font(700, 14px, 1.5em, $EVI400);
+}
+
+//! Estilos para todas las secciones
+section {
+    @include theme($EVI400, $EVIDARK001);
+
+    .section-title {
+        position: relative;
+
+        h2 {
+            margin: 0;
+            @include font(700, 32px, 1.4em, $EVI400);
+            z-index: 2;
+            position: relative;
+        }
+
+        .section-decorator {
+            position: absolute;
+            right: -3em;
+            top: 1.2em;
+            width: 100%;
+            height: 24px;
+            opacity: 0.5;
+            background-color: $EVI100;
+            border-radius: 1em;
+            z-index: 1;
+        }
+    }
+
+    @media(max-width:768px) {
+        .section-title {
+            position: relative;
+
+            h2 {
+                margin: 0;
+                @include font(700, 24px, 1.4em, $EVI400);
+                z-index: 2;
+                position: relative;
+            }
+
+            .section-decorator {
+                position: absolute;
+                right: -3em;
+                top: 0.8em;
+                width: 100%;
+                height: 24px;
+                opacity: 0.5;
+                background-color: $EVI100;
+                border-radius: 1em;
+                z-index: 1;
+            }
+        }
+    }
+}
+
+//?Section de indicadores y banderas
+.whatsits-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 0;
+
+    p {
+        @include font(300, 16px, 1.4em, $EVI400);
+        width: 50%;
+        text-align: center;
+        margin-bottom: 2em;
+    }
+
+    @media(max-width:1160px) {
+        p {
+            @include font(300, 16px, 1.4em, $EVI400);
+            width: 80%;
+            text-align: center;
+            margin-bottom: 2em;
+        }
+    }
+
+    .whatsits-indicators {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        column-gap: 2em;
+        background-color: $EVIDARK005;
+        padding: 0 2em;
+        border-radius: 3em;
+
+        .indicator-item {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            text-align: center;
+            padding: 1.2em 0 0.8em 0;
+            column-gap: 2em;
+
+            .indicator-item-text {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 10em;
+                row-gap: 0.2em;
+
+                span:first-child {
+                    @include font(700, 24px, 1.2em, $EVI100, 'Poppins');
+
+                    span {
+                        @include font(700, 24px, 1.2em, $EVI100, 'Poppins');
+
+                    }
+                }
+
+                span:last-child {
+                    @include font(400, 16px, 1.2em, $EVI400);
+                }
+            }
+
+            .indicator-item-divider {
+                width: 1px;
+                height: 3.5em;
+                background-color: $EVIDARK004;
+            }
+        }
+    }
+
+    @media(max-width:1160px) {
+        .whatsits-indicators {
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            background-color: transparent;
+            row-gap: 1em;
+
+            .indicator-item {
+                background-color: $EVIDARK005;
+                min-height: 130px;
+                border-radius: 1em;
+                width: auto;
+                padding: 0 1em;
+                align-items: center;
+            }
+
+            .indicator-item:nth-child(5) {
+                grid-column: 1/3;
+                grid-row: 2/3;
+                width: 150px;
+                margin: 0 auto;
+
+            }
+
+            .indicator-item-divider {
+                display: none;
+            }
+        }
+    }
+
+    .whatsits-students {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 1em;
+        margin-top: 2em;
+
+        span {
+            @include font(400, 20px, 1.2em, $EVI400 );
+        }
+
+        .country-flags {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-column-gap: 2em;
+        }
+
+        @media (max-width: 890px) {
+            .country-flags {
+                grid-template-columns: repeat(6, 1fr);
+                grid-row-gap: 1em;
+            }
+        }
+    }
+}
+
+.banner {
+    padding: 2em 0;
+    box-shadow: 0px 4px 80px 0px #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .banner-content {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h2 {
+            @include font(700, 46px, 1.4em, $EVI100);
+            font-style: italic;
+            text-align: center;
+            margin: 0;
+        }
+
+        p {
+            @include font(700, 30px, 1.4em, $EVIDARK004);
+
+        }
+
+    }
+
+    @media(max-width: 768px) {
+        .banner-content {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            h2 {
+                @include font(700, 26px, 1.4em, $EVI100);
+                font-style: italic;
+                text-align: center;
+                margin: 0;
+            }
+
+            p {
+                @include font(700, 18px, 1.4em, $EVIDARK004);
+                text-align: center;
+            }
+        }
+    }
+}
+
+.reasons-list {
+    height: auto;
+
+    .reason-list-content {
+        @include theme($EVI400, $EVIDARK005);
+        display: flex;
+        padding: 3em 2em;
+        border-radius: 2em;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 80%;
+        margin: 0 auto;
+
+        .reason-list-item {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: auto;
+            min-height: 50vh;
+
+            .reason-header {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                column-gap: 1em;
+                width: 90%;
+
+                @include font(700, 22px, 1.2em, $EVI100);
+
+                h3 {
+                    margin: 0;
+                }
+
+            }
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                row-gap: 2em;
+                width: 70%;
+
+                li {
+                    @include font(400, 16px, 1.2em, $EVI400);
+
+
+                }
+            }
+
+            button {
+                width: 60%;
+            }
+        }
+
+
+    }
+
+    @media (max-width: 768px) {
+
+        .reason-list-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            row-gap: 2em;
+            width: 90%;
+            background: transparent;
+
+            .reason-list-item {
+                @include theme($EVI400, $EVIDARK005);
+                padding: 2em 1em;
+                border-radius: 1.5em;
+                display: flex;
+                width: 100% !important;
+                flex-direction: column;
+                justify-content: flex-start;
+                min-height: 300px !important;
+                height: auto !important;
+
+                .reason-header {
+                    row-gap: 1em;
+
+                    h3 {
+                        width: 100%;
+                    }
+                }
+
+                ul {
+                    width: 90%;
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 2em;
+                }
+
+                button {
+                    margin: 0 auto;
+                }
+            }
+
+
+        }
+    }
+}
+
+.qualities-list {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+    .quality-item {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        column-gap: 1.5em;
+
+        .quality-content {
+            width: 66%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            column-gap: 1em;
+
+            .quality-content-text {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                flex-direction: column;
+                width: 70%;
+
+                h4 {
+                    margin: 0;
+                    @include font(800, 20px, 1.4em, $EVI400);
+                }
+
+                p {
+                    @include font(400, 14px, 1.4em, $EVI400);
+
+                }
+
+                ul {
+                    padding: 0 1em;
+
+                    li {
+                        @include font(400, 14px, 1.4em, $EVI400);
+                    }
+                }
+            }
+
+
+        }
+
+        .quality-content-2 {
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            column-gap: 2em;
+
+            .quality-content-text-2 {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                flex-direction: column;
+                width: auto;
+
+            }
+
+            ul {
+                padding: 0 1em;
+
+                li {
+                    @include font(400, 14px, 1.4em, $EVI400);
+                }
+            }
+
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .qualities-list {
+        width: 95%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+
+        .quality-item {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            column-gap: 1.5em;
+
+            .view-more {
+                @include font(400, 14px, 1.4em, $EVI100);
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                column-gap: 0.5em;
+
+                &:hover {
+                    cursor: pointer;
+                    @include font(400, 14px, 1.4em, $EVI400);
+
+                    svg {
+                        path {
+                            stroke: $EVI400;
+                        }
+                    }
+                }
+            }
+
+            .quality-content {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                column-gap: 1em;
+
+                .quality-content-text {
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    width: 70%;
+
+                    h4 {
+                        margin: 0;
+                        @include font(800, 20px, 1.4em, $EVI400);
+                    }
+
+                    p {
+                        @include font(400, 14px, 1.4em, $EVI400);
+
+                    }
+
+                    ul {
+                        padding: 0 1em;
+
+                        li {
+                            @include font(400, 14px, 1.4em, $EVI400);
+                        }
+                    }
+                }
+
+
+            }
+
+            .quality-content-2 {
+                width: 80%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                column-gap: 2em;
+
+                .quality-content-text-2 {
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    width: auto;
+
+                }
+
+                ul {
+                    padding: 0 1em;
+
+                    li {
+                        @include font(400, 14px, 1.4em, $EVI400);
+                    }
+                }
+
+            }
+
+            @media(max-width:768px) {
+                .quality-content-2 {
+                    width: 90%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 auto;
+                    row-gap: 1em;
+
+                    .quality-content-text-2 {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        width: auto;
+
+
+                    }
+
+                    ul {
+                        padding: 0 1em;
+                        row-gap: 1em;
+                        display: flex;
+                        flex-direction: column;
+
+                        li {
+                            @include font(400, 14px, 1.4em, $EVI400);
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+.experiencies-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5em 0;
+
+    .experiences-container {
+        display: flex;
+        flex-direction: row;
+        column-gap: 1em;
+        width: 90%;
+        margin: 2em auto 0 auto;
+        align-items: center;
+
+        .experience-container {
+            @include theme($EVI400, $EVIDARK005);
+            border-radius: 1.5em;
+            padding: 1em 2em;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 33%;
+            height: 320px;
+            min-width: 32%;
+
+            &:hover {
+                cursor: pointer;
+                border: 1px solid $EVI100;
+
+                span {
+                    @include font(700, 18px, 1.4em, $EVI100);
+                    text-decoration: underline;
+
+                }
+            }
+
+            h4 {
+                @include font(700, 24px, 1.4em, $EVI100);
+            }
+
+            p {
+                @include font(400, 14px, 1.4em, $EVI400);
+                text-align: center;
+                width: auto;
+                margin: 2.5em auto 0 auto;
+            }
+
+            span {
+                @include font(700, 18px, 1.4em, $EVIDARK004);
+
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+
+                    @include font(700, 18px, 1.4em, $EVI100);
+                }
+            }
+
+            .experience-owner {
+
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+
+                span {
+                    text-align: end;
+                }
+
+                span:first-child {
+                    @include font(700, 18px, 1.4em, $EVI100);
+                }
+
+                span:last-child {
+                    @include font(400, 16px, 1.4em, $EVI100);
+                }
+            }
+        }
+
+
+        @media(max-width: 1300px) {
+
+            .experience-container {
+                @include theme($EVI400, $EVIDARK005);
+                border-radius: 1.5em;
+                padding: 1em 2em;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 350px;
+                min-width: 43%;
+            }
+        }
+
+        @media(max-width: 774px) {
+
+            .experience-container {
+                @include theme($EVI400, $EVIDARK005);
+                border-radius: 1.5em;
+                padding: 1em 2em;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 33%;
+                height: 320px;
+                min-width: 98%;
+            }
+        }
+    }
+}
+
+.dude-section {
+    @include theme($EVI400, $EVIDARK005);
+    padding: 2em 0;
+}
+
+.dude-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .dude-options {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 1.5em;
+        width: 40%;
+
+        h4 {
+            margin: 0;
+            @include font(700, 24px, 1.4em, $EVI400);
+
+        }
+
+        span {
+            @include font(400, 14px, 1.4em, $EVI400);
+        }
+
+        button {
+            display: flex;
+            column-gap: 0.5em;
+        }
+    }
+
+}
+
+.allies-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5em 0;
+
+    .allies-container {
+        margin-top: 2em;
+        display: flex;
+        column-gap: 5em;
+        width: 90%;
+        justify-content: center;
+    }
+}
+
+.newsletter-section {
+    .newsletter-container {
+        margin: 0 auto;
+        width: 75%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4.5em 4em;
+        border-radius: 1.5em 1.5em 0 0;
+        box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.30);
+        @include theme($EVI400, $EVI200);
+
+        .first-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            row-gap: 0.5em;
+            width: 35%;
+            row-gap: 1em;
+
+            h4 {
+                margin: 0;
+                @include font(700, 30px, 1.4em, $EVI400);
+            }
+
+            span {
+                @include font(400, 13px, 1.4em, $EVI400);
+            }
+        }
+
+        .second-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 1.5em;
+            width: 35%;
+
+            .email-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 1em;
+
+                .email-text {
+                    margin-bottom: 0.5em;
+                    align-self: start;
+                    @include font(400, 13px, 1.4em, $EVI400);
+                }
+
+                input {
+                    height: 40px;
+                    border-radius: 1.5em;
+                    border: 1px solid $EVI400;
+                    color: $EVI400;
+                    padding: 0 1em;
+                    @include font(400, 14px, 1.4em, $EVI100);
+                    @include theme($EVI400, transparent)
+                }
+            }
+
+
+            button {
+                width: 100%;
+            }
+
+            .newsletter-spam {
+                @include font(400, 13px, 1.4em, $EVI400);
+                text-align: center;
+            }
+        }
+    }
+
+    @media(max-width:768px) {
+        .newsletter-container {
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.30);
+            @include theme($EVI400, $EVI200);
+
+            .first-column {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                row-gap: 0.5em;
+                width: 100%;
+                row-gap: 1em;
+
+                .first-column-header {
+                    display: flex;
+                    column-gap: 1em;
+
+                    svg {
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                    h4 {
+                        margin: 0;
+                        @include font(700, 30px, 1.4em, $EVI400);
+                    }
+
+                    span {
+                        @include font(400, 13px, 1.4em, $EVI400);
+
+                    }
+                }
+
+            }
+
+            .second-column {
+                margin-top: 1em;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                row-gap: 1.5em;
+                width: 100%;
+
+                .email-container {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 1em;
+
+                    .email-text {
+                        margin-bottom: 0.5em;
+                        align-self: start;
+                        @include font(400, 13px, 1.4em, $EVI400);
+                    }
+
+                    input {
+                        height: 40px;
+                        border-radius: 1.5em;
+                        border: 1px solid $EVI400;
+                        color: $EVI400;
+                        padding: 0 1em;
+                        @include font(400, 14px, 1.4em, $EVI100);
+                        @include theme($EVI400, transparent)
+                    }
+                }
+
+
+                button {
+                    width: 100%;
+                }
+
+                .newsletter-spam {
+                    @include font(400, 13px, 1.4em, $EVI400);
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+.footer-lg {
+    @include theme($EVI400, $EVIDARK001);
+    padding: 2em 0;
+    background: #1C1C24;
+    box-shadow: 0px -4px 40px 0px rgba(0, 0, 0, 0.10);
+
+    .footer-content {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+
+        .footer-content-elements {
+            display: flex;
+            flex-direction: column;
+            row-gap: 2em;
+
+            .footer-content-element-sections {
+                display: flex;
+                flex-direction: row;
+                column-gap: 3em;
+
+                .column {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 1em;
+
+                    h5 {
+                        margin: 0;
+                        @include font(700, 18px, 1.4em, $EVI400);
+                    }
+
+                    span {
+                        @include font(400, 16px, 1.4em, $EVI400);
+
+                        &:hover {
+                            cursor: pointer;
+                            text-decoration: underline;
+                            @include font(400, 16px, 1.4em, $EVI100);
+                        }
+                    }
+                }
+
+                .column-divider {
+                    height: 90px;
+                    width: 1px;
+                    background-color: $EVI400;
+                    align-self: flex-end;
+                    margin-bottom: 1px;
+                }
+
+                .footer-content-end {
+                    display: flex;
+                    flex-direction: row;
+                    row-gap: 1em;
+
+                }
+
+                .svgs-container {
+                    display: flex;
+                    flex-direction: row;
+                    column-gap: 1em;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 1em;
+
+                    svg {
+                        width: 30px;
+                        height: 30px;
+
+                        &:hover {
+                            cursor: pointer;
+
+                            path {
+                                fill: $EVI100;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .footer-content-end {
+                display: flex;
+                flex-direction: row;
+                row-gap: 1em;
+                align-self: flex-end;
+                column-gap: 1.5em;
+                margin-top: 2em;
+
+                span {
+                    @include font(400, 16px, 1.4em, $EVI400);
+
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                        @include font(400, 16px, 1.4em, $EVI100);
+                    }
+                }
+
+                .footer-divider {
+                    height: 20px;
+                    width: 1px;
+                    background-color: $EVI400;
+                    align-self: flex-end;
+                    margin-bottom: 1px;
+                }
+
+                .footer-content-end-item {
+                    @include font(400, 16px, 1.4em, $EVI400);
+                    text-decoration: none;
+                    color: $EVI400;
+                }
+            }
+        }
+    }
+}
+
+.footer-md {
+    @include theme($EVI400, $EVIDARK001);
+    box-shadow: 0px -4px 40px 0px rgba(0, 0, 0, 0.10);
+    width: 100%;
+
+    .footer-content {
+        .row-divider {
+            width: 90%;
+            height: 0.5px;
+            background-color: $EVIDARK004;
+            margin: 1.4em auto;
+        }
+
+        .footer-content-first-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+
+        }
+
+        .first-row {
+            display: flex;
+            flex-direction: column;
+            row-gap: 1em;
+
+            h5 {
+                @include font(700, 22px, 1.4em, $EVI400);
+            }
+
+            span {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                column-gap: 0.5em;
+
+                a {
+                    @include font(400, 20px, 1.4em, $EVI400);
+
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                        @include font(300, 21px, 1.4em, $EVI100);
+                    }
+                }
+            }
+        }
+
+        .second-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            row-gap: 0.2em;
+            width: 50%;
+
+            span {
+                text-align: center;
+                @include font(400, 20px, 1.4em, $EVI100);
+
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                    @include font(300, 20px, 1.4em, $EVI100);
+                }
+
+            }
+        }
+
+        .third-row {
+
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            .svgs-container {
+                display: flex;
+                justify-content: center;
+                column-gap: 1.2em;
+                align-items: center;
+
+                svg {
+                    width: 30px;
+                    height: 30px;
+
+                    &:hover {
+                        cursor: pointer;
+
+                        path {
+                            stroke: $EVI100;
+                            fill: $EVI100;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-content-end {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 1em;
+        margin: 0 auto;
+        width: 90%;
+
+        span {
+            @include font(400, 18px, 1.4em, $EVI400);
+            text-align: center;
+
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+                @include font(300, 20px, 1.4em, $EVI100);
+            }
+        }
+
+        .name-company {
+            @include font(400, 20px, 1.4em, $EVIDARK004);
+
+            &:hover {
+                cursor: pointer;
+
+            }
+        }
+
+        .footer-divider-vertical {
+            width: 2px;
+            height: 20px;
+            background-color: $EVIDARK004;
+            margin: 1.4em auto;
+        }
+
+        .footer-content-end-item {
+            @include font(400, 20px, 1.4em, $EVI400);
+            text-decoration: none;
+            color: $EVI400;
+
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+                @include font(300, 21px, 1.4em, $EVI100);
+            }
+        }
+    }
+}
+
+/**
+*?Courses styles*/
+.our-courses-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .our-courses-banner {
+        width: 100%;
+        height: 100px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        @include theme($EVI400, $EVI100);
+
+        .our-courses-banner-text {
+            width: 50%;
+            margin: 0 auto;
+            word-break: break-all;
+            text-align: center;
+
+            p {
+                @include font(400, 16px, 1.4em, $EVI400);
+
+                span {
+                    @include font(400, 16px, 1.4em, $EVIDARK003);
+
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                        @include font(400, 16px, 1.4em, $EVI400);
+                    }
+                }
+            }
+
+            span {
+                text-decoration: underline;
+                padding: 0 1em;
+                @include font(400, 16px, 1.4em, $EVIDARK003);
+            }
+        }
+
+        @media(max-width:768px) {
+            .our-courses-banner-text {
+                width: 80%;
+            }
+
+        }
+    }
+
+    .our-couses-description {
+        padding: 1em 0;
+        width: 100%;
+
+        .our-courses-description-text {
+            width: 80%;
+            margin: 0 auto;
+            word-break: break-all;
+            text-align: center;
+
+            p {
+                @include font(500, 14px, 1.6em, $EVI400);
+            }
+
+            span {
+                @include font(500, 14px, 1.4em, $EVI100);
+                padding: 0 1em;
+                text-decoration: underline;
+
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                    @include font(500, 14px, 1.4em, $EVI400);
+                }
+            }
+        }
+
+        @media(max-width:768px) {
+            .our-courses-description-text {
+                width: 90%;
+
+                p {
+                    @include font(500, 16px, 1.4em, $EVI400);
+                }
+
+            }
+
+            span {
+                @include font(500, 16px, 1.4em, $EVI100);
+                padding: 0 1em;
+                text-decoration: underline;
+
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                    @include font(500, 14px, 1.4em, $EVIDARK003);
+                }
+            }
+
+        }
+    }
+}
+
+.section-explorer {
+    display: flex;
+    flex-direction: column;
+
+    .section-content {
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        .courses-search-container {
+            align-self: end;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: 1px solid $EVIDARK003;
+            padding: 0.5em 1em;
+            border-radius: 1em;
+            width: 15em;
+        }
+
+        @media(max-width:768px) {
+            .courses-search-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                border: 1px solid $EVIDARK003;
+                padding: 0.5em 1em;
+                border-radius: 1em;
+                width: 100%;
+            }
+        }
+
+        .courses-list-container {
+            overflow-x: hidden;
+
+            h4 {
+                margin: 0;
+                @include font(700, 24px, 1.4em, $EVI100);
+            }
+
+            .courses-items-container {
+                overflow: hidden;
+                padding: 2em 0;
+                width: 90%;
+                margin: 0 auto;
+                display: grid;
+                align-items: center;
+                justify-content: center;
+                grid-template-columns: repeat(3, 1fr);
+                grid-row-gap: 2em;
+                margin: 0 auto;
+            }
+
+            @media (max-width: 1424px) {
+                .courses-items-container {
+                    width: 90%;
+                    margin: 0 auto;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-row-gap: 2em;
+                    overflow-x: hidden;
+                    column-gap: 3em;
+                    align-items: center;
+                    justify-content: center;
+
+                }
+            }
+
+            @media (max-width: 768px) {
+                .courses-items-container {
+                    width: 90%;
+                    margin: 0 auto;
+                    display: flex;
+                    flex-direction: row;
+
+                    overflow-x: hidden;
+                    column-gap: 3em;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                }
+            }
+        }
+    }
+
+
+
+}
+
+.course-container {
+    width: 70%;
+    min-width: 410px;
+
+    .course-img-container {
+        position: relative;
+
+        .more-selled-course {
+            position: absolute;
+            top: 0;
+            right: 2em;
+            width: 50px;
+            padding: 0 0.3em;
+            border-radius: 0 0 1em 1em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            @include font(400, 10px, 1.2em, $EVI100);
+            @include theme($EVI400, $EVI100);
+
+            span {
+                word-break: break-all;
+                text-align: center;
+            }
+        }
+
+        .course-type {
+            position: absolute;
+            bottom: 0;
+            left: 1em;
+        }
+
+    }
+
+    .course-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1em;
+        border-radius: 0 0 1em 1em;
+        height: auto;
+        @include theme($EVI400, $EVIDARK005);
+        min-height: 300px;
+
+        h5 {
+            margin: 0;
+            @include font(700, 16px, 1.4em, $EVI400);
+        }
+
+        .course-description {
+            @include font(400, 14px, 1.4em, $EVIDARK004 );
+        }
+
+        .course-schedule {
+            @include font(700, 14px, 1.4em, $EVI100 );
+        }
+    }
+
+    .course-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+            @include font(400, 14px, 1.4em, $EVI400 );
+
+            &:hover {
+                @include font(400, 14px, 1.4em, $EVI100 );
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+
+        .course-more-info {
+            @include font(400, 14px, 1.4em, $EVI400 );
+            text-decoration: underline;
+        }
+
+        button {
+            width: 50%;
+            min-width: 160px;
+            display: flex;
+            flex-direction: row;
+            column-gap: 1em;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+
+.our-programs-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+    .programs-container {
+        width: 70%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
+
+    @media(max-width:768px) {
+        .programs-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 2em;
+        }
+    }
+
+    h3 {
+        margin: 1em 0;
+        @include font(400, 14px, 1.4em, $EVI400);
+    }
+
+    .program-container {
+        width: 400px;
+
+        .program-img-container {
+            position: relative;
+
+            .program-type {
+                position: absolute;
+                bottom: 0;
+                left: 1em;
+            }
+
+        }
+
+        .program-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1em;
+            border-radius: 0 0 1em 1em;
+            @include theme($EVI400, $EVIDARK005);
+
+            h5 {
+                margin: 0;
+                @include font(700, 16px, 1.4em, $EVI400);
+            }
+
+            .program-description {
+                @include font(400, 14px, 1.4em, $EVIDARK004 );
+                margin: 0;
+            }
+
+            .program-schedule {
+                @include font(700, 14px, 1.4em, $EVI100 );
+            }
+
+            .program-course-list {
+                margin: 0;
+                padding: 1em 0 0 0;
+                list-style: none;
+                row-gap: 0.5em;
+                display: flex;
+                flex-direction: column;
+
+                li {
+                    display: flex;
+                    flex-direction: row;
+                    column-gap: 1em;
+                    @include font(400, 12px, 1.4em, $EVI400 );
+                }
+
+            }
+        }
+
+        .program-footer {
+            margin-top: 1em;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .program-more-info {
+                @include font(400, 14px, 1.4em, $EVI400 );
+
+            }
+
+            button {
+                width: 40%;
+                min-width: 200px;
+                display: flex;
+                flex-direction: row;
+                column-gap: 1em;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+
+    @media(max-width:1090px) {
+        .program-container {
+            width: 90%;
+        }
+    }
+}
+
+.course-metodology {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 0;
+}
+
+.gift-know {
+    background: url('/assets/img/courses/gift.png') no-repeat;
+    width: 100%;
+    height:460px;
+    padding: 1em;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    .message {
+        width: 50%;
+        @include theme($EVI400, $EVI100);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.7;
+        border-radius: 2em;
+        padding: 2em 0;
+        height: auto;
+        h2 {
+            padding: 0;
+            padding-left: 2em;
+            margin: 0;
+            @include font(700, 32px, 1.4em, $EVI400);
+        }
+
+        p {
+            padding-left: 3em;
+
+            width: 70%;
+            @include font(400, 18px, 1.4em, $EVI400);
+            text-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            row-gap: 1em;
+
+            button {
+                width: 400px;
+            }
+        }
+    }
+
+    @media(max-width:1100px) {
+        .message {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+
+            h2 {
+                @include font(700, 26px, 1.4em, $EVI400);
+            }
+
+            p {
+                width: 100%;
+                @include font(400, 16px, 1.4em, $EVI400);
+                text-align: start;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                row-gap: 1em;
+                padding: 0 1em;
+
+                button {
+                    width: 100%;
+                }
+            }
+        }
+
+    }
+}
+
+//! Courses Details
+
+.course-copy {
+    @include font(500, 24px, 1.4em, $EVI400);
+    width: 80%
+}
+
+.title-decorated {
+    margin: 0;
+    @include font(500, 28px, 1.4em, $EVI400);
+}
+
+span a {
+    @include font(500, 14px, 1.4em, $EVI400);
+    text-decoration: none;
+}
+
+.modal-customized {
+    .modal-customized-header {
+        svg {
+            &:hover {
+                cursor: pointer;
+                stroke: $EVI100;
+                fill: $EVI100;
+            }
+        }
+    }
+}
+
+@media(max-width:1200px) {
+    .course-price-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        row-gap: 1em;
+        width: 100% !important;
+
+        .course-detail-price {
+            width: 50%;
+        }
+
+        .course-detail-contact {
+            width: 50%;
+        }
+    }
+
+}
+
+@media(max-width:7680px) {
+    .course-price-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        row-gap: 1em;
+        width: 100% !important;
+
+        .course-detail-price {
+            width: 90%;
+        }
+
+        .course-detail-contact {
+            width: 90%;
+        }
+    }
+
+}
+
+.section-divider {
+    width: 80%;
+    height: 1px;
+    background-color: $EVIDARK004;
+    margin-top: 3em
+}
+
+.search-input {
+    @include font(400, 14px, 1.4em, $EVI400);
+    @include searchInput();
+}
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .loader {
+    border: 4px solid rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #3498db;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

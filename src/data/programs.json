@@ -1,0 +1,72 @@
+{
+    "programsList": [
+        {
+            "id": 1,
+            "title": "Programa de formación en Investigación y publicación en salud",
+            "description": "Quieres tomar decisiones basadas en evidencia para tu práctica profesional? Entonces este programa es para ti. Desarrollarás competencias necesarias para buscar información, leerla críticamente, y tomar decisiones basadas en evidencias que permitan maximizar el beneficio con tus pacientes”",
+            "frase":"¿Quieres elaborar trabajos de investigación y publicarlos en revistas indizadas? ¡Entonces, este programa de EviSalud es para ti! Inicia ahora esta aventura en la que desarrollarás las competencias necesarias para realizar un trabajo de investigación, incluyendo su diseño, análisis estadístico, redacción y publicación.",
+            "hours": "(138  a 168 horas académicas)",
+            "img": "/assets/img/courses/course.png",
+            "coursesList": [
+                {
+                    "id": 1,
+                    "title": "Redacción de protocolos de investigación en salud"
+                },
+                {
+                    "id": 2,
+                    "title": "Análisis estadístico con STATA*"
+                },
+                {
+                    "id": 3,
+                    "title": "Análisis estadístico con RStudio*"
+                },
+                {
+                    "id": 4,
+                    "title": "Redacción y publicación de artículos científicos biomédicos"
+                },
+                {
+                    "id": 5,
+                    "title": "Búsqueda bibliográfica y uso de Zotero"
+                },
+                {
+                    "id": 6,
+                    "title": "Elaboración de Revisiones Sistemáticas y Meta-Análisis"
+                }
+            ],
+            "pricePen": 1600,
+            "priceUsd": 485
+        },
+        {
+            "id": 2,
+            "title": "Programa de formación en medicina basada en evidencias",
+            "description": "Quieres tomar decisiones basadas en evidencia para tu práctica profesional? Entonces este programa es para ti. Desarrollarás competencias necesarias para buscar información, leerla críticamente, y tomar decisiones basadas en evidencias que permitan maximizar el beneficio con tus pacientes”",
+            "frase":"¿Eres un profesional o estudiante de la salud (medicina, enfermería, obstetricia, nutrición,  psicología, entre otros) que quiere tomar decisiones basadas en evidencias para su práctica profesional?¡Entonces, este programa de EviSalud es para ti! Inicia ahora esta aventura en la que desarrollarás las competencias necesarias para buscar información, leerla críticamente y tomar decisiones basadas en evidencias, que permitan maximizar el beneficio de tus pacientes.",
+            "hours": "(138 horas académicas)",
+            "img": "/assets/img/courses/course.png",
+            "coursesList": [
+                {
+                    "id": 7,
+                    "title": "Introducción a la Medicina Basada en Evidencias"
+                },
+                {
+                    "id": 8,
+                    "title": "Búsqueda y lectura de crítica estudios de exactitud diagnóstica"
+                },
+                {
+                    "id": 9,
+                    "title": "Búsqueda y lectura crítica de Guías de Práctica Clínica"
+                },
+                {
+                    "id": 10,
+                    "title": "Redacción y publicación de casos clínicos"
+                },
+                {
+                    "id": 6,
+                    "title": "Elaboración de revisiones sistemáticas y meta-análisis"
+                }
+            ],
+            "pricePen": 1600,
+            "priceUsd": 485
+        }
+    ]
+}
