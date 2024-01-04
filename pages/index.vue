@@ -13,5 +13,13 @@
     </div>
 </template>
 <script>
-
+useHead({
+  title:"Inicio-Evisalud",
+  meta:[
+    {
+      name:"description",
+      content:"Plataforma educativa especializada en ofrecer una amplia gama de cursos de investigación en el campo de la medicina. Nuestra plataforma está diseñada para proporcionar conocimientos fundamentales y avanzados en metodología de investigación médica, cubriendo temas clave como diseño de estudios, análisis de datos clínicos, y técnicas de investigación aplicadas en el ámbito médico. Ofrecemos un enfoque integral, permitiendo a estudiantes y profesionales de la salud ampliar sus habilidades y comprensión en el área de investigación, respaldado por instructores expertos y recursos de aprendizaje de calidad."
+    }
+  ]
+})
 </script>

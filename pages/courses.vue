@@ -8,3 +8,14 @@
         <courses-gift-knowledge/>
     </main>
 </template>
+<script>
+useHead({
+  title:"Cursos-Evisalud",
+  meta:[
+    {
+      name:"description",
+      content:"Explora nuestra variedad de cursos de investigación médica diseñados para estudiantes y profesionales de la salud. Encuentra programas especializados en metodología de investigación, análisis de datos clínicos y técnicas avanzadas aplicadas en el ámbito médico. Obtén conocimientos fundamentales y prácticos para potenciar tu carrera en investigación médica."
+    }
+  ]
+})
+</script>
