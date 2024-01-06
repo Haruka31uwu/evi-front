@@ -20,7 +20,7 @@ class AuthService {
             const res = await axios.post(`${config.public.APP_BACKEND_URL}auth/login`, body, {
                 withCredentials: true,
                 headers: {
-                    'X-XSRF-TOKEN': csfr.data.csrf_token
+                    'X-XSRF-TOKEN': csfr.data.csrf
                 }
             });
 
