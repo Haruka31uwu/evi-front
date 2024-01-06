@@ -15,12 +15,13 @@ class AuthService {
     }
     async login(body) {
         try {
-            const csfr = await apiClient.get('/sanctum/csrf-cookie');
-            console.log(csfr.data);
+            await apiClient.get('/sanctum/csrf-cookie');
+            const csrfToken = getCsrfTokenFromCookie();
+            console.log(csrfToken);
             const res = await axios.post(`${config.public.APP_BACKEND_URL}auth/login`, body, {
                 withCredentials: true,
                 headers: {
-                    'X-XSRF-TOKEN': csfr.data.csrf_token
+                    'X-XSRF-TOKEN': csrfToken
                 }
             });
 
