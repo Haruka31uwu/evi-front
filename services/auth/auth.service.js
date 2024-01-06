@@ -16,13 +16,8 @@ class AuthService {
     async login(body) {
         try {
             await apiClient.get('/sanctum/csrf-cookie');
-            const csrfToken = getCsrfTokenFromCookie();
-            console.log(csrfToken);
             const res = await axios.post(`${config.public.APP_BACKEND_URL}auth/login`, body, {
                 withCredentials: true,
-                headers: {
-                    'X-XSRF-TOKEN': csrfToken
-                }
             });
 
             return res;
