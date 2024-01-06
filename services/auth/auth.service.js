@@ -16,12 +16,7 @@ class AuthService {
     async login(body) {
         try {
             await apiClient.get('/sanctum/csrf-cookie');
-            const csrfToken = document.cookie.match(/XSRF-TOKEN=([^;]+)/)[1];
-
-            const res = await apiClient.post(`/auth/login`,{ 
-                ...body, 
-                _token: csrfToken 
-            });
+            const res = await apiClient.post(`/auth/login`, body)            
             return res;
         } catch (e) {
             throw e;
