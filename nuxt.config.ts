@@ -19,8 +19,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       APP_BACKEND_URL: process.env.APP_BACKEND_URL,
-      // SUPABASE_URL: process.env.SUPABASE_URL,
-      // SUPABASE_KEY: process.env.SUPABASE_KEY,
     }
   },
 })
