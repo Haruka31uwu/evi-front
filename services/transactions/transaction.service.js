@@ -8,6 +8,14 @@ class TransactionService {
         } catch (e) {
             throw e;
         }
+    }
+    async sendTransactionResumeEmail(body) {
+        try {
+            const res = await apiClient.post(`${config.public.APP_BACKEND_URL}transactions/send-transaction-resume-email`, body);
+            return res;
+        } catch (e) {
+            throw e;
+        }
     }   
 }   
 export default new TransactionService();

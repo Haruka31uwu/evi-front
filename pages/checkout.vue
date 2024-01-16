@@ -5,6 +5,7 @@
     <div
       class="text-center d-flex flex-row justify-content-between"
       style="width: 30%"
+      v-if="!isLogged && !showRegisterForm"
     >
       <span
         v-for="tab in tabs"
@@ -652,222 +653,211 @@
     >
       <auth-reduced-register-form />
     </div>
+    
   </section>
 </template>
-<script>
+<script setup>
 import { usePreloader, useSwall } from "/composables/main-composables.js";
 const { showPreloader, hidePreloader } = usePreloader();
-const { showSuccessSwall, showErrorSwall } = useSwall();
+const { showSuccessSwall, showErrorSwall, showSuccessBuySwall } = useSwall();
 import { carStore } from "../../store/car/car.store";
 import { authStore } from "../../store/auth/auth.store";
 import TransactionService from "../../services/transactions/transaction.service";
 import * as yup from "yup";
 import { useForm } from "vee-validate";
-
-export default {
-  setup() {
-    const showRegisterForm = ref(false);
-    const openRegisterForm = () => {
-      showRegisterForm.value = true;
-    };
-    const isLogged = authStore().isLogged;
-    const pid = ref("");
-    const number = ref("");
-    const store = carStore();
-    const getCarItems = store.getCarItems;
-    const condition = ref(false);
-    const cuponValue = ref(0);
-    const yapeOtp = ref([]);
-    const paymentValue = ref(0);
-    const userData = authStore().getUserData;
-    const getCarTotal = () => {
-      let carValue;
-      if (getCarItems.length === 0) {
-        carValue = 0;
-      }
-      carValue = getCarItems.reduce((acc, item) => {
-        return acc + item.pricePen;
-      }, 0);
-      const couponValue = cuponValue.value;
-      const total = carValue - couponValue;
-      paymentValue.value = total;
-      return [
-        {
-          name: "Precio Regular:",
-          key: "carValue",
-          value: carValue,
-        },
-        {
-          name: "Cupon:",
-          key: "couponValue",
-          value: couponValue,
-        },
-        {
-          name: "Total a pagar:",
-          key: "total",
-          value: total,
-        },
-      ];
-    };
-    const selectedPaymentOption = ref(1);
-    const paymentOptions = ref([
-      {
-        id: 1,
-        name: "Tarjeta de debito o credito",
-      },
-      {
-        id: 2,
-        name: "PayPal",
-      },
-      {
-        id: 3,
-        name: "Yape",
-      },
-    ]);
-    const typeDocumentSelected = ref("dni");
-    const typeDocumentOptions = reactive([
-      {
-        name: "DNI",
-        value: "dni",
-      },
-      {
-        name: "Carnet de Extranjeria",
-        value: "carnet",
-      },
-      {
-        name: "Pasaporte",
-        value: "pasaporte",
-      },
-    ]);
-    const selectedOption = ref(1);
-    const tabs = ref([
-      {
-        id: 1,
-        name: "Para mi",
-      },
-      {
-        id: 2,
-        name: "Regalar curso",
-      },
-    ]);
-    const selectTab = (id) => {
-      selectedOption.value = id;
-    };
-
-    /**Transaction Methods */
-    const yapeSettings = ref({
-      otpCharacters: 6,
-    });
-   
-    const schema = yup.object().shape({
-      cardName: yup.string().required("El nombre de la tarjeta es requerido"),
-      cardNumber: yup.string().required("El numero de la tarjeta es requerido"),
-      cardSecurityCode: yup
-        .string()
-        .required("El codigo de seguridad es requerido"),
-      cardExpireDate: yup
-        .string()
-        .required("La fecha de expiración es requerida"),
-    });
-    const { handleSubmit, errors, resetForm } = useForm({
-      validationSchema: schema,
-    });
-    const onSubmitCard = async (values) => {
-      showPreloader();
-      try {
-        const params = {
-          pid: pid.value,
-          number: number.value,
-          type: 2,
-          userId:
-            typeof userData === "object"
-              ? userData.id
-              : JSON.parse(userData).id,
-          amount: paymentValue.value,
-          cardName: values.cardName,
-          cardNumber: values.cardNumber,
-          cardSecurityCode: values.cardSecurityCode,
-          cardExpireDate: values.cardExpireDate,
-        };
-        const { data, status } = await TransactionService.createTransaction(
-          params
-        );
-        hidePreloader();
-        if (status === 201) {
-          showSuccessSwall(
-            "",
-            "Su compra ha sido realizada correctamente. Recibirá un mensaje de confirmación en el correo proporcionado en sus datos"
-          );
-        }
-      } catch (err) {
-        hidePreloader();
-       
-        console.log(err);
-      }
-    };
-    const payWithYape = async () => {
-      showPreloader();
-      try {
-        //valid otp
-        const otp = yapeOtp.value.join("");
-        const params = {
-          pid: pid.value,
-          number: number.value,
-          otp: otp,
-          type: 1,
-          userId:
-            typeof userData === "object"
-              ? userData.id
-              : JSON.parse(userData).id,
-          amount: paymentValue.value,
-        };
-
-        const { data, status } = await TransactionService.createTransaction(
-          params
-        );
-        hidePreloader();
-        if (status === 201) {
-          showSuccessSwall(
-            "",
-            "Su compra ha sido realizada correctamente. Recibirá un mensaje de confirmación en el correo proporcionado en sus datos"
-          );
-        }
-      } catch (err) {
-        console.log(err);
-        hidePreloader();
-
-       
-        console.log(err);
-      }
-    };
-    const transactionOption = ref(null);
-    const startTransaction = () => {
-      transactionOption.value = selectedPaymentOption.value;
-    };
-    return {
-      tabs,
-      selectTab,
-      selectedOption,
-      payWithYape,
-      typeDocumentOptions,
-      typeDocumentSelected,
-      paymentOptions,
-      selectedPaymentOption,
-      getCarTotal,
-      condition,
-      isLogged,
-      openRegisterForm,
-      showRegisterForm,
-      pid,
-      number,
-      startTransaction,
-      yapeSettings,
-      transactionOption,
-      yapeOtp,
-      schema,
-      onSubmitCard,
-    };
+const emit = defineEmits(["openTransactionDetails"]);
+const showRegisterForm = ref(false);
+const openRegisterForm = () => {
+  showRegisterForm.value = true;
+};
+const storeAuth = authStore();
+const isLogged = computed(() => storeAuth.isLogged);
+const pid = ref("");
+const number = ref("");
+const store = carStore();
+const getCarItems = store.getCarItems;
+const condition = ref(false);
+const cuponValue = ref(0);
+const yapeOtp = ref([]);
+const paymentValue = ref(0);
+const userData = ref(storeAuth.getUserData);
+const getCarTotal = () => {
+  let carValue;
+  if (getCarItems.length === 0) {
+    carValue = 0;
+  }
+  carValue = getCarItems.reduce((acc, item) => {
+    return acc + item.pricePen;
+  }, 0);
+  const couponValue = cuponValue.value;
+  const total = carValue - couponValue;
+  paymentValue.value = total;
+  return [
+    {
+      name: "Precio Regular:",
+      key: "carValue",
+      value: carValue,
+    },
+    {
+      name: "Cupon:",
+      key: "couponValue",
+      value: couponValue,
+    },
+    {
+      name: "Total a pagar:",
+      key: "total",
+      value: total,
+    },
+  ];
+};
+const selectedPaymentOption = ref(1);
+const paymentOptions = ref([
+  {
+    id: 1,
+    name: "Tarjeta de debito o credito",
   },
+  {
+    id: 2,
+    name: "PayPal",
+  },
+  {
+    id: 3,
+    name: "Yape",
+  },
+]);
+const typeDocumentSelected = ref("dni");
+const typeDocumentOptions = reactive([
+  {
+    name: "DNI",
+    value: "dni",
+  },
+  {
+    name: "Carnet de Extranjeria",
+    value: "carnet",
+  },
+  {
+    name: "Pasaporte",
+    value: "pasaporte",
+  },
+]);
+const selectedOption = ref(1);
+const tabs = ref([
+  {
+    id: 1,
+    name: "Para mi",
+  },
+  {
+    id: 2,
+    name: "Regalar curso",
+  },
+]);
+const selectTab = (id) => {
+  selectedOption.value = id;
+};
+
+/**Transaction Methods */
+const yapeSettings = ref({
+  otpCharacters: 6,
+});
+const schema = yup.object().shape({
+  cardName: yup.string().required("El nombre de la tarjeta es requerido"),
+  cardNumber: yup.string().required("El numero de la tarjeta es requerido"),
+  cardSecurityCode: yup
+    .string()
+    .required("El codigo de seguridad es requerido"),
+  cardExpireDate: yup.string().required("La fecha de expiración es requerida"),
+});
+const { handleSubmit, errors, resetForm } = useForm({
+  validationSchema: schema,
+});
+const onSubmitCard = async (values) => {
+  showPreloader();
+  try {
+    const params = {
+      pid: pid.value,
+      number: number.value,
+      type: 2,
+      userId:
+        typeof userData === "object" ? userData.id : JSON.parse(userData).id,
+      amount: paymentValue.value,
+      cardName: values.cardName,
+      cardNumber: values.cardNumber,
+      cardSecurityCode: values.cardSecurityCode,
+      cardExpireDate: values.cardExpireDate,
+    };
+    const { data, status } = await TransactionService.createTransaction(params);
+    if (status === 201) {
+      const transactionData = {
+        userData: userData.value,
+        transaction: data,
+        carItems: getCarItems,
+        type:{
+          name:'Card'
+        }
+      };
+      const response=
+        await TransactionService.sendTransactionResumeEmail({
+          transactionData: transactionData,
+        });
+        hidePreloader();
+
+      const confirmed = await showSuccessBuySwall(
+        "",
+        "Su compra ha sido realizada correctamente. Recibirá un mensaje de confirmación en el correo proporcionado en sus datos"
+      );
+    }
+  } catch (err) {
+    hidePreloader();
+  }
+};
+const payWithYape = async () => {
+  showPreloader();
+  try {
+    //valid otp
+    const otp = yapeOtp.value.join("");
+    const params = {
+      pid: pid.value,
+      number: number.value,
+      otp: otp,
+      type: 1,
+      userId:
+        typeof userData === "object" ? userData.id : JSON.parse(userData).id,
+      amount: paymentValue.value,
+    };
+
+    const { data, status } = await TransactionService.createTransaction(params);
+    if (status === 201) {
+      const transactionData = {
+        userData: userData.value,
+        transaction: data,
+        carItems: getCarItems,
+        type:{
+          name:'Yape'
+        }
+      };
+      const response=
+        await TransactionService.sendTransactionResumeEmail({
+          transactionData: transactionData,
+        });
+        hidePreloader();
+
+      const confirmed = await showSuccessBuySwall(
+        "",
+        "Su compra ha sido realizada correctamente. Recibirá un mensaje de confirmación en el correo proporcionado en sus datos"
+      );
+
+      if (confirmed) {
+        emit("openTransactionDetails", transactionData);
+      }
+    }
+  } catch (err) {
+    hidePreloader();
+    console.log(err);
+  }
+};
+const transactionOption = ref(null);
+const startTransaction = () => {
+  transactionOption.value = selectedPaymentOption.value;
 };
 </script>
 <style scoped lang="scss">

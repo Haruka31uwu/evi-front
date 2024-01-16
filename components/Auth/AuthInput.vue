@@ -1,7 +1,10 @@
 <template>
     <div style="position: relative;" class="d-flex flex-column">
-      <input :type="props.type" v-on="handlers" :value="value" :name="name" class="input-customized" :placeholder="!errorMessage?placeholder:''"/>
+      <input :type="type" v-on="handlers" :value="value" :name="name" class="input-customized" :placeholder="!errorMessage?placeholder:''"/>
       <span class="sign-container-error-message" v-if="errorMessage">{{ errorMessage.substring(0,1).toUpperCase()+errorMessage.substring(1)}}</span>
+      <Icon v-if="type=='password'" name="mdi:eye" color="white" @click="changeType" style="position:absolute;right:10px;top:18px"/>
+          <Icon v-else-if="props.type=='password'&&type=='text'" name="mdi:eye-outline" color="white" @click="changeType" style="position:absolute;right:10px;top:18px"/>
+
     </div>
   </template>
   <script setup>
@@ -25,7 +28,10 @@
       type: String,
     },
   });
-  
+  const type=ref(props.type);
+  const changeType=()=>{
+    type.value=type.value=='password'?'text':'password';
+  }
   const { meta, value, errorMessage, handleChange, handleBlur } = useField(
     toRef(props, 'name'),
     null,
@@ -57,7 +63,7 @@
   .input-customized {
   border: 1px solid #515166;
   background: transparent;
-  width: 95%;
+  width: 100%;
   border-radius: 2em;
   padding: 0.8em 1em;
   resize: none;

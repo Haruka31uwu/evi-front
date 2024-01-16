@@ -10,30 +10,52 @@ export const authStore = defineStore('authStore', {
         getUserData: (state) => {
             if (state.userData.length == 0 || localStorage.getItem('userData')) {
                 const userData = localStorage.getItem('userData');
-                return JSON.parse(userData);
+                if (userData) {
+                    return JSON.parse(userData)[0];
+                }
+                return [];
             }
-            return state.userData;
+            return state.userData[0];
 
         },
         isLogged: (state) => {
-            if (!state.userData==0 && !localStorage.getItem('userData')) {
+
+            console.log(state.userData,'state.userData changed');
+            if (!localStorage.getItem('userData')) {
                 return false;
             }
             return true;
+        },
+        getAccessToken: (state) => {
+            if (state.token == null || localStorage.getItem('token')) {
+                const token = localStorage.getItem('token');
+                return token;
+            }
+            return state.token;
         }
 
     },
     actions: {
         addUserData(item) {
-            this.userData.push(item);
+            const updatedUserData = [...this.userData, item];
+            this.userData = updatedUserData;  // Actualizar el estado con la nueva referencia
+        
             if (localStorage.getItem('userData')) {
                 localStorage.removeItem('userData');
             }
-            localStorage.setItem('userData', JSON.stringify(item));
+            localStorage.setItem('userData', JSON.stringify(updatedUserData));
+            console.log(this.userData, 'addUserData');
         },
         removeUserData(item) {
-            const index = this.userData.indexOf(item);
-            this.userData.splice(index, 1);
+            const updatedUserData = [...this.userData];
+            const index = updatedUserData.indexOf(item);
+            updatedUserData.splice(index, 1);
+        
+            this.userData = updatedUserData;  // Actualizar el estado con la nueva referencia
+            if (localStorage.getItem('userData')) {
+                localStorage.removeItem('userData');
+            }
+            
         },
         addToken(item) {
             this.token = item;
@@ -43,6 +65,11 @@ export const authStore = defineStore('authStore', {
             }
             localStorage.setItem('token', item);
             console.log(this.token);
+        },removeToken(item) {
+            this.token = null;
+            if (localStorage.getItem('token')) {
+                localStorage.removeItem('token');
+            }
         }
     }
 });

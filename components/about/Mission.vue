@@ -43,4 +43,3 @@ const items = reactive([
   },
 ]);
 </script>
-+

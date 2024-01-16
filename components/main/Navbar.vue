@@ -51,7 +51,6 @@
         v-for="(option, index) in navOptions"
         :key="`navbar-option-${index}`"
         :to="getRoute(option.path)"
-        
         class="d-flex align-items-center flex-row gap-1"
       >
         <component
@@ -60,8 +59,11 @@
           :style="
             selectedOption == option.name ? 'color: white;' : 'color:#515166'
           "
-          @click="
-            () => {
+                    @click="
+            (e) => {
+              if(option.path==='/login' && isLogged){
+                e.preventDefault();
+              }
               getClaimForm = false;
               isCollapsedOpen = false;
               selectedOption = option.name;
@@ -69,7 +71,8 @@
             }
           "
         >
-          {{ option.name }}
+        <lazy-auth-account-block v-if="option.path==='/login'"/>
+          <span v-if="option.path!='/login'">{{ option.name }}</span>
         </component>
         <div
           v-if="option.mode == 'multi' && option.path == '/courses'"
@@ -105,6 +108,10 @@
             <span
               @click="
                 () => {
+                  openCourses = false;
+                  getClaimForm = false;
+                  isCollapsedOpen = false;
+                  selectedOption = option.name;
                   openCourses = false;
                   redirectTo('/courses', 'investigation-courses');
                 }
@@ -176,19 +183,18 @@
 <script setup>
 import { getClaimForm, redirectTo } from "/composables/main-composables.js";
 import { authStore } from "../../store/auth/auth.store";
-const isLogged = authStore().isLogged;
-const getRoute=(path)=>{
-  console.log(path);
-  if(path==='/classroom/home'){
-
-    console.log(isLogged,'owo');
-    if(isLogged){
+const storeAuth=authStore();
+const isLogged =computed(()=> storeAuth.isLogged); 
+// const userData = computed(()=> storeAuth.getUserData);
+const getRoute = (path) => {
+  if (path === "/classroom/home") {
+    if (isLogged) {
       return path;
     }
-    return '/login';
+    return "/login";
   }
   return path;
-}
+};
 const selectedOption = ref("Inicio");
 const navOptions = [
   {
@@ -228,9 +234,10 @@ const navOptions = [
     mode: "single",
   },
   {
-    name: "Aula Virtual",
-    path: "/classroom/home",
-    type: "button",
+    name: "Iniciar Sesion",
+    path: "/login",
+    type: "link",
+
   },
   {
     name: "Preguntas Frecuentes",
@@ -254,6 +261,7 @@ const getNavbarComponent = (option) => {
   if (option.type == "icon") {
     return "svg";
   }
+
 };
 let currentWindowWidth = ref(null);
 onMounted(() => {
@@ -270,3 +278,13 @@ const openSidebarCart = () => {
 const isCollapsedOpen = ref(false);
 const openCourses = ref(false);
 </script>
+<style scoped lang="scss">
+.button-navbar{
+ background: transparent;
+ border:1px solid #515166;
+  border-radius: 1em;
+  padding: 0.2em 0.8em;
+  &:hover{
+    color: white;
+  }
+}</style>

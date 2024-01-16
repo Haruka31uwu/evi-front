@@ -6,7 +6,9 @@ class AuthService {
 
         try {
             await apiClient.get('/sanctum/csrf-cookie');
-            const res = await axios.post(`${config.public.APP_BACKEND_URL}auth/register`, body
+            const res = await axios.post(`${config.public.APP_BACKEND_URL}auth/register`, body,{
+                withCredentials: true,
+            }
             )
             return res;
         } catch (e) {
@@ -20,6 +22,36 @@ class AuthService {
                 withCredentials: true,
             });
 
+            return res;
+        } catch (e) {
+            throw e;
+        }
+    }
+    async loginWithToken(body) {
+        try {
+            const res = await axios.post(`${config.public.APP_BACKEND_URL}auth/login-with-email-token`,body, {
+                withCredentials: true,
+            });
+            return res;
+        } catch (e) {
+            throw e;
+        }
+    }
+    async verifyEmail(body) {
+        try{
+            const res = await axios.post(`${config.public.APP_BACKEND_URL}auth/email/verify`, body, {
+                withCredentials: true,
+            });
+            return res;
+        }catch(e){
+            throw e;
+        }
+    }
+    async logout(body) {
+        try {
+            const res = await axios.post(`${config.public.APP_BACKEND_URL}auth/logout`, body, {
+                withCredentials: true,
+            });
             return res;
         } catch (e) {
             throw e;

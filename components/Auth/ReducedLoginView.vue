@@ -85,13 +85,18 @@ export default {
           showSuccessSwall("Inicio de sesión exitoso");
           store.addToken(res.data.access_token);
           store.addUserData(res.data.user);
-          location.reload();
-          // const router = useRouter();
-          // router.push("/classroom/home");
+           // const router = useRouter();
+          
         }
       } catch (e) {
         hidePreloader();
-        showErrorSwall("Error", e.response.data.message);
+        if (e.hasOwnProperty("response")) {
+          showErrorSwall("Error", e.response.data.message);
+          return;
+
+        }
+        showErrorSwall("Error", e);
+        
       }
 
       // AuthService.login(loginParams).then(
@@ -120,6 +125,7 @@ export default {
       onSubmit,
       schema,
       openRegisterForm,
+      isLogged
     };
   },
 };

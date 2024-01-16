@@ -12,7 +12,7 @@
       >
         <!-- <img src="/assets/img/login.png" /> -->
         <div class="login__title" style="position: relative; height: auto">
-          <span> Aula virtual </span>
+          <span> Iniciar Sesion </span>
           <div
             class="login__title-decorator"
             style="position: absolute; top: 0.8em; opacity: 0.7; left: 1em"
@@ -20,8 +20,7 @@
         </div>
         <div class="login__body">
           <p class="mt-2 text-center">
-            ¡Bienvenido de nuevo a nuestra aula virtual! Ingresa tus datos de
-            inicio de sesión a continuación
+            ¡Bienvenido a evisalud! Ingresa tus datos para continuar
           </p>
           <VForm :validation-schema="schema" @submit="onSubmit">
             <div class="input-container">
@@ -67,7 +66,7 @@
               class="login__auth_options d-flex flex-column gap-4 mt-5 align-items-center"
             >
               <button class="btn-blue" type="submit">Ingresar</button>
-              <div class="btn-gray">
+              <!-- <div class="btn-gray">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="22"
@@ -101,10 +100,10 @@
                   />
                 </svg>
                 Iniciar sesion con Gmail
-              </div>
+              </div> -->
               <div class="dont-have-account">
                 ¿No tienes una cuenta?
-                <nuxt-link class="register-now" to="/register"
+                <nuxt-link class="register-now" style="text-decoration: none; color: white;" to="/register"
                   >Registrate aquí</nuxt-link
                 >
               </div>
@@ -121,12 +120,14 @@ import * as yup from "yup";
 import AuthService from "/services/auth/auth.service.js";
 import { useForm } from "vee-validate";
 import { authStore } from "../../store/auth/auth.store";
+import { usePreloader, useSwall } from "/composables/main-composables.js";
+
 // import { supabaseClient } from "../supabase";
 // import { Auth } from "@nuxtbase/auth-ui-vue";
 // import {Auth} from '@nuxtbase/auth-ui-vue'
 export default {
   setup() {
-    const store = authStore();
+    const store = authStore();    
     const schema = yup.object().shape({
       email: yup.string().email().required(),
       password: yup.string().required().min(8),
@@ -134,11 +135,14 @@ export default {
     const { handleSubmit, errors, resetForm } = useForm({
       validationSchema: schema,
     });
+    const { showPreloader, hidePreloader } = usePreloader();
+    const { showErrorSwall } = useSwall();
     const onSubmit = (values) => {
       const loginParams = {
         email: values.email,
         password: values.password,
       };
+      showPreloader();
       AuthService.login(loginParams).then(
         (res) => {
           resetForm();
@@ -146,7 +150,8 @@ export default {
             store.addToken(res.data.access_token);
             store.addUserData(res.data.user);
             const router = useRouter();
-            router.push("/classroom/home");
+            router.push("/courses");
+            hidePreloader();
           }
         },
         (error) => {
@@ -156,7 +161,8 @@ export default {
               error.response.data.message) ||
             error.message ||
             error.toString();
-          console.log(resMessage);
+          hidePreloader();
+          showErrorSwall(resMessage);
         }
       );
     };

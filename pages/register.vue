@@ -1,29 +1,33 @@
 <template>
-    <section>
-      <div class="row" style="height: 90vh">
-        <div
-          class="col-0 col-md-4 col-lg-6 d-flex justify-content-center align-items-center"
-          style="background: #0393aa"
-        >
-          <img src="/assets/img/login.png" style="width: 50%; height: 50%" />
-        </div>
-        <div
-          class="col-12 col-md-8 col-lg-6 d-flex align-items-center flex-column justify-content-center"
-        >
-          <!-- <img src="/assets/img/login.png" /> -->
-          <div class="login__title" style="position: relative; height: auto">
-            <span> Aula virtual </span>
+  <section>
+    <div class="row" style="height: 100%">
+      <div
+        class="col-0 col-md-0 col-lg-0 d-flex justify-content-center align-items-center d-none"
+        style="background: #0393aa"
+      >
+        <img src="/assets/img/login.png" style="width: 5 0%; height: 50%" />
+      </div>
+      <div
+        class="col-12 col-md-12 col-lg-12 d-flex align-items-center flex-column justify-content-start py-5"
+        style="max-height: 100%; overflow-y: auto"
+      >
+        <!-- <img src="/assets/img/login.png" /> -->
+        <!-- <div class="login__title" style="position: relative; height: auto">
+            <span> Registrarse </span>
             <div
               class="login__title-decorator"
               style="position: absolute; top: 0.8em; opacity: 0.7; left: 1em"
             ></div>
-          </div>
-          <div class="login__body">
-            <p class="mt-2 text-center">
+          </div> -->
+        <div class="login__body">
+          <!-- <p class="mt-2 text-center">
               ¡Bienvenido de nuevo a nuestra aula virtual! Ingresa tus datos de
               inicio de sesión a continuación
-            </p>
-            <VForm :validation-schema="schema" @submit="onSubmit">
+            </p> -->
+          <auth-reduced-register-form
+            @openProfileImageSelector="openProfileImageSelector"
+          />
+          <!-- <VForm :validation-schema="schema" @submit="onSubmit">
               <div class="input-container">
                 <span for="name" style="color: white">Correo Electronico</span>
                 <AuthInput
@@ -86,7 +90,7 @@
               </div>
               <div class="login__auth_options d-flex flex-column gap-4">
                 <button class="btn-blue" type="submit">Crear Cuenta</button>
-                <!-- <div class="btn-gray">
+                <div class="btn-gray">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="22"
@@ -120,128 +124,132 @@
                     />
                   </svg>
                   Iniciar sesion con Gmail
-                </div> -->
-                <!-- <div class="dont-have-account">
+                </div> 
+                <div class="dont-have-account">
                   ¿No tienes una cuenta?
                   <span class="register-now">Registrate aquí</span>
-                </div> -->
+                </div>
               </div>
-            </VForm>
-          </div>
+            </VForm> -->
         </div>
       </div>
-    </section>
-  </template>
+    </div>
+  </section>
+</template>
   <script>
-  import * as yup from "yup";
-  import AuthService from "/services/auth/auth.service.js";
-  import { useForm } from "vee-validate";
-  export default {
-    setup() {
-      const schema = yup.object().shape({
-        email: yup.string().email().required(),
-        password: yup.string().required().min(8),
-        confirmPassword: yup
+import * as yup from "yup";
+import AuthService from "/services/auth/auth.service.js";
+import { useForm } from "vee-validate";
+export default {
+  setup() {
+    const router = useRouter();
+    const schema = yup.object().shape({
+      email: yup.string().email().required(),
+      password: yup.string().required().min(8),
+      confirmPassword: yup
         .string()
         .required()
         .oneOf([yup.ref("password"), null], "Passwords must match"),
-      });
-      const { handleSubmit, errors, resetForm } = useForm({
-        validationSchema: schema,
-      });
-      const onSubmit = (values) => {
-        const authParams = {
-          email: values.email,
-          password: values.password,
-        };
-        AuthService.register(authParams).then(
-          () => {
-            // resetForm();
-            router.push("/classroom/home");
-
-          },
-          (error) => {
-            const resMessage =
-              (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-              error.message ||
-              error.toString();
-            console.log(resMessage);
-          }
-        );
+    });
+    const { handleSubmit, errors, resetForm } = useForm({
+      validationSchema: schema,
+    });
+    const onSubmit = (values) => {
+      const authParams = {
+        email: values.email,
+        password: values.password,
       };
-      return {
-        onSubmit,
-        schema,
-      };
-    },
-  };
-  </script>
+      AuthService.register(authParams).then(
+        () => {
+          router.push("/courses");
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+          console.log(resMessage);
+        }
+      );
+    };
+    const showProfileImageSelector = ref(false);
+    const openProfileImageSelector = () => {
+      showProfileImageSelector.value = true;
+    };
+    return {
+      onSubmit,
+      schema,
+      showProfileImageSelector,
+      openProfileImageSelector,
+    };
+  },
+};
+</script>
   
-  <style   scoped lang="scss">
-  .login__title {
-    font-weight: 700;
-    .login__title-decorator {
-      width: 100px;
-      height: 1em;
-      border-radius: 1em;
-      background: #0393aa;
+  <style  scoped lang="scss">
+.login__title {
+  font-weight: 700;
+  .login__title-decorator {
+    width: 100px;
+    height: 1em;
+    border-radius: 1em;
+    background: #0393aa;
+  }
+}
+.login__body {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+  .login__body-options {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    input,
+    label,
+    span {
+      color: #0393aa;
+      &:hover {
+        cursor: pointer;
+        color: #515166;
+      }
+    }
+    .forgot-password {
+      text-decoration: underline;
     }
   }
-  .login__body {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 1em;
-    .login__body-options {
-      width: 95%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      input,
-      label,
-      span {
-        color: #0393aa;
-        &:hover {
-          cursor: pointer;
-          color: #515166;
-        }
-      }
-      .forgot-password {
+  .login__auth_options {
+    margin: 0 auto;
+    .register-now {
+      background: #0393aa;
+      padding: 0.7em 0.5em;
+      border-radius: 1em;
+      &:hover {
+        cursor: pointer;
         text-decoration: underline;
       }
     }
-    .login__auth_options {
-      margin: 0 auto;
-      .register-now {
-        background: #0393aa;
-        padding: 0.7em 0.5em;
-        border-radius: 1em;
-        &:hover {
-          cursor: pointer;
-          text-decoration: underline;
-        }
-      }
-    }
   }
-  
-  
-  .password-icon {
-    position: absolute;
-    right: 2.5em;
-    top: 2.8em;
-  }
-  label,
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  span {
-    color: white;
-    font-family: Axiforma;
-  }
-  </style>
+}
+
+.password-icon {
+  position: absolute;
+  right: 2.5em;
+  top: 2.8em;
+}
+label,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  color: white;
+  font-family: Axiforma;
+}
+</style>

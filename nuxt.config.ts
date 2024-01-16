@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@pinia/nuxt',
+    'nuxt-icon',
     ['@nuxtjs/robots', {
       UserAgent: '*',
       Sitemap: (req) => `https://${req.headers.host}/sitemap.xml`
