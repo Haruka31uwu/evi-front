@@ -17,8 +17,11 @@
     </template> -->
       <template v-slot:row-student="item">
         <div style="color: white; font-family: 'Axiforma'" class="d-flex flex-column">
-          <span>{{ item.academic_grade === "pregrade" ? "Si" : "No" }}</span>
+          <span>{{ item.academic_grade === "pregrado" ? "Si" : "No" }}</span>
         </div>
+      </template>
+      <template v-slot:row-student_carnet="item">
+        <span style="color:white" @click="openFile(item.carnet_img)">Ver archivo</span>
       </template>
     </commons-e-table>
   </section>
@@ -44,6 +47,9 @@ const getData = async () => {
   } catch (error) {
     console.error(error);
   }
+};
+const openFile = (file) => {
+  window.open(file, "_blank");
 };
 
 const fields = ref([
@@ -82,6 +88,10 @@ const fields = ref([
   {
     key: "student",
     label: "Alumno de Pregrado",
+  },
+  {
+    key:"student_carnet",
+    label:"Alumno de Pregrado Carnet"
   },
   {
     key: "actions",
