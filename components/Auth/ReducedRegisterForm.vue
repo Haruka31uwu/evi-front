@@ -517,14 +517,7 @@ export default defineComponent({
     const fileUrl = ref(null);
     const referenceSelected = ref("recomendacion_conocido");
     const carnetImg = ref({});
-    const handleFileInputChange = (e) => {
-      // profileImg.value = e.target.files[0];
-      // console.log(profileImg.value, e.target.files[0]);
-      // fileUrl.value = URL.createObjectURL(profileImg.value);
-    };
     const openFileInput = () => {
-      // const input = document.querySelector('input[type="file"]');
-      // input.click();
       openProfileImageSelector();
     };
     const showProfileImageSelector = ref(false);
@@ -621,7 +614,6 @@ export default defineComponent({
       pidTypeOptions,
       pidTypeSelected,
       openFileInput,
-      handleFileInputChange,
       fileUrl,
       academicGrade,
       academicGradeSelected,

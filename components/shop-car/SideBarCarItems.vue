@@ -94,12 +94,12 @@ export default {
     const isLogged = authStore().isLogged;
 
     const store = carStore();
-    const getCarItems = store.getCarItems;
+    const getCarItems = computed(() => store.getCarItems);
     const getCarTotal = () => {
-      if (getCarItems.length === 0) {
+      if (getCarItems.value.length === 0) {
         return 0;
       }
-      return getCarItems.reduce((acc, item) => {
+      return getCarItems.value.reduce((acc, item) => {
         return acc + item.pricePen;
       }, 0);
     };

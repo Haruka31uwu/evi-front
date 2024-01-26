@@ -16,6 +16,22 @@ class TransactionService {
         } catch (e) {
             throw e;
         }
-    }   
+    }
+    async validateCode(body) {
+        try {
+            const res = await apiClient.post(`${config.public.APP_BACKEND_URL}transactions/validate-code`, body);
+            return res;
+        } catch (e) {
+            throw e;
+        }
+    }
+    async isEviAlumno(body) {
+        try {
+            const res = await apiClient.post(`${config.public.APP_BACKEND_URL}transactions/is-evialumno`, body);
+            return res;
+        } catch (e) {
+            throw e;
+        }
+    }
 }   
 export default new TransactionService();

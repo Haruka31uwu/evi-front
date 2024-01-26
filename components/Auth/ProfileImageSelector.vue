@@ -190,7 +190,7 @@ export default {
   },
 };
 </script>
-      <style lang="scss" scoped>
+<style lang="scss" scoped>
 .modal-customized {
   position: fixed;
   top: 0;

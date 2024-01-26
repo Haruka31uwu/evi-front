@@ -36,21 +36,29 @@
               class="data-container__cupon-container d-flex align-items-center gap-2"
             >
               <div class="input-container" style="width: 80%">
-                <input type="text" id="name" class="input-customized" />
+                <input
+                  type="text"
+                  id="discount-code"
+                  class="input-customized"
+                />
               </div>
-              <span class="" style="width: 20%">Verificar</span>
+              <span class="" style="width: 20%" @click="validateCode()"
+                >Verificar</span
+              >
+
+
             </div>
-            <div>
-              <span for="name" style="color: white"
-                >Tipo de documento de Identidad
-              </span>
+            <span v-if="isEviAlumno===1" style="color: red;font: Axiforma;">
+              Por ser un Evialumno tiene un descuento del 10% :D</span>
+            <div class="input-container">
+              <span for="name" style="color: white">Tipo de Documento*</span>
               <select
-                id="name"
+                id="pidType"
                 class="input-customized"
-                v-model="typeDocumentSelected"
+                v-model="pidTypeSelected"
               >
                 <option
-                  v-for="(option, index) in typeDocumentOptions"
+                  v-for="(option, index) in pidTypeOptions"
                   :key="index"
                   :value="option.value"
                 >
@@ -59,15 +67,9 @@
               </select>
             </div>
             <div class="input-container">
-              <span for="name" style="color: white"
-                >Numero de documento de Identidad</span
-              >
-              <input
-                type="text"
-                id="name"
-                class="input-customized"
-                v-model="pid"
-              />
+              <span for="name" style="color: white">Numero de Documento</span>
+              <input v-model="pid" class="input-customized" type="text"
+>
             </div>
             <div class="input-container">
               <span for="name" style="color: white">Numero de celular</span>
@@ -75,7 +77,7 @@
                 type="text"
                 id="name"
                 class="input-customized"
-                v-model="number"
+                v-model="phone"
               />
             </div>
           </div>
@@ -653,7 +655,6 @@
     >
       <auth-reduced-register-form />
     </div>
-    
   </section>
 </template>
 <script setup>
@@ -673,14 +674,20 @@ const openRegisterForm = () => {
 const storeAuth = authStore();
 const isLogged = computed(() => storeAuth.isLogged);
 const pid = ref("");
-const number = ref("");
+const phone = ref("");
 const store = carStore();
 const getCarItems = store.getCarItems;
 const condition = ref(false);
 const cuponValue = ref(0);
 const yapeOtp = ref([]);
 const paymentValue = ref(0);
-const userData = ref(storeAuth.getUserData);
+const userData = computed(() => storeAuth.getUserData);
+const pidTypeSelected = ref("dni");
+const pidTypeOptions = [
+  { name: "DNI", value: "dni" },
+  { name: "Carnet de Extranjería", value: "ce" },
+  { name: "Pasaporte", value: "pasaporte" },
+];
 const getCarTotal = () => {
   let carValue;
   if (getCarItems.length === 0) {
@@ -689,7 +696,9 @@ const getCarTotal = () => {
   carValue = getCarItems.reduce((acc, item) => {
     return acc + item.pricePen;
   }, 0);
-  const couponValue = cuponValue.value;
+  const couponValue = cuponValue.value.hasOwnProperty("discountPercentage")
+    ? carValue * (cuponValue.value.discountPercentage / 100)
+    : 0;
   const total = carValue - couponValue;
   paymentValue.value = total;
   return [
@@ -725,21 +734,6 @@ const paymentOptions = ref([
     name: "Yape",
   },
 ]);
-const typeDocumentSelected = ref("dni");
-const typeDocumentOptions = reactive([
-  {
-    name: "DNI",
-    value: "dni",
-  },
-  {
-    name: "Carnet de Extranjeria",
-    value: "carnet",
-  },
-  {
-    name: "Pasaporte",
-    value: "pasaporte",
-  },
-]);
 const selectedOption = ref(1);
 const tabs = ref([
   {
@@ -754,7 +748,26 @@ const tabs = ref([
 const selectTab = (id) => {
   selectedOption.value = id;
 };
-
+const isEviAlumno = ref(0);
+onMounted(async () => {
+  try {
+    const params= {
+      userId: userData.value.id
+    }
+    const response = await TransactionService.isEviAlumno(params);
+    if(response.status === 200){
+      isEviAlumno.value = response.data.isEvialumno
+      if(isEviAlumno.value === 1){
+        cuponValue.value = {
+          discountPercentage: response.data.discountPercentage,
+          discountId: response.data.discountCodeId,
+        }
+      }
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
 /**Transaction Methods */
 const yapeSettings = ref({
   otpCharacters: 6,
@@ -777,9 +790,7 @@ const onSubmitCard = async (values) => {
       pid: pid.value,
       number: number.value,
       type: 2,
-      userId:
-        typeof userData === "object" ? userData.id : JSON.parse(userData).id,
-      amount: paymentValue.value,
+      userId: userData.value.id,
       cardName: values.cardName,
       cardNumber: values.cardNumber,
       cardSecurityCode: values.cardSecurityCode,
@@ -791,15 +802,14 @@ const onSubmitCard = async (values) => {
         userData: userData.value,
         transaction: data,
         carItems: getCarItems,
-        type:{
-          name:'Card'
-        }
+        type: {
+          name: "Card",
+        },
       };
-      const response=
-        await TransactionService.sendTransactionResumeEmail({
-          transactionData: transactionData,
-        });
-        hidePreloader();
+      const response = await TransactionService.sendTransactionResumeEmail({
+        transactionData: transactionData,
+      });
+      hidePreloader();
 
       const confirmed = await showSuccessBuySwall(
         "",
@@ -814,32 +824,37 @@ const payWithYape = async () => {
   showPreloader();
   try {
     //valid otp
+    let transactionData = {
+        userData: userData.value,
+        
+        carItems: getCarItems,
+        type: {
+          name: "Yape",
+        },
+      };
     const otp = yapeOtp.value.join("");
     const params = {
       pid: pid.value,
-      number: number.value,
+      phone: phone.value,
       otp: otp,
       type: 1,
-      userId:
-        typeof userData === "object" ? userData.id : JSON.parse(userData).id,
+      userId: userData.value.id,
+      original_amount: getCarTotal()[0].value,
       amount: paymentValue.value,
+      pidType: pidTypeSelected.value,
+      transactionData: transactionData,
+      discountId: cuponValue.value.hasOwnProperty("discountId")
+        ? cuponValue.value.discountId
+        : null,
     };
 
     const { data, status } = await TransactionService.createTransaction(params);
     if (status === 201) {
-      const transactionData = {
-        userData: userData.value,
-        transaction: data,
-        carItems: getCarItems,
-        type:{
-          name:'Yape'
-        }
-      };
-      const response=
-        await TransactionService.sendTransactionResumeEmail({
-          transactionData: transactionData,
-        });
-        hidePreloader();
+      transactionData.transaction = data;
+      const response = await TransactionService.sendTransactionResumeEmail({
+        transactionData: transactionData,
+      });
+      hidePreloader();
 
       const confirmed = await showSuccessBuySwall(
         "",
@@ -857,7 +872,35 @@ const payWithYape = async () => {
 };
 const transactionOption = ref(null);
 const startTransaction = () => {
+  if(pid.value === "" || phone.value === ""){
+    return showErrorSwall("","Por favor ingrese su Identificacion y su número de celular")
+  }
   transactionOption.value = selectedPaymentOption.value;
+};
+const validateCode = async () => {
+  try {
+    const discountCode = document.getElementById("discount-code").value;
+    const params = {
+      userId: userData.value.id,
+      discountCode: discountCode,
+    };
+    showPreloader();
+
+    const response = await TransactionService.validateCode(params);
+    if (response.status === 200) {
+      cuponValue.value ={
+        discountPercentage: response.data.discountPercentage,
+        discountId: response.data.discountCodeId,
+      }
+      hidePreloader();
+      showSuccessSwall("Cupon validado correctamente");
+        
+    }
+  } catch (err) {
+    hidePreloader();
+    showErrorSwall("Cupon no valido");
+    console.log(err);
+  }
 };
 </script>
 <style scoped lang="scss">

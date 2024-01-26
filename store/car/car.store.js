@@ -7,16 +7,14 @@ export const carStore = defineStore('carStore', {
     }, getters: {
         getCarItems: (state) => {
 
-            if (!state.carItems.length == 0) {
-                return state.carItems;
-
+            if (state.carItems.length == 0||localStorage.getItem('carItems')) {
+                const carItems = localStorage.getItem('carItems');
+                if (carItems) {
+                    return JSON.parse(carItems);
+                }
+                return [];                
             }
-
-            if (!localStorage.getItem('carItems')) {
-                return [];
-            }
-            state.carItems = JSON.parse(localStorage.getItem('carItems'));
-            return JSON.parse(localStorage.getItem('carItems'));
+            return state.carItems;
 
         },
 
