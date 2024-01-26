@@ -29,12 +29,16 @@
       :items="data"
       :loading="loading"
       item-value="name"
-      @update:options="getData(
-        paginationOptions.currentPage,
-        paginationOptions.perPage
-      )"
+      @update:options="
+        getData({
+          page: paginationOptions.currentPage,
+          itemsPerPage: paginationOptions.perPage,
+          sortBy: 'id',
+          search: search,
+        })
+      "
     >
-    <template v-slot:item.status="{item}">
+      <template v-slot:item.status="{ item }">
         <span
           :style="
             item.status == 0
@@ -45,7 +49,7 @@
         >
       </template>
       <template v-slot:item.actions="{ item }">
-        <div style="position: relative" v-if="item.coupon_uses_count>0">
+        <div style="position: relative" v-if="item.coupon_uses_count > 0">
           <Icon
             name="mi:options-vertical"
             size="20"
@@ -62,7 +66,7 @@
           </div>
         </div>
       </template>
-  </v-data-table-server> 
+    </v-data-table-server>
     <!-- <commons-e-table
       ref="discountTable"
       :fields="getFields(selectedDiscount)"
@@ -88,34 +92,37 @@
       @closeModal="isCreateEditModalOpen = false"
       :selectedDiscount="selectedDiscount"
       :fields="getModalFields()"
-      @createdDiscount="getData(
-        paginationOptions.value.currentPage,
-        paginationOptions.value.perPage
-      )"
+      @createdDiscount="
+        getData(
+          {
+            page: paginationOptions.currentPage,
+            itemsPerPage: paginationOptions.perPage,
+          },
+        )
+      "
     >
       <template #modal-title
         >{{ modalMode == "create" ? "Agregar " : "Editar "
         }}{{ getModalTitle() }}
       </template>
-      
     </lazy-admin-payments-discounts-create-edit-discount>
   </section>
 </template>
 <script setup>
 import AdminDiscountsService from "/services/admin/payments/discount.service";
-import { usePreloader,useSwall } from '/composables/main-composables.js'
+import { usePreloader, useSwall } from "/composables/main-composables.js";
 import admin from "@/middleware/admin";
 definePageMeta({
-    title: "Admin Layout",
-    middleware: [
+  title: "Admin Layout",
+  middleware: [
     function (to, from) {
       // Custom inline middleware
     },
-    admin
+    admin,
   ],
 });
-const { showSuccessSwall,showErrorSwall } = useSwall()
-const {showPreloader,hidePreloader} = usePreloader()
+const { showSuccessSwall, showErrorSwall } = useSwall();
+const { showPreloader, hidePreloader } = usePreloader();
 const discountSelectOptions = ref([
   {
     label: "Evialumnos",
@@ -139,7 +146,6 @@ const selectedDiscount = ref({
   value: 1,
 });
 
-
 const paginationOptions = ref({
   perPage: 10,
   currentPage: 1,
@@ -153,6 +159,7 @@ const data = ref([]);
 const totalRecords = ref(0);
 const search = ref("");
 const getData = async ({ page, itemsPerPage, sortBy, search }) => {
+  console.log("get data",page,itemsPerPage,sortBy,search);
   isCreateEditModalOpen.value = false;
   try {
     const params = {
@@ -165,7 +172,7 @@ const getData = async ({ page, itemsPerPage, sortBy, search }) => {
     };
     loading.value = true;
     const response = await AdminDiscountsService.getAllDiscounts(params);
-    console.log(response.data)
+    console.log(response.data);
     if (response.status === 200) {
       loading.value = false;
       data.value = response.data.data.data;
@@ -206,10 +213,10 @@ const getModalTitle = () => {
 //   );
 // });
 watch(selectedDiscount, async (newValue) => {
-  await getData(
-    paginationOptions.value.currentPage,
-    paginationOptions.value.perPage
-  );
+  await getData({
+    page: paginationOptions.value.currentPage,
+    itemsPerPage: paginationOptions.value.perPage,
+  });
 });
 const getFields = (discount) => {
   switch (discount.value) {
@@ -244,8 +251,8 @@ const getFields = (discount) => {
         //     title: "Descuento",
         // },
         {
-            key: "actions",
-            title: "Acciones",
+          key: "actions",
+          title: "Acciones",
         },
       ];
     case 2:
@@ -274,7 +281,7 @@ const getFields = (discount) => {
           key: "coupon_uses_count",
           title: "Número de Usos",
         },
-        
+
         {
           key: "status",
           title: "Estado",
@@ -295,8 +302,8 @@ const getFields = (discount) => {
           title: "Nombre",
         },
         {
-          key:'last_name',
-          title:'Apellido'
+          key: "last_name",
+          title: "Apellido",
         },
         {
           key: "last_code",
@@ -307,8 +314,8 @@ const getFields = (discount) => {
           title: "Número de Usos",
         },
         {
-          key:'status',
-          title:'Estado'
+          key: "status",
+          title: "Estado",
         },
         {
           key: "actions",
@@ -335,8 +342,8 @@ const getFields = (discount) => {
           title: "Número de Usos",
         },
         {
-          key:'status',
-          title:'Estado'
+          key: "status",
+          title: "Estado",
         },
       ];
   }
@@ -372,7 +379,7 @@ const getModalFields = () => {
         },
       ];
     case 3:
-      return  [
+      return [
         {
           label: "Nombre de Embajador",
           type: "text",
@@ -399,14 +406,14 @@ const getModalFields = () => {
           name: "last_code",
         },
       ];
-      case 4:
-        return [
-          {
-            label: "Nombre de la Institución",
-            type: "text",
-            name: "name",
-          },
-          {
+    case 4:
+      return [
+        {
+          label: "Nombre de la Institución",
+          type: "text",
+          name: "name",
+        },
+        {
           label: "Fecha de Ingreso",
           type: "date",
           name: "creationDate",
@@ -416,19 +423,19 @@ const getModalFields = () => {
           type: "text",
           name: "last_code",
         },
-        ]
+      ];
   }
 };
-const downloadDiscountReport=async(item)=>{
+const downloadDiscountReport = async (item) => {
   try {
-    showPreloader()
+    showPreloader();
     const params = {
       selectedDiscount: selectedDiscount.value.value,
-      id: item.discount_code_id ,
+      id: item.discount_code_id,
     };
     const response = await AdminDiscountsService.downloadDiscountReport(params);
     if (response.status === 200) {
-      hidePreloader()
+      hidePreloader();
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -442,22 +449,20 @@ const downloadDiscountReport=async(item)=>{
       window.URL.revokeObjectURL(url);
     }
   } catch (error) {
-    hidePreloader()
+    hidePreloader();
     console.log(error);
   }
-}
-const actions=[
+};
+const actions = [
   {
-    name:'Generar Reporte de Usos',
-    onClick:downloadDiscountReport
+    name: "Generar Reporte de Usos",
+    onClick: downloadDiscountReport,
   },
-
-]
+];
 const selectedItem = ref({});
 const selectItem = (item) => {
   selectedItem.value = item;
 };
-
 </script>
 <style lang="scss" scoped>
 .input-customized {
@@ -473,7 +478,8 @@ const selectItem = (item) => {
 }
 span {
   font-family: Axiforma, sans-serif;
-}.more-options {
+}
+.more-options {
   position: absolute;
   top: 1em;
   z-index: 100;
