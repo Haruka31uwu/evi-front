@@ -29,7 +29,10 @@
       :items="data"
       :loading="loading"
       item-value="name"
-      @update:options="getData"
+      @update:options="getData(
+        paginationOptions.currentPage,
+        paginationOptions.perPage
+      )"
     >
     <template v-slot:item.status="{item}">
         <span
