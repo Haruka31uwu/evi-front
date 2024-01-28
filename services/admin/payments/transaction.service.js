@@ -24,7 +24,6 @@ class AdminPaymentsService{
         try{
             const res = await apiClient.post(`/admin/transactions/download-resume`,body,{
                 withCredentials: true,
-                responseType: 'blob',
             });
             return res;
         }catch(e){

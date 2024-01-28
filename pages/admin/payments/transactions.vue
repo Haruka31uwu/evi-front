@@ -54,8 +54,7 @@
       :loading="loading"
       item-value="name"
       @update:options="
-        getData(paginationOptions.currentPage, paginationOptions.perPage
-        )
+        getData(paginationOptions.currentPage, paginationOptions.perPage)
       "
     >
       <template v-slot:item.code="{ item }">
@@ -112,12 +111,12 @@ import AdminPaymentsService from "/services/admin/payments/transaction.service";
 import { useSwall, usePreloader } from "/composables/main-composables";
 import admin from "@/middleware/admin";
 definePageMeta({
-    title: "Admin Layout",
-    middleware: [
+  title: "Admin Layout",
+  middleware: [
     function (to, from) {
       // Custom inline middleware
     },
-    admin
+    admin,
   ],
 });
 const { showSuccesSwall, showErrorSwall } = useSwall();
@@ -296,23 +295,12 @@ const downloadExcel = async () => {
     const response = await AdminPaymentsService.downloadExcel();
 
     if (response.status === 200) {
-      const blob = new Blob([response.data], {
-         type: response.headers["content-type"],
-      });
-      const url = window.URL.createObjectURL(blob);
-
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", "transacciones.xlsx");
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      window.URL.revokeObjectURL(url);
-   } else {
+      console.log(response.data);
+      const s3Url = response.data.data;
+      window.open(s3Url);
+    } else {
       console.error(`Error en la respuesta: ${response.status}`);
-   }
-
+    }
   } catch (error) {
     console.error(error);
   }

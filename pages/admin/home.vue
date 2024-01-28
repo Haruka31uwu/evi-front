@@ -6,13 +6,13 @@
       single-line
       variant="outlined"
       hide-details
-      style="color: black; background-color: white"
+      style="color: black; background-color: black"
     >
       <template #prepend-inner>
         <Icon
           name="material-symbols:search"
           size="30"
-          color="black"
+          color="white"
           @click="
             getData({
               page: paginationOptions.currentPage,
@@ -29,6 +29,7 @@
       </template>
     </v-text-field>
     <v-data-table-server
+      class="table"
       v-model:items-per-page="paginationOptions.perPage"
       :headers="fields"
       :items-length="totalRecords"
@@ -132,13 +133,13 @@ const getData = async ({ page, itemsPerPage, sortBy, search }) => {
       loading.value = false;
       data.value = response.data.data;
       paginationOptions.value = {
-        perPage: response.data.meta.per_page,
-        currentPage: response.data.meta.current_page,
-        from: response.data.meta.from,
-        to: response.data.meta.to,
-        lastPage: response.data.meta.last_page,
+        perPage: response.data.per_page,
+        currentPage: response.data.current_page,
+        from: response.data.from,
+        to: response.data.to,
+        lastPage: response.data.last_page,
       };
-      totalRecords.value = response.data.meta.total;
+      totalRecords.value = response.data.total;
     }
   } catch (error) {
     console.error(error);
@@ -214,6 +215,7 @@ const fields = ref([
   {
     key: "id",
     title: "No.",
+    class: "custom-header",
   },
   {
     key: "name",
@@ -295,4 +297,5 @@ p {
   font-family: Axiforma;
   width: 100%;
 }
+
 </style>
