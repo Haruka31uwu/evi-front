@@ -23,7 +23,7 @@ class AdminDiscountService{
     try{
         const res = await apiClient.post(`/admin/discounts/download-report`,body,{
             withCredentials: true,
-            responseType: 'blob',
+    
         });
         return res;
     }catch(e){

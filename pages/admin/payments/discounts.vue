@@ -93,12 +93,10 @@
       :selectedDiscount="selectedDiscount"
       :fields="getModalFields()"
       @createdDiscount="
-        getData(
-          {
-            page: paginationOptions.currentPage,
-            itemsPerPage: paginationOptions.perPage,
-          },
-        )
+        getData({
+          page: paginationOptions.currentPage,
+          itemsPerPage: paginationOptions.perPage,
+        })
       "
     >
       <template #modal-title
@@ -159,7 +157,7 @@ const data = ref([]);
 const totalRecords = ref(0);
 const search = ref("");
 const getData = async ({ page, itemsPerPage, sortBy, search }) => {
-  console.log("get data",page,itemsPerPage,sortBy,search);
+  console.log("get data", page, itemsPerPage, sortBy, search);
   isCreateEditModalOpen.value = false;
   try {
     const params = {
@@ -434,19 +432,14 @@ const downloadDiscountReport = async (item) => {
       id: item.discount_code_id,
     };
     const response = await AdminDiscountsService.downloadDiscountReport(params);
+
+    hidePreloader();
     if (response.status === 200) {
-      hidePreloader();
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute(
-        "download",
-        `Reporte de Usos de ${selectedDiscount.value.label}.xlsx`
-      );
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
+      console.log(response.data);
+      const s3Url = response.data.data;
+      window.open(s3Url);
+    } else {
+      console.error(`Error en la respuesta: ${response.status}`);
     }
   } catch (error) {
     hidePreloader();
