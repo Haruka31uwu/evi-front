@@ -174,7 +174,7 @@ export default {
         };
         const response = await AdminDiscountService.createDiscount(params);
         if (response.status === 200) {
-          showSuccessSwall("Descuento creado correctamente");
+          showSuccesSwall("Descuento creado correctamente");
           hidePreloader();
           createdDiscount();
         }
