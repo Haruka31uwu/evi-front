@@ -104,7 +104,7 @@ import { useForm } from "vee-validate";
 import * as yup from "yup";
 import AdminDiscountService from "/services/admin/payments/discount.service.js";
 import { useSwall,usePreloader } from "/composables/main-composables";
-const {showSuccesSwall,showErrorSwall}=useSwall();
+const {showSuccessSwall,showErrorSwall}=useSwall();
 const {showPreloader,hidePreloader}=usePreloader();
 export default {
   emits: ["closeModal"],
@@ -174,7 +174,7 @@ export default {
         };
         const response = await AdminDiscountService.createDiscount(params);
         if (response.status === 200) {
-          showSuccesSwall("Descuento creado correctamente");
+          showSuccessSwall("Descuento creado correctamente");
           hidePreloader();
           createdDiscount();
         }
