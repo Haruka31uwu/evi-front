@@ -7,6 +7,8 @@
 <script setup>
 
 import { useRouter } from "vue-router";
+import echo from '/sockets/main.socket.js'
+
 const router = useRouter();
 const isAdminRoute = () => {
   const route = router.currentRoute.value.path;
@@ -38,4 +40,5 @@ useHead({
     },
   ],
 });
+
 </script>
