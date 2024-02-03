@@ -28,6 +28,7 @@ class AdminDiscountService{
         return res;
     }catch(e){
         throw e;
+         
     }
 }
 }
