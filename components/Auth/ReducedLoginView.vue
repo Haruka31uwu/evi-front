@@ -58,10 +58,11 @@ export default {
   setup(props, ctx) {
     const { showPreloader, hidePreloader } = usePreloader();
     const { showSuccessSwall, showErrorSwall } = useSwall();
+    const { subscribeUsersChannel } = useSocket();
+
     const openRegisterForm = () => {
       //   const store = authStore();
       //   store.showRegisterForm();
-      const { subscribeUsersChannel } = useSocket();
       ctx.emit("openRegisterForm");
     };
     const store = authStore();
