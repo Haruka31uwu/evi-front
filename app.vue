@@ -24,9 +24,9 @@ console.log(userData.value, "owo");
 const initSubscriptions = () => {
   loginSocket();
   unLoginSocket();
-  console.log(userData.value, "initSubscriptions");
+  console.log(userData.value, "initSubscriptions",userData.value!=[]);
   if (userData.value) {
-    if (userData.value != []) {
+    if (userData.value.length != 0 ) {
       if (userData.value.id == 1) {
         console.log("subscribing to admin channel");
         socket.subscribeAdminChannel();
