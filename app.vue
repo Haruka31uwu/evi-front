@@ -21,7 +21,7 @@ const socket=useSocket();
 //Initialize Sockets
 loginSocket();
 unLoginSocket();
-if(userData.value){
+if(userData.value.length!=0){
   if(userData.value.id==1){
     socket.subscribeAdminChannel();
     
