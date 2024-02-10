@@ -7,26 +7,27 @@
 <script setup>
 import { useRouter } from "vue-router";
 // import echo from "/sockets/main.socket.js";
-import {useSocket} from "/composables/socket-composables.js";
+import { useSocket } from "/composables/socket-composables.js";
 // const {initWs} = useSocket();
-import { authStore } from '~/store/auth/auth.store';
+import { authStore } from "~/store/auth/auth.store";
 import { useSwall } from "./composables/main-composables";
-import {loginSocket,unLoginSocket} from '../sockets/auth.socket.js'
+import { loginSocket, unLoginSocket } from "../sockets/auth.socket.js";
 
 const storeAuth = authStore();
-const userData = computed(()=> storeAuth.getUserData);
-const {showSuccessSwall}=useSwall();
+const userData = computed(() => storeAuth.getUserData);
+const { showSuccessSwall } = useSwall();
 const router = useRouter();
-const socket=useSocket();
+const socket = useSocket();
 //Initialize Sockets
 loginSocket();
 unLoginSocket();
-if(userData.value.length!=0){
-  if(userData.value.id==1){
-    socket.subscribeAdminChannel();
-    
-  }else{
-    socket.subscribeUsersChannel();
+if (userData.value) {
+  if (userData.value!=[]) {
+    if (userData.value.id == 1) {
+      socket.subscribeAdminChannel();
+    } else {
+      socket.subscribeUsersChannel();
+    }
   }
 }
 const isAdminRoute = () => {
