@@ -21,6 +21,7 @@ const socket = useSocket();
 //Initialize Sockets
 loginSocket();
 unLoginSocket();
+console.log(userData.value,'owo');
 if (userData.value) {
   if (userData.value!=[]) {
     if (userData.value.id == 1) {
