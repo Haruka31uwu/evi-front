@@ -3,5 +3,4 @@
         <institutions-banner/>
         <institutions-why/>
     </div>
-    
 </template>
