@@ -5,19 +5,38 @@
   </div>
 </template>
 <script setup>
-
 import { useRouter } from "vue-router";
-import echo from '/sockets/main.socket.js'
+// import echo from "/sockets/main.socket.js";
+import {useSocket} from "/composables/socket-composables.js";
+// const {initWs} = useSocket();
+import { authStore } from '~/store/auth/auth.store';
+import { useSwall } from "./composables/main-composables";
+import {loginSocket,unLoginSocket} from '../sockets/auth.socket.js'
 
+const storeAuth = authStore();
+const userData = computed(()=> storeAuth.getUserData);
+const {showSuccessSwall}=useSwall();
 const router = useRouter();
+const socket=useSocket();
+//Initialize Sockets
+loginSocket();
+unLoginSocket();
+if(userData.value){
+  if(userData.value.id==1){
+    socket.subscribeAdminChannel();
+    
+  }else{
+    socket.subscribeUsersChannel();
+  }
+}
 const isAdminRoute = () => {
   const route = router.currentRoute.value.path;
-  console.log(route);
   if (route.includes("admin")) {
     return true;
   }
   return false;
 };
+//watch for user data changes
 useHead({
   link: [
     {
@@ -35,10 +54,7 @@ useHead({
         "sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM",
       crossorigin: "anonymous",
     },
-    {
-      src: "https://checkout.culqi.com/js/v4",
-    },
+    { src: "https://checkout.culqi.com/js/v4", async: true },
   ],
 });
-
 </script>

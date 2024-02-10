@@ -169,7 +169,6 @@ const changePage = (page) => {
   // if(paginationOpt.value.currentPage>5 && paginationOpt.value.currentPage<paginationOpt.value.lastPage){
   //   pageSelector.scrollLeft -= 50;
   // }
-  console.log(page, paginationOpt.value.lastPage, "test");
   if (page >= 7 && page < paginationOpt.value.lastPage) {
     pageSelector.scrollLeft += 50;
   }

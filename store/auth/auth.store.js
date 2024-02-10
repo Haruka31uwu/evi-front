@@ -3,7 +3,8 @@ export const authStore = defineStore('authStore', {
     state: () => {
         return {
             userData: [],
-            token: null
+            token: null,
+            newLogin:false
         };
     },
     getters: {
@@ -20,7 +21,6 @@ export const authStore = defineStore('authStore', {
         },
         isLogged: (state) => {
 
-            console.log(state.userData,'state.userData changed');
             if (!localStorage.getItem('userData')) {
                 return false;
             }
@@ -44,7 +44,6 @@ export const authStore = defineStore('authStore', {
                 localStorage.removeItem('userData');
             }
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
-            console.log(this.userData, 'addUserData');
         },
         removeUserData(item) {
             const updatedUserData = [...this.userData];
@@ -55,7 +54,6 @@ export const authStore = defineStore('authStore', {
             if (localStorage.getItem('userData')) {
                 localStorage.removeItem('userData');
             }
-            
         },
         addToken(item) {
             this.token = item;
@@ -64,12 +62,12 @@ export const authStore = defineStore('authStore', {
                 localStorage.removeItem('token');
             }
             localStorage.setItem('token', item);
-            console.log(this.token);
-        },removeToken(item) {
+        },
+        removeToken(item) {
             this.token = null;
             if (localStorage.getItem('token')) {
                 localStorage.removeItem('token');
             }
-        }
+        },
     }
 });

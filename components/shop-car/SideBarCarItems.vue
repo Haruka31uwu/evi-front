@@ -74,7 +74,7 @@
         <span class="price-container__title">Total</span>
         <span class="price-container__pricepen">PEN {{ getCarTotal() }}</span>
       </div>
-      <div class="btn-white">
+      <div class="btn-white" v-if="getCarItems.length!=0"> 
         <span style="text-decoration: underline" @click="startProcess"
           >Iniciar proceso de compra</span
         >
@@ -107,7 +107,6 @@ export default {
       store.removeCarItem(item);
     };
     const startProcess = () => {
-      console.log("start process");
 
       ctx.emit("closeCarSideBar");
       router.push("/checkout");

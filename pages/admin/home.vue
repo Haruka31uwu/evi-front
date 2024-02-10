@@ -1,5 +1,5 @@
 <template>
-  <section class="w-100">
+  <section style="width: auto;overflow-x: auto;">
     <v-text-field
       v-model="search"
       label="Search"
@@ -36,10 +36,10 @@
       :items="data"
       :loading="loading"
       item-value="name"
-      @update:options="getData(
-        paginationOptions.currentPage,
-        paginationOptions.perPage
-      )"
+      @update:options="
+        getData(paginationOptions.currentPage, paginationOptions.perPage)
+      "
+      style="max-height: 70vh;"
     >
       <template v-slot:item.is_valid_student="{ item }">
         <div class="d-flex flex-row align-items-center">
@@ -54,6 +54,12 @@
       <template v-slot:item.carnet_img="{ item }">
         <span @click="openFile(item)">Ver Carnet</span>
       </template>
+      <template v-slot:item.phone_number="{ item }">
+        <div class="d-flex flex-row gap-1">
+          <span>({{ item.prefix }})</span>
+          <span>{{ item.phone_number ? item.phone_number : "No tiene" }}</span>
+        </div>
+      </template>
     </v-data-table-server>
     <!-- {{ data }} -->
     <commons-image-viewer
@@ -63,10 +69,11 @@
       :user="user"
     >
       <template #options>
-        <div class="input-container" v-if="user.carnet_img && !user.is_valid_student">
-          <span for="name" style="color: white"
-            >Es un estudiante valido?</span
-          >
+        <div
+          class="input-container"
+          v-if="user.carnet_img && !user.is_valid_student"
+        >
+          <span for="name" style="color: white">Es un estudiante valido?</span>
           <select
             id="reference"
             class="input-customized"
@@ -81,7 +88,13 @@
             </option>
           </select>
         </div>
-        <button class="btn-blue" @click="saveValidity" v-if="user.carnet_img && !user.is_valid_student"><span>Guardar</span></button>
+        <button
+          class="btn-blue"
+          @click="saveValidity"
+          v-if="user.carnet_img && !user.is_valid_student"
+        >
+          <span>Guardar</span>
+        </button>
       </template>
     </commons-image-viewer>
   </section>
@@ -90,17 +103,17 @@
 import AdminHomeService from "@/services/admin/home.service";
 import { authStore } from "@/store/auth/auth.store";
 import { ref } from "vue";
-import { usePreloader,useSwall } from '/composables/main-composables'
-const { showSuccessSwall,showErrorSwall } = useSwall();
-const {showPreloader,hidePreloader} = usePreloader();
+import { usePreloader, useSwall } from "/composables/main-composables";
+const { showSuccessSwall, showErrorSwall } = useSwall();
+const { showPreloader, hidePreloader } = usePreloader();
 import admin from "@/middleware/admin";
 definePageMeta({
-    title: "Admin Layout",
-    middleware: [
+  title: "Admin Layout",
+  middleware: [
     function (to, from) {
       // Custom inline middleware
     },
-    admin
+    admin,
   ],
 });
 const paginationOptions = ref({
@@ -149,7 +162,6 @@ const showImgViewer = ref(false);
 const imgSrc = ref("");
 const user = ref({});
 const openFile = (item) => {
-  console.log(item);
   showImgViewer.value = true;
   imgSrc.value = item.carnet_img;
   user.value = item;
@@ -181,7 +193,7 @@ const saveValidity = async () => {
       id: user.value.id,
       is_valid_student: selectedValidity.value,
     };
-    showPreloader()
+    showPreloader();
     const response = await AdminHomeService.updateStudentValidity(params);
     if (response.status === 200) {
       showSuccessSwall("Se ha actualizado la validez del estudiante");
@@ -297,5 +309,4 @@ p {
   font-family: Axiforma;
   width: 100%;
 }
-
 </style>

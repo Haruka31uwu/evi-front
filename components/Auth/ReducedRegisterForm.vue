@@ -327,7 +327,7 @@ import AuthService from "/services/auth/auth.service.js";
 import { useForm } from "vee-validate";
 import { authStore } from "../../store/auth/auth.store";
 import { usePreloader, useSwall } from "/composables/main-composables.js";
-import { useRoute } from "vue-router";
+import { useRoute,useRouter } from "vue-router";
 export default defineComponent({
   emits: ["openProfileImageSelector"],
   setup(props, ctx) {
@@ -335,6 +335,7 @@ export default defineComponent({
     const { showPreloader, hidePreloader } = usePreloader();
     const { showSuccessSwall, showErrorSwall, showConfirmEmailSwall } =
       useSwall();
+    const router=useRouter();
     const schema = yup.object().shape({
       email: yup.string().email("El email no es valido").required(),
       password: yup.string().required("La constraseña es obligatoria").min(8),
@@ -355,6 +356,12 @@ export default defineComponent({
       input.click();
     };
     const store = authStore();
+    const newLogin = computed(() => store.newLogin);
+    watch(newLogin, (newLogin) => {
+      if (newLogin[0] == "login-account-event") {
+        router.push("/");
+      }
+    });
     const { handleSubmit, errors, resetForm } = useForm({
       validationSchema: schema,
     });
@@ -525,7 +532,6 @@ export default defineComponent({
       showProfileImageSelector.value = true;
     };
     const selectedAvatarHandler = (avatar) => {
-      console.log(avatar, typeof avatar, "avatar");
       fileUrl.value = avatar.hasOwnProperty("url")
         ? avatar.url
         : URL.createObjectURL(avatar);
@@ -540,11 +546,9 @@ export default defineComponent({
     const selectImage = (e) => {
       const file = e.target.files[0];
       carnetImg.value = file;
-      console.log(carnetImg.value);
     };
     const onSubmit = async (values) => {
       const profileImgBorder= document.querySelector("#profile_img__border");
-      console.log(fileUrl,'fileurl')
       if (!fileUrl.value) {
         profileImgBorder.style.stroke = "#CB4335";
         const profileImgDiv= document.querySelector("#profile-img");

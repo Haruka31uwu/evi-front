@@ -91,7 +91,6 @@ const openFinishTransactionModal = (transactionDetail) => {
   showFinishTransactionModal.value = true;
 };
 const openModalTermAndConditions = () => {
-  console.log("openModalTermAndConditions");
   showModalTermAndConditions.value = true;
 };
 </script>

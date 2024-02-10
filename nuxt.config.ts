@@ -6,11 +6,13 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-icon',
     'nuxt-primevue',
+
     ['@nuxtjs/robots', {
       UserAgent: '*',
       Sitemap: (req) => `https://${req.headers.host}/sitemap.xml`
     }],
   ],
+ 
   
   build: {
     transpile: ['vuetify'],
@@ -30,6 +32,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       APP_BACKEND_URL: process.env.APP_BACKEND_URL,
+      CULQI_PUBLIC_KEY: process.env.CULQI_PUBLIC_KEY,
     }
   },
 })

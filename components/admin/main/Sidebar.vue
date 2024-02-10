@@ -6,7 +6,7 @@
     </div>
     <div class="sidebar__account d-flex align-items-center flex-column">
       <div class="d-flex align-items-center justify-content-center" style="position: relative;">
-        <img :src="userData.profile_img" width="100" height="auto" style="border-radius: 50%;">
+        <img :src="userData.profile_img" @error="userData.profile_img='https://aui.atlassian.com/aui/8.6/docs/images/avatar-person.svg'" width="100" height="auto" style="border-radius: 50%;">
         <div style="border: 1px solid #515166;width: 130px;height:130px ;border-radius: 50%;position: absolute;"></div>
       </div>
       <span class="mt-2 text-center" style="font-size: 1.4em;">Bienvenido {{ userData.name }} {{ userData.last_name }}</span>
@@ -135,7 +135,12 @@ span{
   font-family: Axiforma;
 }
 .admin-sidebar {
-  width: 20%;
+  z-index: 9999;
+  position: sticky;
+  top:0;
+  left: 0;
+  width: 18%;
+  min-width: 320px;
   height: 100%;
   min-height: 100vh;
   background-color: #fff;
@@ -160,7 +165,7 @@ span{
       align-items: center;
       justify-content: space-between !important;
       width: 95%;
-      padding: 0.5em 0.5em;
+      padding: 0.5em 0.2em;
       border-radius: 0.5em;
       a,
       span {

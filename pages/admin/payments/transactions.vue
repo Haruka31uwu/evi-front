@@ -38,15 +38,17 @@
           />
         </template>
       </v-text-field>
+
       <div
         style="cursor: pointer; width: auto; border-radius: 0.5em"
         class="btn-blue"
-        @click="downloadExcel()"
+        @click="openFilters()"
       >
         <Icon name="icon-park-outline:excel" size="30"></Icon>
       </div>
     </div>
     <v-data-table-server
+      id="scrollable-table"
       v-model:items-per-page="paginationOptions.perPage"
       :headers="fields"
       :items-length="totalRecords"
@@ -56,13 +58,18 @@
       @update:options="
         getData(paginationOptions.currentPage, paginationOptions.perPage)
       "
+      style="max-height: 70vh"
     >
       <template v-slot:item.code="{ item }">
         <div
           v-if="editedItem == item"
           class="d-flex flex-row gap-1 align-items-center"
         >
-          <input type="text" v-model="editedItem.code" />
+          <input
+            type="text"
+            v-model="editedItem.code"
+            placeholder="Editar codigo de curso"
+          />
           <Icon
             name="mdi:check-bold"
             size="20"
@@ -92,7 +99,11 @@
             size="20"
             @click="selectItem(item)"
           ></Icon>
-          <div class="more-options" v-if="selectedItem == item">
+          <div
+            class="more-options"
+            v-if="selectedItem == item"
+            style="background: #13131a; color: white"
+          >
             <span
               v-for="(action, index) in actions"
               :key="index"
@@ -104,12 +115,19 @@
         </div>
       </template>
     </v-data-table-server>
+    <admin-payments-modals-payment-filters-modal
+    v-if="showReportFilterOptions"
+    @close-modal="showReportFilterOptions=false"
+    @download-excel="(params)=>downloadExcel(params)"
+    >
+  </admin-payments-modals-payment-filters-modal>
   </section>
 </template>
 <script setup>
 import AdminPaymentsService from "/services/admin/payments/transaction.service";
 import { useSwall, usePreloader } from "/composables/main-composables";
 import admin from "@/middleware/admin";
+
 definePageMeta({
   title: "Admin Layout",
   middleware: [
@@ -119,7 +137,7 @@ definePageMeta({
     admin,
   ],
 });
-const { showSuccesSwall, showErrorSwall } = useSwall();
+const { showSuccessSwall, showErrorSwall } = useSwall();
 const { showPreloader, hidePreloader } = usePreloader();
 const paginationOptions = ref({
   perPage: 10,
@@ -132,6 +150,7 @@ const paginationOptions = ref({
 const loading = ref(true);
 const selectedItem = ref({});
 const editedItem = ref({});
+
 const saveCourseCode = async (item) => {
   const params = {
     id: item.transactions_details_id,
@@ -163,12 +182,11 @@ const saveCourseCode = async (item) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     hidePreloader();
   }
 };
 const selectItem = (item) => {
-  console.log(item);
   if (selectedItem.value === item) {
     selectedItem.value = {};
   } else {
@@ -177,6 +195,10 @@ const selectItem = (item) => {
 };
 const editCourseCode = (item) => {
   editedItem.value = item;
+  selectedItem.value = null;
+  const scrollableTable = document.getElementById("scrollable-table");
+  const table = scrollableTable.getElementsByClassName("v-table__wrapper");
+  table[0].scrollLeft = 0;
 };
 const closeEditCourseCode = () => {
   editedItem.value = {};
@@ -242,6 +264,18 @@ const fields = [
     title: "ID de transacción",
   },
   {
+    key: "start_date",
+    title: "Fecha de inicio",
+  },
+  {
+    key: "end_date",
+    title: "Fecha de fin",
+  },
+  {
+    key: "type",
+    title: "Tipo de transaccion",
+  },
+  {
     key: "course_title",
     title: "Curso Comprado",
   },
@@ -287,22 +321,34 @@ const getData = async ({ page, itemsPerPage, sortBy, search }) => {
     }
     loading.value = false;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
-const downloadExcel = async () => {
+const showReportFilterOptions=ref(false)
+const openFilters = () => {
+  showReportFilterOptions.value=true;
+};
+const downloadExcel = async (filters) => {
+ 
   try {
-    const response = await AdminPaymentsService.downloadExcel();
-
+    showPreloader()
+    const params = {
+      year:filters.year,
+      month:filters.month,
+      day:filters.day 
+    };
+    const response = await AdminPaymentsService.downloadExcel(params);
     if (response.status === 200) {
-      console.log(response.data);
+      showSuccessSwall()
       const s3Url = response.data.data;
       window.open(s3Url);
+      hidePreloader()
     } else {
       console.error(`Error en la respuesta: ${response.status}`);
     }
   } catch (error) {
     console.error(error);
+    hidePreloader()
   }
 };
 </script>

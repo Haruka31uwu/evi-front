@@ -182,7 +182,7 @@ export default {
       } catch (err) {
         showErrorSwall("Error al crear el descuento");
         hidePreloader();
-        console.log(err);
+        console.error(err);
       }
       //   resetForm();
     };

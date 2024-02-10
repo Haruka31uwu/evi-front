@@ -89,7 +89,7 @@
         <router-link :to="'/course-detail/' + course.id"
           >Mas información</router-link
         >
-        <button class="btn-course">
+        <button class="btn-course" @click="addToCart(course)">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="15"
@@ -104,7 +104,7 @@
               stroke-width="0.2"
             />
           </svg>
-          <span @click="addToCart(course)" class="btn-course-price"
+          <span  class="btn-course-price"
             >$ {{ course.priceUsd }} (S/.{{ course.pricePen }})</span
           >
         </button>
@@ -116,7 +116,7 @@
 //composition api
 import { useShopCar } from "/composables/shop-car/shop-car.composables.js";
 import { carStore } from "../../store/car/car.store";
-
+import { useSwall } from "/composables/main-composables.js";
 export default {
   name: "CourseItem",
   props: {
@@ -127,19 +127,22 @@ export default {
   },
   setup(props) {
     const store = carStore();
-    const getCarItems = store.getCarItems;
-    console.log(getCarItems);
+    const {showSuccessSwall,showErrorSwall} = useSwall();
+    const getCarItems = computed(() => store.getCarItems);
     const addToCart = (course) => {
       const { addCarItem } = useShopCar();
-      const courseInCar = getCarItems.find((item) => item.id === course.id);
+      const courseInCar = getCarItems.value.find((item) => item.id === course.id);
       if (courseInCar) {
+        showErrorSwall("El curso ya se encuentra en el carrito");
         return;
       }
       addCarItem(course);
+      showSuccessSwall("Curso agregado al carrito");
     };
     return {
       course: props.course,
       addToCart,
+      getCarItems
     };
   },
   components: {},

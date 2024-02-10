@@ -43,14 +43,12 @@ onMounted(async () => {
     if (data.status === 200) {
       success.value = true;
       originRoute.value = data.data.route;
-      console.log(data.data,'VERIFIED');
       const loginParams = {
         token: token,
       };
       try {
         showPreloader();
         const res = await AuthService.loginWithToken(loginParams);
-        console.log(res.data,'data');
         if (res.status === 200) {
           hidePreloader();
           store.addToken(res.data.access_token);

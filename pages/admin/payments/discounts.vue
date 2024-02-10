@@ -157,7 +157,6 @@ const data = ref([]);
 const totalRecords = ref(0);
 const search = ref("");
 const getData = async ({ page, itemsPerPage, sortBy, search }) => {
-  console.log("get data", page, itemsPerPage, sortBy, search);
   isCreateEditModalOpen.value = false;
   try {
     const params = {
@@ -170,7 +169,6 @@ const getData = async ({ page, itemsPerPage, sortBy, search }) => {
     };
     loading.value = true;
     const response = await AdminDiscountsService.getAllDiscounts(params);
-    console.log(response.data);
     if (response.status === 200) {
       loading.value = false;
       data.value = response.data.data.data;
@@ -184,7 +182,7 @@ const getData = async ({ page, itemsPerPage, sortBy, search }) => {
       totalRecords.value = response.data.data.total;
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 const isCreateEditModalOpen = ref(false);
@@ -435,7 +433,6 @@ const downloadDiscountReport = async (item) => {
 
     hidePreloader();
     if (response.status === 200) {
-      console.log(response.data);
       const s3Url = response.data.data;
       window.open(s3Url);
     } else {
@@ -443,7 +440,7 @@ const downloadDiscountReport = async (item) => {
     }
   } catch (error) {
     hidePreloader();
-    console.log(error);
+    console.error(error);
   }
 };
 const actions = [

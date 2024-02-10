@@ -52,6 +52,7 @@
         :key="`navbar-option-${index}`"
         :to="getRoute(option.path)"
         class="d-flex align-items-center flex-row gap-1"
+        
       >
         <component
           v-if="option.type != 'svg' && option.path != '/'"
@@ -71,7 +72,7 @@
             }
           "
         >
-        <lazy-auth-account-block v-if="option.path==='/login'"/>
+        <lazy-auth-account-block v-if="option.path==='/login'" id="account-block"/>
           <span v-if="option.path!='/login'">{{ option.name }}</span>
         </component>
         <div
@@ -185,6 +186,7 @@ import { getClaimForm, redirectTo } from "/composables/main-composables.js";
 import { authStore } from "../../store/auth/auth.store";
 const storeAuth=authStore();
 const isLogged =computed(()=> storeAuth.isLogged); 
+
 // const userData = computed(()=> storeAuth.getUserData);
 const getRoute = (path) => {
   if (path === "/classroom/home") {

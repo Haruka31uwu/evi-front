@@ -48,11 +48,13 @@
           <div class="transaction-header">
             <div>
               <span>Número de Orden: </span>
-              <span>{{transactionDetails.transaction.data.id}}</span>
+              <span>{{ transactionDetails.transaction.id }}</span>
             </div>
             <div>
               <span>Fecha de Compra: </span>
-              <span>{{parseUnixDate(transactionDetails.transaction.data.creation_date)}}</span>
+              <span>{{
+                parseUnixDate(transactionDetails.transaction.creation_date)
+              }}</span>
             </div>
           </div>
           <div
@@ -90,7 +92,12 @@
             <div class="col-12 col-md-6 transaction-col">
               <div class="payment-method detail">
                 <h4>Metodo de Pago:</h4>
-                <div class="payment-method" style="font-size: 1.3em;font-weight: bold;">{{transactionDetails.type.name}}</div>
+                <div
+                  class="payment-method"
+                  style="font-size: 1.3em; font-weight: bold"
+                >
+                  {{ transactionDetails.type.name }}
+                </div>
               </div>
               <div class="access-details detail">
                 <h4>Detalles de acceso al curso:</h4>
@@ -141,15 +148,32 @@ export default {
     };
     const getTransactionDetails = () => {
       //capitalizar pais
-      const userData = {
-        Nombres: props.transactionDetails.userData.name,
-        Apellidos: props.transactionDetails.userData.last_name,
-        Pais: capitalize(props.transactionDetails.userData.country),
-        "Tipo de Documento": "DNI",
-        "Numero de Documento de Identidad": "74645561",
-        Celular: props.transactionDetails.userData.phone_number,
-        "Correo Electronico": props.transactionDetails.userData.email,
-      };
+      const userData = {};
+      if (props.transactionDetails.moreData.fileSelected == "boleta") {
+        userData["Nombres"] = props.transactionDetails.userData.name;
+        userData["Apellidos"] = props.transactionDetails.userData.last_name;
+        userData["Tipo de Documento"] =
+          props.transactionDetails.moreData.pidType;
+        userData["Numero de Documento de Identidad"] =
+          props.transactionDetails.moreData.pid;
+      } else {
+        userData["Razon Social"] = props.transactionDetails.moreData.razon_social;
+        userData["Tipo de Documento"] = "RUC";
+        userData["RUC"] = props.transactionDetails.moreData.ruc;
+        userData["Direccion de Facturacion"] = props.transactionDetails.moreData.factura_dir;
+      }
+      userData["Pais"] = capitalize(props.transactionDetails.userData.country);
+      userData["Celular"] = props.transactionDetails.userData.phone_number;
+      userData["Correo Electronico"] = props.transactionDetails.userData.email;
+      //   const userData = {
+
+      //   Pais: capitalize(props.transactionDetails.userData.country),
+      //   // "Tipo de Documento": "DNI",
+      //   // "Numero de Documento de Identidad": "74645561",
+      //   Celular: props.transactionDetails.userData.phone_number,
+      //   "Correo Electronico": props.transactionDetails.userData.email,
+      // };
+
       let paymentDetail = [];
       props.transactionDetails.carItems.forEach((item) => {
         paymentDetail.push({
@@ -169,7 +193,6 @@ export default {
       };
     };
     onMounted(() => {
-      console.log(props.transactionDetails);
     });
     return {
       closeModal,

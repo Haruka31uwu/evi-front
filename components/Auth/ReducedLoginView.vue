@@ -52,7 +52,7 @@ import AuthService from "/services/auth/auth.service.js";
 import { useForm } from "vee-validate";
 import { authStore } from "../../store/auth/auth.store";
 import { usePreloader, useSwall } from "/composables/main-composables.js";
-
+import { useSocket } from "/composables/socket-composables.js";
 export default {
   emits: ["openRegisterForm"],
   setup(props, ctx) {
@@ -61,6 +61,7 @@ export default {
     const openRegisterForm = () => {
       //   const store = authStore();
       //   store.showRegisterForm();
+      const { subscribeUsersChannel } = useSocket();
       ctx.emit("openRegisterForm");
     };
     const store = authStore();
@@ -85,47 +86,23 @@ export default {
           showSuccessSwall("Inicio de sesión exitoso");
           store.addToken(res.data.access_token);
           store.addUserData(res.data.user);
-           // const router = useRouter();
-          
+          subscribeUsersChannel();
+          // const router = useRouter();
         }
       } catch (e) {
         hidePreloader();
         if (e.hasOwnProperty("response")) {
           showErrorSwall("Error", e.response.data.message);
           return;
-
         }
         showErrorSwall("Error", e);
-        
       }
-
-      // AuthService.login(loginParams).then(
-      //   (res) => {
-      //     resetForm();
-      //     if (res.status === 200) {
-      //       store.addToken(res.data.access_token);
-      //       store.addUserData(res.data.user);
-      //       location.reload();
-      //       // const router = useRouter();
-      //       // router.push("/classroom/home");
-      //     }
-      //   },
-      //   (error) => {
-      //     const resMessage =
-      //       (error.response &&
-      //         error.response.data &&
-      //         error.response.data.message) ||
-      //       error.message ||
-      //       error.toString();
-      //     console.log(resMessage);
-      //   }
-      // );
     };
     return {
       onSubmit,
       schema,
       openRegisterForm,
-      isLogged
+      isLogged,
     };
   },
 };

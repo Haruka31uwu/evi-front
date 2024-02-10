@@ -117,7 +117,7 @@ export default defineComponent({
         }
         files.value=e.target.files;
       }catch(e){
-        console.log(e)
+        console.error(e)
       }
     };
     const getFileUrl = (file) => {

@@ -421,7 +421,6 @@ export default {
       ctx.emit("openComplaintsBookModal");
     };
     const openModalTermAndConditions = () => {
-      console.log("openModalTermAndConditions");
       ctx.emit("openModalTermAndConditions");
     };
     return {

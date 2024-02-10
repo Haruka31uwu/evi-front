@@ -1,6 +1,15 @@
 import apiClient from '../api/api.service';
 const config = useRuntimeConfig();
 class TransactionService {
+    async createOrder(body) {
+        try {
+            const res = await apiClient.post(`${config.public.APP_BACKEND_URL}transactions/create-order`, body);
+            return res;
+
+        } catch (e) {
+            throw e;
+        }
+    }
     async createTransaction(body) {
         try {
             const res = await apiClient.post(`${config.public.APP_BACKEND_URL}transactions/create-transaction`, body);
@@ -12,6 +21,14 @@ class TransactionService {
     async sendTransactionResumeEmail(body) {
         try {
             const res = await apiClient.post(`${config.public.APP_BACKEND_URL}transactions/send-transaction-resume-email`, body);
+            return res;
+        } catch (e) {
+            throw e;
+        }
+    }
+    async createCharge(body) {
+        try {
+            const res = await apiClient.post(`${config.public.APP_BACKEND_URL}transactions/create-charge`, body);
             return res;
         } catch (e) {
             throw e;
@@ -33,5 +50,5 @@ class TransactionService {
             throw e;
         }
     }
-}   
+}
 export default new TransactionService();

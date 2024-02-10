@@ -45,40 +45,80 @@
               <span class="" style="width: 20%" @click="validateCode()"
                 >Verificar</span
               >
-
-
             </div>
-            <span v-if="isEviAlumno===1" style="color: red;font: Axiforma;">
-              Por ser un Evialumno tiene un descuento del 10% :D</span>
-            <div class="input-container">
-              <span for="name" style="color: white">Tipo de Documento*</span>
-              <select
-                id="pidType"
-                class="input-customized"
-                v-model="pidTypeSelected"
-              >
-                <option
-                  v-for="(option, index) in pidTypeOptions"
-                  :key="index"
-                  :value="option.value"
+            <span v-if="isEviAlumno === 1" style="color: red; font: Axiforma">
+              Por ser un Evialumno tiene un descuento del 10% :D</span
+            >
+            <span>Selecciona una Opcion</span>
+            <div>
+              <input type="radio" id="boleta" name="file" value="boleta" />
+              <label for="language1">Boleta</label><br />
+              <input type="radio" id="factura" name="file" value="factura" />
+              <label for="language2">Factura</label><br />
+            </div>
+
+            <div class="boleta__fields" v-if="fileSelected == 'boleta'">
+              <div class="input-container">
+                <span for="name" style="color: white">Tipo de Documento*</span>
+                <select
+                  id="pidType"
+                  class="input-customized"
+                  v-model="pidTypeSelected"
                 >
-                  {{ option.name }}
-                </option>
-              </select>
+                  <option
+                    v-for="(option, index) in pidTypeOptions"
+                    :key="index"
+                    :value="option.value"
+                  >
+                    {{ option.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="input-container">
+                <span for="name" style="color: white">Numero de Documento</span>
+                <input v-model="pid" class="input-customized" type="text" />
+              </div>
+              <div class="input-container">
+                <span for="name" style="color: white">Numero de celular</span>
+                <input
+                  type="text"
+                  id="name"
+                  class="input-customized"
+                  v-model="phone"
+                />
+              </div>
             </div>
-            <div class="input-container">
-              <span for="name" style="color: white">Numero de Documento</span>
-              <input v-model="pid" class="input-customized" type="text"
->
-            </div>
-            <div class="input-container">
-              <span for="name" style="color: white">Numero de celular</span>
-              <input
-                type="text"
-                id="name"
-                class="input-customized"
-                v-model="phone"
-              />
+            <div class="factura_fields" v-if="fileSelected == 'factura'">
+              <div class="input-container">
+                <span for="name" style="color: white"
+                  >Direccion de Facturacion</span
+                >
+                <input
+                  v-model="factura_dir"
+                  class="input-customized"
+                  type="text"
+                />
+              </div>
+              <div class="input-container">
+                <span for="name" style="color: white">Numero de Ruc</span>
+                <input
+                  type="text"
+                  id="name"
+                  class="input-customized"
+                  v-model="ruc"
+                />
+              </div>
+              <div class="input-container">
+                <span for="name" style="color: white"
+                  >Nombre o razon social</span
+                >
+                <input
+                  type="text"
+                  id="name"
+                  class="input-customized"
+                  v-model="razon_social"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -510,71 +550,6 @@
               </div>
             </div>
           </div>
-          <div
-            v-if="transactionOption == 1"
-            class="d-flex flex-column align-items-center w-100"
-          >
-            <div class="card-pay-container d-flex flex-column gap-2 w-100">
-              <VForm :validation-schema="schema" @submit="onSubmitCard">
-                <div class="input-container">
-                  <span for="name" style="color: white"
-                    >Nombre en la Tarjeta</span
-                  >
-                  <AuthInput type="text" name="cardName" mode="aggressive" />
-                </div>
-                <div class="input-container">
-                  <span for="name" style="color: white"
-                    >Numero de la Tarjeta</span
-                  >
-                  <AuthInput type="text" name="cardNumber" mode="aggressive" />
-                </div>
-                <div class="input-container">
-                  <span for="name" style="color: white"
-                    >Fecha de Vencimiento</span
-                  >
-                  <AuthInput
-                    type="text"
-                    name="cardExpireDate"
-                    mode="aggressive"
-                  />
-                </div>
-                <div class="input-container">
-                  <span for="name" style="color: white">CVC/CVV</span>
-                  <AuthInput
-                    type="text"
-                    name="cardSecurityCode"
-                    mode="aggressive"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  class="btn-blue mt-3"
-                  @click="payWithCard"
-                >
-                  <span> Pagar con Tarjeta </span>
-                </button>
-              </VForm>
-            </div>
-          </div>
-          <div
-            v-if="transactionOption == 3"
-            class="d-flex flex-column align-items-center w-50 mx-auto"
-          >
-            <div class="yape-pay-container d-flex flex-row gap-2">
-              <input
-                v-for="(char, charIndex) in yapeSettings.otpCharacters"
-                :key="charIndex"
-                class="yape-pay-char"
-                type="number"
-                v-model="yapeOtp[charIndex]"
-                max="9"
-                min="0"
-              />
-            </div>
-            <div class="btn-blue mt-3" @click="payWithYape">
-              <span> Pagar con Yape </span>
-            </div>
-          </div>
         </div>
 
         <!-- <button @click="payWithYape()" class="btn-white">Pagar con Yape</button> -->
@@ -622,13 +597,14 @@
           <div class="d-flex flex-column w-100 align-items-center gap-3 mt-5">
             <div
               class="btn-blue"
+              @click="startTransaction()"
               :style="
                 !condition
                   ? 'background:#0393AA;pointer-events:none;opacity:0.5'
                   : ''
               "
             >
-              <span @click="startTransaction()">Guardar y Continuar</span>
+              <span >Guardar y Continuar</span>
             </div>
             <span style="color: #575756; font-weight: 500; font-size: 0.8em"
               >¿Necesitas Ayuda?</span
@@ -655,8 +631,11 @@
     >
       <auth-reduced-register-form />
     </div>
+    <button @click="sendSocket">Send Sockets</button>
   </section>
 </template>
+
+
 <script setup>
 import { usePreloader, useSwall } from "/composables/main-composables.js";
 const { showPreloader, hidePreloader } = usePreloader();
@@ -666,11 +645,78 @@ import { authStore } from "../../store/auth/auth.store";
 import TransactionService from "../../services/transactions/transaction.service";
 import * as yup from "yup";
 import { useForm } from "vee-validate";
+import Culqi from "/composables/culqi-composables.js";
+// import {useSocket} from "/composables/socket-composables.js";
+// const {getWsChannel} = useSocket();
+// const ws=getWsChannel()
+const config = useRuntimeConfig();
+const sendSocket = () => {};
+const culqi = new Culqi(config.public.CULQI_PUBLIC_KEY);
+const tokenCulqi = ref(null);
+/**
+ * ! Open Culqi with specific Payment Methods
+ */
+const culqiPay = async (data) => {
+  culqi.appendCulqiScript().then(() => {
+    window.Culqi.token = undefined;
+    window.Culqi.settings({
+      title: "Evisalud",
+      currency: "PEN",
+      description: "Descripción de la compra",
+      amount: data.amount,
+      order: data.order,
+      // xculqirsaid: "653bba2d-e5ee-4327-ae56-28794870b59a",
+      // rsapublickey:
+      //   "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDaEmnFh7HZyATqZ7OQ/ITQ3dB9/+Qvm9pbxk9C2Dry9lvWeJ1E/aUTgeIhSkvB+c7Ylm7trt78fZRCoAsudlpmrix/GKtdclFmDF0/PSEH5tFAfxP+0ea3+6cjsFy/HIzlWpkc1RgY994UfBVZ1nezp91jlpBLPSMcSK+R41XZGQIDAQAB",
+    });
+    window.Culqi.options({
+      lang: "auto",
+      paymentMethods: {
+        tarjeta: selectedPaymentOption.value == 1 ? true : false,
+        yape: selectedPaymentOption.value == 3 ? true : false,
+        bancaMovil: false,
+        agente: false,
+        billetera: false,
+        cuotealo: false,
+      },
+    });
+    window.Culqi.open();
+    new Promise((resolve, reject) => {
+      let time = 50;
+      const checkToken = setInterval(() => {
+        time--;
+        if (time <= 0) {
+          clearInterval(checkToken);
+          reject("Time out");
+        }
+        if (window.Culqi.token) {
+          clearInterval(checkToken);
+          resolve(window.Culqi.token);
+        }
+      }, 1000);
+    })
+      .then((token) => {
+        tokenCulqi.value = token;
+        window.Culqi.close();
+        if (selectedPaymentOption.value == 1) {
+          payWithCard(data);
+        } else {
+          payWithYape(data);
+        }
+      })
+      .catch((err) => {
+        window.Culqi.close();
+        console.error(err);
+      });
+  });
+};
+
 const emit = defineEmits(["openTransactionDetails"]);
 const showRegisterForm = ref(false);
 const openRegisterForm = () => {
   showRegisterForm.value = true;
 };
+
 const storeAuth = authStore();
 const isLogged = computed(() => storeAuth.isLogged);
 const pid = ref("");
@@ -679,8 +725,8 @@ const store = carStore();
 const getCarItems = store.getCarItems;
 const condition = ref(false);
 const cuponValue = ref(0);
-const yapeOtp = ref([]);
-const paymentValue = ref(0);
+const fileSelected = ref("");
+const paymentValue = ref("");
 const userData = computed(() => storeAuth.getUserData);
 const pidTypeSelected = ref("dni");
 const pidTypeOptions = [
@@ -688,6 +734,43 @@ const pidTypeOptions = [
   { name: "Carnet de Extranjería", value: "ce" },
   { name: "Pasaporte", value: "pasaporte" },
 ];
+const selectedPaymentOption = ref(1);
+const paymentOptions = ref([
+  {
+    id: 1,
+    name: "Tarjeta de debito o credito",
+  },
+  {
+    id: 2,
+    name: "PayPal",
+  },
+  {
+    id: 3,
+    name: "Yape",
+  },
+]);
+const selectedOption = ref(1);
+const ruc = ref(0);
+const razon_social = ref("");
+const factura_dir = ref("");
+const tabs = ref([
+  {
+    id: 1,
+    name: "Para mi",
+  },
+  {
+    id: 2,
+    name: "Regalar curso",
+  },
+]);
+const selectTab = (id) => {
+  selectedOption.value = id;
+};
+const isEviAlumno = ref(0);
+
+/**
+ *! Get Cart Total
+ */
 const getCarTotal = () => {
   let carValue;
   if (getCarItems.length === 0) {
@@ -719,164 +802,254 @@ const getCarTotal = () => {
     },
   ];
 };
-const selectedPaymentOption = ref(1);
-const paymentOptions = ref([
-  {
-    id: 1,
-    name: "Tarjeta de debito o credito",
-  },
-  {
-    id: 2,
-    name: "PayPal",
-  },
-  {
-    id: 3,
-    name: "Yape",
-  },
-]);
-const selectedOption = ref(1);
-const tabs = ref([
-  {
-    id: 1,
-    name: "Para mi",
-  },
-  {
-    id: 2,
-    name: "Regalar curso",
-  },
-]);
-const selectTab = (id) => {
-  selectedOption.value = id;
-};
-const isEviAlumno = ref(0);
+
+/**
+ * ?Check if user is Evi Alumno
+ 
+ */
 onMounted(async () => {
   try {
-    const params= {
-      userId: userData.value.id
-    }
+    const params = {
+      userId: userData.value.id,
+    };
     const response = await TransactionService.isEviAlumno(params);
-    if(response.status === 200){
-      isEviAlumno.value = response.data.isEvialumno
-      if(isEviAlumno.value === 1){
+    if (response.status === 200) {
+      isEviAlumno.value = response.data.isEvialumno;
+      if (isEviAlumno.value === 1) {
         cuponValue.value = {
           discountPercentage: response.data.discountPercentage,
           discountId: response.data.discountCodeId,
-        }
+        };
       }
     }
+    let radioButtons = document.querySelectorAll(
+      "input[type=radio][name=file]"
+    );
+
+    radioButtons.forEach(function (radioButton) {
+      radioButton.addEventListener("change", function () {
+        fileSelected.value = this.value;
+      });
+    });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 });
 /**Transaction Methods */
+if (window.Culqi) {
+  window.Culqi.token = null;
+}
 const yapeSettings = ref({
   otpCharacters: 6,
 });
-const schema = yup.object().shape({
-  cardName: yup.string().required("El nombre de la tarjeta es requerido"),
-  cardNumber: yup.string().required("El numero de la tarjeta es requerido"),
-  cardSecurityCode: yup
-    .string()
-    .required("El codigo de seguridad es requerido"),
-  cardExpireDate: yup.string().required("La fecha de expiración es requerida"),
-});
-const { handleSubmit, errors, resetForm } = useForm({
-  validationSchema: schema,
-});
-const onSubmitCard = async (values) => {
-  showPreloader();
-  try {
-    const params = {
-      pid: pid.value,
-      number: number.value,
-      type: 2,
-      userId: userData.value.id,
-      cardName: values.cardName,
-      cardNumber: values.cardNumber,
-      cardSecurityCode: values.cardSecurityCode,
-      cardExpireDate: values.cardExpireDate,
-    };
-    const { data, status } = await TransactionService.createTransaction(params);
-    if (status === 201) {
-      const transactionData = {
-        userData: userData.value,
-        transaction: data,
-        carItems: getCarItems,
-        type: {
-          name: "Card",
-        },
-      };
-      const response = await TransactionService.sendTransactionResumeEmail({
-        transactionData: transactionData,
-      });
-      hidePreloader();
 
-      const confirmed = await showSuccessBuySwall(
+/**
+ * ! Start Transaction and get Order id
+ */
+const startTransaction = async () => {
+  if (fileSelected.value == "factura") {
+    if (
+      ruc.value == "" ||
+      razon_social.value == "" ||
+      factura_dir.value == ""
+    ) {
+      showErrorSwall("Por favor complete los campos para la factura");
+      return;
+    }
+  } else {
+    if (pid.value === "" || phone.value === "") {
+      return showErrorSwall(
         "",
-        "Su compra ha sido realizada correctamente. Recibirá un mensaje de confirmación en el correo proporcionado en sus datos"
+        "Por favor ingrese su Identificacion y su número de celular"
       );
     }
+  }
+  transactionOption.value = selectedPaymentOption.value;
+  try {
+    showPreloader();
+    const params = {
+      userId: userData.value.id,
+      phone: phone.value,
+      pid: pid.value,
+      fileSelected: fileSelected.value,
+      ruc: fileSelected.value == "factura" ? ruc.value : "",
+      razon_social: fileSelected.value == "factura" ? razon_social.value : "",
+      factura_dir: fileSelected.value == "factura" ? factura_dir.value : "",
+      pidType: pidTypeSelected.value,
+      amount: paymentValue.value,
+      original_amount: getCarTotal()[0].value,
+      userData: userData.value,
+      type: transactionOption.value,
+    };
+    const response = await TransactionService.createOrder(params);
+
+    if (response.status === 200) {
+      hidePreloader();
+      const orderInfo = {
+        order: response.data.data.id,
+        amount: response.data.data.amount,
+        userTransactionId: response.data.id,
+        fileSelected: fileSelected.value,
+        ruc: fileSelected.value == "factura" ? ruc.value : "",
+        razon_social: fileSelected.value == "factura" ? razon_social.value : "",
+        factura_dir: fileSelected.value == "factura" ? factura_dir.value : "",
+      };
+
+      await culqiPay(orderInfo);
+    }
+  } catch (err) {
+    hidePreloader();
+    console.error(err);
+  }
+};
+/**
+ * ! Function for Culqi Card Payment
+ */
+const payWithCard = async (info) => {
+  try {
+    if (!window.Culqi.token) return;
+    const params = {
+      sourceId: window.Culqi.token.id,
+      transactionData: {
+        pid: pid.value,
+        phone: phone.value,
+        original_amount: getCarTotal()[0].value,
+        amount: paymentValue.value,
+        userData: userData.value,
+        carItems: getCarItems,
+        type: selectedPaymentOption.value,
+        discountId: cuponValue.value.discountId,
+        transactionId: info.userTransactionId,
+        fileSelected: info.fileSelected,
+        ruc: info.ruc,
+        razon_social: info.razon_social,
+        factura_dir: info.factura_dir,
+      },
+      discountId: cuponValue.value.discountId,
+      type: 1,
+    };
+    showPreloader();
+    try {
+      const { data, status } = await TransactionService.createCharge(params);
+      window.Culqi.token = null;
+      if (status === 200) {
+        hidePreloader();
+        const confirmed = await showSuccessBuySwall(
+          "",
+          "Su compra ha sido realizada correctamente. Recibirá un mensaje de confirmación en el correo proporcionado en sus datos"
+        );
+        if (confirmed) {
+          const transactionData = {
+            userData: userData.value,
+            transaction: data,
+            carItems: getCarItems,
+            type: {
+              name: "Card",
+            },
+            moreData: {
+              fileSelected: info.fileSelected,
+              ruc: info.ruc,
+              razon_social: info.razon_social,
+              factura_dir: info.factura_dir,
+              pid: pid.value,
+              phone: phone.value,
+              pidType: pidTypeSelected.value,
+            },
+          };
+          emit("openTransactionDetails", transactionData);
+        }
+      }
+    } catch (err) {
+      hidePreloader();
+      showErrorSwall("Error al realizar el pago");
+    }
+    // if (status === 201) {
+    //   const transactionData = {
+    //     userData: userData.value,
+    //     transaction: data,
+    //     carItems: getCarItems,
+    //     type: {
+    //       name: "Card",
+    //     },
+    //   };
+    //   const response = await TransactionService.sendTransactionResumeEmail({
+    //     transactionData: transactionData,
+    //   });
+    //   hidePreloader();
+
+    //   const confirmed = await showSuccessBuySwall(
+    //     "",
+    //     "Su compra ha sido realizada correctamente. Recibirá un mensaje de confirmación en el correo proporcionado en sus datos"
+    //   );
+    // }
   } catch (err) {
     hidePreloader();
   }
 };
-const payWithYape = async () => {
-  showPreloader();
+const payWithYape = async (info) => {
   try {
-    //valid otp
-    let transactionData = {
-        userData: userData.value,
-        
-        carItems: getCarItems,
-        type: {
-          name: "Yape",
-        },
-      };
-    const otp = yapeOtp.value.join("");
+    if (!tokenCulqi.value) return;
     const params = {
-      pid: pid.value,
-      phone: phone.value,
-      otp: otp,
-      type: 1,
-      userId: userData.value.id,
-      original_amount: getCarTotal()[0].value,
-      amount: paymentValue.value,
-      pidType: pidTypeSelected.value,
-      transactionData: transactionData,
-      discountId: cuponValue.value.hasOwnProperty("discountId")
-        ? cuponValue.value.discountId
-        : null,
+      sourceId: window.Culqi.token.id,
+      transactionData: {
+        pid: pid.value,
+        phone: phone.value,
+        original_amount: getCarTotal()[0].value,
+        amount: paymentValue.value,
+        userData: userData.value,
+        carItems: getCarItems,
+        type: selectedPaymentOption.value,
+        transactionId: info.userTransactionId,
+        discountId: cuponValue.value.discountId,
+        fileSelected: info.fileSelected,
+        ruc: info.ruc,
+        razon_social: info.razon_social,
+        factura_dir: info.factura_dir,
+      },
+      type: 3,
     };
-
-    const { data, status } = await TransactionService.createTransaction(params);
-    if (status === 201) {
-      transactionData.transaction = data;
-      const response = await TransactionService.sendTransactionResumeEmail({
-        transactionData: transactionData,
-      });
-      hidePreloader();
-
-      const confirmed = await showSuccessBuySwall(
-        "",
-        "Su compra ha sido realizada correctamente. Recibirá un mensaje de confirmación en el correo proporcionado en sus datos"
-      );
-
-      if (confirmed) {
-        emit("openTransactionDetails", transactionData);
+    showPreloader();
+    try {
+      const { data, status } = await TransactionService.createCharge(params);
+      window.Culqi.token = null;
+      if (status === 200) {
+        hidePreloader();
+        const confirmed = await showSuccessBuySwall(
+          "",
+          "Su compra ha sido realizada correctamente. Recibirá un mensaje de confirmación en el correo proporcionado en sus datos"
+        );
+        if (confirmed) {
+          const transactionData = {
+            userData: userData.value,
+            transaction: data,
+            carItems: getCarItems,
+            type: {
+              name: "Yape",
+            },
+            moreData: {
+              fileSelected: info.fileSelected,
+              ruc: info.ruc,
+              razon_social: info.razon_social,
+              factura_dir: info.factura_dir,
+              pid: pid.value,
+              phone: phone.value,
+              pidType: pidTypeSelected.value,
+            },
+          };
+          emit("openTransactionDetails", transactionData);
+        }
       }
+    } catch (err) {
+      hidePreloader();
+      showErrorSwall("Error al realizar el pago");
     }
+
   } catch (err) {
     hidePreloader();
-    console.log(err);
   }
 };
 const transactionOption = ref(null);
-const startTransaction = () => {
-  if(pid.value === "" || phone.value === ""){
-    return showErrorSwall("","Por favor ingrese su Identificacion y su número de celular")
-  }
-  transactionOption.value = selectedPaymentOption.value;
-};
+
 const validateCode = async () => {
   try {
     const discountCode = document.getElementById("discount-code").value;
@@ -888,21 +1061,21 @@ const validateCode = async () => {
 
     const response = await TransactionService.validateCode(params);
     if (response.status === 200) {
-      cuponValue.value ={
+      cuponValue.value = {
         discountPercentage: response.data.discountPercentage,
         discountId: response.data.discountCodeId,
-      }
+      };
       hidePreloader();
       showSuccessSwall("Cupon validado correctamente");
-        
     }
   } catch (err) {
     hidePreloader();
     showErrorSwall("Cupon no valido");
-    console.log(err);
+    console.error(err);
   }
 };
 </script>
+
 <style scoped lang="scss">
 .condition-checkbox {
   width: 2em;

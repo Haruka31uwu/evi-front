@@ -7,12 +7,12 @@ export const carStore = defineStore('carStore', {
     }, getters: {
         getCarItems: (state) => {
 
-            if (state.carItems.length == 0||localStorage.getItem('carItems')) {
+            if (state.carItems.length == 0 || localStorage.getItem('carItems')) {
                 const carItems = localStorage.getItem('carItems');
                 if (carItems) {
                     return JSON.parse(carItems);
                 }
-                return [];                
+                return [];
             }
             return state.carItems;
 
@@ -21,25 +21,27 @@ export const carStore = defineStore('carStore', {
     },
     actions: {
         addCarItem(item) {
-           try{
-            this.carItems.push(item);
-            if (localStorage.getItem('carItems')) {
-                localStorage.removeItem('carItems');
+            try {
+                this.carItems=JSON.parse(localStorage.getItem('carItems'));
+                this.carItems.push(item);
+                if (localStorage.getItem('carItems')) {
+                    localStorage.removeItem('carItems');
+                }
+                localStorage.setItem('carItems', JSON.stringify(this.carItems));
+            } catch (e) {
+                console.error(e);
             }
-            localStorage.setItem('carItems', JSON.stringify(this.carItems));
-           }catch(e){
-               console.log(e);
-           }
         },
         removeCarItem(item) {
-            const index = this.carItems.indexOf(item);
-            this.carItems.splice(index, 1);
+
             if (localStorage.getItem('carItems')) {
                 let items = JSON.parse(localStorage.getItem('carItems'));
+                const index = items.findIndex((i) => i.id == item.id);
                 items.splice(index, 1);
                 localStorage.removeItem('carItems');
                 localStorage.setItem('carItems', JSON.stringify(items));
-            }
+                this.carItems = items;
+            } 
 
         }
     }
