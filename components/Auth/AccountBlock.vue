@@ -1,6 +1,5 @@
 <template>
   <div v-if="accountOptions">
-    {{ userData }}
     <div class="login-account" v-if="userData && userData.length==0">Iniciar Sesión</div>
     <div class="logged-account d-flex flex-row gap-2 align-items-center" v-else>
       <img :src="userData.profile_img" class="account-profile-img" />
