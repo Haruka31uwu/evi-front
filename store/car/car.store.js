@@ -23,7 +23,12 @@ export const carStore = defineStore('carStore', {
         addCarItem(item) {
             try {
                 this.carItems=JSON.parse(localStorage.getItem('carItems'));
-                this.carItems.push(item);
+                if(this.carItems){
+                    this.carItems.push(item);
+                }
+                else{
+                    this.carItems = [item];
+                }
                 if (localStorage.getItem('carItems')) {
                     localStorage.removeItem('carItems');
                 }
