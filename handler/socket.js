@@ -3,7 +3,6 @@ export default function useSocket() {
     )
     const eventHandlers={}
     ws.addEventListener('open', function (event) {
-    ws.send('Subsribed to global channel')
     });
     ws.addEventListener('message',event=>{
         const eventData =JSON.parse(event.data)
