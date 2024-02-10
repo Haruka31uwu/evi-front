@@ -19,23 +19,24 @@ const { showSuccessSwall } = useSwall();
 const router = useRouter();
 const socket = useSocket();
 //Initialize Sockets
-loginSocket();
-unLoginSocket();
-console.log(userData.value,'owo');
+
+console.log(userData.value, "owo");
 const initSubscriptions = () => {
+  loginSocket();
+  unLoginSocket();
   if (userData.value) {
-  if (userData.value!=[]) {
-    if (userData.value.id == 1) {
-      socket.subscribeAdminChannel();
-      return
-    } else {
-      socket.subscribeUsersChannel();
-      return
+    if (userData.value != []) {
+      if (userData.value.id == 1) {
+        socket.subscribeAdminChannel();
+        return;
+      } else {
+        socket.subscribeUsersChannel();
+        return;
+      }
     }
   }
-}
-socket.subscribeGlobalChannel();
 };
+initSubscriptions();
 const isAdminRoute = () => {
   const route = router.currentRoute.value.path;
   if (route.includes("admin")) {
