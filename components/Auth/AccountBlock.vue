@@ -75,6 +75,7 @@ function checkLocalStorage() {
   }
 }
 watch(newLogin, (val) => {
+  console.log(val, "new login");
   checkstorage = setInterval(checkLocalStorage, 1000);
 });
 // Check local storage every 1 second (adjust as needed)
