@@ -22,15 +22,20 @@ const socket = useSocket();
 loginSocket();
 unLoginSocket();
 console.log(userData.value,'owo');
-if (userData.value) {
+const initSubscriptions = () => {
+  if (userData.value) {
   if (userData.value!=[]) {
     if (userData.value.id == 1) {
       socket.subscribeAdminChannel();
+      return
     } else {
       socket.subscribeUsersChannel();
+      return
     }
   }
 }
+socket.subscribeGlobalChannel();
+};
 const isAdminRoute = () => {
   const route = router.currentRoute.value.path;
   if (route.includes("admin")) {
