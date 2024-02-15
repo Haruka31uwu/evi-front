@@ -1,6 +1,6 @@
 <template>
   <section
-    class="d-flex flex-column justify-content-center align-items-center pb-5"
+    class="d-flex flex-column justify-content-center align-items-center pb-5" style="height: 100vh;"
   >
     <div
       class="text-center d-flex flex-row justify-content-between"

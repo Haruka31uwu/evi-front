@@ -52,6 +52,7 @@ const newLogin = computed(() => storeAuth.newLogin);
 let checkstorage = ref(null);
 function checkLocalStorage() {
   // Check if a specific key in local storage has changed
+  console.log("checking storage");
   var storedValue = localStorage.getItem("userData");
 
   // Do something with the storedValue here
