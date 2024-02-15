@@ -853,7 +853,7 @@ const startTransaction = async () => {
       razon_social.value == "" ||
       factura_dir.value == ""
     ) {
-      showErrorSwall("Por favor complete los campos para la factura");
+      showErrorSwall("","Por favor complete los campos para la factura");
       return;
     }
   } else {
@@ -863,6 +863,9 @@ const startTransaction = async () => {
         "Por favor ingrese su Identificacion y su número de celular"
       );
     }
+  }
+  if(paymentValue.value<6){
+    return showErrorSwall("","El monto a pagar no puede ser menor a 6")
   }
   transactionOption.value = selectedPaymentOption.value;
   try {
