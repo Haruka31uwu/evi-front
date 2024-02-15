@@ -5,7 +5,7 @@
     <div
       class="text-center d-flex flex-row justify-content-between"
       style="width: 30%"
-      v-if="!isLogged && !showRegisterForm"
+      v-if="(!userData|| userData.length==0) && !showRegisterForm"
     >
       <span
         v-for="tab in tabs"
@@ -21,7 +21,7 @@
         {{ tab.name }}
       </span>
     </div>
-    <div v-if="isLogged" class="row mt-5" style="width: 80%">
+    <div v-if="(userData&& userData.length!==0)" class="row mt-5" style="width: 80%">
       <div class="col-12 col-lg-6">
         <div
           class="data-container d-flex flex-column ps-5 py-5 gap-2"
@@ -614,7 +614,7 @@
       </div>
     </div>
     <div
-      v-else-if="!isLogged && !showRegisterForm"
+      v-else-if="(!userData|| userData.length==0) && !showRegisterForm"
       class="row mt-5 d-flex flex-column align-items-center"
       style="width: 80%"
     >
@@ -631,7 +631,6 @@
     >
       <auth-reduced-register-form />
     </div>
-    <button @click="sendSocket">Send Sockets</button>
   </section>
 </template>
 
@@ -650,6 +649,7 @@ import Culqi from "/composables/culqi-composables.js";
 // const {getWsChannel} = useSocket();
 // const ws=getWsChannel()
 const config = useRuntimeConfig();
+console.log(config.public)
 const sendSocket = () => {};
 const culqi = new Culqi(config.public.CULQI_PUBLIC_KEY);
 const tokenCulqi = ref(null);
