@@ -46,7 +46,7 @@ export const useSwall = () => {
                 background: '#1C1C24',
                 confirmButtonText: 'Aceptar',
                 html:
-                    '<div class="text-center"><h3 style="color:#0393AA;font-family:Axiforma;font-size:1.4em;margin:1em 0 2em 0;">'+ title+'</h3><p class="text-center" style="font-family:Axiforma;margin-top:1em;font-size:1em">' +
+                    '<div class="text-center"><h3 style="color:#0393AA;font-family:Axiforma;font-size:1.4em;margin:1em 0 2em 0;">' + title + '</h3><p class="text-center" style="font-family:Axiforma;margin-top:1em;font-size:1em">' +
                     text +
                     '</p>',
                 confirmButtonColor: '#0393AA',
@@ -61,17 +61,42 @@ export const useSwall = () => {
     }
     function showSuccessSwall(title = 'Success', text = 'Your work has been saved') {
         Swal.fire({
+
             icon: 'success',
             title: title,
             text: text,
         });
     }
     function showErrorSwall(title = 'Oops...', text = 'Something went wrong!') {
-        Swal.fire({
-            icon: 'error',
-            title: title,
-            text: text,
-        });
+        const swal = Swal.mixin({
+            customClass: {
+              confirmButton: "btn-blue",
+            //   cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+          });
+          swal.fire({
+
+                color: 'white',
+                background: '#1C1C24',
+                confirmButtonText: '<div style="width:350px;margin:0;font-family:Axiforma;color:white"> Cerrar</div>',
+                width:"500px",
+                html:
+                    '<div class="text-center"><img style="height:400px" src="/assets/img/commons/evi-error.png" ></div><p class="text-center" style="font-family:Axiforma;margin-top:1em">'     +
+                    text +
+                    '</p>',
+             })
+        // Swal.fire({
+
+        //     color: 'white',
+        //     width: '50%',
+        //     background: '#1C1C24',
+        //     confirmButtonText: '<div style="background:#0393AA;width:60%;min-width:200px"> Ver Detalle de Compra</div>',
+        //     html:
+        //         '<div class="text-center"><img style="height:400px" src="/assets/img/commons/evi-error.png" class="w-50"></div><p class="text-center" style="font-family:Axiforma;margin-top:1em">' +
+        //         text +
+        //         '</p>',
+        // });
     }
     return {
         showSuccessSwall,

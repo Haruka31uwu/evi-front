@@ -162,7 +162,7 @@ export default {
             error.message ||
             error.toString();
           hidePreloader();
-          showErrorSwall(resMessage);
+          showErrorSwall('',resMessage);
         }
       );
     };
