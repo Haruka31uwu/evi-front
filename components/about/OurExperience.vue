@@ -1,6 +1,6 @@
 
 <template>
-  <div class="our-experiences-container">
+  <div class="our-experiences-container" id="our-experience">
     <div class="our-experiences__title mb-3">
       <h2>Nuestra Experiencia</h2>
       <div class="our-experiences__title-decorator"></div>

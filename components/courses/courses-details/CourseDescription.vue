@@ -110,7 +110,7 @@
               style="column-gap: 1em"
             >
               <img src="/assets/img/courses/info.svg" />
-              <span>Ir a Preguntas Frecuentes</span>
+              <span @click="redirectTo('/commons','frequent-questions')">Ir a Preguntas Frecuentes</span>
             </div>
           </div>
         </div>
@@ -194,120 +194,6 @@
             </svg>
             <span>{{ item }}</span>
             </li>
-          <!-- <li class="d-flex gap-1 align-items-center" >
-            <svg 
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="7.07031"
-                width="10"
-                height="10"
-                rx="1"
-                transform="rotate(-45 0 7.07031)"
-                :fill="courseInfo.value.color"
-              />
-            </svg>
-            <span>Principios de redacción científica. </span>
-          </li>
-          <li class="d-flex gap-1 align-items-center">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="7.07031"
-                width="10"
-                height="10"
-                rx="1"
-                transform="rotate(-45 0 7.07031)"
-                :fill="courseInfo.value.color"
-              />
-            </svg>
-            <span>Principios de redacción científica. </span>
-          </li>
-          <li class="d-flex gap-1 align-items-center">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="7.07031"
-                width="10"
-                height="10"
-                rx="1"
-                transform="rotate(-45 0 7.07031)"
-                :fill="courseInfo.value.color"
-              />
-            </svg>
-            <span>Principios de redacción científica. </span>
-          </li>
-          <li class="d-flex gap-1 align-items-center">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="7.07031"
-                width="10"
-                height="10"
-                rx="1"
-                transform="rotate(-45 0 7.07031)"
-                :fill="courseInfo.value.color"
-              />
-            </svg>
-            <span>Principios de redacción científica. </span>
-          </li>
-          <li class="d-flex gap-1 align-items-center">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="7.07031"
-                width="10"
-                height="10"
-                rx="1"
-                transform="rotate(-45 0 7.07031)"
-                :fill="courseInfo.value.color"
-              />
-            </svg>
-            <span>Principios de redacción científica. </span>
-          </li>
-          <li class="d-flex gap-1 align-items-center">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="7.07031"
-                width="10"
-                height="10"
-                rx="1"
-                transform="rotate(-45 0 7.07031)"
-                :fill="courseInfo.value.color"
-              />
-            </svg>
-            <span>Principios de redacción científica. </span>
-          </li> -->
         </ul>
       </div>
     </div>
@@ -331,6 +217,7 @@
   </section>
 </template>
 <script>
+import { redirectTo } from '/composables/main-composables';
 export default {
   props: {
     courseInfo: {
@@ -350,6 +237,7 @@ export default {
     return {
       courseInfo: props.courseInfo,
       currentWindowWidth,
+      redirectTo
     };
   },
 };

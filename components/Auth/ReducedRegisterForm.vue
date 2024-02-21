@@ -1,12 +1,14 @@
 <template>
   <div class="row d-flex align-items-center">
     <h3 class="text-center" style="font-size: 1.5em; color: #0393aa">
-      Datos de Registro
+      Regístrate
     </h3>
-    <p class="text-center my-4" style="font-size: 1.1em">
-      Antes de continuar, necesitamos algunos detalles para brindarte la mejor
-      experiencia de compra posible. Por favor, tómate un momento para
-      proporcionarnos la siguiente información:
+    <p
+      class="text-center my-4 mx-auto"
+      style="font-size: 1.15em; width: 50%; min-width: 380px"
+    >
+      Crea una cuenta y empieza tu aventura para realizar investigación de
+      calidad y tomar mejores decisiones en salud
     </p>
     <VForm
       :validation-schema="schema"
@@ -34,8 +36,13 @@
             viewBox="0 0 100 100"
             fill="none"
           >
-            <circle cx="50" cy="50" r="49.5" stroke="#F0F0F0"             id="profile_img__border"
- />
+            <circle
+              cx="50"
+              cy="50"
+              r="49.5"
+              stroke="#F0F0F0"
+              id="profile_img__border"
+            />
           </svg>
         </div>
         <span
@@ -232,7 +239,11 @@
               </option>
             </select>
           </div>
-          <div class="input-container" @click="openFileSelector" v-if="academicGradeSelected=='pregrado'">
+          <div
+            class="input-container"
+            @click="openFileSelector"
+            v-if="academicGradeSelected == 'pregrado'"
+          >
             <span for="name" style="color: white">Foto de tu Carnet</span>
             <div class="d-flex flex-row gap-1 align-items-center">
               <span class="btn-gray w-50">Subir foto</span>
@@ -299,7 +310,7 @@
             v-if="condition"
           />
         </div>
-        <span style="width: 90%"
+        <span style="width: 80%"
           >He leído y acepto los
           <span class="primary-underline"> Términos y condiciones </span> y
           <span class="primary-underline">Políticas de privacidad </span>
@@ -327,7 +338,7 @@ import AuthService from "/services/auth/auth.service.js";
 import { useForm } from "vee-validate";
 import { authStore } from "../../store/auth/auth.store";
 import { usePreloader, useSwall } from "/composables/main-composables.js";
-import { useRoute,useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 export default defineComponent({
   emits: ["openProfileImageSelector"],
   setup(props, ctx) {
@@ -335,9 +346,18 @@ export default defineComponent({
     const { showPreloader, hidePreloader } = usePreloader();
     const { showSuccessSwall, showErrorSwall, showConfirmEmailSwall } =
       useSwall();
-    const router=useRouter();
+
+    const router = useRouter();
     const schema = yup.object().shape({
-      email: yup.string().email("El email no es valido").required(),
+      email: yup.string().email((value) => {
+
+        if (value.length == 0) {
+          return "El correo es obligatorio";
+        }
+        if (value.length > 0 && /\S+@\S+\.\S+/.test(value) == false) {
+          return "El correo no es valido";
+        }
+      }),
       password: yup.string().required("La constraseña es obligatoria").min(8),
       name: yup.string().required("El nombre es obligatorio"),
       // alias: yup.string().required("El alias es obligatorio"),
@@ -349,7 +369,10 @@ export default defineComponent({
       //   .min(10000000),
       age: yup.date().required("La fecha de nacimiento es obligatoria"),
       // institution: yup.string().required("La institucion es obligatoria"),
-      replyPassword:yup.string().required('La contraseña es obligatoria').oneOf([yup.ref('password'), null], 'Las contraseñas deben coincidir')
+      replyPassword: yup
+        .string()
+        .required("La contraseña es obligatoria")
+        .oneOf([yup.ref("password"), null], "Las contraseñas deben coincidir"),
     });
     const openFileSelector = () => {
       const input = document.querySelector("#input-carnet");
@@ -548,19 +571,17 @@ export default defineComponent({
       carnetImg.value = file;
     };
     const onSubmit = async (values) => {
-      const profileImgBorder= document.querySelector("#profile_img__border");
+      const profileImgBorder = document.querySelector("#profile_img__border");
       if (!fileUrl.value) {
         profileImgBorder.style.stroke = "#CB4335";
-        const profileImgDiv= document.querySelector("#profile-img");
-        profileImgDiv.scrollIntoView(
-          { behavior: 'smooth', block: 'center'}
-        );
+        const profileImgDiv = document.querySelector("#profile-img");
+        profileImgDiv.scrollIntoView({ behavior: "smooth", block: "center" });
         return;
       }
       if (!condition.value) {
         return;
       }
-      
+
       profileImgBorder.style.stroke = "#F0F0F0";
       const formData = new FormData();
       formData.append("email", values.email);

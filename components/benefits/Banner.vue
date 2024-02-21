@@ -1,5 +1,5 @@
 <template>
-     <section class="banner py-4" style="position: relative;z-index:3;box-shadow: none;">
+     <section class="banner py-4" style="position: relative;z-index:2;box-shadow: none;">
         <!-- <div class="decoration" style="position: absolute;top:0;left: -25em;"></div> -->
         <div class="banner-content">
             <h2>ÚNETE A LA COMUNIDAD DE EVIALUMNOS Y DISFRUTA DE NUESTROS BENEFICIOS.</h2>

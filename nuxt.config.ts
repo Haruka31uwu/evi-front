@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-icon',
     'nuxt-primevue',
-
+    '@nuxt/image',
     ['@nuxtjs/robots', {
       UserAgent: '*',
       Sitemap: (req) => `https://${req.headers.host}/sitemap.xml`

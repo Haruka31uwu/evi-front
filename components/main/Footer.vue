@@ -6,12 +6,9 @@
         <div class="footer-content-element-sections">
           <div class="first-column column">
             <h5>Navega</h5>
-            <span
-              ><router-link
-                to="/commons/"
-                style="text-decoration: none; color: inherit"
-                >Preguntas frecuentes</router-link
-              >
+            <span  @click="redirectTo('/commons','frequent-questions')"
+              >Preguntas frecuentes
+              
             </span>
             <span @click="
                 () => {
@@ -194,15 +191,15 @@
           <div class="footer-divider"></div>
           <span @click="openModalTermAndConditions()">  Terminos y condiciones </span>
           <div class="footer-divider"></div>
-          <span> © 2023 nombredelaempresa - All Rights Reserved </span>
+          <span> © 2023 Evisalud- All Rights Reserved </span>
         </div>
       </div>
     </div>
   </footer>
-  <footer v-else class="footer-md">
+  <footer v-else class="footer-md pt-3">
     <div class="footer-content">
       <div class="footer-content-first-row">
-        <img src="/assets/img/logo-footer.png" width="200" height="200" />
+        <img src="/assets/img/logo-footer.png" style="width: 25%;max-width: 300px;" />
         <div class="first-row row">
           <h5>Contacto</h5>
           <span
@@ -388,7 +385,7 @@
         <span @click="openModalTermAndConditions()"> Terminos y condiciones </span>
       </div>
       <span class="name-company">
-        © 2023 nombredelaempresa - All Rights Reserved
+        © 2023 Evisalud - All Rights Reserved
       </span>
     </div>
   </footer>

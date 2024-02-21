@@ -1,5 +1,5 @@
 <template>
-  <section class="d-flex justify-content-center flex-column align-items-center">
+  <section class="d-flex justify-content-center flex-column align-items-center" id="frequent-questions">
     <div class="section-title d-flex mb-5" style="column-gap: 2em">
       <h2>
         <svg

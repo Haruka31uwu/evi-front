@@ -2,8 +2,8 @@
     <div style="position: relative;" class="d-flex flex-column">
       <input :type="type" v-on="handlers" :value="value" :name="name" class="input-customized" :placeholder="!errorMessage?placeholder:''"/>
       <span class="sign-container-error-message" v-if="errorMessage">{{ errorMessage.substring(0,1).toUpperCase()+errorMessage.substring(1)}}</span>
-      <Icon v-if="type=='password'" name="mdi:eye" color="white" @click="changeType" style="position:absolute;right:10px;top:18px"/>
-          <Icon v-else-if="props.type=='password'&&type=='text'" name="mdi:eye-outline" color="white" @click="changeType" style="position:absolute;right:10px;top:18px"/>
+      <Icon v-if="type=='password'" name="mdi:eye" color="#00A9C3" @click="changeType" style="position:absolute;right:10px;top:15px;font-size: 25px;"/>
+          <Icon v-else-if="props.type=='password'&&type=='text'" name="mdi:eye-outline" color="white" @click="changeType" style="position:absolute;right:10px;top:15px;font-size: 25px"/>
 
     </div>
   </template>

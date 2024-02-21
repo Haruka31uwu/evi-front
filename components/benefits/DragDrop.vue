@@ -108,7 +108,7 @@ export default defineComponent({
           const file = e.target.files[0];
           const type = file.type.split("/")[0];
           if(type !== "image"){
-            showErrorSwall("El archivo seleccionado no es una imagen");
+            showErrorSwall("","El archivo seleccionado no es una imagen");
             return;
           }
           files.value = [];
@@ -125,8 +125,16 @@ export default defineComponent({
     };
     fileSelector.addEventListener("change", handleFileInputChange);
     const dropFiles = (e) => {
+      
       e.preventDefault();
       isOnDrag.value = false;
+      if(props.isProfile){
+        // if not is an image return
+        if(e.dataTransfer.files[0].type.split("/")[0] !== "image"){
+          showErrorSwall("","El archivo seleccionado no es una imagen");
+          return;
+        }
+      }
       if (!multiple.value) {
         files.value = [];
         files.value.push(e.dataTransfer.files[0]);
@@ -136,13 +144,13 @@ export default defineComponent({
     };
     const selectPhotoHandler = () => {
       if(files.value.length === 0){
-        showErrorSwall("Selecciona una imagen");
+        showErrorSwall("","Selecciona una imagen");
         return;
       }
       const file = files.value[0];
       const type = file.type.split("/")[0];
       if(type !== "image"){
-        showErrorSwall("El archivo seleccionado no es una imagen");
+        showErrorSwall("","El archivo seleccionado no es una imagen");
         return;
       }
 

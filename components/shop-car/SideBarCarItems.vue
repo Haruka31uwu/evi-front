@@ -12,9 +12,11 @@
         "
         >Carrito de Compras
         <span class="ml-2" v-if="getCarItems.length > 0"
-          >({{ getCarItems.length }} curso(s))</span
-        ></span
-      >
+          >({{ getCarItems.length }} curso(s))
+        </span>
+      
+        </span>
+
       <div
         style="
           background: #0393aa;
@@ -71,13 +73,24 @@
       class="price-container d-flex flex-row justify-content-between align-items-center"
     >
       <div class="price-container__values">
-        <span class="price-container__title">Total</span>
-        <span class="price-container__pricepen">PEN {{ getCarTotal() }}</span>
-      </div>
-      <div class="btn-white" v-if="getCarItems.length!=0"> 
-        <span style="text-decoration: underline" @click="startProcess"
-          >Iniciar proceso de compra</span
-        >
+        <div class="price-container__values__price">
+          <span class="price-container__title">Total </span>
+          <span class="price-container__pricepen">PEN {{ getCarTotal() }}</span>
+        </div>
+        <div class="btn-white" v-if="getCarItems.length != 0">
+          <span style="text-decoration: underline" @click="startProcess"
+            >Iniciar proceso de compra</span
+          >
+          
+        </div>
+        <div class="btn-white" v-else>
+          <span style="text-decoration: underline" @click="()=>{
+            $router.push('/courses')
+          }"
+            >Explora nuestros Cursos</span
+          >
+          
+        </div>
       </div>
     </div>
   </div>
@@ -107,7 +120,6 @@ export default {
       store.removeCarItem(item);
     };
     const startProcess = () => {
-
       ctx.emit("closeCarSideBar");
       router.push("/checkout");
     };
@@ -183,18 +195,25 @@ span {
     background: #0393aa;
     border-radius: 0 0 0 5em;
     margin-right: 5em;
+    width: 100%;
+
     .price-container__values {
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       gap: 1em;
-      span {
-        color: white;
-        font-weight: 400;
-        font-size: 1.2em;
+      .price-container__values__price {
+        width: 250px;
+        display: flex;
+        flex-direction: row;
+        column-gap: 1em;
+        span {
+          color: white;
+          font-weight: 400;
+          font-size: 1.2em;
+        }
       }
-    }
-    .btn-white {
-      width: 50%;
     }
   }
 }

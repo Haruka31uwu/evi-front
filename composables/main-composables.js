@@ -70,22 +70,22 @@ export const useSwall = () => {
     function showErrorSwall(title = 'Oops...', text = 'Something went wrong!') {
         const swal = Swal.mixin({
             customClass: {
-              confirmButton: "btn-blue",
-            //   cancelButton: "btn btn-danger"
+                confirmButton: "btn-blue",
+                //   cancelButton: "btn btn-danger"
             },
             buttonsStyling: false
-          });
-          swal.fire({
+        });
+        swal.fire({
 
-                color: 'white',
-                background: '#1C1C24',
-                confirmButtonText: '<div style="width:350px;margin:0;font-family:Axiforma;color:white"> Cerrar</div>',
-                width:"500px",
-                html:
-                    '<div class="text-center"><img style="height:400px" src="/assets/img/commons/evi-error.png" ></div><p class="text-center" style="font-family:Axiforma;margin-top:1em">'     +
-                    text +
-                    '</p>',
-             })
+            color: 'white',
+            background: '#1C1C24',
+            confirmButtonText: '<div style="width:350px;margin:0;font-family:Axiforma;color:white"> Cerrar</div>',
+            width: "500px",
+            html:
+                '<div class="text-center"><img style="height:400px" src="/assets/img/commons/evi-error.png" ></div><p class="text-center" style="font-family:Axiforma;margin-top:1em">' +
+                text +
+                '</p>',
+        })
         // Swal.fire({
 
         //     color: 'white',
@@ -108,13 +108,16 @@ export const useSwall = () => {
 
 export const scrollIntoView = (id) => {
     const el = document.getElementById(id)
+    console.log(el)
     el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
 }
 export const redirectTo = (path, id) => {
     const router = useRouter()
     router.push(path).then(() => {
         if (id) {
-            scrollIntoView(id)
+            setTimeout(() => {
+                scrollIntoView(id)
+            }, 100)
         }
     })
 }

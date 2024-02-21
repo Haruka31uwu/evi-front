@@ -1,6 +1,7 @@
 <template>
   <div v-if="accountOptions">
-    <div class="login-account" v-if="userData && userData.length==0">Iniciar Sesión</div>
+    <div class="login-account" v-if="userData && userData.length==0"
+    :style="router.currentRoute.value.path=='/login'?'color:white':''">Iniciar Sesión</div>
     <div class="logged-account d-flex flex-row gap-2 align-items-center" v-else>
       <img :src="userData.profile_img" class="account-profile-img" />
       <span style="color: white">{{
@@ -46,7 +47,6 @@ const {
   getCurrentSocket,
   registerEventHandler,
 } = useSocket();
-let isLogged = computed(() => storeAuth.isLogged);
 const userData = computed(() => storeAuth.getUserData);
 const newLogin = computed(() => storeAuth.newLogin);
 let checkstorage = ref(null);

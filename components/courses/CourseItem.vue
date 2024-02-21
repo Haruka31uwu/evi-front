@@ -3,7 +3,7 @@
   <div class="course-container">
     <div
       class="course-img-container"
-      :style="`background:url(${course.img}) no-repeat;background-size: cover;width:350px;height:150px;border-radius:1em 1em 0 0;position:relative`"
+      :style="`background:url(${course.img}) no-repeat;background-size: cover;width:410px;height:150px;border-radius:1em 1em 0 0;position:relative`"
     >
       <div class="more-selled-course">
         <svg

@@ -1,11 +1,12 @@
 <template>
   <section
-    class="d-flex flex-column justify-content-center align-items-center pb-5" style="height: 100vh;"
+    class="d-flex flex-column justify-content-center align-items-center pb-5"
+    style="height: auto;min-height: 100vh;"
   >
     <div
       class="text-center d-flex flex-row justify-content-between"
       style="width: 30%"
-      v-if="(!userData|| userData.length==0) && !showRegisterForm"
+      v-if="(!userData || userData.length == 0) && !showRegisterForm"
     >
       <span
         v-for="tab in tabs"
@@ -21,10 +22,14 @@
         {{ tab.name }}
       </span>
     </div>
-    <div v-if="(userData&& userData.length!==0)" class="row mt-5" style="width: 80%">
+    <div
+      v-if="userData && userData.length !== 0"
+      class="row mt-5"
+      style="width: 80%;min-width: 350px"
+    >
       <div class="col-12 col-lg-6">
         <div
-          class="data-container d-flex flex-column ps-5 py-5 gap-2"
+          class="data-container d-flex flex-column ps-5 py-5 gap-2 mx-auto"
           style="width: 90%; background: #1c1c24; border-radius: 1em"
         >
           <span>Datos de la compra</span>
@@ -49,12 +54,19 @@
             <span v-if="isEviAlumno === 1" style="color: red; font: Axiforma">
               Por ser un Evialumno tiene un descuento del 10% :D</span
             >
-            <span>Selecciona una Opcion</span>
-            <div>
-              <input type="radio" id="boleta" name="file" value="boleta" />
-              <label for="language1">Boleta</label><br />
-              <input type="radio" id="factura" name="file" value="factura" />
-              <label for="language2">Factura</label><br />
+            <span style="font-size: 0.9em;">Selecciona una Opcion</span>
+            <div class="d-flex flex-row justify-content-between">
+              <label class="file-selected">
+                <input type="radio" value="boleta" v-model="fileSelected" />
+                <span></span>
+                Boleta
+              </label>
+
+              <label class="file-selected">
+                <input type="radio" value="factura" v-model="fileSelected" />
+                <span></span>
+                Factura
+              </label>
             </div>
 
             <div class="boleta__fields" v-if="fileSelected == 'boleta'">
@@ -123,7 +135,7 @@
           </div>
         </div>
         <div
-          class="payment-options d-flex flex-column gap-4 mt-5"
+          class="payment-options d-flex flex-column gap-4 mt-5 mx-auto"
           style="
             background: #1c1c24;
             border-radius: 1em;
@@ -555,10 +567,10 @@
         <!-- <button @click="payWithYape()" class="btn-white">Pagar con Yape</button> -->
       </div>
       <div class="col-12 col-lg-6 d-flex flex-column align-items-center">
-        <div style="width: 70%" class="d-flex flex-column align-items-center">
+        <div style="width: 80%;min-width: 350px" class="payment-resume">
           <div
             class="payment-info d-flex flex-column align-items-center gap-2 py-4"
-            style="background: #1c1c24; border-radius: 1em; width: 100%"
+            style="background: #1c1c24; border-radius: 1em; width: 90%"
             w
           >
             <span style="font-size: 1.2em">Resumen</span>
@@ -582,13 +594,13 @@
               </div>
             </div>
           </div>
-          <div class="payment-condition d-flex flex-row gap-2 mt-5">
+          <div class="payment-condition d-flex flex-row gap-2 mt-5" style="width: 90%;">
             <div
               class="condition-checkbox"
               :style="condition ? 'background:#179bd7' : ''"
               @click="condition = !condition"
             ></div>
-            <span style="width: 90%"
+            <span style="width: 90%;"
               >He leído y acepto los
               <span class="primary-underline"> Términos y condiciones </span> y
               <span class="primary-underline">Políticas de privacidad </span>
@@ -604,7 +616,7 @@
                   : ''
               "
             >
-              <span >Guardar y Continuar</span>
+              <span>Guardar y Continuar</span>
             </div>
             <span style="color: #575756; font-weight: 500; font-size: 0.8em"
               >¿Necesitas Ayuda?</span
@@ -614,7 +626,7 @@
       </div>
     </div>
     <div
-      v-else-if="(!userData|| userData.length==0) && !showRegisterForm"
+      v-else-if="(!userData || userData.length == 0) && !showRegisterForm"
       class="row mt-5 d-flex flex-column align-items-center"
       style="width: 80%"
     >
@@ -649,7 +661,7 @@ import Culqi from "/composables/culqi-composables.js";
 // const {getWsChannel} = useSocket();
 // const ws=getWsChannel()
 const config = useRuntimeConfig();
-console.log(config.public)
+console.log(config.public);
 const sendSocket = () => {};
 const culqi = new Culqi(config.public.CULQI_PUBLIC_KEY);
 const tokenCulqi = ref(null);
@@ -725,7 +737,7 @@ const store = carStore();
 const getCarItems = store.getCarItems;
 const condition = ref(false);
 const cuponValue = ref(0);
-const fileSelected = ref("");
+const fileSelected = ref("boleta");
 const paymentValue = ref("");
 const userData = computed(() => storeAuth.getUserData);
 const pidTypeSelected = ref("dni");
@@ -822,15 +834,15 @@ onMounted(async () => {
         };
       }
     }
-    let radioButtons = document.querySelectorAll(
-      "input[type=radio][name=file]"
-    );
+    // let radioButtons = document.querySelectorAll(
+    //   "input[type=radio][name=file]"
+    // );
 
-    radioButtons.forEach(function (radioButton) {
-      radioButton.addEventListener("change", function () {
-        fileSelected.value = this.value;
-      });
-    });
+    // radioButtons.forEach(function (radioButton) {
+    //   radioButton.addEventListener("change", function () {
+    //     fileSelected.value = this.value;
+    //   });
+    // });
   } catch (err) {
     console.error(err);
   }
@@ -853,7 +865,7 @@ const startTransaction = async () => {
       razon_social.value == "" ||
       factura_dir.value == ""
     ) {
-      showErrorSwall("","Por favor complete los campos para la factura");
+      showErrorSwall("", "Por favor complete los campos para la factura");
       return;
     }
   } else {
@@ -864,8 +876,8 @@ const startTransaction = async () => {
       );
     }
   }
-  if(paymentValue.value<6){
-    return showErrorSwall("","El monto a pagar no puede ser menor a 6")
+  if (paymentValue.value < 6) {
+    return showErrorSwall("", "El monto a pagar no puede ser menor a 6");
   }
   transactionOption.value = selectedPaymentOption.value;
   try {
@@ -1046,7 +1058,6 @@ const payWithYape = async (info) => {
       hidePreloader();
       showErrorSwall("Error al realizar el pago");
     }
-
   } catch (err) {
     hidePreloader();
   }
@@ -1131,5 +1142,33 @@ p {
   font-size: 2em;
   padding: 0;
   font-family: "Axiforma";
+}
+.file-selected input[type="radio"] {
+  display: none; /* Oculta el radio button por defecto */
+}
+
+/* Estilo para el círculo */
+.file-selected input[type="radio"] + span {
+  display: inline-block;
+  width: 20px; /* Tamaño del círculo */
+  height: 20px; /* Tamaño del círculo */
+  border-radius: 50%; /* Hace que el borde sea redondeado, creando un círculo */
+  border: 2px solid #ccc; /* Color del borde del círculo */
+  vertical-align: middle;
+  margin-right: 5px; /* Espacio entre el círculo y el texto */
+}
+
+/* Estilo para el círculo seleccionado */
+.file-selected input[type="radio"]:checked + span {
+  background-color: #179bd7; /* Color de fondo del círculo cuando está seleccionado */
+}.payment-resume{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .payment-resume{
+    margin-top:2em;
+  }
 }
 </style> 
