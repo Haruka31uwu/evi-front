@@ -38,7 +38,7 @@
         :key="`cart-item-${cartIndex}`"
       >
         <img
-          :src="cartItem.img"
+          :src="cartItem.img_small"
           style="width: 150px; height: 100%; border-radius: 1em 0 0 1em"
           alt="car-item-img"
         />
