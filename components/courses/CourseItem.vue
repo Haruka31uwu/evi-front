@@ -3,7 +3,8 @@
   <div class="course-container">
     <div
       class="course-img-container"
-      :style="`background:url(${course.img}) no-repeat;background-size: cover;width:410px;height:150px;border-radius:1em 1em 0 0;position:relative`"
+      :id="`course-${course.id}`"
+      :style="`background:url(${course.img_small}) no-repeat;background-size: cover;width:410px;height:150px;border-radius:1em 1em 0 0;position:relative`"
     >
       <div class="more-selled-course">
         <svg
@@ -104,7 +105,7 @@
               stroke-width="0.2"
             />
           </svg>
-          <span  class="btn-course-price"
+          <span class="btn-course-price"
             >$ {{ course.priceUsd }} (S/.{{ course.pricePen }})</span
           >
         </button>
@@ -127,11 +128,19 @@ export default {
   },
   setup(props) {
     const store = carStore();
-    const {showSuccessSwall,showErrorSwall} = useSwall();
+    const { showSuccessSwall, showErrorSwall } = useSwall();
     const getCarItems = computed(() => store.getCarItems);
+    onMounted(() => {
+      const courseImg = document.querySelector(`#course-${props.course.id}`);
+      //make lazy load for images
+      courseImg.src = courseImg.dataset.src;
+      
+    });
     const addToCart = (course) => {
       const { addCarItem } = useShopCar();
-      const courseInCar = getCarItems.value.find((item) => item.id === course.id);
+      const courseInCar = getCarItems.value.find(
+        (item) => item.id === course.id
+      );
       if (courseInCar) {
         showErrorSwall("El curso ya se encuentra en el carrito");
         return;
@@ -142,7 +151,7 @@ export default {
     return {
       course: props.course,
       addToCart,
-      getCarItems
+      getCarItems,
     };
   },
   components: {},
