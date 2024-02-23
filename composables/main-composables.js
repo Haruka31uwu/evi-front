@@ -59,6 +59,27 @@ export const useSwall = () => {
             });
         });
     }
+    function showConfirmSwall(title = 'Are you sure?', text = 'You won\'t be able to revert this!', confirmButtonText = 'Yes, delete it!',cancelButtonText='Cancel') {
+        return new Promise((resolve, reject) => {
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: confirmButtonText,
+                cancelButtonText: cancelButtonText,
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    resolve(true); // Resuelve la promesa con true si se confirma el diálogo
+                } else {
+                    resolve(false); // Resuelve la promesa con false si no se confirma el diálogo
+                }
+            });
+        });
+    }
     function showSuccessSwall(title = 'Success', text = 'Your work has been saved') {
         Swal.fire({
 
@@ -102,7 +123,8 @@ export const useSwall = () => {
         showSuccessSwall,
         showErrorSwall,
         showSuccessBuySwall,
-        showConfirmEmailSwall
+        showConfirmEmailSwall,
+        showConfirmSwall
     };
 }
 

@@ -1,7 +1,7 @@
 <template>
   <section
     class="d-flex flex-column justify-content-center align-items-center pb-5"
-    style="height: auto;min-height: 100vh;"
+    style="height: auto; min-height: 100vh"
   >
     <div
       class="text-center d-flex flex-row justify-content-between"
@@ -25,7 +25,7 @@
     <div
       v-if="userData && userData.length !== 0"
       class="row mt-5"
-      style="width: 80%;min-width: 350px"
+      style="width: 80%; min-width: 350px"
     >
       <div class="col-12 col-lg-6">
         <div
@@ -54,7 +54,7 @@
             <span v-if="isEviAlumno === 1" style="color: red; font: Axiforma">
               Por ser un Evialumno tiene un descuento del 10% :D</span
             >
-            <span style="font-size: 0.9em;">Selecciona una Opcion</span>
+            <span style="font-size: 0.9em">Selecciona una Opcion</span>
             <div class="d-flex flex-row justify-content-between">
               <label class="file-selected">
                 <input type="radio" value="boleta" v-model="fileSelected" />
@@ -567,7 +567,7 @@
         <!-- <button @click="payWithYape()" class="btn-white">Pagar con Yape</button> -->
       </div>
       <div class="col-12 col-lg-6 d-flex flex-column align-items-center">
-        <div style="width: 80%;min-width: 350px" class="payment-resume">
+        <div style="width: 80%; min-width: 350px" class="payment-resume">
           <div
             class="payment-info d-flex flex-column align-items-center gap-2 py-4"
             style="background: #1c1c24; border-radius: 1em; width: 90%"
@@ -594,13 +594,16 @@
               </div>
             </div>
           </div>
-          <div class="payment-condition d-flex flex-row gap-2 mt-5" style="width: 90%;">
+          <div
+            class="payment-condition d-flex flex-row gap-2 mt-5"
+            style="width: 90%"
+          >
             <div
               class="condition-checkbox"
               :style="condition ? 'background:#179bd7' : ''"
               @click="condition = !condition"
             ></div>
-            <span style="width: 90%;"
+            <span style="width: 90%"
               >He leído y acepto los
               <span class="primary-underline"> Términos y condiciones </span> y
               <span class="primary-underline">Políticas de privacidad </span>
@@ -820,6 +823,12 @@ const getCarTotal = () => {
  
  */
 onMounted(async () => {
+  if (userData.value.length == 0) {
+    return;
+  }
+  await getIsEviAlumno();
+});
+const getIsEviAlumno = async () => {
   try {
     const params = {
       userId: userData.value.id,
@@ -834,19 +843,10 @@ onMounted(async () => {
         };
       }
     }
-    // let radioButtons = document.querySelectorAll(
-    //   "input[type=radio][name=file]"
-    // );
-
-    // radioButtons.forEach(function (radioButton) {
-    //   radioButton.addEventListener("change", function () {
-    //     fileSelected.value = this.value;
-    //   });
-    // });
   } catch (err) {
     console.error(err);
   }
-});
+};
 /**Transaction Methods */
 if (window.Culqi) {
   window.Culqi.token = null;
@@ -1062,6 +1062,13 @@ const payWithYape = async (info) => {
     hidePreloader();
   }
 };
+//watch userData
+watch(userData, async (newVal) => {
+  if (newVal.length == 0) {
+    return;
+  }
+  await getIsEviAlumno();
+});
 const transactionOption = ref(null);
 
 const validateCode = async () => {
@@ -1161,14 +1168,15 @@ p {
 /* Estilo para el círculo seleccionado */
 .file-selected input[type="radio"]:checked + span {
   background-color: #179bd7; /* Color de fondo del círculo cuando está seleccionado */
-}.payment-resume{
+}
+.payment-resume {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 @media (max-width: 768px) {
-  .payment-resume{
-    margin-top:2em;
+  .payment-resume {
+    margin-top: 2em;
   }
 }
 </style> 

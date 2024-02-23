@@ -6,6 +6,7 @@ export const getCourse = (id) => {
 export const getProgram = (id) => {
     return programData.programsList.find(program => program.id == id)
 }
-export const getProgramCourses = (id) => {
-    return courseData.coursesList.filter(course => course.id == id)
+export const getProgramCourses = (courseList) => {
+   const courseListIds=courseList.map(course=>course.id)
+    return courseData.coursesList.filter(course=>courseListIds.includes(course.id))
 }

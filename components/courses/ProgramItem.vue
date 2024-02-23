@@ -31,7 +31,7 @@
         {{ program.hours }}
       </p>
       <ul class="program-course-list">
-        <span style="font-family: Axiforma;">Cursos que incluye:</span>
+        <span style="font-family: Axiforma">Cursos que incluye:</span>
         <li
           class="program-courses"
           v-for="(programCourse, index) in program.coursesList"
@@ -57,8 +57,13 @@
         </li>
       </ul>
       <div class="program-footer">
-        <span class="program-more-info">        
-          <router-link :to="'/program-detail/' + program.id" style="color:#0393AA ;text-decoration: underline;">Mas información</router-link> </span>
+        <span class="program-more-info">
+          <router-link
+            :to="'/program-detail/' + program.id"
+            style="color: #0393aa; text-decoration: underline"
+            >Mas información</router-link
+          >
+        </span>
         <button class="btn-blue">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -74,14 +79,22 @@
               stroke-width="0.2"
             />
           </svg>
-          <span>Agregar al carrito</span>
+          <span class="d-flex flex-column" @click="addToCart(program)"
+            >Agregar al carrito
+            <span>${{ program.priceUsd }} (S/.{{ program.pricePen }}) </span>
+          </span>
         </button>
       </div>
     </div>
   </div>
 </template>
   <script>
-//composition api
+import { addMethod } from "yup";
+import { useShopCar } from "/composables/shop-car/shop-car.composables";
+import { carStore } from "../../store/car/car.store";
+import { getProgramCourses } from "/composables/courses-composables";
+import { useSwall } from "/composables/main-composables.js";
+
 export default {
   name: "CourseItem",
   props: {
@@ -91,8 +104,119 @@ export default {
     },
   },
   setup(props) {
+    const store = carStore();
+    const getCarItems = computed(() => store.getCarItems);
+    const { showSuccessSwall, showErrorSwall, showConfirmSwall } = useSwall();
+    const addToCart = async (program) => {
+      const { addCarItem, removeCarItem } = useShopCar();
+      const existsProgram = getCarItems.value.find(
+        (item) => item.id == program.id
+      );
+      //check if program is alredy in cart
+      if (existsProgram) {
+        showErrorSwall("", "El programa ya se encuentra en el carrito");
+        return;
+      }
+
+      //check if subcourses are in cart
+      const courseList = getProgramCourses(program.coursesList);
+      const programInCar= getCarItems.value.find((item) => item.type==3);
+      const  getAllSubCoursesInProgram = getCarItems.value.map((item) => {
+        if (item.type == 3) {
+          console.log(item.coursesList.map((course) => {
+            return course.id;
+          }))
+          return item.coursesList.map((course) => {
+            return course.id;
+          });
+        }
+        return item.id;
+      }).flat();
+     
+      if (getAllSubCoursesInProgram.length !== 0 && typeof programInCar !== "undefined") {
+        const uniqueSubCoursesInProgram = getAllSubCoursesInProgram.filter(
+          (item, index, self) =>
+            index ===
+            self.findIndex((t) => t.id === item.id && t.type === item.type)
+        );
+        console.log(uniqueSubCoursesInProgram,getAllSubCoursesInProgram)
+
+        const coursesIdsInProgram = courseList.map((course) => course.id);
+        const remainingCourses = coursesIdsInProgram.filter((courseId) => {
+          if (!uniqueSubCoursesInProgram.includes(courseId)) {
+            return courseId;
+          }
+        });
+        if (remainingCourses.length > 0) {
+          const isConfirmed = await showConfirmSwall(
+            "",
+            `Hay cursos del programa que ya se encuentran en el carrito.\nDesea Agregar los cursos que no se encuentran en el carrito?`,
+            "Si.Agregalo",
+            "No"
+          );
+          if (isConfirmed) {
+            remainingCourses.forEach((courseId) => {
+              const course = courseList.find((course) => course.id == courseId);
+              addCarItem(course);
+            });
+            showSuccessSwall("", "Curso agregado al carrito");
+          }
+          return;
+        }
+      }
+
+      // if (existSubCourseFromProgram.length > 0) {
+      //   const isConfirmed = await showConfirmSwall(
+      //     "",
+      //     `Hay cursos del programa que ya se encuentran en el carrito.\nDesea Agregar los cursos que no se encuentran en el carrito?`,
+      //     "Si.Agregalo",
+      //     "No"
+      //   );
+      //   if (isConfirmed) {
+      //     existSubCourseFromProgram.forEach((course) => {
+      //       addCarItem(course);
+      //     });
+      //     showSuccessSwall("", "Curso agregado al carrito");
+      //   }
+      //   return;
+      // }
+      const existSubCourses = getCarItems.value.filter((item) => {
+        return courseList.find((course) => course.id == item.id);
+      });
+      //if not, add program to cart
+      if (existSubCourses.length == 0) {
+        program.coursesList = courseList;
+        addCarItem(program);
+        showSuccessSwall("", "Programa agregado al carrito");
+      }
+      //if yes, ask if user wants to replace them
+      else {
+        const coursesTitlesConcat = existSubCourses
+          .map((course) => course.title)
+          .join(", ");
+        const isConfirmed = await showConfirmSwall(
+          "",
+          `El curso/Los cursos ${coursesTitlesConcat} ya se encuentra(n) en el carrito.\nDesea Agregar el programa en su lugar?`,
+          "Si.Agregalo",
+          "No"
+        );
+        if (isConfirmed) {
+          courseList.forEach((course) => {
+            removeCarItem(course);
+          });
+          program.coursesList = courseList;
+          addCarItem(program);
+          showSuccessSwall("", "Programa agregado al carrito");
+        }
+      }
+      // if(existSubCourses){
+      //   showErrorSwall("El curso ya se encuentra en el carrito");
+
+      // }
+    };
     return {
       program: props.program,
+      addToCart,
     };
   },
 };

@@ -139,14 +139,22 @@ export default {
     const addToCart = (course) => {
       const { addCarItem } = useShopCar();
       const courseInCar = getCarItems.value.find(
-        (item) => item.id === course.id
+        (item) => {
+          if(item.type===3){
+            return item.coursesList.find(
+              (courseItem) => courseItem.id === course.id
+            );
+          }
+          return item.id === course.id;
+        }
       );
+      
       if (courseInCar) {
-        showErrorSwall("El curso ya se encuentra en el carrito");
+        showErrorSwall("","El curso ya se encuentra en el carrito o pertenece a un programa de cursos");
         return;
       }
       addCarItem(course);
-      showSuccessSwall("Curso agregado al carrito");
+      showSuccessSwall("","Curso agregado al carrito");
     };
     return {
       course: props.course,

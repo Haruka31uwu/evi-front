@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div
     class="d-flex flex-row gap-1 align-items-center cart-div"
     @click="openCarSideBar"
