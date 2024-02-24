@@ -13,7 +13,7 @@
             index % 2 == 0 ? 'align-self:flex-start' : 'align-self:flex-end'
           "
         >
-          <img :src="quality.logo" width="100" height="100" />
+          <img :src="quality.logo" width="100" height="100"  alt="quality-logo"/>
           <div class="quality-content-text">
             <h4 class="mb-1">{{ quality.title }}</h4>
             <p>{{ quality.content }}</p>
@@ -43,7 +43,7 @@
               index % 2 == 0 ? 'align-self:flex-start' : 'align-self:flex-end'
             "
           >
-            <img :src="quality.logo" width="100" height="100" />
+            <img :src="quality.logo" width="100" height="100" alt="quality-logo"/>
             <div class="quality-content-text">
               <h4>{{ quality.title }}</h4>
               <p>{{ quality.content }}</p>

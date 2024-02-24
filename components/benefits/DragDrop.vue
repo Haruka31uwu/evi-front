@@ -32,7 +32,7 @@
       <div v-if="files.length > 0">
         <ul style="list-style: none">
           <li v-for="(file, index) in files" :key="index">
-            <img :src="getFileUrl(file)" alt="" style="width: 200px" />
+            <img :src="getFileUrl(file)" alt="drag-drop-files" style="width: 200px" />
           </li>
         </ul>
       </div>

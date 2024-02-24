@@ -24,7 +24,7 @@
       <div
         class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center"
       >
-        <img src="/assets/img/benefits/evi-cell.png" width="40%" />
+        <img src="/assets/img/benefits/evi-cell.png" width="40%"  alt="evi-cell"/>
         <div
           style="width: 80%"
           class="d-flex flex-column justify-content-center align-items-center"

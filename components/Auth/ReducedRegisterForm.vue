@@ -26,7 +26,7 @@
         @click="openFileInput"
       >
         <div class="profile-img" id="profile-img">
-          <img :src="fileUrl ? fileUrl : '/assets/img/profile.png'" alt="" />
+          <img :src="fileUrl ? fileUrl : '/assets/img/profile.png'" alt="profile-selected" />
           <input type="file" class="d-none" @change="handleFileInputChange" />
 
           <svg

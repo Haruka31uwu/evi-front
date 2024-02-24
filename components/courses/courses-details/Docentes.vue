@@ -3,7 +3,7 @@
       <div  class="section-title d-flex flex-column justify-content-center align-items-center">
        <div style="position: relative;">
         <h2>Plana Docente</h2>
-        <img src="/assets/img/courses/docentes-item.svg" style="bottom:0;right: -1em;position: absolute;"  />
+        <img src="/assets/img/courses/docentes-item.svg" style="bottom:0;right: -1em;position: absolute;"  alt="docente-i" />
        </div>
       </div>
       <div class="section-items">

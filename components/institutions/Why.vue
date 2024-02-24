@@ -302,6 +302,7 @@
             <img
               src="/assets/img/institutions/institucion5.png"
               style="width: 50%; height: 90px"
+              alt="institucion5"
             />
             <span style="width: 60%" class="text-center"
               >Universidad Católica Los Ángeles de Chimbote, Chimbote,
@@ -314,6 +315,7 @@
             <img
               src="/assets/img/institutions/institucion2_1.png"
               style="width: 50%; height: 90px"
+              alt="institucion2_1"
             />
 
             <span>Centro Nacional de Salud Renal, Lima, Perú</span>
@@ -324,6 +326,7 @@
             <img
               src="/assets/img/institutions/institucion3_1.png"
               style="width: 50%; height: 150px"
+              alt="institucion3_1"
             />
 
             <span style="width: 60%"
@@ -340,6 +343,7 @@
             <img
               src="/assets/img/institutions/institucion (4).png"
               style="width: 50%; height: 90px"
+              alt="institucion (4)"
             />
 
             <span class="text-center" style="width: 60%"
@@ -353,6 +357,7 @@
             <img
               src="/assets/img/institutions/institucion (1).png"
               style="width: 50%; height: 120px"
+              alt="institucion (1)"
             />
             <span>Asociación de residentes de pediatría, Trujillo, Perú</span>
           </div>
@@ -362,6 +367,7 @@
             <img
               src="/assets/img/institutions/institucion2.png"
               style="width: 50%; height: 120px"
+              alt="institucion2"
             />
 
             <span>Hospital Hermilio Valdizán, Lima, Perú</span>

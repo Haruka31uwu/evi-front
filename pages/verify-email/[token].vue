@@ -2,7 +2,7 @@
   <section
     class="d-flex flex-column justify-content-center align-items-center gap-4"
   >
-    <img src="/assets/img/evi-07.png" style="min-width: 300px; width: 20%" />
+    <img src="/assets/img/evi-07.png" style="min-width: 300px; width: 20%" alt="evi07" />
     <div class="d-flex flex-column align-items-center" v-if="success">
       <span>Tu cuenta ha sido verificada con éxito. </span>
       <span>¡Te damos la bienvenida a nuestra comunidad! </span>

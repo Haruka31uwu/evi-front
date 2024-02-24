@@ -756,10 +756,7 @@ const paymentOptions = ref([
     id: 1,
     name: "Tarjeta de debito o credito",
   },
-  {
-    id: 2,
-    name: "PayPal",
-  },
+  
   {
     id: 3,
     name: "Yape",

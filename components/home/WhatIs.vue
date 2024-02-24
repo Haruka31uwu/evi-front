@@ -36,7 +36,7 @@
           v-for="(country, index2) in countrys"
           :key="`country-${index2}`"
         >
-        <img :src="country.src"/>
+        <img :src="country.src" alt="country"/>
       </div>
       </div>
     </div>

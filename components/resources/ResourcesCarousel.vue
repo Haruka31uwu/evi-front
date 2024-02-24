@@ -31,7 +31,7 @@
           class="experience-container"
           style="height:auto;padding:1em"
         >
-          <img :src="experience.img" alt="" style="height:220px;width:100%;border-radius:1em" />
+          <img :src="experience.img" alt="experience" style="height:220px;width:100%;border-radius:1em" />
           <div class="blog-item">
             <span class="blog-title" style="color:#00A9C3"></span>
             <p style="margin:0;text-align:start">{{ experience.description }}</p>

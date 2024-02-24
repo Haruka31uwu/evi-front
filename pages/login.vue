@@ -6,13 +6,12 @@
         class="col-lg-6 d-flex justify-content-center align-items-center"
         style="background: #0393aa"
       >
-        <img src="/assets/img/login.png" style="width: 50%; height: 50%" />
+        <img src="/assets/img/login.png" style="width: 50%; height: 50%"  alt="login"/>
 
       </div>
       <div
         class="col-12 col-md-12 col-lg-6 d-flex align-items-center flex-column justify-content-center"
       >
-        <!-- <img src="/assets/img/login.png" /> -->
         <div class="login__title" style="position: relative; height: auto;z-index: 1;">
           <span style="font-size: 1.2em;"> Iniciar sesión </span>
           <div

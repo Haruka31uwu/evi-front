@@ -1,7 +1,7 @@
 <template>
   <footer class="footer-lg pt-5" v-if="currentWindowWidth > 1100">
     <div class="footer-content">
-      <img src="/assets/img/logo-footer.png" width="250" height="250" />
+      <img src="/assets/img/logo-footer.png" width="250" height="250" alt="logo-footer"/>
       <div class="footer-content-elements">
         <div class="footer-content-element-sections">
           <div class="first-column column">
@@ -199,7 +199,7 @@
   <footer v-else class="footer-md pt-3">
     <div class="footer-content">
       <div class="footer-content-first-row">
-        <img src="/assets/img/logo-footer.png" style="width: 25%;max-width: 300px;" />
+        <img src="/assets/img/logo-footer.png" style="width: 25%;max-width: 300px;" alt="logo-footer" />
         <div class="first-row row">
           <h5>Contacto</h5>
           <span

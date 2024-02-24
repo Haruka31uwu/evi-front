@@ -7,15 +7,16 @@
     <div class="row d-flex gap-4 flex-row" style="width: 90%">
       <div class="col-12 col-md-5">
         <div class="blog-item d-flex flex-column">
-          <img
+          <NuxtImg
             :src="blogItems.main.img"
-            alt=""
+            alt="x"
             style="width: 50%; height: 100%; border-radius: 1rem"
             :style="
               currentWindowWidth < 768
                 ? 'width:95%;height:300px;margin:0 auto'
                 : ''
             "
+            format="webp"
             class="mb-3"
           />
           <span class="blog-title">

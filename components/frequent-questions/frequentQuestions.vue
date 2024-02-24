@@ -33,6 +33,7 @@
       <img
         src="/assets/img/benefits/evi-questions.png"
         style="width: 40%; height: 50%"
+        alt="evi-questions"
       />
       <ul class="frequent-question-container">
         <li

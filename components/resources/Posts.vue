@@ -9,7 +9,7 @@
         <div class="blog-item">
           <img
             :src="post.img"
-            alt=""
+            alt="blog-item"
             style="width: 90%; height: 100%; border-radius: 1rem"
             class="mb-3"
           />

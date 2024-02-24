@@ -9,7 +9,7 @@
       "
     >
       <nuxt-link to="/">
-        <img src="/assets/img/logo-evisalud.png" />
+        <img src="/assets/img/logo-evisalud.png" alt="logo-evisalud"/>
       </nuxt-link>
     </div>
     <svg

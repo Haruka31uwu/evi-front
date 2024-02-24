@@ -16,7 +16,12 @@
             index % 2 == 0 ? 'align-self:flex-start' : 'align-self:flex-end'
           "
         >
-          <img :src="quality.logo" width="100" height="100" />
+          <img
+            :src="quality.logo"
+            width="100"
+            height="100"
+            alt="quality-logo"
+          />
           <div class="quality-content-text-2">
             <ul class="d-flex flex-column gap-2">
               <li

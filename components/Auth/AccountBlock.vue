@@ -3,7 +3,7 @@
     <div class="login-account" v-if="userData && userData.length==0"
     :style="router.currentRoute.value.path=='/login'?'color:white':''">Iniciar Sesión</div>
     <div class="logged-account d-flex flex-row gap-2 align-items-center" v-else>
-      <img :src="userData.profile_img" class="account-profile-img" />
+      <img :src="userData.profile_img" class="account-profile-img"  alt="account-profile-img"/>
       <span style="color: white">{{
         `${userData.name} ${userData.last_name}`
       }}</span>

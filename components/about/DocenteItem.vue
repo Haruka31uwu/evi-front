@@ -25,7 +25,7 @@
           stroke-width="2"
         />
       </svg>
-      <img class="item-img" :src="docente.image"  />
+      <img class="item-img" :src="docente.image" :alt="docente.name" />
     </div>
     <div class="item-info">
       <span class="item-name">{{ docente.name }}</span>

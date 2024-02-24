@@ -69,7 +69,7 @@
                 :key="index"
                 :class="avatar == selectedAvatar ? 'selected-avatar' : ''"
               >
-                <img :src="avatar.url" alt="" class="avatar" />
+                <img :src="avatar.url" alt="avatar" class="avatar" />
               </li>
             </ul>
             <div class="btn-blue" @click="selectedAvatarHandler">

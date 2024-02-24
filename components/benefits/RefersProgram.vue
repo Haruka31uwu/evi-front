@@ -80,7 +80,7 @@
         <div class="col col-12 col-lg-4 d-flex justify-content-start" style="position: relative;">
           <img
             src="/assets/img/benefits/evi-referido.png"
-
+            alt="evi-referido"
             :style="
               currentWindowWidth > 991
                 ? 'width: 80%; height: 100%'

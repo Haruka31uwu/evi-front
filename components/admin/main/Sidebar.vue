@@ -1,16 +1,37 @@
 <template>
   <div class="admin-sidebar">
     <div class="sidebar__logo d-flex align-items-center justify-content-center">
-      <img src="/assets/img/logo-footer.png" width="200" height="200" />
-
+      <img src="/assets/img/logo-footer.png" width="200" height="200" alt="logo-footer"/>
     </div>
     <div class="sidebar__account d-flex align-items-center flex-column">
-      <div class="d-flex align-items-center justify-content-center" style="position: relative;">
-        <img :src="userData.profile_img" @error="userData.profile_img='https://aui.atlassian.com/aui/8.6/docs/images/avatar-person.svg'" width="100" height="auto" style="border-radius: 50%;">
-        <div style="border: 1px solid #515166;width: 130px;height:130px ;border-radius: 50%;position: absolute;"></div>
+      <div
+        class="d-flex align-items-center justify-content-center"
+        style="position: relative"
+      >
+        <img
+          :src="userData.profile_img"
+          @error="
+            userData.profile_img =
+              'https://aui.atlassian.com/aui/8.6/docs/images/avatar-person.svg'
+          "
+          width="100"
+          height="auto"
+          style="border-radius: 50%"
+          alt="profile-admin-img"
+        />
+        <div
+          style="
+            border: 1px solid #515166;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            position: absolute;
+          "
+        ></div>
       </div>
-      <span class="mt-2 text-center" style="font-size: 1.4em;">Bienvenido {{ userData.name }} {{ userData.last_name }}</span>
-
+      <span class="mt-2 text-center" style="font-size: 1.4em"
+        >Bienvenido {{ userData.name }} {{ userData.last_name }}</span
+      >
     </div>
     <div class="section-divider mt-2 mb-5 mx-auto"></div>
     <ul class="sidebar__menu">
@@ -19,12 +40,8 @@
           class="item__route"
           :class="route.path == currentRoute ? 'selected-route' : ''"
           @click="route.open = !route.open"
-
         >
-          <span
-            v-if="route.type == 'multi'"
-            >{{ route.name }}</span
-          >
+          <span v-if="route.type == 'multi'">{{ route.name }}</span>
           <nuxt-link v-else :to="route.path">{{ route.name }}</nuxt-link>
           <div v-if="route.type === 'multi'">
             <svg
@@ -75,13 +92,12 @@
         </ul>
       </li>
     </ul>
-
   </div>
 </template>
 <script setup>
-import { authStore } from '~/store/auth/auth.store';
+import { authStore } from "~/store/auth/auth.store";
 const storeAuth = authStore();
-const userData = computed(()=> storeAuth.getUserData);
+const userData = computed(() => storeAuth.getUserData);
 
 const routes = ref([
   {
@@ -130,14 +146,14 @@ const router = useRouter();
 const currentRoute = computed(() => router.currentRoute.value.path);
 </script>
 <style lang="scss" scoped>
-span{
-  color:white;
+span {
+  color: white;
   font-family: Axiforma;
 }
 .admin-sidebar {
   z-index: 9999;
   position: sticky;
-  top:0;
+  top: 0;
   left: 0;
   width: 18%;
   min-width: 320px;
