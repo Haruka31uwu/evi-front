@@ -8,7 +8,7 @@
       style="width: 30%"
       v-if="(!userData || userData.length == 0) && !showRegisterForm"
     >
-      <span
+      <!-- <span
         v-for="tab in tabs"
         :key="`tab-${tab.name}`"
         @click="selectTab(tab.id)"
@@ -20,7 +20,7 @@
         style="width: 100%"
       >
         {{ tab.name }}
-      </span>
+      </span> -->
     </div>
     <div
       v-if="userData && userData.length !== 0"

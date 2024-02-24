@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 40%" class="mt-5">
+  <div style="width: 40%;min-width: 400px" class="mt-5">
     <VForm :validation-schema="schema" @submit="onSubmit">
       <div class="input-container">
         <span for="name" style="color: white">Correo Electronico</span>
