@@ -231,8 +231,9 @@ span {
   top: 0;
   right: 0;
   height: 100vh;
-  min-width: 35em;
-  width: 35em;
+  min-width: 400px;
+  width:60%;
+  max-width: 500px;
   background: #fff;
   z-index: 999;
   transition: transform 0.3s ease-in-out;
@@ -288,10 +289,9 @@ span {
     }
   }
   .price-container {
-    position: fixed;
+    position: sticky;
     bottom: 0;
     padding: 2em 5em 2em 4em;
-    width: 30%;
     background: #0393aa;
     border-radius: 0 0 0 5em;
     margin-right: 5em;
@@ -304,7 +304,7 @@ span {
       align-items: center;
       gap: 1em;
       .price-container__values__price {
-        width: 250px;
+        width: auto;
         display: flex;
         flex-direction: row;
         column-gap: 1em;
@@ -313,6 +313,14 @@ span {
           font-weight: 400;
           font-size: 1.2em;
         }
+      }
+    }
+    @media (max-width: 768px) {
+      .price-container__values {
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+        margin:0 auto
       }
     }
   }

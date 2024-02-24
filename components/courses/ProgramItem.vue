@@ -117,7 +117,7 @@ export default {
         showErrorSwall("", "El programa ya se encuentra en el carrito");
         return;
       }
-
+      
       //check if subcourses are in cart
       const courseList = getProgramCourses(program.coursesList);
       const programInCar= getCarItems.value.find((item) => item.type==3);
@@ -139,7 +139,6 @@ export default {
             index ===
             self.findIndex((t) => t.id === item.id && t.type === item.type)
         );
-        console.log(uniqueSubCoursesInProgram,getAllSubCoursesInProgram)
 
         const coursesIdsInProgram = courseList.map((course) => course.id);
         const remainingCourses = coursesIdsInProgram.filter((courseId) => {
@@ -201,18 +200,15 @@ export default {
           "No"
         );
         if (isConfirmed) {
-          courseList.forEach((course) => {
+          courseList=courseList.forEach((course) => {
             removeCarItem(course);
+            courseList.pricePen
           });
           program.coursesList = courseList;
           addCarItem(program);
           showSuccessSwall("", "Programa agregado al carrito");
         }
       }
-      // if(existSubCourses){
-      //   showErrorSwall("El curso ya se encuentra en el carrito");
-
-      // }
     };
     return {
       program: props.program,
