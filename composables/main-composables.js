@@ -130,7 +130,6 @@ export const useSwall = () => {
 
 export const scrollIntoView = (id) => {
     const el = document.getElementById(id)
-    console.log(el)
     el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
 }
 export const redirectTo = (path, id) => {

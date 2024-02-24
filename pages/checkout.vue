@@ -665,7 +665,6 @@ import Culqi from "/composables/culqi-composables.js";
 // const {getWsChannel} = useSocket();
 // const ws=getWsChannel()
 const config = useRuntimeConfig();
-console.log(config.public);
 const sendSocket = () => {};
 const culqi = new Culqi(config.public.CULQI_PUBLIC_KEY);
 const tokenCulqi = ref(null);

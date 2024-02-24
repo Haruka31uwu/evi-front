@@ -123,7 +123,6 @@ export default {
       const programInCar= getCarItems.value.find((item) => item.type==3);
       const  getAllSubCoursesInProgram = getCarItems.value.map((item) => {
         if (item.type == 3) {
-          console.log(item.coursesList.map((course) => {
             return course.id;
           }))
           return item.coursesList.map((course) => {

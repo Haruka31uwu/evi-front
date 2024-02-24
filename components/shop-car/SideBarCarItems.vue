@@ -165,7 +165,6 @@ export default {
       const coursesPrice=program.coursesList.reduce((acc, course) => {
         return acc + course.pricePen;
       }, 0);
-      console.log(programPrice, coursesPrice, programPrice/coursesPrice)
       const percentageDifference=programPrice/coursesPrice;
       return percentageDifference;
     }
