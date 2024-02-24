@@ -6,7 +6,7 @@
       <h2>Precios diferenciados</h2>
       <div class="section-decorator"></div>
     </div>
-    <div class="section-container row ">
+    <div class="section-container row w-100">
       <div class="col col col-sm-12 col-md-12 col-xl-5 py-4 d-flex align-items-end" >
        <div style="width: 80%;" class="d-flex flex-column justify-content-center ms-5 align-items-center gap-3">
         <svg

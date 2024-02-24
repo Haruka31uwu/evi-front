@@ -1,8 +1,8 @@
 <template>
   <section class="experiencies-section">
-    <div class="section-title">
-      <h2>Publicaciones recientes de nuestros docentes</h2>
-      <div class="section-decorator" style="left: 12em;width: 80%;"></div>
+    <div class="section-title text-center">
+      <h2 >Publicaciones recientes de nuestros docentes</h2>
+      <div class="section-decorator" style="right: 0;"></div>
     </div>
     <div class="experiences-container">
       <svg

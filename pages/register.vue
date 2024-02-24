@@ -1,11 +1,11 @@
 <template>
   <section>
-    <div class="row" style="height: 100%">
+    <div class="row w-100 mx-auto" style="height: 100%;">
       <div
         class="col-0 col-md-0 col-lg-0 d-flex justify-content-center align-items-center d-none"
         style="background: #0393aa"
       >
-        <img src="/assets/img/login.png" style="width: 5 0%; height: 50%" />
+        <img src="/assets/img/login.png" style="width: 50%; height: 50%" />
       </div>
       <div
         class="col-12 col-md-12 col-lg-12 d-flex align-items-center flex-column justify-content-start py-5"

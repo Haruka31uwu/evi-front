@@ -631,7 +631,7 @@
     </div>
     <div
       v-else-if="(!userData || userData.length == 0) && !showRegisterForm"
-      class="row mt-5 d-flex flex-column align-items-center"
+      class="row mt-0 d-flex flex-column align-items-center"
       style="width: 80%"
     >
       <span class="text-center">

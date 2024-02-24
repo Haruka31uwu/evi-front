@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="row" style="height: 90vh;">
+    <div class="row w-100 mx-auto" style="height: 90vh;">
       <div
        v-if="currentWindowWidth>1080"
         class="col-lg-6 d-flex justify-content-center align-items-center"

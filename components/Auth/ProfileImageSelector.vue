@@ -213,7 +213,7 @@ export default {
 }
 .modal-customized-body {
   width: 50%;
-  min-width: 450px;
+  min-width: 350px;
   height:90%;
   max-height: 650px;
   background-color: #1C1C24;

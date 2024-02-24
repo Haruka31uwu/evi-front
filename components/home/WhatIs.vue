@@ -141,7 +141,8 @@ export default {
       const interval = setInterval(() => {
         if (currentNumber < targetNumber) {
           currentNumber += step;
-          counters.value[index] = Math.round(currentNumber);
+          console.log(currentNumber,index);
+          counters.value[index] = index!=1?Math.round(currentNumber): currentNumber.toFixed(1);;
         } else {
           clearInterval(interval);
         }

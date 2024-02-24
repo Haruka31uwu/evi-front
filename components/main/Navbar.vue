@@ -65,6 +65,7 @@
           "
         >
           <div
+            v-if="currentWindowWidth >= 880"
             style="
               width: 4.907px;
               height: 4.907px;
@@ -276,7 +277,10 @@
               </span>
             </div>
           </div> -->
-          <div v-else v-html="option.content" />
+          <div v-else v-html="option.content" @click="()=>{
+            isCollapsedOpen = false;
+            openCourses = false;
+          }"/>
         </nuxt-link>
         <shop-car-side-car-item @openCarSideBar="()=>{
           openSidebarCart();

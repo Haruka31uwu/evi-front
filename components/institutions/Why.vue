@@ -1,5 +1,5 @@
 <template>
-  <section class="d-flex justify-content-center flex-column align-items-center">
+  <section class="d-flex justify-content-center flex-column align-items-center w-100">
     <div class="section-title" style="margin-bottom: 2em">
       <h2 class="text-center">
         ¿Por qué elegir un In-house para tu institución?
@@ -16,7 +16,7 @@
         <rect opacity="0.5" width="696" height="24" rx="12" fill="#0393AA" />
       </svg>
     </div>
-    <div class="row" style="background: #13131a; row-gap: 1em">
+    <div class="row w-100" style="background: #13131a; row-gap: 1em">
       <div class="col-12 col-sm-12 col-md-6 col-xl-3 mb-1">
         <div
           style="border-radius: 1em"
@@ -124,7 +124,7 @@
       class="my-5 mx-auto"
     ></div>
     <div style="width: 80%" class="py-5">
-      <div class="row">
+      <div class="row w-100">
         <div
           class="col-12 col-md-6 col-xl-4 mb-5 d-flex flex-column justify-content-center align-items-center"
         >

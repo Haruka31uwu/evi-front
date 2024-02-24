@@ -31,7 +31,7 @@
       >
       <div class="section-title" style="margin-bottom: 2em;">
       <h2 style="color: white;font-style: normal;" :style="currentWindowWidth>768?'font-size:36px':'font-size:26px'">¿Por qué estudiar en EviSalud?</h2>
-      <div class="section-decorator" :style="currentWindowWidth>768?'':'margin-top:0.3em;'"></div>
+      <div class="section-decorator" :style="currentWindowWidth>768?'':'margin-top:0.3em;right:0!important'"></div>
       </div> 
         <h2 style="width: 70%;">MÁS QUE CURSOS, LA EXPERIENCIA EDUCATIVA QUE BUSCABAS</h2>
       </div>
