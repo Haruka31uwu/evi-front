@@ -217,7 +217,7 @@
                   target="_blank"
                   href="https://wa.me/+51950876703"
                   style="color: #0393aa"
-                  >Ir a Whatsapp (+51 950 876 703)</a
+                  >Ir a Whatsapp (+51 950 876 703)xd</a
                 ></span
               >
             </div>

@@ -1,6 +1,28 @@
 
 <template>
   <div class="cart-sidebar">
+    <div class="cart-mobile">
+      <span @click="closeSidebar">
+        <svg
+          width="8"
+          height="14"
+          viewBox="0 0 8 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M7 0.999998L1 7L7 13"
+            stroke="#0393AA"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        Atrás</span
+      >
+      <span>|</span>
+      <span>Carrito de Compras</span>
+    </div>
     <div style="position: relative" class="d-flex flex-column my-5">
       <span
         style="
@@ -65,13 +87,17 @@
           <div
             class="d-flex flex-row justify-content-between align-items-center"
           >
-            <span class="" @click="openProgram(cartItem.id)">Mostrar Detalles</span>
+            <span class="" @click="openProgram(cartItem.id)"
+              >Mostrar Detalles</span
+            >
 
             <span class="cart-item__price-pricepen">
               Precio: PEN {{ cartItem.pricePen }}
             </span>
           </div>
-          <div v-if="cartItem.type === 3 && openedProgramsId.includes(cartItem.id)">
+          <div
+            v-if="cartItem.type === 3 && openedProgramsId.includes(cartItem.id)"
+          >
             <li
               class="cart-item d-flex flex-row gap-3"
               v-for="(cartSubItem, cartIndex) in cartItem.coursesList"
@@ -104,7 +130,11 @@
                   {{ cartSubItem.title }}
                 </span>
                 <span class="cart-subitem__price-pricepen">
-                  Precio: PEN {{ cartSubItem.pricePen *getDiscountPriceSubItems(cartItem).toFixed(2)}}
+                  Precio: PEN
+                  {{
+                    cartSubItem.pricePen *
+                    getDiscountPriceSubItems(cartItem).toFixed(2)
+                  }}
                 </span>
               </div>
             </li>
@@ -151,6 +181,9 @@ export default {
 
     const isLogged = authStore().isLogged;
     const openedProgramsId = ref([]);
+    const closeSidebar = () => {
+      ctx.emit("closeCarSideBar");
+    };
     const openProgram = (id) => {
       if (openedProgramsId.value.includes(id)) {
         openedProgramsId.value = openedProgramsId.value.filter(
@@ -160,14 +193,14 @@ export default {
         openedProgramsId.value = [...openedProgramsId.value, id];
       }
     };
-    const getDiscountPriceSubItems=(program)=>{
-      const programPrice=program.pricePen;
-      const coursesPrice=program.coursesList.reduce((acc, course) => {
+    const getDiscountPriceSubItems = (program) => {
+      const programPrice = program.pricePen;
+      const coursesPrice = program.coursesList.reduce((acc, course) => {
         return acc + course.pricePen;
       }, 0);
-      const percentageDifference=programPrice/coursesPrice;
+      const percentageDifference = programPrice / coursesPrice;
       return percentageDifference;
-    }
+    };
     const store = carStore();
     const getCarItems = computed(() => store.getCarItems);
     const getCartContentCount = () => {
@@ -204,7 +237,7 @@ export default {
       store.removeCarItem(item);
     };
     const startProcess = () => {
-      ctx.emit("closeCarSideBar");
+      closeSidebar();
       router.push("/checkout");
     };
     return {
@@ -215,7 +248,8 @@ export default {
       getCartContentCount,
       openProgram,
       openedProgramsId,
-      getDiscountPriceSubItems
+      getDiscountPriceSubItems,
+      closeSidebar,
     };
   },
 };
@@ -231,13 +265,16 @@ span {
   right: 0;
   height: 100vh;
   min-width: 400px;
-  width:60%;
+  width: 60%;
   max-width: 500px;
   background: #fff;
   z-index: 999;
   transition: transform 0.3s ease-in-out;
   background: #13131a;
   border-radius: 0 0 0 4em;
+  .cart-mobile {
+    display: none;
+  }
   .cart-items {
     list-style: none;
     padding: 0;
@@ -248,6 +285,7 @@ span {
     align-items: center;
     gap: 1em;
     max-height: 70%;
+    min-height: 100vh;
     overflow-y: auto;
     width: 100%;
     .cart-item {
@@ -319,7 +357,46 @@ span {
         flex-direction: column;
         align-items: center;
         gap: 1em;
-        margin:0 auto
+        margin: 0 auto;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .cart-sidebar {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    border-radius: 0 !important;
+    .price-container {
+      border-radius: 0 !important;
+    }
+  }
+  .cart-mobile {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 2em;
+    width: 70%;
+    min-width: 250px;
+    span {
+      color: gray;
+      font-weight: 400;
+      font-size: 1.2em;
+      font-family: "Axiforma";
+    }
+    span:nth-child(1) {
+      color: #0393aa;
+      font-weight: 700;
+      &:hover {
+        cursor: pointer;
+        color: gray;
+        svg {
+          path {
+            stroke: gray;
+          }
+        }
       }
     }
   }

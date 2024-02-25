@@ -120,6 +120,12 @@ onMounted(() => {
     transform: scaleX(-1);
     z-index: 1;
   }
+  @media (max-width: 768px) {
+    .hero {
+      background-position-y: -2em;
+      background-position-x: -20em;
+    }
+  }
   .hero-content {
     position: absolute;
     width: 60%;

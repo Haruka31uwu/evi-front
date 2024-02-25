@@ -22,7 +22,7 @@
           style="border-radius: 1em"
           :style="
             currentWindowWidth > 768
-              ? 'background: #1c1c24;width:65%;min-height: 250px'
+              ? 'background: #1c1c24;width:95%;max-width:350px;min-height: 250px'
               : ''
           "
           class="py-4 px-3 d-flex flex-column justify-content-start mx-auto text-xl-center"
@@ -47,7 +47,7 @@
           style="border-radius: 1em"
           :style="
             currentWindowWidth > 768
-              ? 'background: #1c1c24;width:65%;min-height: 250px'
+              ? 'background: #1c1c24;width:95%;max-width:350px;min-height: 250px'
               : ''
           "
           class="py-4 px-3 d-flex flex-column justify-content-start mx-auto text-xl-center"
@@ -57,7 +57,7 @@
             :style="
               currentWindowWidth < 768 ? 'text-decoration:underline;' : ''
             "
-            class="d-flex align-items-center gap-1 text-center mx-auto"
+            class="d-flex align-items-center gap-1 "
           >
             Flexibilidad en horarios
           </h5>
@@ -73,7 +73,7 @@
           style="border-radius: 1em"
           :style="
             currentWindowWidth > 768
-              ? 'background: #1c1c24;width:65%;min-height: 250px'
+              ? 'background: #1c1c24;width:95%;max-width:350px;min-height: 250px'
               : ''
           "
           class="py-4 px-3 d-flex flex-column justify-content-start mx-auto text-xl-center"
@@ -99,7 +99,7 @@
           style="border-radius: 1em"
           :style="
             currentWindowWidth > 768
-              ? 'background: #1c1c24;width:65%;min-height: 250px'
+              ? 'background: #1c1c24;width:95%;max-width:350px;min-height: 250px'
               : ''
           "
           class="py-4 px-3 d-flex flex-column justify-content-start mx-auto text-xl-center"
@@ -126,7 +126,7 @@
     <div style="width: 80%" class="py-5">
       <div class="row w-100">
         <div
-          class="col-12 col-md-6 col-xl-4 mb-5 d-flex flex-column justify-content-center align-items-center"
+          class="col-12 col-md-12 col-xl-4 mb-5 d-flex flex-column justify-content-center align-items-center"
         >
           <svg
             v-if="currentWindowWidth > 768"
@@ -295,7 +295,7 @@
             </svg>
           </div>
         </div>
-        <div class="col-12 col-md-6 col-xl-4 d-flex flex-column gap-4 mb-5">
+        <div class="col-12 col-md-12 col-xl-4 d-flex flex-column gap-4 mb-5">
           <div
             class="d-flex flex-column justify-content-center align-items-center gap-3"
           >
@@ -329,7 +329,7 @@
               alt="institucion3_1"
             />
 
-            <span style="width: 60%"
+            <span style="width: 60%;text-align: center;"
               >Hospital Nacional Arzobispo Loayza, Lima, Perú</span
             >
           </div>
@@ -381,13 +381,14 @@
       class="row py-5"
       style="
         width: 80%;
+        min-width: 350px;
         background: #1c1c24;
         border-radius: 2em;
         margin-bottom: 2em;
-        padding: 4em;
+        padding: 3em;
       "
     >
-      <div class="col col-sm-12 col-md-3 col-lg-6 d-flex flex-column gap-2">
+      <div class="col col-sm-12 col-md-12 col-lg-6 d-flex flex-column gap-2  align-items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="152"
@@ -410,11 +411,12 @@
           <div
             style="
               height: 1.5em;
-              width: 200px;
+              width:80%;
+              max-width: 200px;
               background: #00a9c3;
               border-radius: 1em;
               position: absolute;
-              bottom: -0.2em;
+              bottom: 0em;
               z-index: 2;
               opacity: 0.7;
               left: 4em;
@@ -423,7 +425,7 @@
         </div>
         <div></div>
       </div>
-      <div class="col col-sm-12 col-md-9 col-lg-6">
+      <div class="col col-sm-12 col-md-12 col-lg-6 align-items-center d-flex flex-column my-3">
         <h5 class="mb-4">
           Brindamos asistencia técnica dirigida a instituciones:
         </h5>
@@ -436,7 +438,7 @@
         <span class="mt-5"
           >Para cualquier consulta sobre este servicio contáctanos aqui</span
         >
-        <div class="btn-blue mt-5 d-flex flex-row gap-2">
+        <div class="btn-blue mt-5 d-flex flex-row gap-2 w-100">
           <svg
             width="16"
             height="16"

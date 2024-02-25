@@ -1,13 +1,13 @@
 <template>
   <section class="d-flex justify-content-center flex-column align-items-center">
-    <div class="section-title d-flex mb-5">
+    <div class="section-title d-flex my-5">
       <h2>EviBlog</h2>
       <div class="section-decorator" style="right: -1em"></div>
     </div>
     <div class="row d-flex gap-4 flex-row" style="width: 90%">
       <div class="col-12 col-md-5">
         <div class="blog-item d-flex flex-column">
-          <NuxtImg
+          <img
             :src="blogItems.main.img"
             alt="x"
             style="width: 50%; height: 100%; border-radius: 1rem"
@@ -16,7 +16,6 @@
                 ? 'width:95%;height:300px;margin:0 auto'
                 : ''
             "
-            format="webp"
             class="mb-3"
           />
           <span class="blog-title">

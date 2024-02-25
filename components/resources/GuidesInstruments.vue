@@ -15,8 +15,8 @@
         border-radius: 1em;
       "
     >
-      <div class="col col-12 col-md-6 d-flex flex-row gap-2">
-        <div class="d-flex flex-column">
+      <div class="col col-12 col-md-12  col-lg-6 d-flex flex-row gap-2 ">
+        <div class="d-flex flex-column align-items-center">
           <svg
             width="75"
             height="90"
@@ -32,11 +32,11 @@
             />
           </svg>
           <div
-            class="d-flex mb-2"
+            class="d-flex mb-4 align-items-center w-100"
             style="position: relative"
             :style="currentWindowWidth < 768 ? 'width:100%' : 'width:70%'"
           >
-            <h2 style="font-size: 1.2em; z-index: 2">
+            <h2 style="font-size: 1.2em; z-index: 2;width: 100%;text-align: center;margin: 0 auto;">
               Guías basadas en evidencia
             </h2>
             <div
@@ -47,8 +47,8 @@
                 border-radius: 1em;
                 opacity: 0.7;
                 position: absolute;
-                bottom: 0;
-                left: 2em;
+                top:0.5em;
+                right: 20%;
               "
             ></div>
           </div>
@@ -61,13 +61,13 @@
             con metodología GRADE, el estándar mundial para la elaboración de
             este tipo de documentos.
           </p>
-          <button class="btn-blue mb-3 w-100" style="max-width: 100%">
+          <button class="btn-blue mb-3 w-100" style="max-width: 350px">
             <span><a href="https://gpc-peru.com/" target="_blank"><span>Ir a la página de GPC</span></a></span>
           </button>
         </div>
-        <div style="width: 1px; height: 90%;margin: 0 1em; background: #515166"></div>
+        <div style="width: 1px; height: 90%;margin: 0 1em; background: #515166" class="d-none d-md-none d-lg-flex"></div>
       </div>
-      <div class="col col-12 col-md-6 d-flex flex-column gap-2">
+      <div class="col col-12 col-md-12  col-lg-6 d-flex flex-column gap-2 align-items-center">
         <svg
           width="89"
           height="87"
@@ -80,8 +80,8 @@
             fill="#0393AA"
           />
         </svg>
-        <div class="d-flex mb-2" style="width: 100%; position: relative">
-          <h2 style="font-size: 1.2em; z-index: 2; text-align: center">
+        <div class="d-flex mb-2 " style="width: 100%; position: relative">
+          <h2 style="font-size: 1.2em; z-index: 2; text-align: center;width: 100%;">
             Instrumentos de lectura crítica y para toma de decisiones
           </h2>
           <div
@@ -92,9 +92,10 @@
               opacity: 0.7;
               position: absolute;
               bottom: 0;
-              left: 4.2em;
+              right: 0;
+
             "
-            :style="currentWindowWidth < 1200 ? 'width: 80%' : 'width: 480px'"
+            :style="currentWindowWidth < 1200 ? 'width: 80%;bottom:1.2em' : 'width: 480px'"
           ></div>
         </div>
         <div
@@ -103,7 +104,7 @@
           <div
             v-for="(instrument, index) in instruments"
             :key="index"
-            class="download-item d-flex gap-3 align-items-center justify-content-center"
+            class="download-item d-flex gap-3 align-items-center justify-content-start w-100"
             @click="
               forceFileDownload(
                 instrument.file,
@@ -171,7 +172,7 @@
                 fill="#F0F0F0"
               />
             </svg>
-            <span>{{ instrument.title }}</span>
+            <span style="width: 100%">{{ instrument.title }}</span>
           </div>
         </div>
       </div>
