@@ -376,6 +376,7 @@ section {
                 min-height: 130px;
                 border-radius: 1em;
                 width: auto;
+                max-width: 150px;
                 padding: 0 1em;
                 align-items: center;
             }
@@ -409,7 +410,7 @@ section {
         .country-flags {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            grid-column-gap: 2em;
+            grid-column-gap: 1.2em;
         }
 
         @media (max-width: 890px) {

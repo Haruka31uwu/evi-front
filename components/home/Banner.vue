@@ -21,7 +21,7 @@
         style="
           position: absolute;
           background: #13131a;
-          width: 100%;
+          width: 90%;
           box-shadow: 0px 4px 80px 0px #000;
         "
         :style="

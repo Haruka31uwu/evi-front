@@ -378,8 +378,8 @@ span {
     justify-content: space-between;
     align-items: center;
     padding: 1em 2em;
-    width: 70%;
-    min-width: 250px;
+    width: 80%;
+    min-width: 280px;
     span {
       color: gray;
       font-weight: 400;
