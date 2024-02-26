@@ -123,7 +123,10 @@ onMounted(() => {
   @media (max-width: 768px) {
     .hero {
       background-position-y: -2em;
-      background-position-x: -20em;
+      background-position-x:-15em!important;
+      background: url("/assets/img/hero-mobile.jpg") no-repeat;
+      background-size: cover;
+      width: 100%;
     }
   }
   .hero-content {
@@ -143,7 +146,12 @@ onMounted(() => {
   }
   @media (max-width: 768px) {
     .hero-content {
-      border-radius: 0px;
+      border-radius: 0px 50% 50% 0px;
+      .hero-content-text {
+        h1{
+          font-size: 2.2em;
+        }
+      }
     }
   }
 }

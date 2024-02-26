@@ -12,7 +12,7 @@
               :key="`reason-item-${itemIndex}`"
             >{{ reasonItem }}</li>
           </ul>
-          <button class="btn-blue" @click="redirectTo('/courses',reason.id)">Ver Cursos</button>
+          <button class="btn-blue" @click="redirectTo('/courses',reason.id)"><span>Ver Cursos</span></button>
           <div v-if="index==0 && currentWindowWidth>768" style="height: 100%;width: 1px;background: #515166;
         ;position: absolute;top: 0;right: 0;"></div>
         </div>

@@ -95,7 +95,7 @@
           </div>
           <div class="course-detail-contact d-flex flex-column gap-2">
             <small
-              >Si tienes dudas o necesitas mas informacion,contactanos</small
+              >Si tienes dudas o necesitas mas información,contactanos</small
             >
             <div class="btn-white d-flex flex-row" style="column-gap: 1em">
               <img src="/assets/img/courses/whats.svg" alt="whats" />

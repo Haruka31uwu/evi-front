@@ -88,6 +88,7 @@
       </p>
       <div class="course-footer">
         <span @click="redirectTo('/course-detail/' + course.id,'course-hero')" 
+        class="more-info"
           >Mas información</span>
         <button class="btn-course" @click="addToCart(course)">
           <svg
@@ -164,3 +165,15 @@ export default {
   components: {},
 };
 </script>
+<style lang="scss" scoped>
+.more-info {
+  color: #192855;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 600;
+  margin-top: 1em;
+  display: block;
+  text-align: right;
+} 
+</style>
+```

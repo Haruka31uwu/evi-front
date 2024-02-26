@@ -22,7 +22,7 @@
           position: absolute;
           background: #13131a;
           width: 100%;
-          box-shadow: 0px 4px 80px 0px #000;
+
         "
         :style="
           currentWindowWidth > 991 ? 'padding: 5em;' : 'padding: 2em 0;'
