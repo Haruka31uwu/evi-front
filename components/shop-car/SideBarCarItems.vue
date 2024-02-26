@@ -54,65 +54,64 @@
     </div>
     <ul class="cart-items mb-4">
       <li
-        class="cart-item d-flex flex-row gap-3"
+        class="cart-item d-flex flex-column "
         v-for="(cartItem, cartIndex) in getCarItems"
         :key="`cart-item-${cartIndex}`"
       >
-        <img
-          :src="cartItem.img_small"
-          style="width: 150px; height: 100%; border-radius: 1em 0 0 1em"
-          alt="car-item-img"
-        />
-        <div
-          style="width: 100%"
-          class="cart-item__price d-flex flex-column justify-content-between"
-        >
-          <svg
-            @click="removeItemFromCar(cartItem)"
-            style="align-self: flex-end; cursor: pointer"
-            xmlns="http://www.w3.org/2000/svg"
-            width="15"
-            height="15"
-            viewBox="0 0 15 15"
-            fill="none"
-          >
-            <path
-              d="M6.26055 7.49804L0.260527 1.49645C-0.0868425 1.14899 -0.0868425 0.596157 0.260527 0.264546C0.592164 -0.0829142 1.14471 -0.0829142 1.49211 0.248792L7.49213 6.25038L13.4922 0.248792C13.8395 -0.0829308 14.3921 -0.0829308 14.7395 0.248792C15.0711 0.596253 15.0711 1.14897 14.7395 1.49644L8.73945 7.49803L14.7395 13.4996C15.0868 13.8471 15.0868 14.3999 14.7395 14.7315C14.5658 14.921 14.3447 15 14.1237 15C13.9026 15 13.6816 14.921 13.5079 14.7473L7.50787 8.74568L1.50784 14.7473C1.33415 14.921 1.11311 15 0.892053 15C0.671004 15 0.449944 14.921 0.276259 14.7473C-0.0711098 14.3998 -0.0711098 13.847 0.276259 13.5154L6.26055 7.49804Z"
-              fill="#D04036"
-            />
-          </svg>
-          <span class="cart-item__price-title">
-            {{ cartItem.title }}
-          </span>
+        <div class="d-flex flex-row gap-3">
+          <img
+            :src="cartItem.img_small"
+            style="width: 150px; height: 100%; border-radius: 1em 0 0 1em"
+            alt="car-item-img"
+          />
           <div
-            class="d-flex flex-row justify-content-between align-items-center"
+            style="width: 100%"
+            class="cart-item__price d-flex flex-column justify-content-between"
           >
-            <span class="" @click="openProgram(cartItem.id)"
-              >Mostrar Detalles</span
+            <svg
+              @click="removeItemFromCar(cartItem)"
+              style="align-self: flex-end; cursor: pointer"
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              viewBox="0 0 15 15"
+              fill="none"
             >
-
-            <span class="cart-item__price-pricepen">
-              Precio: PEN {{ cartItem.pricePen }}
+              <path
+                d="M6.26055 7.49804L0.260527 1.49645C-0.0868425 1.14899 -0.0868425 0.596157 0.260527 0.264546C0.592164 -0.0829142 1.14471 -0.0829142 1.49211 0.248792L7.49213 6.25038L13.4922 0.248792C13.8395 -0.0829308 14.3921 -0.0829308 14.7395 0.248792C15.0711 0.596253 15.0711 1.14897 14.7395 1.49644L8.73945 7.49803L14.7395 13.4996C15.0868 13.8471 15.0868 14.3999 14.7395 14.7315C14.5658 14.921 14.3447 15 14.1237 15C13.9026 15 13.6816 14.921 13.5079 14.7473L7.50787 8.74568L1.50784 14.7473C1.33415 14.921 1.11311 15 0.892053 15C0.671004 15 0.449944 14.921 0.276259 14.7473C-0.0711098 14.3998 -0.0711098 13.847 0.276259 13.5154L6.26055 7.49804Z"
+                fill="#D04036"
+              />
+            </svg>
+            <span class="cart-item__price-title">
+              {{ cartItem.title }}
             </span>
-          </div>
-          <div
-            v-if="cartItem.type === 3 && openedProgramsId.includes(cartItem.id)"
-          >
-            <li
-              class="cart-item d-flex flex-row gap-3"
-              v-for="(cartSubItem, cartIndex) in cartItem.coursesList"
-              :key="`cart-item-${cartIndex}`"
+            <div
+              class="d-flex flex-row justify-content-between align-items-center"
             >
-              <img
+              <span class="cart-item__price-pricepen">
+                Precio: PEN {{ cartItem.pricePen }}
+              </span>
+            </div>
+            <div
+              v-if="
+                cartItem.type === 3 && openedProgramsId.includes(cartItem.id)
+              "
+            >
+              <li
+                class="cart-item d-flex flex-row gap-3"
+                v-for="(cartSubItem, cartIndex) in cartItem.coursesList"
+                :key="`cart-item-${cartIndex}`"
+              >
+                <!-- <img
                 :src="cartSubItem.img_small"
                 style="width: 150px; height: 100%; border-radius: 1em 0 0 1em"
                 alt="car-item-img"
-              />
-              <div
-                style="width: 100%"
-                class="cart-item__price d-flex flex-column justify-content-between"
-              >
-                <!-- <svg
+              /> -->
+                <div
+                  style="width: 100%"
+                  class="cart-item__price d-flex flex-column justify-content-between"
+                >
+                  <!-- <svg
                   @click="removeItemFromCar(cartSubItem)"
                   style="align-self: flex-end; cursor: pointer"
                   xmlns="http://www.w3.org/2000/svg"
@@ -126,20 +125,22 @@
                     fill="#D04036"
                   />
                 </svg> -->
-                <span class="cart-subitem__price-title">
-                  {{ cartSubItem.title }}
-                </span>
-                <span class="cart-subitem__price-pricepen">
-                  Precio: PEN
-                  {{
-                    cartSubItem.pricePen *
-                    getDiscountPriceSubItems(cartItem).toFixed(2)
-                  }}
-                </span>
-              </div>
-            </li>
+                  <span class="cart-subitem__price-title">
+                    {{ cartSubItem.title }}
+                  </span>
+                  <span class="cart-subitem__price-pricepen">
+                    Precio: PEN
+                    {{
+                      cartSubItem.pricePen *
+                      getDiscountPriceSubItems(cartItem).toFixed(2)
+                    }}
+                  </span>
+                </div>
+              </li>
+            </div>
           </div>
         </div>
+        <span class="text-center" @click="openProgram(cartItem.id)">{{ openedProgramsId.includes(cartItem.id)?'Mostrar Menos':'Mostrar Más' }}</span>
       </li>
     </ul>
     <div
@@ -272,6 +273,10 @@ span {
   transition: transform 0.3s ease-in-out;
   background: #13131a;
   border-radius: 0 0 0 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   .cart-mobile {
     display: none;
   }
@@ -284,9 +289,9 @@ span {
     justify-content: flex-start;
     align-items: center;
     gap: 1em;
-    max-height: 70%;
-    min-height: 100vh;
     overflow-y: auto;
+    min-height: 150px;
+    height: 100%;
     width: 100%;
     .cart-item {
       padding: 1em;
@@ -326,12 +331,9 @@ span {
     }
   }
   .price-container {
-    position: sticky;
-    bottom: 0;
     padding: 2em 5em 2em 4em;
     background: #0393aa;
     border-radius: 0 0 0 5em;
-    margin-right: 5em;
     width: 100%;
 
     .price-container__values {

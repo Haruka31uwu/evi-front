@@ -2,7 +2,7 @@
   <section class="reasons-list">
     <div class="reason-list-content">
       <div v-for="(reason, index) in reasonsList" :key="`reason-${index}`" class="reason-list-item" style="position: relative;">
-        <div class="reason-header">
+        <div class="reason-header mb-4">
           <img :src="reason.icon" alt="reason"/>
           <h3>{{ reason.title }}</h3>
         </div>

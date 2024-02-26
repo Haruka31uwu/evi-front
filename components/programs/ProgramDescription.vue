@@ -30,13 +30,32 @@
         />
       </svg>
     </article>
-    <div class="row ms-xl-5">
-      <div style="position: relative;width: auto;margin: 0 auto;">
-        <h3 class="text-center mb-5">Cursos que incluye el programa
-        <div style="background: #0393AA;height: 30%;width: 80%;opacity: 0.7;border-radius: 1em;position: absolute;top:0.8em;right: -2em;"></div>
-      </h3>
-      </div>
+    <div
+      style="
+        position: relative;
+        margin: 0 auto;
+        text-align: center;
+        width: auto;
+      "
+    >
+      <h3 class="text-center mb-5">Cursos que incluye el programa</h3>
 
+      <div
+        style="
+          background: #0393aa;
+          height: 50%;
+          max-height: 100px !important;
+          width: 80%;
+          max-width: 350px;
+          opacity: 0.7;
+          border-radius: 1em;
+          position: absolute;
+          top: 1.2em;
+        "
+        :style="currentWindowWidth>768?'right:35%':'right: 1em;'"
+      ></div>
+    </div>
+    <div class="row ms-xl-5 w-100">
       <div class="col col-sm-12 col-md-12 col-xl-8 mb-4">
         <div
           :style="
@@ -53,22 +72,22 @@
             "
           >
             <div
-              class="showed-content ms-5 d-flex flex-row align-items-center gap-5"
-              style="width: 90%; height: 75px"
+              class="showed-content d-flex flex-row align-items-center justify-content-between w-100 gap-3"
+              style="height: 75px"
             >
               <div
-                class="program-course-num"
+                class="program-course-num "
                 :id="`program-course-${item.id}-${index}`"
               >
                 <div class="num-container-ext"></div>
                 <div class="num-container-int"></div>
                 <div class="num-container-text">{{ index + 1 }}</div>
               </div>
-              <div class="d-flex flex-column">
+              <div class="d-flex flex-column w-100">
                 <span>{{ item.title }}</span>
                 <span>(5 semanas)</span>
               </div>
-              <div>
+              <div style="text-align: end;">
                 <svg
                   v-if="!openedPrograms.includes(item.id)"
                   @click="
@@ -116,10 +135,10 @@
               </div>
             </div>
             <div v-if="openedPrograms.includes(item.id)" class="ms-5 pb-3">
-              <span>Contenido</span>
+              <span style="font-size: 1.3em;">Contenido</span>
 
               <div
-                v-for="(courses, coursesItem) in getProgramCourses(item.id)[0]
+                v-for="(courses, coursesItem) in getProgramCoursesV2(item.id)[0]
                   .contenido"
                 :key="`courses-${coursesItem}`"
                 class="d-flex flex-row gap-2 align-items-center mb-2"
@@ -140,7 +159,7 @@
                     fill="#0393AA"
                   />
                 </svg>
-                <span>{{ courses }}</span>
+                <span style="width: 100%;">{{ courses }}</span>
               </div>
             </div>
           </div>
@@ -161,14 +180,20 @@
           class="d-flex flex-column gap-1 ms-4"
         >
           <div class="course-detail-price d-flex flex-column gap-3">
-            <span class="course-detail-price-title" style="color:black;font-size:1.4em;font-weight: 700;">Inversión</span>
-            <span style="color:black;font-size:1em;font-weight: 700;"
+            <span
+              class="course-detail-price-title"
+              style="color: black; font-size: 1.4em; font-weight: 700"
+              >Inversión</span
+            >
+            <span style="color: black; font-size: 1em; font-weight: 700"
               >${{ programInfo.value.priceUsd }} (Peru:S/{{
                 programInfo.value.pricePen
               }})</span
             >
-            <small class="pb-1" style="color:black;font-weight: 400;">!Pregunta por nuestros descuentos</small>
-            <div class="btn-white d-flex gap-1">
+            <small class="pb-1" style="color: black; font-weight: 400"
+              >!Pregunta por nuestros descuentos</small
+            >
+            <div class="btn-white d-flex gap-1" @click="addToCart(programInfo.value)">
               <svg
                 width="15"
                 height="13"
@@ -191,7 +216,7 @@
             class="my-3 mx-auto"
           ></div>
           <div class="course-detail-contact d-flex flex-column gap-2">
-            <small style="color:black;font-weight: 400;"
+            <small style="color: black; font-weight: 400"
               >Si tienes dudas o necesitas mas informacion,contactanos</small
             >
             <div class="btn-white d-flex gap-1">
@@ -217,7 +242,7 @@
                   target="_blank"
                   href="https://wa.me/+51950876703"
                   style="color: #0393aa"
-                  >Ir a Whatsapp (+51 950 876 703)xd</a
+                  >Ir a Whatsapp (+51 950 876 703)</a
                 ></span
               >
             </div>
@@ -254,13 +279,8 @@
         </div>
       </div>
       <div
-        :style="{
-          background: '#0393AA',
-          borderRadius: '1.5em',
-          width: '450px',
-          cursor: 'pointer',
-        }"
-        class="px-2 py-2 d-flex gap-2 align-items-center justify-content-center mx-auto mt-5"
+        style="max-width: 300px;"
+        class="px-2 py-2 d-flex gap-2  btn-blue align-items-center justify-content-center mx-auto mt-5"
       >
         <img src="/assets/img/courses/download.svg" alt="downlaod icon" />
         <span> Descargar Brochure </span>
@@ -272,7 +292,7 @@
     ></div>
     <div
       style="background: #1c1c24; width: 80%; border-radius: 3em"
-      class="d-flex justify-content-center gap-5 mx-auto py-5 align-items-center"
+      class="d-flex justify-content-center gap-5 mx-auto py-5 align-items-center px-5"
     >
       <svg
         v-if="currentWindowWidth > 1200"
@@ -311,8 +331,8 @@
           fill="#0393AA"
         />
       </svg>
-      <div class="px-5">
-        <h5>¿Cómo solicitar la certificación?</h5>
+      <div class="">
+        <h5 style="font-size: 1.6em;margin-bottom: 1em;">¿Cómo solicitar la certificación?</h5>
         <ul
           class="d-flex p-0 m-0 flex-column gap-3"
           style="list-style: none; width: 90%"
@@ -335,12 +355,94 @@
               />
             </svg>
             <span>
-              Si llevaste algún curso pero no lo concluiste (no tienes el
-              certificado de aprobado), puedes solicitar llevarlo nuevamente sin
-              costo.
+              Si ya has llevado algún curso, solo debes completar los demás cursos. 
             </span>
           </li>
           <li>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                y="7.07031"
+                width="10"
+                height="10"
+                rx="1"
+                transform="rotate(-45 0 7.07031)"
+                fill="#0393AA"
+              />
+            </svg>
+            <span>
+              Si llevaste algún curso pero no lo concluiste (no tienes el certificado de aprobado), puedes solicitar llevarlo nuevamente sin costo.
+            </span>
+          </li>
+          <li>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                y="7.07031"
+                width="10"
+                height="10"
+                rx="1"
+                transform="rotate(-45 0 7.07031)"
+                fill="#0393AA"
+              />
+            </svg>
+            <span>
+              Si aún no has llevado ningún curso, puedes inscribirte al programa entero. En ese caso, podrás iniciar con el curso de tu preferencia y continuar los demás cursos en cualquier orden y a tu ritmo.
+            </span>
+          </li>
+          <li>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                y="7.07031"
+                width="10"
+                height="10"
+                rx="1"
+                transform="rotate(-45 0 7.07031)"
+                fill="#0393AA"
+              />
+            </svg>
+            <span>
+              Cuando tengas los certificados de aprobación de todos los cursos y el link del artículo publicado en el que seas autor, deberás enviarlos al siguiente link. 
+            </span>
+          </li>
+          <li>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                y="7.07031"
+                width="10"
+                height="10"
+                rx="1"
+                transform="rotate(-45 0 7.07031)"
+                fill="#0393AA"
+              />
+            </svg>
+            <span>
+              En el lapso de 2 semanas evaluaremos el cumplimiento de los requisitos y te enviaremos el certificado de haber aprobado el programa de formación en XXXX, a nombre de EviSalud. Este paso NO tiene un costo adicional.
+            </span>
+          </li>
+          <!-- <li>
             <svg
               width="14"
               height="14"
@@ -362,106 +464,18 @@
               certificado de aprobado), puedes solicitar llevarlo nuevamente sin
               costo.
             </span>
-          </li>
-          <li>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="7.07031"
-                width="10"
-                height="10"
-                rx="1"
-                transform="rotate(-45 0 7.07031)"
-                fill="#0393AA"
-              />
-            </svg>
-            <span>
-              Si llevaste algún curso pero no lo concluiste (no tienes el
-              certificado de aprobado), puedes solicitar llevarlo nuevamente sin
-              costo.
-            </span>
-          </li>
-          <li>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="7.07031"
-                width="10"
-                height="10"
-                rx="1"
-                transform="rotate(-45 0 7.07031)"
-                fill="#0393AA"
-              />
-            </svg>
-            <span>
-              Si llevaste algún curso pero no lo concluiste (no tienes el
-              certificado de aprobado), puedes solicitar llevarlo nuevamente sin
-              costo.
-            </span>
-          </li>
-          <li>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="7.07031"
-                width="10"
-                height="10"
-                rx="1"
-                transform="rotate(-45 0 7.07031)"
-                fill="#0393AA"
-              />
-            </svg>
-            <span>
-              Si llevaste algún curso pero no lo concluiste (no tienes el
-              certificado de aprobado), puedes solicitar llevarlo nuevamente sin
-              costo.
-            </span>
-          </li>
-          <li>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="7.07031"
-                width="10"
-                height="10"
-                rx="1"
-                transform="rotate(-45 0 7.07031)"
-                fill="#0393AA"
-              />
-            </svg>
-            <span>
-              Si llevaste algún curso pero no lo concluiste (no tienes el
-              certificado de aprobado), puedes solicitar llevarlo nuevamente sin
-              costo.
-            </span>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
   </section>
 </template>
   <script>
-import { getProgramCourses } from "/composables/courses-composables.js";
+import { getProgramCoursesV2 } from "/composables/courses-composables.js";
+import { useShopCar } from "/composables/shop-car/shop-car.composables.js";
+import { useSwall } from "/composables/main-composables.js";
+import { carStore } from "../../store/car/car.store";
+
 export default {
   props: {
     programInfo: {
@@ -473,6 +487,94 @@ export default {
   setup(props) {
     let currentWindowWidth = ref(null);
     let openedPrograms = ref([]);
+    const store = carStore();
+    const getCarItems = computed(() => store.getCarItems);
+    const { showSuccessSwall, showErrorSwall, showConfirmSwall } = useSwall();
+    const addToCart = async (program) => {
+      const { addCarItem, removeCarItem } = useShopCar();
+      const existsProgram = getCarItems.value.find(
+        (item) => item.id == program.id
+      );
+      //check if program is alredy in cart
+      if (existsProgram) {
+        showErrorSwall("", "El programa ya se encuentra en el carrito");
+        return;
+      }
+      
+      //check if subcourses are in cart
+      const courseList = getProgramCourses(program.coursesList);
+      const programInCar= getCarItems.value.find((item) => item.type==3);
+      const  getAllSubCoursesInProgram = getCarItems.value.map((item) => {
+        if (item.type == 3) {
+        
+          return item.coursesList.map((course) => {
+            return course.id;
+          });
+        }
+        return item.id;
+      }).flat();
+     
+      if (getAllSubCoursesInProgram.length !== 0 && typeof programInCar !== "undefined") {
+        const uniqueSubCoursesInProgram = getAllSubCoursesInProgram.filter(
+          (item, index, self) =>
+            index ===
+            self.findIndex((t) => t.id === item.id && t.type === item.type)
+        );
+
+        const coursesIdsInProgram = courseList.map((course) => course.id);
+        const remainingCourses = coursesIdsInProgram.filter((courseId) => {
+          if (!uniqueSubCoursesInProgram.includes(courseId)) {
+            return courseId;
+          }
+        });
+        if (remainingCourses.length > 0) {
+          const isConfirmed = await showConfirmSwall(
+            "",
+            `Hay cursos del programa que ya se encuentran en el carrito.\nDesea Agregar los cursos que no se encuentran en el carrito?`,
+            "Si.Agregalo",
+            "No"
+          );
+          if (isConfirmed) {
+            remainingCourses.forEach((courseId) => {
+              const course = courseList.find((course) => course.id == courseId);
+              addCarItem(course);
+            });
+            showSuccessSwall("", "Curso agregado al carrito");
+          }
+          return;
+        }
+      }
+      const existSubCourses = getCarItems.value.filter((item) => {
+        return courseList.find((course) => course.id == item.id);
+      });
+      //if not, add program to cart
+      if (existSubCourses.length == 0) {
+        program.coursesList = courseList;
+        addCarItem(program);
+        showSuccessSwall("", "Programa agregado al carrito");
+      }
+      //if yes, ask if user wants to replace them
+      else {
+        const coursesTitlesConcat = existSubCourses
+          .map((course) => course.title)
+          .join(", ");
+        const isConfirmed = await showConfirmSwall(
+          "",
+          `El curso/Los cursos ${coursesTitlesConcat} ya se encuentra(n) en el carrito.\nDesea Agregar el programa en su lugar?`,
+          "Si.Agregalo",
+          "No"
+        );
+        if (isConfirmed) {
+          courseList=courseList.forEach((course) => {
+            removeCarItem(course);
+            courseList.pricePen
+          });
+          program.coursesList = courseList;
+          addCarItem(program);
+          showSuccessSwall("", "Programa agregado al carrito");
+        }
+      }
+    };
     onMounted(() => {
       currentWindowWidth.value = window.innerWidth;
       window.addEventListener("resize", () => {
@@ -483,7 +585,8 @@ export default {
       programInfo: props.programInfo,
       currentWindowWidth,
       openedPrograms,
-      getProgramCourses,
+      getProgramCoursesV2,
+      addToCart
     };
   },
 };
@@ -494,14 +597,12 @@ export default {
   border: 1px solid var(--EVI-DARK-004, #515166);
   background: var(--EVI-DARK-005, #1c1c24);
   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.3);
-  width: 100%;
   height: auto;
-  padding: 0 0 0 0.5em;
+  padding: 0 1em 0 0.5em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
-  gap: 1.5em;
+  justify-content:space-between;
 }
 .program-course-num {
   position: relative;

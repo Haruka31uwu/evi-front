@@ -29,7 +29,7 @@
         />
       </svg>
     </article>
-    <div class="row ms-xl-5">
+    <div class="row ms-xl-5 w-100">
       <div class="col col-sm-12 col-md-12 col-xl-8">
         <div style="width: 80%" class="ms-5 d-flex gap-2 flex-column">
           <h4>
@@ -87,7 +87,7 @@
               }})</span
             >
             <small class="pb-1">!Pregunta por nuestros descuentos</small>
-            <div class="btn-white d-flex flex-row" style="column-gap: 1em">
+            <div class="btn-white d-flex flex-row" style="column-gap: 1em" @click="addToCart(courseInfo.value)">
               <img src="/assets/img/courses/car.svg" alt="cart-icon"/><span
                 >Agregar al carrito</span
               >
@@ -217,7 +217,10 @@
   </section>
 </template>
 <script>
-import { redirectTo } from '/composables/main-composables';
+import { redirectTo,useSwall } from '/composables/main-composables';
+import { carStore } from "../../store/car/car.store";
+import { useShopCar } from "/composables/shop-car/shop-car.composables.js";
+
 export default {
   props: {
     courseInfo: {
@@ -228,15 +231,40 @@ export default {
   },
   setup(props) {
     let currentWindowWidth = ref(null);
+    const store = carStore();
+    const { showSuccessSwall, showErrorSwall } = useSwall();
+    const getCarItems = computed(() => store.getCarItems);
+
     onMounted(() => {
       currentWindowWidth.value = window.innerWidth;
       window.addEventListener("resize", () => {
         currentWindowWidth.value = window.innerWidth;
       });
     });
+    const addToCart = (course) => {
+      const { addCarItem } = useShopCar();
+      const courseInCar = getCarItems.value.find(
+        (item) => {
+          if(item.type===3){
+            return item.coursesList.find(
+              (courseItem) => courseItem.id === course.id
+            );
+          }
+          return item.id === course.id;
+        }
+      );
+      
+      if (courseInCar) {
+        showErrorSwall("","El curso ya se encuentra en el carrito o pertenece a un programa de cursos");
+        return;
+      }
+      addCarItem(course);
+      showSuccessSwall("","Curso agregado al carrito");
+    };
     return {
       courseInfo: props.courseInfo,
       currentWindowWidth,
+      addToCart,
       redirectTo
     };
   },

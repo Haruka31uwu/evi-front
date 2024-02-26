@@ -1,6 +1,6 @@
 <template>
   <div>
-    <courses-course-hero :courseInfo="courseData" />
+    <courses-course-hero :courseInfo="courseData" id="course-hero" />
     <courses-courses-details-course-description :courseInfo="courseData" />
     <courses-course-metodology />
     <courses-courses-details-docentes  v-if="docenteIds.length>0" :docenteIds="docenteIds"/>

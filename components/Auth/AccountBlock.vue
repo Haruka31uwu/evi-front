@@ -1,26 +1,34 @@
 <template>
   <div v-if="accountOptions">
-    <div class="login-account" v-if="userData && userData.length==0"
-    :style="router.currentRoute.value.path=='/login'?'color:white':''">Iniciar Sesión</div>
-    <div class="logged-account d-flex flex-row gap-2 align-items-center" v-else>
-      <img :src="userData.profile_img" class="account-profile-img"  alt="account-profile-img"/>
-      <span style="color: white">{{
-        `${userData.name} ${userData.last_name}`
-      }}</span>
-      <Icon
-        v-if="!isOpenDropdown"
-        @click="isOpenDropdown = !isOpenDropdown"
-        name="mdi:chevron-down"
-        size="2em"
-        color="white"
-      ></Icon>
-      <Icon
-        v-else
-        name="mdi:chevron-up"
-        size="2em"
-        color="white"
-        @click="isOpenDropdown = !isOpenDropdown"
-      ></Icon>
+    <div
+      class="login-account"
+      v-if="userData && userData.length == 0"
+      :style="router.currentRoute.value.path == '/login' ? 'color:white' : ''"
+    >
+      Iniciar Sesión
+    </div>
+    <div
+      class="logged-account d-flex flex-row gap-2 align-items-center"
+      v-else
+      @click="isOpenDropdown = !isOpenDropdown"
+    >
+      <div>
+        <img
+          :src="userData.profile_img"
+          class="account-profile-img"
+          alt="account-profile-img"
+        />
+        <span style="color: white">{{
+          `${userData.name} ${userData.last_name}`
+        }}</span>
+        <Icon
+          v-if="!isOpenDropdown"
+          name="mdi:chevron-down"
+          size="2em"
+          color="white"
+        ></Icon>
+        <Icon v-else name="mdi:chevron-up" size="2em" color="white"></Icon>
+      </div>
       <ul class="account-options" v-if="isOpenDropdown">
         <li
           v-for="option in accountOptions"
@@ -129,7 +137,7 @@ const accountOptions = ref([
 .logged-account {
   position: relative;
   .account-options {
-    position: absolute;
+    position: absolute !important;
     top: 100%;
     height: auto;
     z-index: 100;
@@ -145,6 +153,18 @@ const accountOptions = ref([
         text-decoration: underline;
         color: white;
       }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .logged-account {
+    display: flex;
+    flex-direction: column !important;
+
+    .account-options {
+      position: relative !important;
+      width: 100%;
+      padding: 0.5em 1em;
     }
   }
 }

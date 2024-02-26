@@ -161,22 +161,6 @@ export default {
           return;
         }
       }
-
-      // if (existSubCourseFromProgram.length > 0) {
-      //   const isConfirmed = await showConfirmSwall(
-      //     "",
-      //     `Hay cursos del programa que ya se encuentran en el carrito.\nDesea Agregar los cursos que no se encuentran en el carrito?`,
-      //     "Si.Agregalo",
-      //     "No"
-      //   );
-      //   if (isConfirmed) {
-      //     existSubCourseFromProgram.forEach((course) => {
-      //       addCarItem(course);
-      //     });
-      //     showSuccessSwall("", "Curso agregado al carrito");
-      //   }
-      //   return;
-      // }
       const existSubCourses = getCarItems.value.filter((item) => {
         return courseList.find((course) => course.id == item.id);
       });

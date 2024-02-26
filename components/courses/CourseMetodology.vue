@@ -4,16 +4,16 @@
       <h2>Nuestra Metodologia</h2>
       <div class="section-decorator"></div>
     </div>
-    <div class="qualities-list gap-5">
+    <div class="qualities-list gap-5 ">
       <div
-        class="quality-item"
+        class="quality-item "
         v-for="(quality, index) in qualities"
         :key="`quality-${index}`"
       >
         <div
           class="quality-content-2"
           :style="
-            index % 2 == 0 ? 'align-self:flex-start' : 'align-self:flex-end'
+            (index+1) % 2 !== 0 ? 'align-self:flex-start' : 'align-self:flex-end'
           "
         >
           <img
@@ -22,7 +22,7 @@
             height="100"
             alt="quality-logo"
           />
-          <div class="quality-content-text-2">
+          <div class="quality-content-text-2 w-100">
             <ul class="d-flex flex-column gap-2">
               <li
                 v-for="(content, index2) in quality.content"

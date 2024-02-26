@@ -21,7 +21,7 @@
         style="
           position: absolute;
           background: #13131a;
-          width: 90%;
+          width: 100%;
           box-shadow: 0px 4px 80px 0px #000;
         "
         :style="
@@ -31,7 +31,7 @@
         <h2 style="width: 100%">
           NO TE CONFORMES CON OPINIONES, BUSCA LA MEJOR EVIDENCIA
         </h2>
-        <p class="text-center mt-4">SEAMOS AGENTES DEL CAMBIO EN EL ÁMBITO DE LA SALUD</p>
+        <p class="text-center mt-4 w-75">SEAMOS AGENTES DEL CAMBIO EN EL ÁMBITO DE LA SALUD</p>
       </div>
     </div>
   </section>

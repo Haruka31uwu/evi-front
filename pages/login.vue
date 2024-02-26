@@ -12,7 +12,7 @@
       <div
         class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-center flex-column justify-content-center"
       >
-        <div class="login__title" style="position: relative; height: auto;z-index: 1;">
+        <div class="login__title mt-4" style="position: relative; height: auto;z-index: 1;">
           <span style="font-size: 1.2em;"> Iniciar sesión </span>
           <div
             class="login__title-decorator"
@@ -109,7 +109,7 @@ import * as yup from "yup";
 import AuthService from "/services/auth/auth.service.js";
 import { useForm } from "vee-validate";
 import { authStore } from "../../store/auth/auth.store";
-import { usePreloader, useSwall } from "/composables/main-composables.js";
+import { usePreloader, useSwall,redirectTo } from "/composables/main-composables.js";
 
 // import { supabaseClient } from "../supabase";
 // import { Auth } from "@nuxtbase/auth-ui-vue";
@@ -145,7 +145,8 @@ export default {
             store.addToken(res.data.access_token);
             store.addUserData(res.data.user);
             const router = useRouter();
-            router.push("/courses");
+            redirectTo('/courses', 'investigation-courses');
+
             hidePreloader();
           }
         },

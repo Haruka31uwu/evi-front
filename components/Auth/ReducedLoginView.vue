@@ -34,7 +34,7 @@
       </div>
       <div class="mt-5 d-flex flex-column align-items-center">
         <button class="btn-blue w-100" type="submit">
-          <span>Iniciar Sesion</span>
+          <span>Iniciar Sesión</span>
         </button>
         <div class="dont-have-account mt-5">
           ¿No tienes una cuenta?

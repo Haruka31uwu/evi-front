@@ -10,3 +10,6 @@ export const getProgramCourses = (courseList) => {
    const courseListIds=courseList.map(course=>course.id)
     return courseData.coursesList.filter(course=>courseListIds.includes(course.id))
 }
+export const getProgramCoursesV2=(courseId)=>{
+    return courseData.coursesList.filter(course=>course.id==courseId)
+}

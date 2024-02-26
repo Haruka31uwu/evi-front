@@ -87,9 +87,8 @@
         {{ course.schedule }}
       </p>
       <div class="course-footer">
-        <router-link :to="'/course-detail/' + course.id"
-          >Mas información</router-link
-        >
+        <span @click="redirectTo('/course-detail/' + course.id,'course-hero')" 
+          >Mas información</span>
         <button class="btn-course" @click="addToCart(course)">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +116,7 @@
 //composition api
 import { useShopCar } from "/composables/shop-car/shop-car.composables.js";
 import { carStore } from "../../store/car/car.store";
-import { useSwall } from "/composables/main-composables.js";
+import { useSwall,redirectTo } from "/composables/main-composables.js";
 export default {
   name: "CourseItem",
   props: {

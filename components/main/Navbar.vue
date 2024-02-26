@@ -205,8 +205,10 @@
 
             @click="
               (e) => {
-                if (option.path === '/login' && isLogged) {
+                console.log(option,userData,userData.length > 0 ,typeof userData.length === 'undefined')
+                if (option.path === '/login' && userData &&(userData.length > 0 || typeof userData.length === 'undefined')) {
                   e.preventDefault();
+                  return;
                 }
                 getClaimForm = false;
                 isCollapsedOpen = false;
@@ -218,6 +220,7 @@
             <lazy-auth-account-block
               v-if="option.path === '/login'"
               id="account-block"
+              @closeDropdown="()=>{isCollapsedOpen=false;}"
             />
             <span v-if="option.path != '/login'">{{ option.name }}</span>
           </component>
@@ -297,11 +300,12 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 const storeAuth = authStore();
 const isLogged = computed(() => storeAuth.isLogged);
+const userData = computed(() => storeAuth.getUserData);
 
 // const userData = computed(()=> storeAuth.getUserData);
 const getRoute = (path) => {
   if (path === "/classroom/home") {
-    if (isLogged) {
+    if (userData.value && userData.value.length == 0) {
       return path;
     }
     return "/login";
@@ -346,7 +350,7 @@ const navOptions = [
     mode: "single",
   },
   {
-    name: "Iniciar Sesion",
+    name: "Iniciar Sesión",
     path: "/login",
     type: "link",
   },
@@ -389,7 +393,7 @@ const selectedOption = computed(() => {
       path: "/resources",
     },
     {
-      name: "Iniciar Sesion",
+      name: "Iniciar Sesión",
       path: "/login",
     },
     {
