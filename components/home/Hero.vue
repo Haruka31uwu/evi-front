@@ -141,5 +141,10 @@ onMounted(() => {
       width: 100%;
     }
   }
+  @media (max-width: 768px) {
+    .hero-content {
+      border-radius: 0px;
+    }
+  }
 }
 </style>

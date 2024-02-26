@@ -91,6 +91,11 @@ const { showPreloader, hidePreloader } = usePreloader();
 const router = useRouter();
 const closeSession = async () => {
   try {
+    showPreloader();
+
+    authStore().removeToken();
+    authStore().removeUserData();
+    hidePreloader();
     isOpenDropdown.value = false;
     const params = {
       token: authStore().getAccessToken,
