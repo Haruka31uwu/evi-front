@@ -1,21 +1,26 @@
 <template>
   <section class="section-explorer">
     <div class="section-content" style="position: relative">
-      <div style="align-self: flex-end" :style="
-            currentWindowWidth < 1024
-              ? 'width: 90%;margin:0 auto;margin-bottom:1em'
-              : 'width:300px'
-          ">
+      <div
+        style="align-self: flex-end"
+        :style="
+          currentWindowWidth < 1024
+            ? 'width: 90%;margin:0 auto;margin-bottom:1em'
+            : 'width:300px'
+        "
+      >
         <input
           type="text"
-          style="width: 100%;"
+          style="width: 100%"
           class="search-input"
-          :placeholder="currentWindowWidth < 768 ? 'Buscar' : 'Buscar curso o programa'"
+          :placeholder="
+            currentWindowWidth < 768 ? 'Buscar' : 'Buscar curso o programa'
+          "
           v-model="courseInput"
         />
         <svg
           v-if="courseInput == ''"
-          style="position: absolute;  top: 0.6em"
+          style="position: absolute; top: 0.6em"
           :style="currentWindowWidth > 1024 ? 'right: 1em' : 'right: 2em'"
           xmlns="http://www.w3.org/2000/svg"
           width="17"
@@ -40,7 +45,9 @@
           :id="
             programtype.id == 1 ? 'investigation-courses' : 'evidences-courses'
           "
-          class="ms-5"
+          :style="
+            currentWindowWidth < 768 ? 'margin: 0 auto' : 'margin-left:min(7em, 10%)'
+          "
         >
           {{ programtype.title }}
         </h4>
@@ -50,7 +57,10 @@
           :id="`courses-container-${programtype.id}`"
         >
           <courses-course-item
-            v-for="(course, index2) in filterCondition(programtype.id,courses.coursesList)"
+            v-for="(course, index2) in filterCondition(
+              programtype.id,
+              courses.coursesList
+            )"
             :key="`course-${carouselKey}-${index2}`"
             :course="course"
           />
@@ -80,6 +90,16 @@
           v-for="(programtype, index) in courses.coursesTypes"
           :key="`typeProgram-${index}`"
         >
+        <h4
+          :id="
+            programtype.id == 1 ? 'investigation-courses' : 'evidences-courses'
+          "
+          :style="currentWindowWidth < 1024 ? 'margin-left:1em' : ''"
+          style="color:#0393aa;font-size: 1.5em;font-weight: 700;"
+        >
+          {{ programtype.title }}
+        </h4>
+        <hr />
           <Carousel
             :value="
               courses.coursesList.filter(
@@ -102,7 +122,7 @@
                 <div class="mb-3 h-100">
                   <div class="relative mx-auto p-carousel-content">
                     <div class="p-carousel-body mb-3">
-                      <div style="position: relative;">
+                      <div style="position: relative">
                         <div class="more-selled-course">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -294,7 +314,6 @@ import coursesData from "/src/data/courses.json";
 import { defineComponent } from "@vue/composition-api";
 export default defineComponent({
   setup() {
-    
     const addToCart = (course) => {
       const { addCarItem } = useShopCar();
       const courseInCar = getCarItems.value.find((item) => {
@@ -324,7 +343,7 @@ export default defineComponent({
       pages.value[programId] = pagev;
     };
     const carouselKey = ref(0);
-    
+
     const responsiveOptions = ref([
       {
         breakpoint: "1400px",
@@ -350,17 +369,18 @@ export default defineComponent({
     });
     const courses = ref(coursesData);
     const courseInput = ref("");
-    const filterCondition = (programId,courseList)=>{
-  
-      if(courseInput.value === ""){
-        console.log(courseList)
-        return courseList.filter(course=>course.type == programId);
+    const filterCondition = (programId, courseList) => {
+      if (courseInput.value === "") {
+        return courseList.filter((course) => course.type == programId);
       }
-      return courseList.filter(course=>
-      course.title.toLowerCase().includes(courseInput.value.toLowerCase())
-      && course.type == programId
+      return courseList.filter(
+        (course) =>
+          course.title
+            .toLowerCase()
+            .includes(courseInput.value.toLowerCase()) &&
+          course.type == programId
       );
-    }
+    };
     watch(courseInput, () => {
       carouselKey.value++;
     });
@@ -373,7 +393,7 @@ export default defineComponent({
       responsiveOptions,
       addToCart,
       carouselKey,
-      filterCondition
+      filterCondition,
     };
   },
 });

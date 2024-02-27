@@ -1,5 +1,5 @@
 <template>
-  <section class="our-courses-section">
+  <section class="our-courses-section pt-5">
     <div class="section-title" style="margin-bottom: 2em">
       <h2>Nuestros cursos</h2>
       <div class="section-decorator" style="left:5em;width: 80%;"></div>

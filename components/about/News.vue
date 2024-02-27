@@ -14,7 +14,7 @@
       >
         <template #item="slotProps">
           <div
-            class="border-1 surface-border border-round m-4 p-carousel-container pt-5 pb-2"
+            class="border-1 surface-border border-round m-4 p-carousel-container pt-5 pb-2x"
           >
             <div class="mb-3 h-100">
               <div class="relative mx-auto p-carousel-content">
