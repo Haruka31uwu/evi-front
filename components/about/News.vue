@@ -1,10 +1,58 @@
 <template>
   <section class="experiencies-section">
     <div class="section-title text-center">
-      <h2 >Publicaciones recientes de nuestros docentes</h2>
-      <div class="section-decorator" style="right: 0;"></div>
+      <h2>Publicaciones recientes de nuestros docentes</h2>
+      <div class="section-decorator" style="right: 0"></div>
     </div>
-    <div class="experiences-container">
+    <div class="" style="width: 90%">
+      <Carousel
+        :value="experiencies"
+        :numVisible="3"
+        :numScroll="3"
+        :responsiveOptions="responsiveOptions"
+        class="carousel-without-pages"
+      >
+        <template #item="slotProps">
+          <div
+            class="border-1 surface-border border-round m-4 p-carousel-container pt-5 pb-2"
+          >
+            <div class="mb-3 h-100">
+              <div class="relative mx-auto p-carousel-content">
+                <div class="p-carousel-body">
+                  <span style="text-align: start !important;font-size: 1.2em;color: #00A9C3; font-weight: bold;"
+                    >Medicina al Dia</span
+                  >
+                  <span style="text-align: start !important">{{
+                    slotProps.data.content
+                  }}</span>
+                </div>
+                <div class="p-carousel-footer" style="align-self: flex-start;">
+                  <span style="text-align: start!important;" class="p-carousel-footer__link">Leer articulo completo</span>
+
+                </div>
+                <!-- <Tag
+                  :value="slotProps.data.inventoryStatus"
+                  :severity="getSeverity(slotProps.data.inventoryStatus)"
+                  class="absolute"
+                  style="left: 5px; top: 5px"
+                /> -->
+              </div>
+            </div>
+            <!-- <div class="mb-3 font-medium">{{ slotProps.data.name }}</div>
+            <div class="flex justify-content-between align-items-center">
+              <div class="mt-0 font-semibold text-xl">
+                ${{ slotProps.data.price }}
+              </div>
+              <span>
+                <Button icon="pi pi-heart" severity="secondary" outlined />
+                <Button icon="pi pi-shopping-cart" class="ml-2" />
+              </span>
+            </div> -->
+          </div>
+        </template>
+      </Carousel>
+    </div>
+    <!-- <div class="experiences-container">
       <svg
         @click="moveToLeft"
         xmlns="http://www.w3.org/2000/svg"
@@ -61,34 +109,32 @@
           stroke-linejoin="round"
         />
       </svg>
-    </div>
+    </div> -->
     <div class="section-divider"></div>
   </section>
 </template>
   <script setup>
-  import { redirectTo } from '/composables/main-composables.js';
+import { redirectTo } from "/composables/main-composables.js";
 let experiencesContainer = ref(null);
 let scrollPosition = ref(0);
-const moveToLeft = () => {
-  if (scrollPosition == 0) return;
-  experiencesContainer = document.querySelector(".experiences-container2");
-  experiencesContainer.scrollLeft -= (experiencesContainer.scrollWidth/experiencies.value.length);
-  scrollPosition.value = experiencesContainer.scrollLeft;
-};
-const moveToRight = () => {
-  if (scrollPosition == experiencesContainer.scrollWidth) return;
-  experiencesContainer.scrollLeft += (experiencesContainer.scrollWidth/experiencies.value.length);;
-  scrollPosition.value = experiencesContainer.scrollLeft;
-};
-onMounted(() => {
-  experiencesContainer = document.querySelector(".experiences-container2");
-  const resizeObserver = new ResizeObserver(moveToRight);
-  resizeObserver.observe(experiencesContainer);
-});
-const getActualScrollPosition = () => {
-  experiencesContainer = document.querySelector(".experiences-container2");
-  return experiencesContainer.scrollLeft;
-};
+const responsiveOptions = ref([
+      {
+        breakpoint: "1400px",
+        numVisible: 2,
+        numScroll: 1,
+      },
+      {
+        breakpoint: "1199px",
+        numVisible: 2,
+        numScroll: 1,
+      },
+      {
+        breakpoint: "850px",
+        numVisible: 1,
+        numScroll: 1,
+      },
+    ]);
+
 const experiencies = ref([
   {
     source: "Medicina Al Dia",

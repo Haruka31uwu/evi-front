@@ -1,29 +1,41 @@
 <template>
   <section>
-    <div class="row w-100 mx-auto" style="height: 90vh;">
+    <div class="row w-100 mx-auto" style="height: 90vh">
       <div
-       v-if="currentWindowWidth>1080"
+        v-if="currentWindowWidth > 1080"
         class="col-xl-6 d-flex justify-content-center align-items-center"
         style="background: #0393aa"
       >
-        <img src="/assets/img/login.png" style="width: 50%; height: 50%"  alt="login"/>
-
+        <img
+          src="/assets/img/login.png"
+          style="width: 50%; height: 50%"
+          alt="login"
+        />
       </div>
       <div
         class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-center flex-column justify-content-center"
       >
-        <div class="login__title mt-4" style="position: relative; height: auto;z-index: 1;">
-          <span style="font-size: 1.2em;"> Iniciar sesión </span>
+        <div
+          class="login__title mt-4"
+          style="position: relative; height: auto; z-index: 1"
+        >
+          <span style="font-size: 1.2em"> Iniciar sesión </span>
           <div
             class="login__title-decorator"
-            style="position: absolute; top: 0.8em; opacity: 0.7; left: 2em;z-index: -1;"
+            style="
+              position: absolute;
+              top: 0.8em;
+              opacity: 0.7;
+              left: 2em;
+              z-index: -1;
+            "
           ></div>
         </div>
         <div class="login__body">
           <p class="mt-4 text-center">
             ¡Bienvenido a evisalud! Ingresa tus datos para continuar
           </p>
-          <VForm :validation-schema="schema" @submit="onSubmit" >
+          <VForm :validation-schema="schema" @submit="onSubmit">
             <div class="input-container">
               <span for="name" style="color: white">Correo Electronico</span>
               <AuthInput
@@ -34,14 +46,13 @@
               />
             </div>
             <div class="input-container mt-4" style="position: relative">
-              <span for="name" style="color: white;">Contraseña</span>
+              <span for="name" style="color: white">Contraseña</span>
               <AuthInput
                 type="password"
                 name="password"
                 placeholder="Contraseña"
                 mode="aggressive"
               />
-
             </div>
 
             <!-- <div class="login__body-options">
@@ -54,7 +65,9 @@
             <div
               class="login__auth_options d-flex flex-column gap-4 mt-5 align-items-center"
             >
-              <button class="btn-blue" type="submit"><span>Ingresar</span></button>
+              <button class="btn-blue" type="submit">
+                <span>Ingresar</span>
+              </button>
               <!-- <div class="btn-gray">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +105,10 @@
               </div> -->
               <div class="dont-have-account d-flex flex-lg-row flex-column">
                 <span>¿No tienes una cuenta?</span>
-                <nuxt-link class="register-now" style="color: white;" to="/register"
+                <nuxt-link
+                  class="register-now"
+                  style="color: white"
+                  to="/register"
                   >Registrate aquí</nuxt-link
                 >
               </div>
@@ -104,25 +120,35 @@
     </div>
   </section>
 </template>
-<script>
+<script setup>
 import * as yup from "yup";
 import AuthService from "/services/auth/auth.service.js";
 import { useForm } from "vee-validate";
 import { authStore } from "../../store/auth/auth.store";
-import { usePreloader, useSwall,redirectTo } from "/composables/main-composables.js";
+import {
+  usePreloader,
+  useSwall,
+  redirectTo,
+} from "/composables/main-composables.js";
+import user from "@/middleware/user";
 
-// import { supabaseClient } from "../supabase";
-// import { Auth } from "@nuxtbase/auth-ui-vue";
-// import {Auth} from '@nuxtbase/auth-ui-vue'
-export default {
-  setup() {
-    let currentWindowWidth = ref(null);
+definePageMeta({
+  title: "Login ",
+  middleware: [
+    function (to, from) {
+    },
+    user
+
+  ],
+});
+let currentWindowWidth = ref(null);
     onMounted(() => {
       currentWindowWidth.value = window.innerWidth;
       window.addEventListener("resize", () => {
         currentWindowWidth.value = window.innerWidth;
       });
-    });    const store = authStore();    
+    });
+    const store = authStore();
     const schema = yup.object().shape({
       email: yup.string().email().required(),
       password: yup.string().required().min(8),
@@ -145,7 +171,7 @@ export default {
             store.addToken(res.data.access_token);
             store.addUserData(res.data.user);
             const router = useRouter();
-            redirectTo('/courses', 'investigation-courses');
+            redirectTo("/courses", "investigation-courses");
 
             hidePreloader();
           }
@@ -158,17 +184,10 @@ export default {
             error.message ||
             error.toString();
           hidePreloader();
-          showErrorSwall('',resMessage);
+          showErrorSwall("", resMessage);
         }
       );
     };
-    return {
-      onSubmit,
-      schema,
-      currentWindowWidth
-    };
-  },
-};
 </script>
 
 <style   scoped lang="scss">
@@ -214,7 +233,7 @@ export default {
       text-align: center;
       &:hover {
         cursor: pointer;
-        color:#0393aa;
+        color: #0393aa;
       }
     }
   }
@@ -236,7 +255,8 @@ h6,
 span {
   color: white;
   font-family: Axiforma;
-}.dont-have-account{
+}
+.dont-have-account {
   margin-top: 4em;
 }
 </style>

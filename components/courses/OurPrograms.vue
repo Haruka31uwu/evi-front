@@ -4,7 +4,7 @@
       <h2>Nuestros programas</h2>
       <div class="section-decorator" style="left:4.3em;width: 90%;"></div>
     </div>
-    <h3>
+    <h3 style="width: 90%;text-align: center;"> 
       Descubre nuestros programas exclusivos: ¡paquetes de cursos diseñados para
       potenciar tus habilidades!
     </h3>

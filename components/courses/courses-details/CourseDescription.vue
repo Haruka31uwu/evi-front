@@ -87,7 +87,7 @@
               }})</span
             >
             <small class="pb-1">!Pregunta por nuestros descuentos</small>
-            <div class="btn-white d-flex flex-row" style="column-gap: 1em" @click="addToCart(courseInfo.value)">
+            <div class="btn-white d-flex flex-row w-100" style="column-gap: 1em" @click="addToCart(courseInfo.value)">
               <img src="/assets/img/courses/car.svg" alt="cart-icon"/><span
                 >Agregar al carrito</span
               >
@@ -97,7 +97,7 @@
             <small
               >Si tienes dudas o necesitas mas información,contactanos</small
             >
-            <div class="btn-white d-flex flex-row" style="column-gap: 1em">
+            <div class="btn-white d-flex flex-row w-100" style="column-gap: 1em">
               <img src="/assets/img/courses/whats.svg" alt="whats" />
               <span
                 ><a target="_blank" href="https://wa.me//+51950876703"
@@ -106,7 +106,7 @@
               >
             </div>
             <div
-              class="btn-gray-outline d-flex flex-row"
+              class="btn-gray-outline d-flex flex-row w-100"
               style="column-gap: 1em"
             >
               <img src="/assets/img/courses/info.svg" alt="info.svg" />

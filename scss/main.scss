@@ -704,9 +704,11 @@ section {
                 align-items: flex-start;
                 justify-content: center;
                 column-gap: 1em;
-                img{
+
+                img {
                     height: 80px;
                 }
+
                 .quality-content-text {
                     display: flex;
                     justify-content: center;
@@ -1396,14 +1398,14 @@ section {
         }
 
         .footer-content-end-item {
-            @include font(400, 20px, 1.4em, $EVI400);
+            @include font(400, 15px, 1em, $EVI400);
             text-decoration: none;
             color: $EVI400;
 
             &:hover {
                 cursor: pointer;
                 text-decoration: underline;
-                @include font(300, 21px, 1.4em, $EVI100);
+                @include font(300, 15px, 1em, $EVI100);
             }
         }
     }
@@ -1612,31 +1614,7 @@ section {
     .course-img-container {
         position: relative;
 
-        .more-selled-course {
-            position: absolute;
-            top: 0;
-            right: 2em;
-            width: 50px;
-            padding: 0 0.3em;
-            border-radius: 0 0 1em 1em;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            @include font(400, 10px, 1.2em, $EVI100);
-            @include theme($EVI400, $EVI100);
-
-            span {
-                word-break: break-all;
-                text-align: center;
-            }
-        }
-
-        .course-type {
-            position: absolute;
-            bottom: 0;
-            left: 1em;
-        }
+        
 
     }
 
@@ -1714,6 +1692,16 @@ section {
     }
 
     @media(max-width:768px) {
+        .programs-container {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 2em;
+        }
+    }
+    @media(max-width:468px) {
         .programs-container {
             width: 100%;
             display: flex;
@@ -2060,4 +2048,153 @@ span a {
             }
         }
     }
+}
+
+.p-carousel {
+    .p-carousel-content {
+        .p-carousel-items-container {
+            height: auto;
+
+            .p-carousel-item {
+                height: auto;
+
+                .p-carousel-container {
+                    background: #1C1C24;
+                    height: auto;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 4em 2em;
+                    height: 450px;
+                    
+                    border-radius: 1.5em;
+
+                    .p-carousel-content {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: space-between;
+                        height: 100% !important;
+                        width: 100% !important;
+                        span {
+                            font-family: Axiforma;
+                        }
+
+                        .p-carousel-body {
+                            text-align: center;
+                            font-size: 1.2em;
+                            display: flex;
+                            flex-direction: column;
+                            row-gap: 1em;
+                            .p-carousel-body__title{
+                                font-size: 1.2em;
+                                font-weight: 700;
+                                color: $EVI100;
+                            }
+                        }
+
+                        .p-carousel-footer {
+                            display: flex;
+                            flex-direction: column;
+                            align-self: flex-end;
+
+                            span {
+                                text-align: end;
+                                color: $EVI100;
+                            }
+
+                            span:nth-child(1) {
+                                font-weight: 700;
+                            }
+                        }
+                    }
+                    &:hover {
+                        cursor: pointer;
+                        border: 1px solid $EVI100;
+                        .p-carousel-footer__link{
+                            color: $EVI100;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    .p-link.p-carousel-prev,
+    .p-carousel-next {
+        height: 45px;
+        width: 45px;
+        
+        &:hover {
+            background: none;
+            svg{
+                transform: scale(1.2);
+            }
+        }
+
+        svg {
+            height: 100%;
+            width: 100%;
+
+            path {
+                fill: $EVI100;
+
+            }
+
+        }
+    }
+    .p-carousel-indicators {
+        .p-carousel-indicator {
+            button{
+                border-radius: 50%;
+                width: 15px;
+                height: 15px;
+            }
+        }.p-highlight{
+            button{
+                background: $EVI100;
+            }
+        
+        }
+    }
+    
+}
+.carousel-without-pages{
+    .p-carousel-indicators {
+        display: none!important;
+    }
+}
+.carousel-without-arrows{
+    .p-carousel-prev,
+    .p-carousel-next {
+        display: none!important;
+    }
+}
+.more-selled-course {
+    position: absolute;
+    top: 0;
+    right: 2em;
+    width: 50px;
+    padding: 0 0.3em;
+    border-radius: 0 0 1em 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include font(400, 10px, 1.2em, $EVI100);
+    @include theme($EVI400, $EVI100);
+
+    span {
+        word-break: break-all;
+        text-align: center;
+    }
+}
+
+.course-type {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
 }

@@ -375,7 +375,7 @@
         <span @click="openWorkWithUsModal()">Trabaja con nosotros</span>
       </div>
     </div>
-    <div class="footer-content-end">
+    <div class="footer-content-end mt-4">
       <div
         class="footer-options d-flex flex-row align-items-center justify-content-center"
         style="column-gap: 1em"

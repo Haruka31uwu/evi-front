@@ -3,7 +3,34 @@
     <div class="section-title">
       <div class="section-decorator"></div>
     </div>
-    <div class="experiences-container">
+    <div class="" style="width: 90%;">
+      <Carousel
+        :value="experiencies"
+        :numVisible="3"
+        :numScroll="3"
+        :responsiveOptions="responsiveOptions"
+      >
+        <template #item="slotProps">
+          <div class="border-1 surface-border border-round m-4 p-carousel-container">
+            <div class="mb-3 h-100">
+              <div class="relative mx-auto p-carousel-content">
+                <div class="p-carousel-body text-start">
+                  <span class="p-carousel-body__title">Medicina al dia</span>
+                  <span>{{ slotProps.data.description }}</span>
+
+                </div>
+                <div class="p-carousel-footer d-flex flex-row gap-1" style="align-self: flex-start;">
+                  <span style="text-align: start!important;" class="p-carousel-footer__link">Leer articulo completo</span>
+                  <!-- <span style="text-align: start!important;">{{slotProps.data.date}}</span> -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </template>
+      </Carousel>
+    </div>
+    <!-- <div class="experiences-container">
       <svg
         @click="moveToLeft"
         xmlns="http://www.w3.org/2000/svg"
@@ -58,32 +85,32 @@
           stroke-linejoin="round"
         />
       </svg>
-    </div>
+    </div> -->
   </section>
 </template>
-  <script setup>
-let experiencesContainer = ref(null);
-let scrollPosition = ref(0);
-const moveToLeft = () => {
-  if (scrollPosition == 0) return;
-  experiencesContainer = document.querySelector(".experiences-container2");
-  experiencesContainer.scrollLeft -=  (experiencesContainer.scrollWidth/experiencies.value.length);
-  scrollPosition.value = experiencesContainer.scrollLeft;
-};
-const moveToRight = () => {
-  if (scrollPosition == experiencesContainer.scrollWidth) return;
-  experiencesContainer.scrollLeft += (experiencesContainer.scrollWidth/experiencies.value.length)
-  scrollPosition.value = experiencesContainer.scrollLeft;
-};
-onMounted(() => {
-  experiencesContainer = document.querySelector(".experiences-container2");
-  const resizeObserver = new ResizeObserver(moveToRight);
-  resizeObserver.observe(experiencesContainer);
-});
-const getActualScrollPosition = () => {
-  experiencesContainer = document.querySelector(".experiences-container2");
-  return experiencesContainer.scrollLeft;
-};
+<script setup>
+const responsiveOptions = ref([
+  {
+    breakpoint: "1400px",
+    numVisible: 2,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "1199px",
+    numVisible: 2,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "850px",
+    numVisible: 1,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "575px",
+    numVisible: 1,
+    numScroll: 1,
+  },
+]);
 const experiencies = ref([
   {
     img: "/assets/img/resources/blog2.jpg",

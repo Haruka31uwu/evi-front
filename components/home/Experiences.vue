@@ -2,88 +2,75 @@
   <section class="experiencies-section">
     <div class="section-title">
       <h2>Experiencias</h2>
-      <div class="section-decorator" style="left:1em;"></div>
+      <div class="section-decorator" style="left: 1em"></div>
     </div>
-    <div class="experiences-container">
-      <svg
-      @click="moveToLeft"
-        xmlns="http://www.w3.org/2000/svg"
-        width="21"
-        height="39"
-        viewBox="0 0 21 39"
-        fill="none"
-        :style="scrollPosition>0?'cursor:pointer':''"
+    <div class="" style="width: 90%;">
+      <Carousel
+        :value="experiencies"
+        :numVisible="3"
+        :numScroll="3"
+        :responsiveOptions="responsiveOptions"
+        class="carousel-without-pages"
+      >
+        <template #item="slotProps">
+          <div class="border-1 surface-border border-round m-4 p-carousel-container">
+            <div class="mb-3 h-100">
+              <div class="relative mx-auto p-carousel-content">
+                <div class="p-carousel-body">
+                  <span>{{ slotProps.data.content }}</span>
+                </div>
+                <div class="p-carousel-footer">
+                  <span>{{ slotProps.data.owner }}</span>
+                  <span>{{ slotProps.data.course }}</span>
 
-        :opacity="scrollPosition==0?0:1"
-      >
-      
-        <path
-
-          d="M19 2L2 19.5L19 37"
-          stroke="#00A9C3"
-          stroke-width="4"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-<div class="experiences-container2 d-flex gap-5 mx-auto" style="overflow-x: hidden;overflow-y: hidden;width: 80%;" >
-  <div
-        v-for="(experience, index) in experiencies"
-        :key="`experience-${index}`"
-        class="experience-container"
-      >
-        <p>" {{ experience.content }} "</p>
-        <div class="experience-owner">
-          <span>{{ experience.owner }}</span>
-          <span>{{ experience.course }}</span>
-        </div>
-      </div>
-</div>
-    
-      <svg
-      @click="moveToRight"
-        xmlns="http://www.w3.org/2000/svg"
-        width="21"
-        height="39"
-        viewBox="0 0 21 39"
-        fill="none"
-        style="cursor: pointer;"
-      >
-        <path
-          d="M2 37L19 19.5L2 2"
-          stroke="#00A9C3"
-          stroke-width="4"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
+                </div>
+                <!-- <Tag
+                  :value="slotProps.data.inventoryStatus"
+                  :severity="getSeverity(slotProps.data.inventoryStatus)"
+                  class="absolute"
+                  style="left: 5px; top: 5px"
+                /> -->
+              </div>
+            </div>
+            <!-- <div class="mb-3 font-medium">{{ slotProps.data.name }}</div>
+            <div class="flex justify-content-between align-items-center">
+              <div class="mt-0 font-semibold text-xl">
+                ${{ slotProps.data.price }}
+              </div>
+              <span>
+                <Button icon="pi pi-heart" severity="secondary" outlined />
+                <Button icon="pi pi-shopping-cart" class="ml-2" />
+              </span>
+            </div> -->
+          </div>
+        </template>
+      </Carousel>
     </div>
   </section>
 </template>
 <script setup>
-let experiencesContainer = ref(null);
-let scrollPosition = ref(0);
-const moveToLeft = () => {
-  if (scrollPosition==0) return;
-  experiencesContainer = document.querySelector(".experiences-container2");;
-  experiencesContainer.scrollLeft -= (experiencesContainer.scrollWidth/experiencies.value.length);
-  scrollPosition.value = experiencesContainer.scrollLeft;
-};
-const moveToRight = () => {
-  if (scrollPosition==experiencesContainer.scrollWidth) return;
-  experiencesContainer.scrollLeft += (experiencesContainer.scrollWidth/experiencies.value.length);
-  scrollPosition.value = experiencesContainer.scrollLeft;
-
-};
-onMounted(() => {
-  experiencesContainer= document.querySelector(".experiences-container2");
-  const resizeObserver=new ResizeObserver(moveToRight);
-  resizeObserver.observe(experiencesContainer);
-});
-const getActualScrollPosition = () => {
-   experiencesContainer = document.querySelector(".experiences-container2");
-  return experiencesContainer.scrollLeft;
-};
+const responsiveOptions = ref([
+  {
+    breakpoint: "1400px",
+    numVisible: 2,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "1199px",
+    numVisible: 2,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "850px",
+    numVisible: 1,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "575px",
+    numVisible: 1,
+    numScroll: 1,
+  },
+]);
 const experiencies = ref([
   {
     content:
@@ -196,19 +183,19 @@ const experiencies = ref([
     content:
       "Un curso bien equilibrado. La dosis perfecta de teoría y práctica, excelentes docentes y material muy cuidado que te permite recordar con facilidad todo lo aprendido.",
     owner: "Sergio Bravo",
-    course: "Curso - Redacción y publicación de casos clínicos",
+    course: " Redacción y publicación de casos clínicos",
   },
   {
     content:
       "100% recomendado y totalmente acorde con la metodología de aprendizaje ¡A por otro curso más!",
     owner: "Sommer Porras",
-    course: "Curso - Redacción y publicación de casos clínicos",
+    course: " Redacción y publicación de casos clínicos",
   },
   {
     content:
       "Después de llevar este curso estoy con mucho entusiasmo de poder hacer mi primera publicación.",
     owner: "Amilcar Gonzales",
-    course: "Curso - Redacción y publicación de casos clínicos",
+    course: " Redacción y publicación de casos clínicos",
   },
 ]);
 </script>

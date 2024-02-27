@@ -1,5 +1,5 @@
 <template>
-  <section class="reasons-list">
+  <section class="reasons-list pt-5">
     <div class="reason-list-content">
       <div v-for="(reason, index) in reasonsList" :key="`reason-${index}`" class="reason-list-item" style="position: relative;">
         <div class="reason-header mb-4">

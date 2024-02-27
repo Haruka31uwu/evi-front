@@ -48,11 +48,12 @@
                 opacity: 0.7;
                 position: absolute;
                 top:0.5em;
-                right: 20%;
+                
               "
+              :style="currentWindowWidth < 768 ? 'width: 80%;top:0.7em;right:0' : 'width: 25%;right:30%;top:0.6em'"
             ></div>
           </div>
-          <p>
+          <p class="text-justify w-75 my-4">
             Hemos organizado las Guías de Práctica Clínica (GPC) realizadas por
             el Instituto de Evaluación de Tecnologías en Salud e Investigación
             (IETSI) de Perú para que puedas revisar sus recomendaciones y
@@ -95,7 +96,7 @@
               right: 0;
 
             "
-            :style="currentWindowWidth < 1200 ? 'width: 80%;bottom:1.2em' : 'width: 480px'"
+            :style="currentWindowWidth < 1200 ? 'width: 80%;bottom:1.2em' : 'width: 400px'"
           ></div>
         </div>
         <div
@@ -242,7 +243,7 @@ export default defineComponent({
   &:hover {
     cursor: pointer;
     background: #0393aa;
-    padding: 0.5em 5em 0.5em 1em;
+    padding: 0.5em 1em;
     border-radius: 1.5em;
   }
 }

@@ -4,7 +4,7 @@
     <div
       class="course-img-container"
       :id="`course-${course.id}`"
-      :style="`background:url(${course.img_small}) no-repeat;background-size: cover;width:410px;height:150px;border-radius:1em 1em 0 0;position:relative`"
+      :style="`background:url(${course.img_small}) no-repeat;background-size: cover;width:410px;height:250px;border-radius:1em 1em 0 0;position:relative`"
     >
       <div class="more-selled-course">
         <svg
@@ -167,13 +167,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 .more-info {
-  color: #192855;
+  color: #515166;
   cursor: pointer;
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: 600;
-  margin-top: 1em;
   display: block;
   text-align: right;
+
+  &:hover {
+    text-decoration: underline;
+  }
+  
 } 
 </style>
-```
