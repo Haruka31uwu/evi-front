@@ -6,7 +6,7 @@
           <h1>
             Programa de formación en  "{{ programInfo.value.title  }}"
           </h1>
-          <div class="btn-white">
+          <div class="btn-white w-100">
               <span>Inicia ahora</span>
           </div>
        </div>

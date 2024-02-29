@@ -15,7 +15,7 @@
     >
       <div class="hero-content-text">
         <h1>Curso: "{{ courseInfo.value.title }}"</h1>
-        <div class="btn-white">
+        <div class="btn-white w-100">
           <span>Inicia ahora</span>
 
         </div>
