@@ -5,7 +5,7 @@
     </h3>
     <p
       class="text-center my-4 mx-auto"
-      style="font-size: 1.15em; width: 50%; min-width: 380px"
+      style="font-size: 1.15em; width: 50%; min-width: 300px"
     >
       Crea una cuenta y empieza tu aventura para realizar investigación de
       calidad y tomar mejores decisiones en salud
