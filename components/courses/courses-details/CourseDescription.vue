@@ -30,15 +30,18 @@
       </svg>
     </article>
     <div class="row ms-xl-5 w-100">
-      <div class="col col-sm-12 col-md-12 col-xl-8">
+      <div class="col col-12 col-sm-12 col-md-12 col-xl-8">
         <div style="width: 80%" class="ms-5 d-flex gap-2 flex-column">
           <h4>
             Accede de inmediato al contenido y únete a la siguiente cohorte de
             este curso
           </h4>
           <ul class="d-flex flex-column gap-1">
-            <li v-for="(item,key,index) in courseInfo.value.info" :key="`detail-${index}`" >
-              <strong>{{key}}: </strong>
+            <li
+              v-for="(item, key, index) in courseInfo.value.info"
+              :key="`detail-${index}`"
+            >
+              <strong>{{ key }}: </strong>
               <span>{{ item }}</span>
             </li>
           </ul>
@@ -59,8 +62,25 @@
               }"
               class="px-2 py-2 d-flex gap-2 align-items-center justify-content-center w-100"
             >
-              <img src="/assets/img/courses/download.svg" alt="downlaod icon" />
-              <span > Descargar Brochure </span>
+              <svg
+                width="11"
+                height="14"
+                viewBox="0 0 11 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9.66511 12.625H1.33636C1.22591 12.625 1.11999 12.6645 1.04189 12.7348C0.963796 12.8052 0.919922 12.9005 0.919922 13C0.919922 13.0995 0.963796 13.1948 1.04189 13.2652C1.11999 13.3355 1.22591 13.375 1.33636 13.375H9.66511C9.77555 13.375 9.88147 13.3355 9.95957 13.2652C10.0377 13.1948 10.0815 13.0995 10.0815 13C10.0815 12.9005 10.0377 12.8052 9.95957 12.7348C9.88147 12.6645 9.77555 12.625 9.66511 12.625Z"
+                  fill="#13131A"
+                  stroke="#13131A"
+                />
+                <path
+                  d="M5.2067 11.7654C5.22607 11.7827 5.24727 11.7983 5.27 11.8119L5.30165 11.8269L5.34163 11.8464L5.38327 11.8584L5.41992 11.8674C5.47485 11.8777 5.53156 11.8777 5.58649 11.8674L5.62314 11.8584L5.66478 11.8464L5.70476 11.8269L5.73641 11.8119C5.75915 11.7983 5.78035 11.7827 5.79971 11.7654L9.91911 8.04993C9.98524 7.97801 10.0192 7.88646 10.0143 7.79319C10.0095 7.69991 9.96615 7.61163 9.89283 7.5456C9.8195 7.47957 9.72146 7.44055 9.61788 7.43618C9.5143 7.4318 9.41263 7.46238 9.33276 7.52194L5.91798 10.5999V0.999997C5.91798 0.900541 5.8741 0.805159 5.79601 0.734834C5.71791 0.664508 5.61199 0.625 5.50154 0.625C5.3911 0.625 5.28517 0.664508 5.20708 0.734834C5.12898 0.805159 5.0851 0.900541 5.0851 0.999997V10.5999L1.67032 7.52194C1.59045 7.46238 1.48878 7.4318 1.3852 7.43618C1.28162 7.44055 1.18358 7.47957 1.11025 7.5456C1.03693 7.61163 0.9936 7.69991 0.988739 7.79319C0.983879 7.88646 1.01784 7.97801 1.08397 8.04993L5.2067 11.7654Z"
+                  fill="#13131A"
+                  stroke="#13131A"
+                />
+              </svg>
+              <span style="color: black"> Descargar Brochure </span>
             </div>
           </div>
         </div>
@@ -87,8 +107,12 @@
               }})</span
             >
             <small class="pb-1">!Pregunta por nuestros descuentos</small>
-            <div class="btn-white d-flex flex-row w-100" style="column-gap: 1em" @click="addToCart(courseInfo.value)">
-              <img src="/assets/img/courses/car.svg" alt="cart-icon"/><span
+            <div
+              class="btn-white d-flex flex-row w-100"
+              style="column-gap: 1em"
+              @click="addToCart(courseInfo.value)"
+            >
+              <img src="/assets/img/courses/car.svg" alt="cart-icon" /><span
                 >Agregar al carrito</span
               >
             </div>
@@ -97,7 +121,10 @@
             <small
               >Si tienes dudas o necesitas mas información,contactanos</small
             >
-            <div class="btn-white d-flex flex-row w-100" style="column-gap: 1em">
+            <div
+              class="btn-white d-flex flex-row w-100"
+              style="column-gap: 1em"
+            >
               <img src="/assets/img/courses/whats.svg" alt="whats" />
               <span
                 ><a target="_blank" href="https://wa.me//+51950876703"
@@ -110,7 +137,9 @@
               style="column-gap: 1em"
             >
               <img src="/assets/img/courses/info.svg" alt="info.svg" />
-              <span @click="redirectTo('/commons','frequent-questions')">Ir a Preguntas Frecuentes</span>
+              <span @click="redirectTo('/commons', 'frequent-questions')"
+                >Ir a Preguntas Frecuentes</span
+              >
             </div>
           </div>
         </div>
@@ -121,7 +150,7 @@
       class="my-5 mx-auto"
     ></div>
     <div class="row mx-auto" style="width: 80%">
-      <div class="col-sm-12 col-xl-6 " v-if="currentWindowWidth>1200">
+      <div class="col-sm-12 col-xl-6" v-if="currentWindowWidth > 1200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="212"
@@ -155,11 +184,12 @@
           />
         </svg>
       </div>
-      <div class="col-sm-12 col-md-12 col-xl-6 d-flex  flex-column justify-content-center align-items-center">
-        <div style="position: relative; margin-bottom: 1em" >
+      <div
+        class="col-sm-12 col-md-12 col-xl-6 d-flex flex-column justify-content-center align-items-center"
+      >
+        <div style="position: relative; margin-bottom: 1em">
           <span class="title-decorated" style="z-index: 2">Contenido</span>
           <div
-          
             style="
               width: 150px;
               border-radius: 1em;
@@ -175,8 +205,12 @@
           ></div>
         </div>
         <ul style="list-style: none" class="d-flex flex-column gap-1 mx-0 px-0">
-          <li class="d-flex gap-1 align-items-center" v-for="(item,index) in courseInfo.value.contenido" :key="`content-${index}`">
-            <svg 
+          <li
+            class="d-flex gap-1 align-items-center"
+            v-for="(item, index) in courseInfo.value.contenido"
+            :key="`content-${index}`"
+          >
+            <svg
               width="14"
               height="14"
               viewBox="0 0 14 14"
@@ -193,7 +227,7 @@
               />
             </svg>
             <span>{{ item }}</span>
-            </li>
+          </li>
         </ul>
       </div>
     </div>
@@ -204,20 +238,27 @@
     <div
       class="d-flex mx-auto justify-content-center flex-column align-items-center gap-4"
     >
-      <h4 style="text-align: center;">¿Qué aprenderé en este curso de {{ courseInfo.value.title }}?</h4>
+      <h4 style="text-align: center">
+        ¿Qué aprenderé en este curso de {{ courseInfo.value.title }}?
+      </h4>
       <!-- <video
         style="width: 70%; height: 50%"
         controls
         :src="courseInfo.value.videoUrl"
         type="video/mp4"
       ></video> -->
-      <iframe width="80%" height="615" :src="courseInfo.value.videoUrl" frameborder="0" allowfullscreen></iframe>
-
+      <iframe
+        width="80%"
+        height="615"
+        :src="courseInfo.value.videoUrl"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
     </div>
   </section>
 </template>
 <script>
-import { redirectTo,useSwall } from '/composables/main-composables';
+import { redirectTo, useSwall } from "/composables/main-composables";
 import { carStore } from "../../store/car/car.store";
 import { useShopCar } from "/composables/shop-car/shop-car.composables.js";
 
@@ -243,29 +284,30 @@ export default {
     });
     const addToCart = (course) => {
       const { addCarItem } = useShopCar();
-      const courseInCar = getCarItems.value.find(
-        (item) => {
-          if(item.type===3){
-            return item.coursesList.find(
-              (courseItem) => courseItem.id === course.id
-            );
-          }
-          return item.id === course.id;
+      const courseInCar = getCarItems.value.find((item) => {
+        if (item.type === 3) {
+          return item.coursesList.find(
+            (courseItem) => courseItem.id === course.id
+          );
         }
-      );
-      
+        return item.id === course.id;
+      });
+
       if (courseInCar) {
-        showErrorSwall("","El curso ya se encuentra en el carrito o pertenece a un programa de cursos");
+        showErrorSwall(
+          "",
+          "El curso ya se encuentra en el carrito o pertenece a un programa de cursos"
+        );
         return;
       }
       addCarItem(course);
-      showSuccessSwall("","Curso agregado al carrito");
+      showSuccessSwall("", "Curso agregado al carrito");
     };
     return {
       courseInfo: props.courseInfo,
       currentWindowWidth,
       addToCart,
-      redirectTo
+      redirectTo,
     };
   },
 };
