@@ -48,11 +48,11 @@
             :color="getStudentValidity(item.is_valid_student).color"
             size="30"
           />
-          <span>{{ getStudentValidity(item.is_valid_student).label }}</span>
+          <span>{{ getStudentValidity(item.is_valid_student,item.carnet_img).label }}</span>
         </div>
       </template>
       <template v-slot:item.carnet_img="{ item }">
-        <span @click="openFile(item)">Ver Carnet</span>
+        <span @click="openFile(item)">{{ !item.carnet_img && item.carnet_img!=""?"Ver Carnet":"No es Estudiante" }}</span>
       </template>
       <template v-slot:item.phone_number="{ item }">
         <div class="d-flex flex-row gap-1">
@@ -166,20 +166,30 @@ const openFile = (item) => {
   imgSrc.value = item.carnet_img;
   user.value = item;
 };
-const getStudentValidity = (validity) => {
+const getStudentValidity = (validity,carnet="") => {
   if (validity === 1) {
     return {
       label: "Si",
       color: "green",
       icon: "material-symbols:check",
     };
-  } else if (validity === 0) {
+  }
+  else if((validity==0 || !validity) && (carnet=="" || carnet==null)){
+    return {
+      label: "No es estudiante",
+      color: "red",
+      icon: "material-symbols:close",
+    };
+  }	
+   else if (validity === 0) {
     return {
       label: "No",
       color: "red",
       icon: "material-symbols:close",
     };
-  } else {
+
+  }
+  else {
     return {
       label: "Falta Validar",
       color: "yellow",
