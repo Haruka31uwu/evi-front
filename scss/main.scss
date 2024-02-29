@@ -188,6 +188,7 @@ body {
 
     h1 {
         @include font(500, 50px, 1.4em, $EVI400);
+        
     }
 
     @media (max-width: 768px) {
@@ -195,9 +196,10 @@ body {
         width: 70%;
 
         h1 {
-            @include font(500, 44px, 1.4em, $EVI400);
+            @include font(500, 40px, 1.4em, $EVI400);
         }
     }
+
 }
 
 .btn-white {
