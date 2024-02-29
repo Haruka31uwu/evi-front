@@ -57,7 +57,7 @@
             :style="
               currentWindowWidth < 768 ? 'text-decoration:underline;' : ''
             "
-            class="d-flex align-items-center gap-1 "
+            class="d-flex align-items-center gap-1 mx-auto mb-2 mx-auto"
           >
             Flexibilidad en horarios
           </h5>
@@ -83,7 +83,7 @@
             :style="
               currentWindowWidth < 768 ? 'text-decoration:underline;' : ''
             "
-            class="d-flex align-items-center gap-1"
+            class="d-flex align-items-center gap-1 mx-auto mb-2"
           >
             Supervisión y seguimiento directo:
           </h5>
@@ -109,7 +109,7 @@
             :style="
               currentWindowWidth < 768 ? 'text-decoration:underline;' : ''
             "
-            class="d-flex align-items-center gap-1"
+            class="d-flex align-items-center gap-1 mx-auto mb-2"
           >
             Mayor comodidad y motivación:
           </h5>
