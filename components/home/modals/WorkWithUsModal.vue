@@ -46,7 +46,7 @@
           :class="currentWindowWidth < 1090 ? 'col col-md-10 col-lg-11 mx-auto ' : ''"
         >
           <h5 style="color: white" class="text-center">
-            Trabajas con nosotros
+            Trabaja con nosotros
           </h5>
           <span style="color: white" class="text-center">
             ¿Quieres hacer parte de nuestro equipo? Déjanos tus datos y te
@@ -68,7 +68,7 @@
             <small style="color: white">Comentario*</small>
             <textarea class="input-customized" rows="4" cols="50"></textarea>
           </div>
-          <div class="btn-blue mx-auto">Enviar</div>
+          <div class="btn-blue mx-auto w-100"><span>Enviar</span></div>
         </div>
       </div>
     </div>

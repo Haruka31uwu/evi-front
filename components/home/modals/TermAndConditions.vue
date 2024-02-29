@@ -34,9 +34,9 @@
           />
         </svg>
       </div>
-      <div class="row mx-auto d-flex flex-column gap-5" style="width: 80%">
+      <div class="row mx-auto d-flex flex-column gap-5" style="width: 80%;max-height: 90vh;overflow-y: auto;">
         <div
-          class="d-flex flex-column justify-content-center align-items-center"
+          class="d-flex flex-column justify-content-center align-items-center" 
         >
           <span style="color: white">Estimado (a) usuario (a)</span>
           <p style="color: white; text-align: center">
@@ -118,7 +118,7 @@ export default {
     <style lang="scss" scoped>
 .modal-customized {
   position: fixed;
-  top: 0;
+  top:0;
   left: 0;
   z-index: 9999;
   width: 100%;
@@ -126,10 +126,15 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  
 }
+.modal-customized-header {
+    position: sticky;
+    top: 0;
+  }
 .modal-customized-body {
-  width: 50%;
+  width: 80%;
   background-color: #1c1c24;
 }
 @media (max-width: 768px) {
