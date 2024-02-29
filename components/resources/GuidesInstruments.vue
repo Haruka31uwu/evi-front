@@ -94,9 +94,9 @@
               position: absolute;
               bottom: 0;
               right: 0;
-
+          
             "
-            :style="currentWindowWidth < 1200 ? 'width: 80%;bottom:1.2em' : 'width: 400px'"
+            :style="currentWindowWidth <= 625 ? 'width: 80%;bottom:1em' : 'width: 50%;max-width:600px;min-width:300px;left:45%'"
           ></div>
         </div>
         <div

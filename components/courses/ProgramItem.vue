@@ -57,14 +57,14 @@
         </li>
       </ul>
       <div class="program-footer">
-        <span class="program-more-info">
-          <router-link
-            :to="'/program-detail/' + program.id"
+        <span class="program-more-info" @click="redirectTo('/program-detail/' + program.id,'course-hero')">
+          <span
+            
             style="color: #0393aa; text-decoration: underline"
-            >Mas información</router-link
+            >Mas información</span
           >
         </span>
-        <button class="btn-blue">
+        <button class="btn-blue w-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="15"

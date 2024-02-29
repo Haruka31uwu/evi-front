@@ -38,7 +38,7 @@
         width: auto;
       "
     >
-      <h3 class="text-center mb-5">Cursos que incluye el programa</h3>
+      <h3 class="text-center mb-5 " style="z-index: 4;position: relative;">Cursos que incluye el programa</h3>
 
       <div
         style="
@@ -51,11 +51,12 @@
           border-radius: 1em;
           position: absolute;
           top: 1.2em;
+          z-index: 2;
         "
         :style="currentWindowWidth>768?'right:35%':'right: 1em;'"
       ></div>
     </div>
-    <div class="row ms-xl-5 w-100">
+    <div class="row ps-xl-5 w-100">
       <div class="col col-sm-12 col-md-12 col-xl-8 mb-4">
         <div
           :style="
@@ -193,7 +194,7 @@
             <small class="pb-1" style="color: black; font-weight: 400"
               >!Pregunta por nuestros descuentos</small
             >
-            <div class="btn-white d-flex gap-1" @click="addToCart(programInfo.value)">
+            <div class="btn-white d-flex gap-1 w-100" @click="addToCart(programInfo.value)">
               <svg
                 width="15"
                 height="13"
@@ -219,7 +220,7 @@
             <small style="color: black; font-weight: 400"
               >Si tienes dudas o necesitas mas información,contactanos</small
             >
-            <div class="btn-white d-flex gap-1">
+            <div class="btn-white d-flex gap-1 w-100">
               <svg
                 width="16"
                 height="17"
@@ -246,7 +247,7 @@
                 ></span
               >
             </div>
-            <div class="btn-blue-outline d-flex gap-1">
+            <div class="btn-blue-outline d-flex gap-1 w-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

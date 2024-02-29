@@ -25,7 +25,7 @@
           <div class="column-divider"></div>
           <div class="second-column column" >
             <h5>Contacto</h5>
-            <span 
+            <span  class="d-flex flex-row"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="programInfo.value" class="hero-container">
+    <div v-if="programInfo.value" class="hero-container" id="course-hero">
       <div class="hero" :style="{ backgroundImage: `url(${programInfo.value.img})`}"></div>
       <div class="hero-content">
        <div class="hero-content-text">

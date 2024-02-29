@@ -29,7 +29,7 @@
         />
       </svg>
     </article>
-    <div class="row ms-xl-5 w-100">
+    <div class="row ps-xl-5 w-100">
       <div class="col col-12 col-sm-12 col-md-12 col-xl-8">
         <div style="width: 80%" class="ms-5 d-flex gap-2 flex-column">
           <h4>
