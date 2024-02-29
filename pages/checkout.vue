@@ -752,11 +752,14 @@ const payWithYape = async (info) => {
   }
 };
 //watch userData
-watch(userData, async (newVal) => {
+watch(userData, async (newVal,oldVal) => {
   if (newVal.length == 0) {
     return;
   }
-  await getIsEviAlumno();
+  if (newVal.id !== oldVal.id) {
+    await getIsEviAlumno();
+
+  }
 });
 const transactionOption = ref(null);
 

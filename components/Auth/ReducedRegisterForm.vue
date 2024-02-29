@@ -615,7 +615,7 @@ export default defineComponent({
           // store.addToken(res.data.access_token);
           // store.addUserData(res.data.user);
           showConfirmEmailSwall(
-            "Exito",
+            "Éxito",
             "Por favor, completa tu registro revisando tu bandeja de entrada o de correos no deseados y sigue las instrucciones para activar tu usuario."
           );
         }

@@ -182,7 +182,7 @@ export default {
           "No"
         );
         if (isConfirmed) {
-          courseList=courseList.forEach((course) => {
+          courseList.forEach((course) => {
             removeCarItem(course);
             courseList.pricePen
           });

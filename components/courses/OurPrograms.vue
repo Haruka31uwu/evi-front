@@ -8,7 +8,7 @@
       Descubre nuestros programas exclusivos: ¡paquetes de cursos diseñados para
       potenciar tus habilidades!
     </h3>
-    <div class="programs-container" >
+    <div class="programs-container">
       <courses-program-item
         v-for="program in programs.programsList"
         :key="program.id"
