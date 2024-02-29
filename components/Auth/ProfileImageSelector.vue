@@ -243,8 +243,8 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 0;
-  margin: 0;
-  width: 100%;
+  margin: 0 auto;
+  width: 80%;
 
   .modal-tab {
     display: flex;
@@ -263,6 +263,9 @@ export default {
       font-size: 1.2rem;
       line-height: 1.5em;
       color: #f0f0f0;
+      @media (max-width: 768px) {
+        font-size: 0.7rem;
+      }
     }
 
     .modal-tab__decoration {

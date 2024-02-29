@@ -307,6 +307,7 @@ export default {
   padding: 0;
   margin: 0;
   width: 80%;
+  
 
   .modal-tab {
     display: flex;
