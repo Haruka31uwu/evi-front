@@ -187,8 +187,8 @@
       <div
         class="col-sm-12 col-md-12 col-xl-6 d-flex flex-column justify-content-center align-items-center"
       >
-        <div style="position: relative; margin-bottom: 1em">
-          <span class="title-decorated" style="z-index: 2">Contenido</span>
+        <div style="position: relative; margin-bottom: 1em;z-index: 3;">
+          <span class="title-decorated" style="z-index: 2;position: relative;">Contenido</span>
           <div
             style="
               width: 150px;
@@ -198,6 +198,7 @@
               top: 1.2em;
               opacity: 0.7;
               left: 1em;
+              z-index: 0;
             "
             :style="{
               background: courseInfo.value.color,

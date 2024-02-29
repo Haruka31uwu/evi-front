@@ -5,8 +5,8 @@
     <div class="item-img-container">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="169"
-        height="169"
+        width="200"
+        height="200"
         viewBox="0 0 149 149"
         fill="none"
       >
@@ -252,9 +252,10 @@ export default {
   cursor: pointer;
 }
 .item-img {
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
+  
   margin-right: 1em;
   position: absolute;
   left: 10px;

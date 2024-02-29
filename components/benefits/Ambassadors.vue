@@ -8,9 +8,9 @@
       >
         <div style="width: 80%; position: relative; margin-bottom: 4em">
           <h2 style="font-size: 2rem">Embajadores de EviSalud</h2>
-          <div class="section-decorator" style="left: 4em; width: 60%"></div>
+          <div class="section-decorator" style="left: 4em; width: 50%"></div>
         </div>
-        <div style="width: 70%">
+        <div style="width: 70%;margin-bottom: 1em;">
           <p>
             Ingresa el código de tu influencer y obtén un descuento especial en
             el curso que elijas. 

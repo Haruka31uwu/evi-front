@@ -4,7 +4,7 @@
   >
     <div class="section-title">
       <h2>¿Qué es el Programa de referidos?</h2>
-      <div class="section-decorator" style="left:4.5em;width: 85%;"></div>
+      <div class="section-decorator" :style="currentWindowWidth>468?'left:6em;width: 85%;':'right:0;width:320px'"></div>
     </div>
     <div class="row section-container mt-5" style="width: 80%">
       <div class="col col-12 col-lg-6">

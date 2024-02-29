@@ -51,7 +51,7 @@
       "
     >
       <div
-        class="d-flex flex-row align-items-center gap-2 w-100"
+        class="d-flex flex-row align-items-center gap-3 w-100"
         :class="currentWindowWidth >= 920 ? '' : 'navbar-options-collapsed'"
       >
         <nuxt-link

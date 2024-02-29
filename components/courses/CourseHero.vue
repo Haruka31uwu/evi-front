@@ -45,6 +45,7 @@ export default {
         return props.courseInfo.value.img_small;
       }
       if (currentWindowWidth.value >= 768 && currentWindowWidth.value <= 1440) {
+        console.log("medium",props.courseInfo.value.img_medium);
         return props.courseInfo.value.img_medium;
       }
       if (currentWindowWidth.value > 1440 && currentWindowWidth.value < 1920) {

@@ -37,7 +37,7 @@
         </ul>
       </div>
       <div
-        class="d-flex flex-column justify-content-center align-items-center gap-3"
+        class="d-flex flex-column justify-content-center align-items-center gap-3 w-100"
         v-else
       >
         <svg
@@ -64,8 +64,8 @@
             />
           </g>
         </svg>
-        <span>Arrastra o selecciona el archivo desde el navegador</span>
-        <div class="btn-gray" @click="openFileInput()">Seleccionar Archivo</div>
+        <span class="w-100 text-center">Arrastra o selecciona el archivo desde el navegador</span>
+        <div class="btn-gray w-100" @click="openFileInput()">Seleccionar Archivo</div>
         <input type="file" class="d-none"  />
       </div>
     </div>
@@ -90,6 +90,7 @@ export default defineComponent({
   setup(props,ctx) {
     const {showErrorSwall} = useSwall();
     const files = ref([]);
+    let fileSelector ;
     const isProfile = ref(props.isProfile);
     const multiple = ref(props.multiple);
     const openFileInput = () => {
@@ -97,7 +98,6 @@ export default defineComponent({
       input.click();
     };
     const isOnDrag = ref(false);
-    const fileSelector = document.querySelector('input[type="file"]');
     const clearFiles = () => {
       files.value = [];
       fileSelector.value = "";
@@ -123,7 +123,11 @@ export default defineComponent({
     const getFileUrl = (file) => {
       return URL.createObjectURL(file);
     };
-    fileSelector.addEventListener("change", handleFileInputChange);
+    onMounted(() => {
+      fileSelector= document.querySelector('input[type="file"]');
+
+      fileSelector.addEventListener("change", handleFileInputChange);
+    });
     const dropFiles = (e) => {
       
       e.preventDefault();

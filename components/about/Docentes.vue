@@ -8,7 +8,7 @@
         <h2 >Plana Docente</h2>
         <img
           src="/assets/img/courses/docentes-item.svg"
-          style="bottom: 0; left:3.5rem; position: absolute;width:85%;"
+          style="bottom: 0.3em; left:3.5rem; position: absolute;width:85%;"
           alt="docentes-item"
         />
       </div>

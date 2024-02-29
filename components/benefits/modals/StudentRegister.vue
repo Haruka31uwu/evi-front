@@ -172,7 +172,7 @@
         >Foto de Carné</span
       >
       <benefits-drag-drop />
-      <div class="btn-blue my-3" @click="openConfirmationModal"><span> Guardar Cambioss </span></div>
+      <div class="btn-blue my-3 w-100" @click="openConfirmationModal"><span> Guardar Cambioss </span></div>
       <span style="font-family: Axiforma; color: #575756"
         >Necesitas Ayuda?</span
       >
@@ -307,7 +307,7 @@ export default {
 }
 @media (max-width: 768px) {
   .modal-customized-body {
-    width: 80%;
+    width: 90%;
   }
 }
 .modal-customized-body-content {
@@ -327,5 +327,6 @@ export default {
   resize: none;
   color: white;
   height: 50px;
+  min-width: 200px;
 }
 </style>

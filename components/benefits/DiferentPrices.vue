@@ -4,10 +4,10 @@
   >
     <div class="section-title" style="margin-bottom: 2em">
       <h2>Precios diferenciados</h2>
-      <div class="section-decorator"></div>
+      <div class="section-decorator" style="left:1em;max-width:100vw!important"></div>
     </div>
     <div class="section-container row w-100">
-      <div class="col col col-sm-12 col-md-12 col-xl-5 py-4 d-flex align-items-end" >
+      <div class="col col-12 col-sm-12 col-md-12 col-xl-5 py-4 d-flex align-items-end" >
        <div style="width: 80%;" class="d-flex flex-column justify-content-center ms-5 align-items-center gap-3">
         <svg
           width="106"
@@ -40,7 +40,7 @@
             borderRadius: '10px',
             borderTopRigthRadius: '0px',
             borderBottomRigthRadius: '0px',
-            padding: '2em',
+            padding: '2em 1em',
           }"
         >
           <ul class="py-0 m-0">
@@ -53,7 +53,7 @@
           </ul>
           <div style="width: 80%;background: white;height: 1px;margin: 0;"></div>
           <p>Además, si eres estudiante de pregrado, sólo envíanos la foto de tu carné y obtén un precio diferenciado para que puedas capacitarte desde tu etapa universitaria.</p>
-          <div class="btn-white" @click="openStudentRegisterModal()"><span>Registrarme como estudiante</span></div>
+          <div class="btn-white w-100" @click="openStudentRegisterModal()"><span>Registrarme como estudiante</span></div>
         </div>
       </div>
     </div>

@@ -276,7 +276,7 @@
             />
           </svg>
           <div style="position: relative">
-            <h5 class="title-decorated text-center">In-house realizados</h5>
+            <h5 class="title-decorated text-center" style="position: relative!important;z-index: 4;">In-house realizados</h5>
             <svg
               style="position: absolute; top: 1.2em; left: 2.5em"
               width="100%"
@@ -404,8 +404,8 @@
           />
         </svg>
 
-        <div style="position: relative">
-          <h5 class="title-decorated py-0 d-flex" style="z-index: 4">
+        <div style="position: relative;z-index: 4;">
+          <h5 class="title-decorated py-0 d-flex " style="z-index: 4;position: relative!important">
             Asistencia técnica
           </h5>
           <div
@@ -417,7 +417,7 @@
               border-radius: 1em;
               position: absolute;
               bottom: 0em;
-              z-index: 2;
+              z-index: 1;
               opacity: 0.7;
               left: 4em;
             "
