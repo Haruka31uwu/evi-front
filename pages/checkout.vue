@@ -566,7 +566,7 @@ const startTransaction = async () => {
     }
   }
   if (paymentValue.value < 6) {
-    return showErrorSwall("", "El monto a pagar no puede ser menor a 6");
+    return showErrorSwall("", "El monto a pagar no puede ser menor a S/.6");
   }
   transactionOption.value = selectedPaymentOption.value;
   try {

@@ -54,7 +54,7 @@
     </div>
     <ul class="cart-items mb-4">
       <li
-        class="cart-item d-flex flex-column "
+        class="cart-item d-flex flex-column"
         v-for="(cartItem, cartIndex) in getCarItems"
         :key="`cart-item-${cartIndex}`"
       >
@@ -66,7 +66,7 @@
           />
           <div
             style="width: 100%"
-            class="cart-item__price d-flex flex-column justify-content-between"
+            class="cart-item__price d-flex flex-column justify-content-between py-2 me-3"
           >
             <svg
               @click="removeItemFromCar(cartItem)"
@@ -86,9 +86,9 @@
               {{ cartItem.title }}
             </span>
             <div
-              class="d-flex flex-row justify-content-between align-items-center"
+              class="d-flex flex-row justify-content-between align-items-center w-100"
             >
-              <span class="cart-item__price-pricepen">
+              <span class="cart-item__price-pricepen w-100">
                 Precio: PEN {{ cartItem.pricePen }}
               </span>
             </div>
@@ -98,7 +98,7 @@
               "
             >
               <li
-                class="cart-item d-flex flex-row gap-3"
+                class="cart-item d-flex flex-row gap-3 "
                 v-for="(cartSubItem, cartIndex) in cartItem.coursesList"
                 :key="`cart-item-${cartIndex}`"
               >
@@ -140,14 +140,14 @@
             </div>
           </div>
         </div>
-        <span class="text-center" @click="openProgram(cartItem.id)">{{ openedProgramsId.includes(cartItem.id)?'Mostrar Menos':'Mostrar Más' }}</span>
+        <span class="text-center" @click="openProgram(cartItem.id)" v-if="cartItem.type==3">{{ openedProgramsId.includes(cartItem.id)?'Mostrar Menos':'Mostrar Más' }}</span>
       </li>
     </ul>
     <div
       class="price-container d-flex flex-row justify-content-between align-items-center"
     >
       <div class="price-container__values">
-        <div class="price-container__values__price">
+        <div class="price-container__values__price w-100">
           <span class="price-container__title">Total </span>
           <span class="price-container__pricepen">PEN {{ getCarTotal() }}</span>
         </div>
@@ -297,7 +297,6 @@ span {
     height: 100%;
     width: 100%;
     .cart-item {
-      padding: 1em;
       color: white;
       width: 90%;
       height: auto;
@@ -323,6 +322,7 @@ span {
           font-size: 1.2em;
           word-break: break-all;
           color: #0393aa;
+          text-align: right;
         }
         .cart-subitem__price-pricepen {
           font-weight: 700;
@@ -344,6 +344,7 @@ span {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      width: 100%!important;
       gap: 1em;
       .price-container__values__price {
         width: auto;

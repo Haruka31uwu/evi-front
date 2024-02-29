@@ -2,7 +2,7 @@
   <section id="section-login">
     <div class="row w-100 mx-auto" style="height: 90vh">
       <div
-        v-if="currentWindowWidth > 1080"
+        v-if="currentWindowWidth > 1200"
         class="col-xl-6 d-flex justify-content-center align-items-center"
         style="background: #0393aa"
       >
