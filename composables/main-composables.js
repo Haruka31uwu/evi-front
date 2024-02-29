@@ -130,15 +130,16 @@ export const useSwall = () => {
 
 export const scrollIntoView = (id) => {
     const el = document.getElementById(id)
-    el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+    el.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' })
 }
 export const redirectTo = (path, id) => {
     const router = useRouter()
+    console.log('path', path, id)
     router.push(path).then(() => {
         if (id) {
             setTimeout(() => {
                 scrollIntoView(id)
-            }, 100)
+            }, 200)
         }
     })
 }

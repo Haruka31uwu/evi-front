@@ -217,7 +217,7 @@ body {
 }
 
 .btn-blue-outline {
-    @include btn(transparent, 1.5em, 1px solid $EVI100, transparent, transparent, $EVI100);
+    @include btn(transparent, 1.5em, 1px solid $EVI100, transparent, transparent, $EVI500);
 
 }
 

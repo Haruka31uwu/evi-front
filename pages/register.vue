@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="section-register">
     <div class="row w-100 mx-auto" style="height: 100%;">
       <div
         class="col-0 col-md-0 col-lg-0 d-flex justify-content-center align-items-center d-none"

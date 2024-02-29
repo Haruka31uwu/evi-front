@@ -36,8 +36,8 @@
         <button class="btn-blue w-100" type="submit">
           <span>Iniciar Sesión</span>
         </button>
-        <div class="dont-have-account mt-5">
-          ¿No tienes una cuenta?
+        <div class="dont-have-account mt-5 d-flex align-items-center text-center">
+          <span class="">¿No tienes una cuenta?</span>
           <span class="register-now" @click="openRegisterForm()"
             >Registrate aquí</span
           >

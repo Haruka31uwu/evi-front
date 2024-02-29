@@ -273,7 +273,7 @@
                   stroke-width="0.5"
                 />
               </svg>
-              <span style="color: white">Ir a Preguntas Frecuentes</span>
+              <span style="color: white" @click="redirectTo('/commons', 'frequent-questions')">Ir a Preguntas Frecuentes</span>
             </div>
           </div>
         </div>

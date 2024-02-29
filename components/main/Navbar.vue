@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <div class="navbar" id="navbar">
     <div
       class="navbar-logo"
       :style="currentWindowWidth < 920 ? 'width: 150px;' : 'width: 10%;'"

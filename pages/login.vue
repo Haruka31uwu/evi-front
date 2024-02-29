@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="section-login">
     <div class="row w-100 mx-auto" style="height: 90vh">
       <div
         v-if="currentWindowWidth > 1080"
@@ -103,13 +103,13 @@
                 </svg>
                 Iniciar sesion con Gmail
               </div> -->
-              <div class="dont-have-account d-flex flex-lg-row flex-column">
+              <div class="dont-have-account d-flex flex-lg-row flex-column align-items-center">
                 <span>¿No tienes una cuenta?</span>
-                <nuxt-link
+                <span
                   class="register-now"
                   style="color: white"
-                  to="/register"
-                  >Registrate aquí</nuxt-link
+                  @click="redirectTo('/register', 'navbar')"
+                  >Registrate aquí</span
                 >
               </div>
               <!-- <Auth :supabaseClient="supabaseClient" :providers="['google']" /> -->

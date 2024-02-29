@@ -4,7 +4,7 @@
     <div
       class="course-img-container"
       :id="`course-${course.id}`"
-      :style="`background:url(${course.img_small}) no-repeat;background-size: cover;width:410px;height:250px;border-radius:1em 1em 0 0;position:relative`"
+      :style="`background:url(${course.img_small}) no-repeat;background-size: cover;width:100%;height:250px;border-radius:1em 1em 0 0;position:relative`"
     >
       <div class="more-selled-course">
         <svg

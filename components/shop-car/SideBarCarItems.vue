@@ -156,14 +156,14 @@
             >Iniciar proceso de compra</span
           >
         </div>
-        <div class="btn-white" v-else>
-          <span
-            style="text-decoration: underline"
-            @click="
+        <div class="btn-white" v-else @click="
               () => {
                 $router.push('/courses');
               }
-            "
+            ">
+          <span
+            style="text-decoration: underline"
+            
             >Explora nuestros Cursos</span
           >
         </div>
@@ -175,6 +175,8 @@
 import { carStore } from "../../store/car/car.store";
 import { authStore } from "../../store/auth/auth.store";
 import { useRouter } from "vue-router";
+import { redirectTo } from "/composables/main-composables.js";
+
 export default {
   emits: ["closeCarSideBar"],
   setup(props, ctx) {
@@ -239,7 +241,8 @@ export default {
     };
     const startProcess = () => {
       closeSidebar();
-      router.push("/checkout");
+      redirectTo("/checkout",'navbar');
+      // router.push("/checkout");
     };
     return {
       getCarItems,

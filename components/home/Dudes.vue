@@ -6,7 +6,9 @@
                 <h4>¿Tienes dudas? escríbenos </h4>
                 <span>Escríbenos al Whatsapp y te ayudamos. </span>
                 <button class="btn-blue"><img src="/assets/img/whatsapp.svg" alt="whas"><a target="_blank" href="https://wa.me//+51950876703" style="text-decoration: none;"><span>Ir a Whatsapp (+51 950 876 703)</span></a></button>
-                <button class="btn-blue-outline"><img src="/assets/img/info.svg" alt="info"><span style="color: #00A9C3;">Ir a Preguntas frecuentes</span></button>
+                <button class="btn-blue-outline" @click="redirectTo('/commons', 'frequent-questions')"><img src="/assets/img/info.svg" alt="info"><span 
+                >Ir a Preguntas Frecuentes</span
+              ></button>
 
             </div>
         </div>
