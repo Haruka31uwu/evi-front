@@ -10,7 +10,7 @@
           Aprende de forma dinámica y aplicada a realizar investigación en salud
           y tomar decisiones basadas en evidencias
         </h1>
-        <div class="btn-white" @click="redirectTo('/courses')">
+        <div class="btn-white w-100" @click="redirectTo('/courses')">
           <span>Inicia ahora</span>
         </div>
       </div>

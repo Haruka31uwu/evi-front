@@ -2066,7 +2066,9 @@ span a {
                     justify-content: space-between;
                     padding: 4em 2em;
                     height: 450px;
-                    
+                    @media(max-width:468px) {
+                        height: 600px;
+                    }
                     border-radius: 1.5em;
 
                     .p-carousel-content {
