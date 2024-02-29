@@ -429,7 +429,7 @@
         <h5 class="mb-4">
           Brindamos asistencia técnica dirigida a instituciones:
         </h5>
-        <ul class="d-flex flex-column gap-2">
+        <ul class="d-flex flex-column gap-2 align-items-start">
           <li>Elaboración de guías de práctica clínica</li>
           <li>Adaptación de guías de práctica clínica</li>
           <li>Elaboración de recomendaciones rápidas</li>
