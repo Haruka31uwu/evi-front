@@ -59,7 +59,7 @@ export const useSwall = () => {
             });
         });
     }
-    function showConfirmSwall(title = 'Are you sure?', text = 'You won\'t be able to revert this!', confirmButtonText = 'Yes, delete it!',cancelButtonText='Cancel') {
+    function showConfirmSwall(title = 'Are you sure?', text = 'You won\'t be able to revert this!', confirmButtonText = 'Yes',cancelButtonText='Cancel') {
         return new Promise((resolve, reject) => {
             Swal.fire({
                 title: title,

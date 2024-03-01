@@ -1,68 +1,41 @@
 <template>
   <section class="w-100">
     <select class="input-customized" v-model="selectedDiscount">
-      <option
-        v-for="(option, index) in discountSelectOptions"
-        :key="index"
-        :value="option"
-      >
+      <option v-for="(option, index) in discountSelectOptions" :key="index" :value="option">
         {{ option.label }}
       </option>
     </select>
-    <div
-      class="d-flex justify-content-between my-2 px-3 align-items-center"
-      @click="openCreateEditRow"
-    >
-      <span style="font-size: 1.5em"
-        >Lista de {{ selectedDiscount.label }}</span
-      >
-      <span
-        style="color: #0393aa; font-weight: 600"
-        v-if="selectedDiscount.value !== 1"
-        >+ Agregar nuevos(as) {{ selectedDiscount.label }}</span
-      >
+    <div class="d-flex justify-content-between my-2 px-3 align-items-center" @click="openCreateEditRow">
+      <span style="font-size: 1.5em">Lista de {{ selectedDiscount.label }}</span>
+      <span style="color: #0393aa; font-weight: 600" v-if="selectedDiscount.value !== 1">+ Agregar nuevos(as) {{
+        selectedDiscount.label }}</span>
     </div>
-    <v-data-table-server
-      v-model:items-per-page="paginationOptions.perPage"
-      :headers="getFields(selectedDiscount)"
-      :items-length="totalRecords"
-      :items="data"
-      :loading="loading"
-      item-value="name"
-      @update:options="
+    <v-data-table-server v-model:items-per-page="paginationOptions.perPage" :headers="getFields(selectedDiscount)"
+      :items-length="totalRecords" :items="data" :loading="loading" item-value="name" @update:options="
         getData({
           page: paginationOptions.currentPage,
           itemsPerPage: paginationOptions.perPage,
           sortBy: 'id',
           search: search,
         })
-      "
-    >
-      <template v-slot:item.status="{ item }">
-        <span
-          :style="
-            item.status == 0
-              ? 'color: #B7CD00; font-weight: 600'
-              : 'color: #D04036; font-weight: 600'
-          "
-          >{{ item.status == 0 ? "Activado" : "Desactivado" }}</span
+        "
         >
+      <template v-slot:item.status="{ item }">
+        <span :style="item.status == 0
+            ? 'color: #B7CD00; font-weight: 600'
+            : 'color: #D04036; font-weight: 600'
+          ">{{ item.status == 0 ? "Activado" : "Desactivado" }}</span>
       </template>
       <template v-slot:item.actions="{ item }">
-        <div style="position: relative" v-if="item.coupon_uses_count > 0">
-          <Icon
-            name="mi:options-vertical"
-            size="20"
-            @click="selectItem(item)"
-          ></Icon>
+        <div style="position: relative">
+          <Icon name="mi:options-vertical" size="20" @click="selectItem(item)"></Icon>
           <div class="more-options" v-if="selectedItem == item">
-            <span
-              v-for="(action, index) in actions"
-              :key="index"
-              @click="action.onClick(item)"
-              style="cursor: pointer"
-              >{{ action.name }}</span
-            >
+            <span v-for="(action, index) in actions.filter((action) => {
+              if(action.key == 'report' && item.coupon_uses_count == 0){
+                return false
+              }
+              return true
+          })" :key="index" @click="action.onClick(item)" style="cursor: pointer">{{ action.name }}</span>
           </div>
         </div>
       </template>
@@ -87,21 +60,21 @@
         >
       </template>
     </commons-e-table> -->
-    <lazy-admin-payments-discounts-create-edit-discount
-      v-if="isCreateEditModalOpen"
-      @closeModal="isCreateEditModalOpen = false"
-      :selectedDiscount="selectedDiscount"
-      :fields="getModalFields()"
+    <lazy-admin-payments-discounts-create-edit-discount v-if="isCreateEditModalOpen"
+      @closeModal="()=>{
+        isCreateEditModalOpen = false
+        selectedItem=null;
+      }" 
+      :selectedDiscount="selectedDiscount" :fields="getModalFields()"
+      :data="selectedItem"
       @createdDiscount="
         getData({
           page: paginationOptions.currentPage,
           itemsPerPage: paginationOptions.perPage,
         })
-      "
-    >
-      <template #modal-title
-        >{{ modalMode == "create" ? "Agregar " : "Editar "
-        }}{{ getModalTitle() }}
+        ">
+      <template #modal-title>{{ modalMode == "create" ? "Agregar " : "Actualizar "
+      }}{{ getModalTitle() }}
       </template>
     </lazy-admin-payments-discounts-create-edit-discount>
   </section>
@@ -443,15 +416,79 @@ const downloadDiscountReport = async (item) => {
     console.error(error);
   }
 };
+const updateCode = async (item) => {
+  try {
+    modalMode.value="edit"
+    openCreateEditRow()
+    showPreloader();
+    // const params = {
+    //   selectedDiscount: selectedDiscount.value.value,
+    //   id: item.discount_code_id,
+    // };
+    // const response = await AdminDiscountsService.updateDiscountCode(params);
+    // hidePreloader();
+    // if (response.status === 200) {
+    //   showSuccessSwall("Se ha actualizado el codigo");
+    //   await getData(
+    //     paginationOptions.value.currentPage,
+    //     paginationOptions.value.perPage
+    //   );
+    // } else {
+    //   showErrorSwall("Ha ocurrido un error");
+    //   console.error(`Error en la respuesta: ${response.status}`);
+    // }
+  } catch (error) {
+    hidePreloader();
+    showErrorSwall("Ha ocurrido un error");
+    console.error(error);
+  }
+};
+const expireCode = async (item) => {
+  try {
+    showPreloader();
+    const params = {
+      selectedDiscount: selectedDiscount.value.value,
+      id: item.discount_code_id,
+    };
+    const response = await AdminDiscountsService.expireDiscountCode(params);
+    hidePreloader();
+    if (response.status === 200) {
+      showSuccessSwall("Se ha expirado el codigo");
+      await getData(
+        paginationOptions.value.currentPage,
+        paginationOptions.value.perPage
+      );
+    } else {
+      showErrorSwall("Ha ocurrido un error");
+      console.error(`Error en la respuesta: ${response.status}`);
+    }
+  } catch (error) {
+    hidePreloader();
+    showErrorSwall("Ha ocurrido un error");
+    console.error(error);
+  }
+};
 const actions = [
   {
     name: "Generar Reporte de Usos",
+    key: "report",
     onClick: downloadDiscountReport,
   },
+  {
+    name: "Actualizar Codigo",
+    key: "actualizar",
+    onClick: updateCode,
+  },
+  {
+    name: "Expirar Codigo",
+    key: "expire",
+    onClick: expireCode,
+  }
 ];
 const selectedItem = ref({});
 const selectItem = (item) => {
   selectedItem.value = item;
+  
 };
 </script>
 <style lang="scss" scoped>
@@ -462,18 +499,25 @@ const selectItem = (item) => {
   font-family: Axiforma, sans-serif;
   border-radius: 1em;
   padding: 1em;
+
   option {
     background: #1c1c24;
   }
 }
+
 span {
   font-family: Axiforma, sans-serif;
 }
+
 .more-options {
   position: absolute;
-  top: 1em;
-  z-index: 100;
-  background: white;
+  bottom: 1em;
+  z-index: 1000;
+  background: #13131A;
   width: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  row-gap: 1em
 }
 </style>
