@@ -6,6 +6,8 @@
       @click="
         () => {
           getClaimForm = false;
+          closeProfileEditor();
+
         }
       "
     >
@@ -62,6 +64,8 @@
             () => {
               isCollapsedOpen = false;
               openCourses = false;
+              closeProfileEditor();
+
             }
           "
         >
@@ -170,6 +174,8 @@
                     getClaimForm = false;
                     isCollapsedOpen = false;
                     openCourses = false;
+                    closeProfileEditor();
+
                     redirectTo('/courses', 'investigation-courses');
                   }
                 "
@@ -183,6 +189,7 @@
                     getClaimForm = false;
                     isCollapsedOpen = false;
                     openCourses = false;
+                    closeProfileEditor();
                     redirectTo('/courses', 'evidences-courses');
                   }
                 "
@@ -214,6 +221,7 @@
                 isCollapsedOpen = false;
 
                 openCourses = false;
+                closeProfileEditor();
               }
             "
           >
@@ -221,6 +229,10 @@
               v-if="option.path === '/login'"
               id="account-block"
               @closeDropdown="()=>{isCollapsedOpen=false;}"
+              @openProfileEditor="()=>{
+                openProfileEditor()
+                
+              }"
             />
             <span v-if="option.path != '/login'">{{ option.name }}</span>
           </component>
@@ -263,6 +275,8 @@
                     isCollapsedOpen = false;
 
                     openCourses = false;
+                    closeProfileEditor();
+
                     redirectTo('/courses', 'investigation-courses');
                   }
                 "
@@ -273,6 +287,12 @@
                 @click="
                   () => {
                     openCourses = false;
+                    getClaimForm = false;
+                    isCollapsedOpen = false;
+
+                    openCourses = false;                   
+                     closeProfileEditor();
+
                     redirectTo('/courses', 'evidences-courses');
                   }
                 "
@@ -283,11 +303,13 @@
           <div v-else v-html="option.content" @click="()=>{
             isCollapsedOpen = false;
             openCourses = false;
+            closeProfileEditor();
           }"/>
         </nuxt-link>
         <shop-car-side-car-item @openCarSideBar="()=>{
           openSidebarCart();
           isCollapsedOpen=false;
+
         }" />
       </div>
     </div>
@@ -427,11 +449,18 @@ onMounted(() => {
     currentWindowWidth.value = window.innerWidth;
   });
 });
-const emit = defineEmits(["openSidebarCart"]);
+const emit = defineEmits(["openSidebarCart","openProfileEditor","closeProfileEditor"]);
 const openSidebarCart = () => {
+  isCollapsedOpen.value=false;
   emit("openSidebarCart");
 };
-
+const openProfileEditor = () => {
+  isCollapsedOpen.value=false;
+  emit("openProfileEditor");
+};
+const closeProfileEditor = () => {
+  emit("closeProfileEditor");
+};
 const isCollapsedOpen = ref(false);
 const openCourses = ref(false);
 const navbarOptionStyles=()=>{

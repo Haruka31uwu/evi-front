@@ -1,6 +1,6 @@
 <template>
     <div style="position: relative;" class="d-flex flex-column">
-      <input :type="type" v-on="handlers" :value="vValue" :disabled="disabled" :name="name" class="input-customized" :placeholder="!errorMessage?placeholder:''" :v-model="vmodel"/>
+      <input :type="type" v-on="handlers" :value="vValue" :disabled="disabled" :name="name"  class="input-customized" :placeholder="!errorMessage?placeholder:''" />
       <span class="sign-container-error-message" v-if="errorMessage">{{ errorMessage.substring(0,1).toUpperCase()+errorMessage.substring(1)}}</span>
       <Icon v-if="type=='password'" name="mdi:eye" color="#00A9C3" @click="changeType" style="position:absolute;right:10px;top:15px;font-size: 25px;"/>
           <Icon v-else-if="props.type=='password'&&type=='text'" name="mdi:eye-outline" color="white" @click="changeType" style="position:absolute;right:10px;top:15px;font-size: 25px"/>
@@ -11,7 +11,6 @@
   import { computed, toRef } from 'vue';
   import { useField } from 'vee-validate';
   import { modes } from '../interactionModes.js';
-  
   const props = defineProps({
     name: {
       type: String,
@@ -34,9 +33,7 @@
       type:Boolean,
       default:false
     },
-    vmodel:{
-      type:String,
-    }
+    
    
   });
   console.log(props)

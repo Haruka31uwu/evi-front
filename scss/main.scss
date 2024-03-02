@@ -146,6 +146,7 @@ body {
         flex-direction: row;
         align-items: center;
         column-gap: 1em;
+
         a {
             text-decoration: none;
 
@@ -188,7 +189,7 @@ body {
 
     h1 {
         @include font(500, 50px, 1.4em, $EVI400);
-        
+
     }
 
     @media (max-width: 768px) {
@@ -1612,10 +1613,11 @@ section {
     width: 70%;
     min-width: 410px;
     margin: 0 auto;
+
     .course-img-container {
         position: relative;
 
-        
+
 
     }
 
@@ -1702,6 +1704,7 @@ section {
             row-gap: 2em;
         }
     }
+
     @media(max-width:468px) {
         .programs-container {
             width: 100%;
@@ -1932,7 +1935,7 @@ span a {
 
         .course-detail-contact {
             width: 50%;
-           
+
         }
     }
 
@@ -1953,7 +1956,7 @@ span a {
 
         .course-detail-contact {
             width: 90%;
-            
+
         }
     }
 
@@ -2070,7 +2073,7 @@ span a {
                     justify-content: space-between;
                     padding: 4em 2em;
                     height: 460px;
-                    
+
                     border-radius: 1.5em;
 
                     .p-carousel-content {
@@ -2080,6 +2083,7 @@ span a {
                         justify-content: space-between;
                         height: 100% !important;
                         width: 100% !important;
+
                         span {
                             font-family: Axiforma;
                         }
@@ -2090,19 +2094,24 @@ span a {
                             display: flex;
                             flex-direction: column;
                             row-gap: 1em;
+
                             @media(max-width: 968px) {
-                                font-size: 1.05em!important;
+                                font-size: 1.05em !important;
                             }
+
                             @media(max-width: 768px) {
-                                font-size: 1em!important;
+                                font-size: 1em !important;
                             }
-                            .p-carousel-body__title{
+
+                            .p-carousel-body__title {
                                 font-size: 1.2em;
                                 font-weight: 700;
                                 color: $EVI100;
+
                                 @media(max-width: 968px) {
                                     font-size: 1em;
                                 }
+
                                 @media(max-width: 768px) {
                                     font-size: 0.8em;
                                 }
@@ -2117,6 +2126,7 @@ span a {
                             span {
                                 text-align: end;
                                 color: $EVI100;
+
                                 @media(max-width: 968px) {
                                     font-size: 0.9em;
                                 }
@@ -2127,10 +2137,12 @@ span a {
                             }
                         }
                     }
+
                     &:hover {
                         cursor: pointer;
                         border: 1px solid $EVI100;
-                        .p-carousel-footer__link{
+
+                        .p-carousel-footer__link {
                             color: $EVI100;
                             text-decoration: underline;
                         }
@@ -2145,10 +2157,11 @@ span a {
     .p-carousel-next {
         height: 45px;
         width: 45px;
-        
+
         &:hover {
             background: none;
-            svg{
+
+            svg {
                 transform: scale(1.2);
             }
         }
@@ -2164,33 +2177,40 @@ span a {
 
         }
     }
+
     .p-carousel-indicators {
         .p-carousel-indicator {
-            button{
+            button {
                 border-radius: 50%;
                 width: 15px;
                 height: 15px;
             }
-        }.p-highlight{
-            button{
+        }
+
+        .p-highlight {
+            button {
                 background: $EVI100;
             }
-        
+
         }
     }
-    
+
 }
-.carousel-without-pages{
+
+.carousel-without-pages {
     .p-carousel-indicators {
-        display: none!important;
+        display: none !important;
     }
 }
-.carousel-without-arrows{
+
+.carousel-without-arrows {
+
     .p-carousel-prev,
     .p-carousel-next {
-        display: none!important;
+        display: none !important;
     }
 }
+
 .more-selled-course {
     position: absolute;
     top: 0;
@@ -2215,4 +2235,53 @@ span a {
     position: absolute;
     bottom: 1em;
     left: 1em;
+}
+
+@media(max-width: 768px) {
+    .v-data-table-footer {
+        padding-top: 2em;
+
+        .v-data-table-footer__items-per-page {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            row-gap: 1em;
+
+            .v-input {
+                .v-select__selection{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    margin: 0 auto;
+                }
+                width: 100%;
+                .v-input__control {
+                    width: 100%;
+                    text-align: center;
+                    .v-field {
+                        width: 100%;
+                        .v-field__field {
+                            width: 100%;
+                            input {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .v-data-table-footer__info {
+            margin-top: 1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+
+    }
 }

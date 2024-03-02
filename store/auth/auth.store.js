@@ -37,7 +37,7 @@ export const authStore = defineStore('authStore', {
     },
     actions: {
         addUserData(item) {
-            const updatedUserData = [...this.userData, item];
+            const updatedUserData = [item];
             this.userData = updatedUserData;  // Actualizar el estado con la nueva referencia
         
             if (localStorage.getItem('userData')) {
@@ -45,12 +45,20 @@ export const authStore = defineStore('authStore', {
             }
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
         },
+        updateUserData(item){
+            this.userData = [item];
+            console.log(this.userData)
+            if (localStorage.getItem('userData')) {
+                localStorage.removeItem('userData');
+            }
+            localStorage.setItem('userData', JSON.stringify([item]));
+        },
         removeUserData(item) {
             const updatedUserData = [...this.userData];
             const index = updatedUserData.indexOf(item);
             updatedUserData.splice(index, 1);
         
-            this.userData = updatedUserData;  // Actualizar el estado con la nueva referencia
+            this.userData = [];  // Actualizar el estado con la nueva referencia
             if (localStorage.getItem('userData')) {
                 localStorage.removeItem('userData');
             }

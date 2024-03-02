@@ -1,55 +1,46 @@
 <template>
-  <section class="w-100">
+  <section class="w-100"  style="max-width: 100vw;
+    overflow: auto;">
     <select class="input-customized" v-model="selectedDiscount">
-      <option v-for="(option, index) in discountSelectOptions" :key="index" :value="option">
+      <option
+        v-for="(option, index) in discountSelectOptions"
+        :key="index"
+        :value="option"
+      >
         {{ option.label }}
       </option>
     </select>
-    <div class="d-flex justify-content-between my-2 px-3 align-items-center" @click="openCreateEditRow">
-      <span style="font-size: 1.5em">Lista de {{ selectedDiscount.label }}</span>
-      <span style="color: #0393aa; font-weight: 600" v-if="selectedDiscount.value !== 1">+ Agregar nuevos(as) {{
-        selectedDiscount.label }}</span>
+    <div
+      class="d-flex justify-content-between my-2 px-3 align-items-center"
+      @click="openCreateEditRow"
+    >
+      <span style="font-size: 1.5em"
+        >Lista de {{ selectedDiscount.label }}</span
+      >
+      <span
+        style="color: #0393aa; font-weight: 600"
+        v-if="selectedDiscount.value !== 1"
+        >+ Agregar nuevos(as) {{ selectedDiscount.label }}</span
+      >
     </div>
-    <v-data-table-server v-model:items-per-page="paginationOptions.perPage" :headers="getFields(selectedDiscount)"
-      :items-length="totalRecords" :items="data" :loading="loading" item-value="name" @update:options="
+    <v-data-table-server
+      v-model:items-per-page="paginationOptions.perPage"
+      :headers="getFields(selectedDiscount)"
+      :items-length="totalRecords"
+      :items="data"
+      :loading="loading"
+      item-value="name"
+      
+      @update:options="
         getData({
           page: paginationOptions.currentPage,
           itemsPerPage: paginationOptions.perPage,
           sortBy: 'id',
           search: search,
         })
-        "
-        >
-      <template v-slot:item.status="{ item }">
-        <span :style="item.status == 0
-            ? 'color: #B7CD00; font-weight: 600'
-            : 'color: #D04036; font-weight: 600'
-          ">{{ item.status == 0 ? "Activado" : "Desactivado" }}</span>
-      </template>
-      <template v-slot:item.actions="{ item }">
-        <div style="position: relative">
-          <Icon name="mi:options-vertical" size="20" @click="selectItem(item)"></Icon>
-          <div class="more-options" v-if="selectedItem == item">
-            <span v-for="(action, index) in actions.filter((action) => {
-              if(action.key == 'report' && item.coupon_uses_count == 0){
-                return false
-              }
-              return true
-          })" :key="index" @click="action.onClick(item)" style="cursor: pointer">{{ action.name }}</span>
-          </div>
-        </div>
-      </template>
-    </v-data-table-server>
-    <!-- <commons-e-table
-      ref="discountTable"
-      :fields="getFields(selectedDiscount)"
-      :data="data"
-      @changePage="(page, text) => getData(page, text)"
+      "
     >
-      <template #title> Descuentos </template>
-      <template #title-options> </template>
-      <template #table-options> </template>
-      <template v-slot:row-status="item">
+      <template v-slot:item.status="{ item }">
         <span
           :style="
             item.status == 0
@@ -59,24 +50,71 @@
           >{{ item.status == 0 ? "Activado" : "Desactivado" }}</span
         >
       </template>
-    </commons-e-table> -->
-    <lazy-admin-payments-discounts-create-edit-discount v-if="isCreateEditModalOpen"
-      @closeModal="()=>{
-        isCreateEditModalOpen = false
-        selectedItem=null;
-      }" 
-      :selectedDiscount="selectedDiscount" :fields="getModalFields()"
+      <template v-slot:item.actions="{ item }">
+        <div style="position: relative">
+          <Icon
+            name="mi:options-vertical"
+            size="20"
+            @click="selectItem(item)"
+          ></Icon>
+          <div class="more-options" v-if="selectedItem == item">
+            <span
+              v-for="(action, index) in actions.filter((action) => {
+                if (action.key == 'report' && item.coupon_uses_count == 0) {
+                  return false;
+                }
+            
+                return true;
+              })"
+              :key="index"
+              @click="action.onClick(item)"
+              style="cursor: pointer">
+              <span v-if="action.key=='expire'">
+              {{ item.status == 0 ? "Expirar Codigo" : "Activar Codigo" }}
+              </span>
+              <span v-else>{{ action.name }}</span>
+            </span>
+            
+          </div>
+        </div>
+      </template>
+      <template v-slot:item.tracking="{ item }">
+        <Icon
+          name="material-symbols:list-rounded"
+          size="25"
+          @click="openTracking(item)"
+          color="white"/>
+        </template>
+    </v-data-table-server>
+    <lazy-admin-payments-discounts-create-edit-discount
+      v-if="isCreateEditModalOpen"
+      @closeModal="
+        () => {
+          isCreateEditModalOpen = false;
+          selectedItem = null;
+        }
+      "
+      :selectedDiscount="selectedDiscount"
+      :fields="getModalFields()"
       :data="selectedItem"
       @createdDiscount="
         getData({
           page: paginationOptions.currentPage,
           itemsPerPage: paginationOptions.perPage,
         })
-        ">
-      <template #modal-title>{{ modalMode == "create" ? "Agregar " : "Actualizar "
-      }}{{ getModalTitle() }}
+      "
+    >
+      <template #modal-title
+        >{{ modalMode == "create" ? "Agregar " : "Actualizar "
+        }}{{ getModalTitle() }}
       </template>
     </lazy-admin-payments-discounts-create-edit-discount>
+  <admin-payments-discounts-discount-tracking
+  v-if="selectedTrackingDiscount"
+  :discount="selectedTrackingDiscount"
+  @closeModal="closeTracking()"
+  >
+  </admin-payments-discounts-discount-tracking>
   </section>
 </template>
 <script setup>
@@ -111,6 +149,10 @@ const discountSelectOptions = ref([
     label: "Instituciones Aliadas",
     value: 4,
   },
+  {
+    label:"Cupones de un uso",
+    value:5,
+  }
 ]);
 const selectedDiscount = ref({
   label: "Evialumnos",
@@ -129,8 +171,10 @@ const loading = ref(true);
 const data = ref([]);
 const totalRecords = ref(0);
 const search = ref("");
+const selectedTrackingDiscount = ref(null);
 const getData = async ({ page, itemsPerPage, sortBy, search }) => {
   isCreateEditModalOpen.value = false;
+  selectedItem.value = null;
   try {
     const params = {
       page: page ? page : paginationOptions.value.currentPage,
@@ -158,6 +202,18 @@ const getData = async ({ page, itemsPerPage, sortBy, search }) => {
     console.error(error);
   }
 };
+const openTracking=async(item)=>{
+  selectedTrackingDiscount.value={
+    id:item.id,
+    selectedDiscount:selectedDiscount.value.value,
+    name:item.name,
+    last_name:item.last_name,
+  }
+ 
+}
+const closeTracking=()=>{
+  selectedTrackingDiscount.value=null;
+}
 const isCreateEditModalOpen = ref(false);
 const modalMode = ref("create");
 const openCreateEditRow = () => {
@@ -192,9 +248,10 @@ const getFields = (discount) => {
     case 1:
       return [
         {
-          key: "id",
-          title: "ID",
+          key: "discount_code_id",
+          title: "CUPON ID",
         },
+      
         {
           key: "name",
           title: "Nombres",
@@ -202,10 +259,6 @@ const getFields = (discount) => {
         {
           key: "last_name",
           title: "Apellidos",
-        },
-        {
-          key: "email",
-          title: "Correo",
         },
         {
           key: "coupon_uses_count",
@@ -227,8 +280,12 @@ const getFields = (discount) => {
     case 2:
       return [
         {
-          key: "id",
-          title: "ID",
+          key: "discount_code_id",
+          title: "CUPON ID",
+        },
+        {
+          key:"id",
+          title:"INFLUENCER ID",
         },
         {
           key: "name",
@@ -239,10 +296,6 @@ const getFields = (discount) => {
           title: "Apellidos",
         },
         {
-          key: "email",
-          title: "Correo",
-        },
-        {
           key: "last_code",
           title: "Codigo Vigente",
         },
@@ -250,21 +303,41 @@ const getFields = (discount) => {
           key: "coupon_uses_count",
           title: "Número de Usos",
         },
-
+        {
+          key:"affiliation_date",
+          title:"Fecha de Afiliación",
+        },
+        {
+          key:"discount_code_created_at",
+          title:"Creacion de Cupon",
+        },
+        {
+          key:"discount_code_updated_at",
+          title:"Actualizacion de Cupon",
+        },
         {
           key: "status",
           title: "Estado",
         },
         {
+          key: "tracking",
+          title: "Tracking",
+        },
+        {
           key: "actions",
           title: "Acciones",
         },
+        
       ];
     case 3:
       return [
         {
-          key: "id",
-          title: "ID",
+          key: "discount_code_id",
+          title: "CUPON ID",
+        },
+        {
+          key:"id",
+          title:"EMBAJADOR ID",
         },
         {
           key: "name",
@@ -287,15 +360,36 @@ const getFields = (discount) => {
           title: "Estado",
         },
         {
+          key:"affiliation_date",
+          title:"Fecha de Afiliación",
+        },
+        {
+          key:"discount_code_created_at",
+          title:"Creacion de Cupon",
+        },
+        {
+          key:"discount_code_updated_at",
+          title:"Actualizacion de Cupon",
+        },
+        {
+          key: "tracking",
+          title: "Tracking",
+        },
+        {
           key: "actions",
           title: "Acciones",
         },
+        
       ];
     case 4:
       return [
         {
-          key: "id",
-          title: "ID",
+          key: "discount_code_id",
+          title: "CUPON ID",
+        },
+        {
+          key:"id",
+          title:"Institución ID",
         },
         {
           key: "name",
@@ -311,9 +405,71 @@ const getFields = (discount) => {
           title: "Número de Usos",
         },
         {
+          key:"affiliation_date",
+          title:"Fecha de Afiliación",
+        },
+        {
+          key:"discount_code_created_at",
+          title:"Creacion de Cupon",
+        },
+        {
+          key:"discount_code_updated_at",
+          title:"Actualizacion de Cupon",
+        },
+        {
           key: "status",
           title: "Estado",
         },
+        {
+          key: "tracking",
+          title: "Tracking",
+        },
+        {
+          key: "actions",
+          title: "Acciones",
+        },
+       
+      ];
+      case 5:
+      return [
+        {
+          key: "discount_code_id",
+          title: "CUPON ID",
+        },
+        {
+          key: "name",
+          title: "Nombre",
+        },
+        {
+          key: "last_code",
+          title: "Codigo Vigente",
+        },
+        {
+          key: "coupon_uses_count",
+          title: "Número de Usos",
+        },
+        {
+          key:"affiliation_date",
+          title:"Fecha de Afiliación",
+        },
+        {
+          key:"discount_code_created_at",
+          title:"Creacion de Cupon",
+        },
+        {
+          key:"discount_code_updated_at",
+          title:"Actualizacion de Cupon",
+        },
+        {
+          key: "status",
+          title: "Estado",
+        },
+     
+        {
+          key: "actions",
+          title: "Acciones",
+        },
+       
       ];
   }
 };
@@ -326,6 +482,7 @@ const getModalFields = () => {
           type: "text",
           name: "name",
         },
+        
         {
           label: "Apellidos",
           type: "text",
@@ -336,11 +493,7 @@ const getModalFields = () => {
           type: "date",
           name: "creationDate",
         },
-        {
-          label: "Correo Electronico",
-          type: "text",
-          name: "email",
-        },
+        
         {
           label: "Codigo Vigente",
           type: "text",
@@ -393,6 +546,24 @@ const getModalFields = () => {
           name: "last_code",
         },
       ];
+    case 5:
+      return [
+        {
+          label: "Razón del Cupon",
+          type: "text",
+          name: "name",
+        },
+        {
+          label: "Porcentaje de Descuento",
+          type: "number",
+          name: "cuzPercentage",
+        },
+        {
+          label: "Codigo Vigente",
+          type: "text",
+          name: "last_code",
+        },
+    ];
   }
 };
 const downloadDiscountReport = async (item) => {
@@ -418,9 +589,9 @@ const downloadDiscountReport = async (item) => {
 };
 const updateCode = async (item) => {
   try {
-    modalMode.value="edit"
-    openCreateEditRow()
-    showPreloader();
+    modalMode.value = "edit";
+    openCreateEditRow();
+    // showPreloader();
     // const params = {
     //   selectedDiscount: selectedDiscount.value.value,
     //   id: item.discount_code_id,
@@ -444,16 +615,24 @@ const updateCode = async (item) => {
   }
 };
 const expireCode = async (item) => {
+  let response;
+
   try {
     showPreloader();
+    loading.value = true;
     const params = {
       selectedDiscount: selectedDiscount.value.value,
       id: item.discount_code_id,
     };
-    const response = await AdminDiscountsService.expireDiscountCode(params);
+    if (item.status == 1) {
+      response = await AdminDiscountsService.activateDiscountCode(params);
+    } else {
+      response = await AdminDiscountsService.expireDiscountCode(params);
+    }
     hidePreloader();
     if (response.status === 200) {
-      showSuccessSwall("Se ha expirado el codigo");
+      console.log(response)
+      showSuccessSwall("",response.data.message);
       await getData(
         paginationOptions.value.currentPage,
         paginationOptions.value.perPage
@@ -483,12 +662,11 @@ const actions = [
     name: "Expirar Codigo",
     key: "expire",
     onClick: expireCode,
-  }
+  },
 ];
 const selectedItem = ref({});
 const selectItem = (item) => {
   selectedItem.value = item;
-  
 };
 </script>
 <style lang="scss" scoped>
@@ -513,11 +691,11 @@ span {
   position: absolute;
   bottom: 1em;
   z-index: 1000;
-  background: #13131A;
+  background: #13131a;
   width: auto;
   display: flex;
   flex-direction: column;
   padding: 1em;
-  row-gap: 1em
+  row-gap: 1em;
 }
 </style>

@@ -6,13 +6,16 @@
         <div class="footer-content-element-sections">
           <div class="first-column column">
             <h5>Navega</h5>
-            <span  @click="redirectTo('/commons','frequent-questions')"
+            <span  @click="()=>{
+              $emit('closeProfileEditor')
+              redirectTo('/commons','frequent-questions')
+            }"
               >Preguntas frecuentes
               
             </span>
             <span @click="
                 () => {
-
+                  $emit('closeProfileEditor')
                   redirectTo('/about', 'docentes-title');
                 }
               "
@@ -352,17 +355,22 @@
 
       <div class="second-row row">
         <span
-          ><router-link
-            to="/commons/"
-            style="text-decoration: none; color: inherit; font-size: 20px"
-            >Preguntas frecuentes</router-link
-          >
-        </span>
+        @click="
+                () => {
+                  $emit('closeProfileEditor');
+
+                  redirectTo('/commons','frequent-questions');
+                }
+              "
+          >Preguntas Frecuentes
+          </span
+        >
         <div class="row-divider"></div>
 
         <span
         @click="
                 () => {
+                  $emit('closeProfileEditor');
 
                   redirectTo('/about', 'docentes-title');
                 }
@@ -399,6 +407,7 @@ export default {
     "closeWorkWithUsModal",
     "openComplaintsBookModal",
     "openModalTermAndConditions",
+    "closeProfileEditor"
   ],
   setup(props, ctx) {
     let currentWindowWidth = ref(null);
@@ -410,14 +419,17 @@ export default {
     });
     const openWorkWithUsModal = () => {
       ctx.emit("openWorkWithUsModal");
+
     };
     const closeWorkWithUsModal = () => {
       ctx.emit("closeWorkWithUsModal");
     };
     const openComplaintsBookModal = () => {
+
       ctx.emit("openComplaintsBookModal");
     };
     const openModalTermAndConditions = () => {
+
       ctx.emit("openModalTermAndConditions");
     };
     return {

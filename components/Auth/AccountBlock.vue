@@ -6,12 +6,14 @@
       :style="router.currentRoute.value.path == '/login' ? 'color:white' : ''"
     >
       Iniciar Sesión
+
     </div>
     <div
       class="logged-account d-flex flex-row gap-2 align-items-center"
       v-else
-      @click="isOpenDropdown = !isOpenDropdown"
+      @click="closeOpenDropdown"
     >
+
       <div>
         <img
           :src="userData.profile_img"
@@ -61,6 +63,8 @@ let checkstorage = ref(null);
 function checkLocalStorage() {
   // Check if a specific key in local storage has changed
   var storedValue = localStorage.getItem("userData");
+  console.log("iterator")
+  console.log(newLogin.value[0],newLogin.value[1].id,userData.value.id)
 
   // Do something with the storedValue here
   if (newLogin.value[0] == "login-account-event") {
@@ -73,19 +77,23 @@ function checkLocalStorage() {
     }
   }
   if (newLogin.value[0] == "unlogin-account-event") {
-    if (storedValue == null) {
+    if (storedValue !== null) {
       if (newLogin.value[1].id === userData.value.id) {
+        console.log("unlogin-account-event","llego")
         storeAuth.removeUserData();
         subscribeGlobalChannel();
+        router.push("/");
       }
       clearInterval(checkstorage);
     }
   }
 }
 watch(newLogin, (val) => {
+  console.log(val, "newLogin");
   checkstorage = setInterval(checkLocalStorage, 1000);
 });
 // Check local storage every 1 second (adjust as needed)
+const emit=defineEmits(["openProfileEditor"]);
 const isOpenDropdown = ref(false);
 const { showPreloader, hidePreloader } = usePreloader();
 const router = useRouter();
@@ -93,31 +101,41 @@ const closeSession = async () => {
   try {
     showPreloader();
 
-    authStore().removeToken();
-    authStore().removeUserData();
+    
     hidePreloader();
     isOpenDropdown.value = false;
     const params = {
       token: authStore().getAccessToken,
       userId: authStore().getUserData.id,
     };
+    
     showPreloader();
     const res = await AuthService.logout(params);
     if (res.status === 200) {
-      authStore().removeToken();
-      authStore().removeUserData();
-      subscribeGlobalChannel();
+      
+
       hidePreloader();
-      router.push("/");
+      
     }
   } catch (e) {
+    authStore().removeToken();
+    authStore().removeUserData();
     console.error(e);
     hidePreloader();
   }
 };
+const closeOpenDropdown = () => {
+  if(isOpenDropdown.value){
+    isOpenDropdown.value = false;
+  }else{
+    isOpenDropdown.value = true;
+  
+  }
+};
 const viewProfile = () => {
-  isOpenDropdown.value = false;
-  router.push({ name: "profile" });
+  console.log("emit");
+
+  emit("openProfileEditor");
 };
 const accountOptions = ref([
   {
@@ -128,9 +146,10 @@ const accountOptions = ref([
   {
     name: "Ver Perfil",
     key: "profile",
-    onclick: () => viewProfile,
+    onclick: viewProfile,
   },
 ]);
+
 </script>
 <style scoped lang="scss">
 .account-profile-img {

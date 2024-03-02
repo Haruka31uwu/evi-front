@@ -29,6 +29,36 @@ class AdminDiscountService {
             throw e;
         }
     }
+    async getTracking(body) {
+        try {
+            const res = await apiClient.post(`/admin/discounts/get-tracking`, body, {
+                withCredentials: true,
+            });
+            return res;
+        } catch (e) {
+            throw e;
+        }
+    }
+    async expireDiscountCode(body) {
+        try {
+            const res = await apiClient.post(`/admin/discounts/expire`, body, {
+                withCredentials: true,
+            });
+            return res;
+        } catch (e) {
+            throw e;
+        }
+    }
+    async activateDiscountCode(body) {
+        try {
+            const res = await apiClient.post(`/admin/discounts/activate`, body, {
+                withCredentials: true,
+            });
+            return res;
+        } catch (e) {
+            throw e;
+        }
+    }
     async downloadDiscountReport(body) {
         try {
             const res = await apiClient.post(`/admin/discounts/download-report`, body, {

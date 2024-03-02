@@ -15,6 +15,16 @@ class AuthService {
             throw e;
         }
     }
+    async updateUserData(body) {
+        try {
+            const res = await axios.post(`${config.public.APP_BACKEND_URL}auth/update-user-data`, body, {
+                withCredentials: true,
+            });
+            return res;
+        } catch (e) {
+            throw e;
+        }
+    }
     async login(body) {
         try {
             await apiClient.get('/sanctum/csrf-cookie');
@@ -50,6 +60,16 @@ class AuthService {
     async logout(body) {
         try {
             const res = await axios.post(`${config.public.APP_BACKEND_URL}auth/logout`, body, {
+                withCredentials: true,
+            });
+            return res;
+        } catch (e) {
+            throw e;
+        }
+    }
+    async getUser(body) {
+        try {
+            const res = await axios.post(`${config.public.APP_BACKEND_URL}auth/get-user`,body, {
                 withCredentials: true,
             });
             return res;

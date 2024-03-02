@@ -1,17 +1,27 @@
 <template>
   <div style="position: relative; width: 100%">
     <main >
-      <main-navbar @openSidebarCart="showSidebarCart = true" />
+      <main-navbar @openSidebarCart="showSidebarCart = true"
+      @openProfileEditor="openEditProfile"
+      @closeProfileEditor="showEditProfile = false"
+      />
       <commons-complaints-book-form
         v-if="getClaimForm"
         @closeComplaintsBookForm="closeComplaintsBookForm"
       />
-      <router-view v-show="!getClaimForm" @click="showSidebarCart = false"  @openTransactionDetails="(transactionDetails)=>openFinishTransactionModal(transactionDetails)"/>
-      <main-footer
+      <router-view v-show="!getClaimForm && !showEditProfile" @click="showSidebarCart = false"  @openTransactionDetails="(transactionDetails)=>openFinishTransactionModal(transactionDetails)"/>
+        <commons-edit-profile
+        v-if="showEditProfile"
+        @click="showSidebarCart = false"
+        @closeModal="showEditProfile = false"
+        />
+        <main-footer
         v-if="showFooter"
         @openWorkWithUsModal="openWorkWithUsModal"
         @openComplaintsBookModal="openComplaintsBookModal"
         @openModalTermAndConditions="openModalTermAndConditions"
+        @closeProfileEditor="showEditProfile = false"
+
       />
       <home-modals-work-with-us-modal
         v-if="showModalWorkWithUs"
@@ -25,6 +35,8 @@
       <home-modals-term-and-conditions
         v-if="showModalTermAndConditions"
         @closeModal="closeModalTermAndConditions"/>
+        
+
     </main>
 
     <shop-car-side-bar-car-items
@@ -59,6 +71,10 @@ const showModalComplainBook = ref(false);
 const showModalComplainBookForm = ref(false);
 const showModalTermAndConditions = ref(false);
 const showFinishTransactionModal = ref(false);
+const showEditProfile=ref(false);
+const openEditProfile = () => {
+  showEditProfile.value = true;
+};
 const openWorkWithUsModal = () => {
   showModalWorkWithUs.value = true;
 };

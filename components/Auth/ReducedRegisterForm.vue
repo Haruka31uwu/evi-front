@@ -604,7 +604,7 @@ export default defineComponent({
       formData.append("carnet", carnetImg.value);
       formData.append("originRoute", route.name);
       formData.append(
-        "deparment",
+        "department",
         countrySelected.value == "PE" ? deparmentSelected.value : null
       );
       formData.append("reference", referenceSelected.value);
