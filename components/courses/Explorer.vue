@@ -46,7 +46,9 @@
             programtype.id == 1 ? 'investigation-courses' : 'evidences-courses'
           "
           :style="
-            currentWindowWidth < 768 ? 'margin: 0 auto' : 'margin-left:min(7em, 10%)'
+            currentWindowWidth < 768
+              ? 'margin: 0 auto'
+              : 'margin-left:min(7em, 10%)'
           "
         >
           {{ programtype.title }}
@@ -90,16 +92,19 @@
           v-for="(programtype, index) in courses.coursesTypes"
           :key="`typeProgram-${index}`"
         >
-        <h4
-          :id="
-            programtype.id == 1 ? 'investigation-courses' : 'evidences-courses'
-          "
-          :style="currentWindowWidth < 1024 ? 'margin-left:1em' : ''"
-          style="color:#0393aa;font-size: 1.5em;font-weight: 700;"
-        >
-          {{ programtype.title }}
-        </h4>
-        <hr />
+          <h4
+            :id="
+              programtype.id == 1
+                ? 'investigation-courses'
+                : 'evidences-courses'
+            "
+            :style="currentWindowWidth < 1024 ? 'margin-left:1em' : ''"
+            style="color: #0393aa; font-size: 1.5em; font-weight: 700"
+          >
+            {{ programtype.title }}
+          </h4>
+          <hr />
+
           <Carousel
             :value="
               courses.coursesList.filter(
@@ -114,8 +119,9 @@
             class="carousel-without-arrows"
             :key="carouselKey"
           >
-            <template #item="slotProps">
+            <template #item="slotProps" >
               <div
+              
                 class="border-1 surface-border border-round m-4 p-carousel-container p-0"
                 style="border: none !important; cursor: auto; height: auto"
               >
@@ -394,6 +400,8 @@ export default defineComponent({
       addToCart,
       carouselKey,
       filterCondition,
+    
+      
     };
   },
 });
