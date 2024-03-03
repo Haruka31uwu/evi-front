@@ -357,6 +357,11 @@
         >
           <span>Actualizar Datos</span>
         </button>
+        <span v-if=" discountCode.hasOwnProperty('code')" class="d-flex flex-row align-items-center gap-2">
+          Tu codigo de descuento es: <strong>{{ discountCode.code }}</strong>
+          <Icon @click="saveInClipBoard" name="tabler:clipboard" size="30"></Icon>  
+
+        </span>
       </div>
       <div v-else style="height: 100vh">
         <!--Loader!-->
@@ -385,7 +390,7 @@ export default defineComponent({
     const route = useRoute();
     const storeAuth = authStore();
     const userData = computed(() => storeAuth.getUserData);
-
+    const discountCode=ref({});
     const user = ref(null);
     const { showPreloader, hidePreloader } = usePreloader();
     const { showSuccessSwall, showErrorSwall, showConfirmEmailSwall } =
@@ -394,7 +399,18 @@ export default defineComponent({
       const input = document.querySelector("#input-carnet");
       input.click();
     };
+    const saveInClipBoard = () => {
+      navigator.clipboard.writeText(discountCode.value.code);
+      showSuccessSwall("Exito", "Codigo copiado al portapapeles");
+    };
     onMounted(async () => {
+      try{
+        const res=await AuthService.getUserDiscountCode({userId:userData.value.id});
+        discountCode.value=res.data.discountCode?res.data.discountCode:{};
+      }catch(e){
+        showErrorSwall("Error", e.response.data.message);
+        console.error(e);
+      }
       try {
         const params = {
           userId: userData.value.id,
@@ -416,6 +432,7 @@ export default defineComponent({
         }
         showErrorSwall("Error", e.message);
       }
+      
     });
     const countryOptions = [
       { name: "Perú", value: "PE", prefix: "+51" },
@@ -796,6 +813,8 @@ export default defineComponent({
       carnetImg,
       updateAccount,
       user,
+      discountCode,
+      saveInClipBoard
     };
   },
 });

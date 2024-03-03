@@ -5,11 +5,13 @@
       @openProfileEditor="openEditProfile"
       @closeProfileEditor="showEditProfile = false"
       />
+      {{}}
       <commons-complaints-book-form
         v-if="getClaimForm"
         @closeComplaintsBookForm="closeComplaintsBookForm"
       />
-      <router-view v-show="!getClaimForm && !showEditProfile" @click="showSidebarCart = false"  @openTransactionDetails="(transactionDetails)=>openFinishTransactionModal(transactionDetails)"/>
+      
+      <router-view   v-if="!getClaimForm && !showEditProfile" @click="showSidebarCart = false" @openTransactionDetails="(transactionDetails)=>openFinishTransactionModal(transactionDetails)"/>
         <commons-edit-profile
         v-if="showEditProfile"
         @click="showSidebarCart = false"
@@ -41,7 +43,10 @@
 
     <shop-car-side-bar-car-items
       v-if="showSidebarCart"
-      @closeCarSideBar="showSidebarCart = false"
+      @closeCarSideBar="()=>{
+        showSidebarCart = false
+        showEditProfile = false
+      }"
     />
     <shop-car-finish-transaction-modal
       v-if="showFinishTransactionModal && transactionDetails"

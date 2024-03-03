@@ -6,23 +6,20 @@
       :style="router.currentRoute.value.path == '/login' ? 'color:white' : ''"
     >
       Iniciar Sesión
-
     </div>
     <div
       class="logged-account d-flex flex-row gap-2 align-items-center"
       v-else
       @click="closeOpenDropdown"
     >
-
       <div>
         <img
           :src="userData.profile_img"
           class="account-profile-img"
           alt="account-profile-img"
         />
-        <span style="color: white">{{
-          `${userData.name} ${userData.last_name}`
-        }}</span>
+        <span style="color: white">{{ getNameLastNameMax() }}</span>
+
         <Icon
           v-if="!isOpenDropdown"
           name="mdi:chevron-down"
@@ -59,12 +56,16 @@ const {
 } = useSocket();
 const userData = computed(() => storeAuth.getUserData);
 const newLogin = computed(() => storeAuth.newLogin);
+const getNameLastNameMax = () => {
+  const userName = userData.value.name + " " + userData.value.last_name;
+  return userName.length > 14 ? userName.substring(0, 14) + "..." : userName;
+};
 let checkstorage = ref(null);
 function checkLocalStorage() {
   // Check if a specific key in local storage has changed
   var storedValue = localStorage.getItem("userData");
-  console.log("iterator")
-  console.log(newLogin.value[0],newLogin.value[1].id,userData.value.id)
+  console.log("iterator");
+  console.log(newLogin.value[0], newLogin.value[1].id, userData.value.id);
 
   // Do something with the storedValue here
   if (newLogin.value[0] == "login-account-event") {
@@ -79,9 +80,10 @@ function checkLocalStorage() {
   if (newLogin.value[0] == "unlogin-account-event") {
     if (storedValue !== null) {
       if (newLogin.value[1].id === userData.value.id) {
-        console.log("unlogin-account-event","llego")
+        console.log("unlogin-account-event", "llego");
         storeAuth.removeUserData();
         subscribeGlobalChannel();
+        closeProfileEditor();
         router.push("/");
       }
       clearInterval(checkstorage);
@@ -93,7 +95,7 @@ watch(newLogin, (val) => {
   checkstorage = setInterval(checkLocalStorage, 1000);
 });
 // Check local storage every 1 second (adjust as needed)
-const emit=defineEmits(["openProfileEditor"]);
+const emit = defineEmits(["openProfileEditor","closeProfileEditor"]);
 const isOpenDropdown = ref(false);
 const { showPreloader, hidePreloader } = usePreloader();
 const router = useRouter();
@@ -101,21 +103,17 @@ const closeSession = async () => {
   try {
     showPreloader();
 
-    
     hidePreloader();
     isOpenDropdown.value = false;
     const params = {
       token: authStore().getAccessToken,
       userId: authStore().getUserData.id,
     };
-    
+
     showPreloader();
     const res = await AuthService.logout(params);
     if (res.status === 200) {
-      
-
       hidePreloader();
-      
     }
   } catch (e) {
     authStore().removeToken();
@@ -124,12 +122,14 @@ const closeSession = async () => {
     hidePreloader();
   }
 };
+const closeProfileEditor = () => {
+  emit("closeProfileEditor");
+};
 const closeOpenDropdown = () => {
-  if(isOpenDropdown.value){
+  if (isOpenDropdown.value) {
     isOpenDropdown.value = false;
-  }else{
+  } else {
     isOpenDropdown.value = true;
-  
   }
 };
 const viewProfile = () => {
@@ -149,7 +149,6 @@ const accountOptions = ref([
     onclick: viewProfile,
   },
 ]);
-
 </script>
 <style scoped lang="scss">
 .account-profile-img {

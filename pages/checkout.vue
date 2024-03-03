@@ -26,7 +26,7 @@
     <div
       v-if="userData && userData.length !== 0"
       class="row mt-5"
-      style="width: 80%; min-width: 350px"
+      style="width: 95%; min-width: 350px"
     >
       <div class="col-12 col-lg-6">
         <div
@@ -52,8 +52,11 @@
                 >Verificar</span
               >
             </div>
-            <span v-if="isEviAlumno === 1" style="color: red; font: Axiforma">
+            <span v-if="isEviAlumno === 1 && !isValidStudent" style="color: red; font: Axiforma">
               Por ser un Evialumno tiene un descuento del 10% :D</span
+            >
+            <span v-if="isValidStudent" style="color: red; font: Axiforma">
+              Por ser un Estudiante de Pregrado tienes acceso a precios Exclusivos :D</span
             >
             <span style="font-size: 0.9em">Selecciona una Opcion</span>
             <div class="d-flex flex-row justify-content-between">
@@ -568,7 +571,113 @@
         <!-- <button @click="payWithYape()" class="btn-white">Pagar con Yape</button> -->
       </div>
       <div class="col-12 col-lg-6 d-flex flex-column align-items-center">
-        <div style="width: 80%; min-width: 350px" class="payment-resume">
+        <div style="width: 100%; min-width: 350px" class="payment-resume">
+          <div
+            class="payment-info d-flex flex-column align-items-center gap-2 py-4"
+            v-if="getCarItems.length != 0"
+            style="background: #1c1c24; border-radius: 1em; width: 90%"
+            w
+          >
+            <span style="font-size: 1.2em;font-family: Axiforma;">Carrito</span>
+            <div
+              class="price-info d-flex flex-column gap-2 w-100 px-3 gap-3"
+              style="min-width: 50%"
+            >
+              <div
+                v-for="(cartItem, index) in getCarItems"
+                :key="index"
+                style="border: 1px solid black; border-radius: 1em"
+              >
+                <div class="d-flex flex-row gap-3 w-100">
+                  <img
+                    :src="cartItem.img_small"
+                    style="
+                      width: 150px;
+                      height: 150px;
+                      border-radius: 1em 0 0 1em;
+                    "
+                    alt="car-item-img"
+                  />
+                  <div
+                    style="width: 100%"
+                    class="cart-item__price d-flex flex-column justify-content-between py-1 me-3"
+                  >
+                    <div
+                      class="py-2 w-10 d-flex flex-row justify-content-between align-items-center "
+                    >
+                      <span
+                        class="cart-item__price-title " style="width: 90%;"
+                      >
+                        {{ cartItem.title }}
+                      </span>
+                      <svg
+                        @click="removeItemFromCar(cartItem)"
+                        style="align-self: flex-start; cursor: pointer"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 15 15"
+                        fill="none"
+                      >
+                        <path
+                          d="M6.26055 7.49804L0.260527 1.49645C-0.0868425 1.14899 -0.0868425 0.596157 0.260527 0.264546C0.592164 -0.0829142 1.14471 -0.0829142 1.49211 0.248792L7.49213 6.25038L13.4922 0.248792C13.8395 -0.0829308 14.3921 -0.0829308 14.7395 0.248792C15.0711 0.596253 15.0711 1.14897 14.7395 1.49644L8.73945 7.49803L14.7395 13.4996C15.0868 13.8471 15.0868 14.3999 14.7395 14.7315C14.5658 14.921 14.3447 15 14.1237 15C13.9026 15 13.6816 14.921 13.5079 14.7473L7.50787 8.74568L1.50784 14.7473C1.33415 14.921 1.11311 15 0.892053 15C0.671004 15 0.449944 14.921 0.276259 14.7473C-0.0711098 14.3998 -0.0711098 13.847 0.276259 13.5154L6.26055 7.49804Z"
+                          fill="gray"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="d-flex flex-row justify-content-between align-items-end w-100"
+                    >
+                      <span class="cart-item__price-pricepen w-100 text-end d-flex flex-row gap-2 align-items-center justify-content-end">
+                        <span
+                          class="cart-item__price-pricepen__discount"
+                          :style="
+                            !Number.isNaN(
+                              applyCouponDiscount(cartItem.pricePen)
+                            ) && (cuponValue.hasOwnProperty('discountPercentage') ||isValidStudent)
+                              ? 'font-size:0.8em;color:gray;text-decoration:line-through;'
+                              : 'font-weight: 700;'
+                          "
+                        >
+                          S/ {{ cartItem.pricePen.toFixed(2) }} (${{
+                            cartItem.priceUsd.toFixed(2)
+                          }})
+                        </span>
+                        <span
+                          v-if="
+                            !Number.isNaN(
+                              applyCouponDiscount(isValidStudent?cartItem.pricePenStudent:cartItem.pricePen)
+                            ) && (cuponValue.hasOwnProperty('discountPercentage') ||isValidStudent)
+                          "
+                        >
+                          S/.{{
+                            applyCouponDiscount(isValidStudent?cartItem.pricePenStudent:cartItem.pricePen).toFixed(2)
+                          }}
+                          $({{
+                            applyCouponDiscount(isValidStudent?cartItem.priceUsdStudent:cartItem.priceUsd).toFixed(2)
+                          }})
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div
+                v-for="(payment, index) in getCarTotal()"
+                :key="index"
+                class="d-flex"
+              >
+                <span style="width: 70%" class="">{{ payment.name }}</span>
+                <span
+                  style="width: 50%; text-align: end; font-weight: 700"
+                  :style="payment.key == 'couponValue' ? 'color: #D04036' : ''"
+                  ><span class="me-2"
+                    >{{ payment.key == "couponValue" ? "-" : "" }}PEN</span
+                  >{{ payment.value.toFixed(2) }}</span
+                >
+              </div> -->
+            </div>
+          </div>
           <div
             class="payment-info d-flex flex-column align-items-center gap-2 py-4"
             style="background: #1c1c24; border-radius: 1em; width: 90%"
@@ -577,7 +686,7 @@
             <span style="font-size: 1.2em">Resumen</span>
             <div
               class="price-info d-flex flex-column gap-2"
-              style="min-width: 50%"
+              style="min-width: 300px;"
             >
               <div
                 v-for="(payment, index) in getCarTotal()"
@@ -665,12 +774,14 @@ import Culqi from "/composables/culqi-composables.js";
 // const {getWsChannel} = useSocket();
 // const ws=getWsChannel()
 const config = useRuntimeConfig();
-const sendSocket = () => {};
 const culqi = new Culqi(config.public.CULQI_PUBLIC_KEY);
 const tokenCulqi = ref(null);
 /**
  * ! Open Culqi with specific Payment Methods
  */
+const removeItemFromCar = (item) => {
+  store.removeCarItem(item);
+};
 const culqiPay = async (data) => {
   culqi.appendCulqiScript().then(() => {
     window.Culqi.token = undefined;
@@ -737,7 +848,7 @@ const isLogged = computed(() => storeAuth.isLogged);
 const pid = ref("");
 const phone = ref("");
 const store = carStore();
-const getCarItems = store.getCarItems;
+const getCarItems = computed(() => store.getCarItems);
 const condition = ref(false);
 const cuponValue = ref(0);
 const fileSelected = ref("boleta");
@@ -762,7 +873,7 @@ const paymentOptions = ref([
   },
 ]);
 const selectedOption = ref(1);
-const ruc = ref(0);
+const ruc = ref("");
 const razon_social = ref("");
 const factura_dir = ref("");
 const tabs = ref([
@@ -779,16 +890,19 @@ const selectTab = (id) => {
   selectedOption.value = id;
 };
 const isEviAlumno = ref(0);
-
+const isValidStudent=ref(false);
+const applyCouponDiscount = (price) => {
+  return price - price * ((cuponValue.value.hasOwnProperty('discountPercentage') && !isValidStudent?cuponValue.value.discountPercentage:0 )/ 100);
+};
 /**
  *! Get Cart Total
  */
 const getCarTotal = () => {
   let carValue;
-  if (getCarItems.length === 0) {
+  if (getCarItems.value.length === 0) {
     carValue = 0;
   }
-  carValue = getCarItems.reduce((acc, item) => {
+  carValue = getCarItems.value.reduce((acc, item) => {
     return acc + item.pricePen;
   }, 0);
   const couponValue = cuponValue.value.hasOwnProperty("discountPercentage")
@@ -803,7 +917,7 @@ const getCarTotal = () => {
       value: carValue,
     },
     {
-      name: "Cupon:",
+      name: "Descuento:",
       key: "couponValue",
       value: couponValue,
     },
@@ -824,6 +938,7 @@ onMounted(async () => {
     return;
   }
   await getIsEviAlumno();
+  await getIsValidStudent();
 });
 const getIsEviAlumno = async () => {
   try {
@@ -838,6 +953,22 @@ const getIsEviAlumno = async () => {
           discountPercentage: response.data.discountPercentage,
           discountId: response.data.discountCodeId,
         };
+      }
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+const getIsValidStudent = async () => {
+  try {
+    const params = {
+      userId: userData.value.id,
+    };
+    const response = await TransactionService.isValidStudent(params);
+    if (response.status === 200) {
+      // isStudent.value = response.data.isValidStudent;
+      if (response.data.isValidStudent===1) {
+        isValidStudent.value = true;
       }
     }
   } catch (err) {
@@ -929,7 +1060,7 @@ const payWithCard = async (info) => {
         original_amount: getCarTotal()[0].value,
         amount: paymentValue.value,
         userData: userData.value,
-        carItems: getCarItems,
+        carItems: getCarItems.value,
         type: selectedPaymentOption.value,
         discountId: cuponValue.value.discountId,
         transactionId: info.userTransactionId,
@@ -951,40 +1082,39 @@ const payWithCard = async (info) => {
         transactionData = {
           userData: userData.value,
           transaction: data,
-          carItems: getCarItems,
+          carItems: getCarItems.value,
           type: {
             name: "Card",
           },
           moreData: {
-              fileSelected: info.fileSelected,
-              ruc: info.ruc,
-              razon_social: info.razon_social,
-              factura_dir: info.factura_dir,
-              pid: pid.value,
-              phone: phone.value,
-              pidType: pidTypeSelected.value,
-            },
+            fileSelected: info.fileSelected,
+            ruc: info.ruc,
+            razon_social: info.razon_social,
+            factura_dir: info.factura_dir,
+            pid: pid.value,
+            phone: phone.value,
+            pidType: pidTypeSelected.value,
+          },
         };
-         response = await TransactionService.sendTransactionResumeEmail({
+        response = await TransactionService.sendTransactionResumeEmail({
           transactionData: transactionData,
         });
       }
-      if( response.status===201){
+      if (response.status === 201) {
         hidePreloader();
         const confirmed = await showSuccessBuySwall(
           "",
           "Su compra ha sido realizada correctamente. Recibirá un mensaje de confirmación en el correo proporcionado en sus datos"
         );
-        
-          if (confirmed) {
-            emit("openTransactionDetails", transactionData);
-          }
-        }
 
+        if (confirmed) {
+          emit("openTransactionDetails", transactionData);
+        }
+      }
     } catch (err) {
       console.error(err);
       hidePreloader();
-      showErrorSwall("","Error al realizar el pago");
+      showErrorSwall("", "Error al realizar el pago");
     }
   } catch (err) {
     console.error(err);
@@ -1004,7 +1134,7 @@ const payWithYape = async (info) => {
         original_amount: getCarTotal()[0].value,
         amount: paymentValue.value,
         userData: userData.value,
-        carItems: getCarItems,
+        carItems: getCarItems.value,
         type: selectedPaymentOption.value,
         transactionId: info.userTransactionId,
         discountId: cuponValue.value.discountId,
@@ -1023,24 +1153,25 @@ const payWithYape = async (info) => {
       if (status === 200) {
         hidePreloader();
         transactionData = {
-            userData: userData.value,
-            transaction: data,
-            carItems: getCarItems,
-            type: {
-              name: "Yape",
-            },
-            moreData: {
-              fileSelected: info.fileSelected,
-              ruc: info.ruc,
-              razon_social: info.razon_social,
-              factura_dir: info.factura_dir,
-              pid: pid.value,
-              phone: phone.value,
-              pidType: pidTypeSelected.value,
-            },
-          };
-          response = await TransactionService.sendTransactionResumeEmail({
-          transactionData: transactionData});
+          userData: userData.value,
+          transaction: data,
+          carItems: getCarItems.value,
+          type: {
+            name: "Yape",
+          },
+          moreData: {
+            fileSelected: info.fileSelected,
+            ruc: info.ruc,
+            razon_social: info.razon_social,
+            factura_dir: info.factura_dir,
+            pid: pid.value,
+            phone: phone.value,
+            pidType: pidTypeSelected.value,
+          },
+        };
+        response = await TransactionService.sendTransactionResumeEmail({
+          transactionData: transactionData,
+        });
 
         if (response.status === 201) {
           hidePreloader();
@@ -1087,11 +1218,11 @@ const validateCode = async () => {
         discountId: response.data.discountCodeId,
       };
       hidePreloader();
-      showSuccessSwall("Cupon validado correctamente");
+      showSuccessSwall("","Cupon validado correctamente");
     }
   } catch (err) {
     hidePreloader();
-    showErrorSwall("Cupon no valido");
+    showErrorSwall("",err.response.data.message);
     console.error(err);
   }
 };
@@ -1189,11 +1320,37 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  row-gap: 1em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 990px) {
   .payment-resume {
     margin-top: 2em;
+  }
+}
+.cart-item__price-title{
+  font-size: 1.4em;
+  font-weight: 700;
+  @media (max-width: 990px) {
+    font-size: 0.8em;
+  }
+}
+.cart-item__price-pricepen{
+  
+  span{
+    font-size: 1.2em;
+    font-weight: 700;
+    @media (max-width: 990px) {
+      font-size: 0.9em!important;
+    }
+   
+  }
+  .cart-item__price-pricepen__discount{
+    font-size: 1em!important;
+    font-weight: 700;
+    @media (max-width: 990px) {
+      font-size: 0.7em!important;
+    }
   }
 }
 </style> 

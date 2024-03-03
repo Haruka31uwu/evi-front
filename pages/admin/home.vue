@@ -44,15 +44,15 @@
       <template v-slot:item.is_valid_student="{ item }">
         <div class="d-flex flex-row align-items-center">
           <Icon
-            :name="getStudentValidity(item.is_valid_student).icon"
-            :color="getStudentValidity(item.is_valid_student).color"
+            :name="getStudentValidity(item.is_valid_student,item.carnet_img).icon"
+            :color="getStudentValidity(item.is_valid_student,item.carnet_img).color"
             size="30"
           />
           <span>{{ getStudentValidity(item.is_valid_student,item.carnet_img).label }}</span>
         </div>
       </template>
       <template v-slot:item.carnet_img="{ item }">
-        <span @click="openFile(item)">{{ !item.carnet_img && item.carnet_img!=""?"Ver Carnet":"No es Estudiante" }}</span>
+        <span @click="openFile(item)">{{ item.carnet_img!=null && item.carnet_img!=""?"Ver Carnet":"No es Estudiante" }}</span>
       </template>
       <template v-slot:item.phone_number="{ item }">
         <div class="d-flex flex-row gap-1">
@@ -167,6 +167,7 @@ const openFile = (item) => {
   user.value = item;
 };
 const getStudentValidity = (validity,carnet="") => {
+  console.log(carnet=="",validity,(validity==0 || !validity) && (carnet=="" || carnet==null),carnet)
   if (validity === 1) {
     return {
       label: "Si",
@@ -174,14 +175,14 @@ const getStudentValidity = (validity,carnet="") => {
       icon: "material-symbols:check",
     };
   }
-  else if((validity==0 || !validity) && (carnet=="" || carnet==null)){
+  if((validity===0 || validity===null) && (carnet=="" || carnet===null)){
     return {
       label: "No es estudiante",
       color: "red",
       icon: "material-symbols:close",
     };
   }	
-   else if (validity === 0) {
+   if ((validity === 0 ||validity==null) && (carnet=="" || carnet==null)) {
     return {
       label: "No",
       color: "red",
@@ -206,7 +207,7 @@ const saveValidity = async () => {
     showPreloader();
     const response = await AdminHomeService.updateStudentValidity(params);
     if (response.status === 200) {
-      showSuccessSwall("Se ha actualizado la validez del estudiante");
+      showSuccessSwall("","Se ha actualizado la validez del estudiante");
       showImgViewer.value = false;
       user.value = {};
       imgSrc.value = "";
@@ -216,6 +217,7 @@ const saveValidity = async () => {
       );
     }
   } catch (error) {
+    hidePreloader();  
     showErrorSwall("Ha ocurrido un error");
     console.error(error);
   }

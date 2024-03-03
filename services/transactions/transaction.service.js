@@ -50,5 +50,13 @@ class TransactionService {
             throw e;
         }
     }
+    async isValidStudent(body) {
+        try {
+            const res = await apiClient.post(`${config.public.APP_BACKEND_URL}transactions/is-valid-student`, body);
+            return res;
+        } catch (e) {
+            throw e;
+        }
+    }
 }
 export default new TransactionService();

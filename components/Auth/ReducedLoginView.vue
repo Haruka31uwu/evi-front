@@ -84,7 +84,7 @@ export default {
 
         if (res.status === 200) {
           hidePreloader();
-          showSuccessSwall("Inicio de sesión exitoso");
+          showSuccessSwall("","Inicio de sesión exitoso");
           store.addToken(res.data.access_token);
           store.addUserData(res.data.user);
           subscribeUsersChannel();

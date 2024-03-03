@@ -35,7 +35,9 @@
                 }
             ],
             "pricePen": 5,
-            "priceUsd": 1
+            "priceUsd": 590,
+            "pricePenStudent": 4,
+            "priceUsdStudent": 475
         },
         {
             "id": 101,
@@ -69,7 +71,9 @@
                 }
             ],
             "pricePen": 4,
-            "priceUsd": 1
+            "priceUsd": 485,
+            "pricePenStudent": 3,
+            "priceUsdStudent": 390
         }
     ]
 }

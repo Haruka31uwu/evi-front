@@ -77,5 +77,15 @@ class AuthService {
             throw e;
         }
     }
+    async getUserDiscountCode(body) {
+        try {
+            const res = await axios.post(`${config.public.APP_BACKEND_URL}auth/get-user-discount-code`,body, {
+                withCredentials: true,
+            });
+            return res;
+        } catch (e) {
+            throw e;
+        }
+    }
 }
 export default new AuthService();
