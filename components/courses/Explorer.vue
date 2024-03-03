@@ -395,20 +395,34 @@ export default defineComponent({
     watch(courseInput, () => {
       carouselKey.value++;
     });
-    const lastTouch=ref(0);
+    const lastTouchY=ref(0);
     const initialScrollY=ref(0);
+    const lastTouchMoveTime=ref(0);
     const touchStartEvent = (e) => {
-      lastTouch.value = e.touches[0].clientY;
+      lastTouchY.value = e.touches[0].clientY;
       initialScrollY.value = window.scrollY;
+      lastTouchMoveTime.value = new Date().getTime();
     };
-    const touchMoveEvent = (e, ) => {
-      const deltaY = e.touches[0].clientY -lastTouch.value;
-      if (Math.abs(deltaY) > Math.abs(e.touches[0].clientX - e.targetTouches[0].clientX)) {
-          e.preventDefault();
-          const newScrollY = initialScrollY.value - deltaY;
-          window.scrollTo(0, newScrollY);
-      }
+    const touchMoveEvent = (event) => {
+      const currentTime = Date.now();
+      const timeDiff = currentTime - lastTouchMoveTime.value;
       
+      console.log(timeDiff);
+      if (timeDiff < 100) { // Solo ajusta si ha pasado menos de 100 ms desde el último evento de touchmove
+        const deltaY = event.touches[0].clientY - lastTouchY.value;
+        const velocity = Math.abs(deltaY / timeDiff);
+
+        // Si la velocidad es baja, ajusta la precisión
+        if (velocity < 0.5) {
+          event.preventDefault();
+          const scrollDelta = deltaY * 100;
+          window.scrollTo(0, initialScrollY.value - scrollDelta);
+        }
+      }
+      lastTouchMoveTime.value = currentTime;
+      lastTouchY.value = event.touches[0].clientY;
+      
+        
 
     };
     return {
