@@ -104,7 +104,7 @@
             {{ programtype.title }}
           </h4>
           <hr />
-
+          <div >
           <Carousel
             :value="
               courses.coursesList.filter(
@@ -118,6 +118,9 @@
             :responsiveOptions="responsiveOptions"
             class="carousel-without-arrows"
             :key="carouselKey"
+            @touchstart="touchStartEvent"
+            @touchmove="touchMoveEvent"
+           
           >
             <template #item="slotProps" >
               <div
@@ -310,6 +313,7 @@
               </div>
             </template>
           </Carousel>
+          </div>
         </div>
       </div>
     </div>
@@ -373,6 +377,7 @@ export default defineComponent({
         currentWindowWidth.value = window.innerWidth;
       });
     });
+   
     const courses = ref(coursesData);
     const courseInput = ref("");
     const filterCondition = (programId, courseList) => {
@@ -390,6 +395,22 @@ export default defineComponent({
     watch(courseInput, () => {
       carouselKey.value++;
     });
+    const lastTouch=ref(0);
+    const initialScrollY=ref(0);
+    const touchStartEvent = (e) => {
+      lastTouch.value = e.touches[0].clientY;
+      initialScrollY.value = window.scrollY;
+    };
+    const touchMoveEvent = (e, ) => {
+      const deltaY = e.touches[0].clientY -lastTouch.value;
+      if (Math.abs(deltaY) > Math.abs(e.touches[0].clientX - e.targetTouches[0].clientX)) {
+          e.preventDefault();
+          const newScrollY = initialScrollY.value - deltaY;
+          window.scrollTo(0, newScrollY);
+      }
+      
+
+    };
     return {
       courses,
       courseInput,
@@ -400,7 +421,8 @@ export default defineComponent({
       addToCart,
       carouselKey,
       filterCondition,
-    
+      touchMoveEvent,
+      touchStartEvent
       
     };
   },
