@@ -431,8 +431,6 @@ export default defineComponent({
       lastTouchMoveTime.value = currentTime;
       lastTouchY.value = event.touches[0].clientY;
       lastTouchX.value = event.touches[0].clientX;
-        
-
     };
     return {
       courses,

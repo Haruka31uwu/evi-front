@@ -11,6 +11,8 @@
         :numScroll="3"
         :responsiveOptions="responsiveOptions"
         class="carousel-without-pages"
+        @touchstart="touchStartEvent"
+        @touchmove="touchMoveEvent"
       >
         <template #item="slotProps">
           <div
@@ -19,16 +21,25 @@
             <div class="mb-3 h-100">
               <div class="relative mx-auto p-carousel-content">
                 <div class="p-carousel-body">
-                  <span style="text-align: start !important;font-size: 1.2em;color: #00A9C3; font-weight: bold;"
+                  <span
+                    style="
+                      text-align: start !important;
+                      font-size: 1.2em;
+                      color: #00a9c3;
+                      font-weight: bold;
+                    "
                     >Medicina al Dia</span
                   >
                   <span style="text-align: start !important">{{
                     slotProps.data.content
                   }}</span>
                 </div>
-                <div class="p-carousel-footer" style="align-self: flex-start;">
-                  <span style="text-align: start!important;" class="p-carousel-footer__link">Leer articulo completo</span>
-
+                <div class="p-carousel-footer" style="align-self: flex-start">
+                  <span
+                    style="text-align: start !important"
+                    class="p-carousel-footer__link"
+                    >Leer articulo completo</span
+                  >
                 </div>
                 <!-- <Tag
                   :value="slotProps.data.inventoryStatus"
@@ -118,22 +129,22 @@ import { redirectTo } from "/composables/main-composables.js";
 let experiencesContainer = ref(null);
 let scrollPosition = ref(0);
 const responsiveOptions = ref([
-      {
-        breakpoint: "1400px",
-        numVisible: 2,
-        numScroll: 1,
-      },
-      {
-        breakpoint: "1199px",
-        numVisible: 2,
-        numScroll: 1,
-      },
-      {
-        breakpoint: "850px",
-        numVisible: 1,
-        numScroll: 1,
-      },
-    ]);
+  {
+    breakpoint: "1400px",
+    numVisible: 2,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "1199px",
+    numVisible: 2,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "850px",
+    numVisible: 1,
+    numScroll: 1,
+  },
+]);
 
 const experiencies = ref([
   {
@@ -283,4 +294,42 @@ const experiencies = ref([
     course: "Curso - Redacción y publicación de casos clínicos",
   },
 ]);
+const lastTouchY = ref(0);
+const lastTouchX = ref(0);
+const initialScrollY = ref(0);
+const initialScrollX = ref(0);
+const lastTouchMoveTime = ref(0);
+const touchStartEvent = (e) => {
+  lastTouchY.value = e.touches[0].clientY;
+  lastTouchX.value = e.touches[0].clientX;
+  initialScrollY.value = window.scrollY;
+  initialScrollX.value = window.scrollX;
+  lastTouchMoveTime.value = new Date().getTime();
+};
+const touchMoveEvent = (event) => {
+  const currentTime = Date.now();
+  const timeDiff = currentTime - lastTouchMoveTime.value;
+
+  if (timeDiff < 100) {
+    // Solo ajusta si ha pasado menos de 100 ms desde el último evento de touchmove
+    const deltaY = event.touches[0].clientY - lastTouchY.value;
+    const deltaX = event.touches[0].clientX - lastTouchX.value;
+    const velocityY = Math.abs(deltaY / timeDiff);
+    const velocityX = Math.abs(deltaX / timeDiff);
+
+    // Si la velocidad vertical es mayor que la horizontal, y el movimiento vertical es más significativo, ajusta la precisión
+    if (velocityY > velocityX && Math.abs(deltaY) > Math.abs(deltaX)) {
+      // Si la velocidad es baja, ajusta la precisión
+      if (velocityY < 0.5) {
+        event.preventDefault();
+        const scrollDelta = deltaY * 100;
+        window.scrollTo(0, initialScrollY.value - scrollDelta);
+      }
+    }
+  }
+
+  lastTouchMoveTime.value = currentTime;
+  lastTouchY.value = event.touches[0].clientY;
+  lastTouchX.value = event.touches[0].clientX;
+};
 </script>

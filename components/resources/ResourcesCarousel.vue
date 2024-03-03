@@ -9,6 +9,8 @@
         :numVisible="3"
         :numScroll="3"
         :responsiveOptions="responsiveOptions"
+        @touchstart="touchStartEvent"
+        @touchmove="touchMoveEvent"
       >
         <template #item="slotProps">
           <div class="border-1 surface-border border-round m-4 p-carousel-container">
@@ -197,6 +199,43 @@ const experiencies = ref([
     date: "Marzo 15, 2023",
   },
 ]);
+const lastTouchY=ref(0);
+    const lastTouchX=ref(0);
+    const initialScrollY=ref(0);
+    const initialScrollX=ref(0);
+    const lastTouchMoveTime=ref(0);
+    const touchStartEvent = (e) => {
+      lastTouchY.value = e.touches[0].clientY;
+      lastTouchX.value = e.touches[0].clientX;
+      initialScrollY.value = window.scrollY;
+      initialScrollX.value = window.scrollX;
+      lastTouchMoveTime.value = new Date().getTime();
+    };
+    const touchMoveEvent = (event) => {
+      const currentTime = Date.now();
+      const timeDiff = currentTime - lastTouchMoveTime.value;
+
+      if (timeDiff < 100) { // Solo ajusta si ha pasado menos de 100 ms desde el último evento de touchmove
+        const deltaY = event.touches[0].clientY - lastTouchY.value;
+        const deltaX = event.touches[0].clientX - lastTouchX.value;
+        const velocityY = Math.abs(deltaY / timeDiff);
+        const velocityX = Math.abs(deltaX / timeDiff);
+
+        // Si la velocidad vertical es mayor que la horizontal, y el movimiento vertical es más significativo, ajusta la precisión
+        if (velocityY > velocityX && Math.abs(deltaY) > Math.abs(deltaX)) {
+          // Si la velocidad es baja, ajusta la precisión
+          if (velocityY < 0.5) {
+            event.preventDefault();
+            const scrollDelta = deltaY * 100;
+            window.scrollTo(0, initialScrollY.value - scrollDelta);
+          }
+        }
+      }
+
+      lastTouchMoveTime.value = currentTime;
+      lastTouchY.value = event.touches[0].clientY;
+      lastTouchX.value = event.touches[0].clientX;
+    };
 </script>
 <style lang="scss" scoped>
 
