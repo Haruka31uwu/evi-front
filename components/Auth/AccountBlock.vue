@@ -163,7 +163,7 @@ const accountOptions = ref([
     key: "go-admin",
     onclick: ()=>{
       console.log(userData.value);
-      if(userData.value.role_id==2){
+      if(userData.value.role_id==1){
         router.push("/admin/home");
       }
     },
