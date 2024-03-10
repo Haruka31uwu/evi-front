@@ -311,6 +311,7 @@ const fields = ref([
 ]);
 const downloadUserReport = async () => {
   try {
+    showPreloader();
     const response = await AdminHomeService.downloadUserReport();
     hidePreloader();
     if (response.status === 200) {
@@ -320,6 +321,7 @@ const downloadUserReport = async () => {
       console.error(`Error en la respuesta: ${response.status}`);
     }
   } catch (error) {
+    hidePreloader();  
     console.error(error);
   }
 };

@@ -35,7 +35,7 @@
         <li
           v-for="option in accountOptions.filter((option) =>{
             if(option.key=='go-admin'){
-              return userData.role_id==2;
+              return userData.role_id==1;
             }
             return true;
           

@@ -203,11 +203,17 @@ export default {
   display: flex;
   flex-direction: column;
   row-gap: 1em;
+  max-height: 100vh;
+    overflow: auto;
   .login__body-options {
     width: 95%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+
+
+
     input,
     label,
     span {

@@ -11,7 +11,8 @@
         @closeComplaintsBookForm="closeComplaintsBookForm"
       />
       
-      <router-view   v-if="!getClaimForm && !showEditProfile" @click="showSidebarCart = false" @openTransactionDetails="(transactionDetails)=>openFinishTransactionModal(transactionDetails)"/>
+      <router-view  
+      v-if="!getClaimForm && !showEditProfile" @click="showSidebarCart = false" @openTransactionDetails="(transactionDetails)=>openFinishTransactionModal(transactionDetails)"/>
         <commons-edit-profile
         v-if="showEditProfile"
         @click="showSidebarCart = false"
