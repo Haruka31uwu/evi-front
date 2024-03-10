@@ -1,6 +1,8 @@
 <template>
   <div class="admin-sidebar">
-    <div class="sidebar__logo d-flex align-items-center justify-content-center">
+    <div class="sidebar__logo d-flex align-items-center justify-content-center" @click="()=>{
+      router.push('/')
+    }">
       <img src="/assets/img/logo-footer.png" width="200" height="200" alt="logo-footer"/>
     </div>
     <div class="sidebar__account d-flex align-items-center flex-column">
