@@ -18,6 +18,15 @@ class AdminHomeService{
         }catch(e){
             throw e;
         }
+    }async downloadUserReport(body){
+        try{
+            const res = await apiClient.post(`/admin/user/download-user-report`,body,{
+                withCredentials: true,
+            });
+            return res;
+        }catch(e){
+            throw e;
+        }
     }
         
 }

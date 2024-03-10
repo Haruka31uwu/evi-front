@@ -1,5 +1,5 @@
 <template>
-    <section class="banner" style="position: relative;z-index:3;">
+    <section class="banner" style="position: relative;z-index:3; ">
         <div class="decoration" style="position: absolute;bottom:-10em;left: 0;"></div>
         <div class="banner-content">
             <h2>ACCEDE AL MATERIAL DEL CURSO NI BIEN TE MATRICULES</h2>

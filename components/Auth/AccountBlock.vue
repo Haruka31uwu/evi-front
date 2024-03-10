@@ -3,23 +3,25 @@
     <div
       class="login-account"
       v-if="userData && userData.length == 0"
-      :style="router.currentRoute.value.path == '/login' ? 'color:white' : ''"
+      :style="router.currentRoute.value.path == '/login' ? 'color:#0393AA' : ''"
     >
-      Iniciar Sesión
+      Iniciar sesión
     </div>
     <div
-      class="logged-account d-flex flex-row gap-2 align-items-center"
+      class="logged-account d-flex flex-row gap-3 align-items-center"
       v-else
       @click="closeOpenDropdown"
     >
-      <div>
-        <img
+      <div class="d-flex flex-row gap-3 align-items-center">
+        <div style="background: #0393AA;border-radius: 50%;">
+          <img
           :src="userData.profile_img"
           class="account-profile-img"
           alt="account-profile-img"
         />
+        </div>
+        <div class="d-flex flex-row align-items-center">
         <span style="color: white">{{ getNameLastNameMax() }}</span>
-
         <Icon
           v-if="!isOpenDropdown"
           name="mdi:chevron-down"
@@ -27,10 +29,17 @@
           color="white"
         ></Icon>
         <Icon v-else name="mdi:chevron-up" size="2em" color="white"></Icon>
+        </div>
       </div>
       <ul class="account-options" v-if="isOpenDropdown">
         <li
-          v-for="option in accountOptions"
+          v-for="option in accountOptions.filter((option) =>{
+            if(option.key=='go-admin'){
+              return userData.role_id==2;
+            }
+            return true;
+          
+          })"
           :key="option.key"
           @click="option.onclick"
         >
@@ -58,7 +67,7 @@ const userData = computed(() => storeAuth.getUserData);
 const newLogin = computed(() => storeAuth.newLogin);
 const getNameLastNameMax = () => {
   const userName = userData.value.name + " " + userData.value.last_name;
-  return userName.length > 14 ? userName.substring(0, 14) + "..." : userName;
+  return userName.length > 12 ? userName.substring(0, 12) + "..." : userName;
 };
 let checkstorage = ref(null);
 function checkLocalStorage() {
@@ -79,6 +88,7 @@ function checkLocalStorage() {
   }
   if (newLogin.value[0] == "unlogin-account-event") {
     if (storedValue !== null) {
+      console.log("unlogin-account-event", "llego",newLogin.value[1].id,userData.value.id);
       if (newLogin.value[1].id === userData.value.id) {
         console.log("unlogin-account-event", "llego");
         storeAuth.removeUserData();
@@ -148,6 +158,17 @@ const accountOptions = ref([
     key: "profile",
     onclick: viewProfile,
   },
+  {
+    name: "Ir a vista de administrador",
+    key: "go-admin",
+    onclick: ()=>{
+      console.log(userData.value);
+      if(userData.value.role_id==2){
+        router.push("/admin/home");
+      }
+    },
+  },
+  
 ]);
 </script>
 <style scoped lang="scss">

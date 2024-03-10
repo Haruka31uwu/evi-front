@@ -1,12 +1,12 @@
 <template>
-  <section class="section-explorer">
-    <div class="section-content" style="position: relative">
+  <section class="section-explorer pb-4" >
+    <div class="section-content" style="position: relative;width: 100%;">
       <div
         style="align-self: flex-end"
         :style="
           currentWindowWidth < 1024
-            ? 'width: 90%;margin:0 auto;margin-bottom:1em'
-            : 'width:300px'
+            ? 'width: 90%;margin:1em auto;'
+            : 'width:300px;'
         "
       >
         <input
@@ -21,7 +21,7 @@
         <svg
           v-if="courseInput == ''"
           style="position: absolute; top: 0.6em"
-          :style="currentWindowWidth > 1024 ? 'right: 1em' : 'right: 2em'"
+          :style="currentWindowWidth > 1024 ? 'right: 1em' : 'right: 3em;top: 1.5em'"
           xmlns="http://www.w3.org/2000/svg"
           width="17"
           height="17"
@@ -37,10 +37,47 @@
 
       <div
         class="courses-list-container"
+         style="position: relative;"
         :style="currentWindowWidth < 768 ? 'display:none' : ''"
         v-for="(programtype, index) in courses.coursesTypes"
         :key="`typeProgram-${index}`"
       >
+      <div  
+          v-if="programtype.id == 1"
+          style="
+          background: red;
+          position: absolute;
+          width: 500px;
+          height: 400px;
+          opacity: 0.15;
+          left:-30em;
+          background: linear-gradient(
+            180deg,
+            #0393AA 0%,
+            rgba(0, 169, 215, 1) 100%
+          );
+
+          filter: blur(100px);
+        "></div>
+        <svg v-else
+        style="position: absolute;"
+        width="222" height="144" viewBox="0 0 222 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.2">
+        <path d="M-46.2658 47.0449C-39.5986 47.0495 13.2307 47.0449 13.2307 47.0449C11.6302 50.041 11.339 52.7633 11.7244 59.1354C11.7244 59.1354 -40.3181 59.1326 -46.2658 59.1354C-52.2134 59.1382 -52.9329 47.0404 -46.2658 47.0449Z" fill="#515166"/>
+        <path d="M-27.1572 4.14453C-15.3917 4.1491 77.8365 4.14453 77.8365 4.14453C75.0122 7.14059 74.4982 9.86295 75.1785 16.235C75.1785 16.235 -16.6614 16.2322 -27.1572 16.235C-37.653 16.2378 -38.9227 4.13996 -27.1572 4.14453Z" fill="#515166"/>
+        <path d="M-38.288 128.279C-33.5034 128.284 4.40941 128.279 4.40941 128.279C3.26085 131.275 3.05183 133.998 3.32846 140.37C3.32846 140.37 -34.0197 140.367 -38.288 140.37C-42.5563 140.373 -43.0727 128.275 -38.288 128.279Z" fill="#515166"/>
+        <path d="M-5.77833 90.2305C3.55564 90.235 77.5167 90.2305 77.5167 90.2305C75.276 93.2265 74.8683 95.9489 75.408 102.321C75.408 102.321 2.54835 102.318 -5.77833 102.321C-14.105 102.324 -15.1123 90.2259 -5.77833 90.2305Z" fill="#515166"/>
+        <path d="M49.3324 58.2734C56.0223 58.2689 109.032 58.2734 109.032 58.2734C107.426 55.2774 107.134 52.555 107.52 46.183C107.52 46.183 55.3003 46.1857 49.3324 46.183C43.3645 46.1802 42.6426 58.278 49.3324 58.2734Z" fill="#515166"/>
+        <path d="M117.007 15.5039C128.772 15.4993 222.001 15.5039 222.001 15.5039C219.176 12.5078 218.662 9.78549 219.343 3.41342C219.343 3.41342 127.503 3.41619 117.007 3.41342C106.511 3.41066 105.241 15.5085 117.007 15.5039Z" fill="#515166"/>
+        <path d="M38.6787 139.979C43.3065 139.974 79.9762 139.979 79.9762 139.979C78.8653 136.982 78.6632 134.26 78.9307 127.888C78.9307 127.888 42.807 127.891 38.6787 127.888C34.5503 127.885 34.0509 139.983 38.6787 139.979Z" fill="#515166"/>
+        <path d="M115.124 101.709C124.458 101.704 198.419 101.709 198.419 101.709C196.178 98.7129 195.771 95.9906 196.31 89.6185C196.31 89.6185 123.451 89.6213 115.124 89.6185C106.797 89.6157 105.79 101.714 115.124 101.709Z" fill="#515166"/>
+        <circle cx="28.9383" cy="53.9833" r="11.3348" fill="#515166"/>
+        <circle cx="93.5477" cy="11.3348" r="11.3348" fill="#515166"/>
+        <circle cx="20.1063" cy="132.614" r="11.3348" fill="#515166"/>
+        <circle cx="93.2313" cy="97.4833" r="11.3348" fill="#515166"/>
+        </g>
+        </svg>
+
         <h4
           :id="
             programtype.id == 1 ? 'investigation-courses' : 'evidences-courses'
@@ -66,8 +103,25 @@
             :key="`course-${carouselKey}-${index2}`"
             :course="course"
           />
+        
         </div>
+        <div  
+          v-if="programtype.id == 2"
+          style="
+          background: red;
+          position: absolute;
 
+          opacity: 0.15;
+          bottom: 0;
+          left: 0;
+          background: linear-gradient(
+            180deg,
+            #0393AA 0%,
+            rgba(0, 169, 215, 1) 100%
+          );
+
+          filter: blur(100px);
+        "></div>
         <div
           class="d-flex justify-content-center my-5"
           v-if="
@@ -79,7 +133,9 @@
           "
         >
           <span style="font-size: 2em">No Se encuentran Resultados</span>
+          
         </div>
+      
       </div>
       <!--Explorer for mobile-->
       <div
@@ -239,9 +295,9 @@
                             "
                           >
                             <span> Accede al contenido hoy </span>
-                            <span te>
-                              Reuniones sincronicas de
-                              {{ slotProps.data.schedule }}
+                            <span >
+                              Reuniones sincronicas desde el
+                              {{ slotProps.data.info.Inicio }}
                             </span>
                           </div>
                         </div>
@@ -263,7 +319,7 @@
                             "
                             class="more-info p-carousel-footer__link text-center"
                             style="cursor: pointer; color: #515166"
-                            >Mas información</span
+                            >Más información</span
                           >
                           <button
                             class="btn-course gap-1"
@@ -381,6 +437,7 @@ export default defineComponent({
     const courses = ref(coursesData);
     const courseInput = ref("");
     const filterCondition = (programId, courseList) => {
+      console.log(programId,courseInput.value=="");
       if (courseInput.value === "") {
         return courseList.filter((course) => course.type == programId);
       }

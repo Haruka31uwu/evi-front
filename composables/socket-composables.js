@@ -5,6 +5,15 @@ export const useSocket = () => {
     function subscribeAdminChannel() {
         socket.ws.close();
         socket.ws = new WebSocket('wss://6dd412nf3j.execute-api.us-east-1.amazonaws.com/production/?role_id=1');
+        socket.ws.addEventListener('message',event=>{
+            const eventData =JSON.parse(event.data)
+            const eventHandler = eventHandlers[eventData.event];
+            if (eventHandler) {
+                eventHandler(eventData); // Llama al manejador de eventos correspondiente
+            } else {
+                console.error("No hay un manejador definido para el evento:", eventData.event);
+            }
+        })    
     }
     function subscribeUsersChannel() {
         socket.ws.close();

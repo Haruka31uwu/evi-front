@@ -1713,6 +1713,8 @@ section {
             justify-content: center;
             align-items: center;
             row-gap: 2em;
+            
+
         }
     }
 
@@ -1722,8 +1724,9 @@ section {
     }
 
     .program-container {
-        width: 400px;
-
+        width: 40%;
+        min-width: 350px;
+        height: auto;
         .program-img-container {
             position: relative;
 
@@ -1738,10 +1741,11 @@ section {
         .program-content {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             padding: 1em;
             border-radius: 0 0 1em 1em;
             @include theme($EVI400, $EVIDARK005);
+            height: 400px;
 
             h5 {
                 margin: 0;
@@ -1799,9 +1803,14 @@ section {
         }
     }
 
-    @media(max-width:1090px) {
-        .program-container {
-            width: 90%;
+    @media(max-width:1200px) {
+        .programs-container {
+            display: flex;
+            flex-direction: column;
+            .program-container{
+                width: 100%;
+                margin: 1em auto;
+            }
         }
     }
 }

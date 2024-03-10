@@ -35,7 +35,7 @@
         >
           <span>Datos de la compra</span>
           <small
-            >Tienes algun codigo o cupon de descuento? Ingresalo aqui</small
+            >¿Tienes algun codigo o cupon de descuento? Ingresalo aquí</small
           >
           <div style="width: 80%" class="d-flex flex-column gap-4">
             <div
@@ -52,12 +52,12 @@
                 >Verificar</span
               >
             </div>
-            <span v-if="isEviAlumno === 1 && !isValidStudent" style="color: red; font: Axiforma">
+            <!-- <span v-if="isEviAlumno === 1 && !isValidStudent" style="color: red; font: Axiforma">
               Por ser un Evialumno tiene un descuento del 10% :D</span
             >
             <span v-if="isValidStudent" style="color: red; font: Axiforma">
               Por ser un Estudiante de Pregrado tienes acceso a precios Exclusivos :D</span
-            >
+            > -->
             <span style="font-size: 0.9em">Selecciona una Opcion</span>
             <div class="d-flex flex-row justify-content-between">
               <label class="file-selected">
@@ -73,7 +73,7 @@
               </label>
             </div>
 
-            <div class="boleta__fields" v-if="fileSelected == 'boleta'">
+            <div class="boleta__fields d-flex flex-column gap-2" v-if="fileSelected == 'boleta'">
               <div class="input-container">
                 <span for="name" style="color: white">Tipo de Documento*</span>
                 <select
@@ -91,11 +91,11 @@
                 </select>
               </div>
               <div class="input-container">
-                <span for="name" style="color: white">Numero de Documento</span>
+                <span for="name" style="color: white">Número de documento</span>
                 <input v-model="pid" class="input-customized" type="text" />
               </div>
               <div class="input-container">
-                <span for="name" style="color: white">Numero de celular</span>
+                <span for="name" style="color: white">Número de celular</span>
                 <input
                   type="text"
                   id="name"
@@ -104,7 +104,7 @@
                 />
               </div>
             </div>
-            <div class="factura_fields" v-if="fileSelected == 'factura'">
+            <div class="factura_fields d-flex flex-column gap-2" v-if="fileSelected == 'factura'">
               <div class="input-container">
                 <span for="name" style="color: white"
                   >Direccion de Facturacion</span
@@ -164,13 +164,10 @@
               @click="selectedPaymentOption = pOption.id"
             ></div>
             <div class="payment-method-info">
-              <label
-                :for="`payment-option-${pOption.id}`"
-                v-if="pOption.id == 1"
-                >{{ pOption.name }}</label
-              >
+              
               <div class="payment-method-icons">
-                <div v-if="pOption.id == 1" class="d-flex flex-row gap-2 mt-2">
+                <div v-if="pOption.id == 1" class="d-flex flex-row gap-2 mt-2 align-items-center">
+                  
                   <svg
                     id="visa"
                     width="40"
@@ -484,6 +481,7 @@
                       </clipPath>
                     </defs>
                   </svg>
+                  <span>Tarjeta de credito o debito</span>
                 </div>
                 <div v-if="pOption.id == 2" class="d-flex flex-row gap-2">
                   <svg
@@ -524,43 +522,8 @@
                   </svg>
                   <span>PayPal</span>
                 </div>
-                <div v-if="pOption.id == 3" class="d-flex flex-row gap-2">
-                  <svg
-                    width="40"
-                    height="26"
-                    viewBox="0 0 40 26"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect
-                      x="0.5"
-                      y="0.5"
-                      width="39"
-                      height="25"
-                      rx="3.5"
-                      fill="#253B80"
-                    />
-                    <rect
-                      x="0.5"
-                      y="0.5"
-                      width="39"
-                      height="25"
-                      rx="3.5"
-                      stroke="#CCCCCC"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M10.3569 9.75068H8.39754C8.26345 9.75068 8.14942 9.84568 8.12851 9.97468L7.33604 14.8729C7.32029 14.9696 7.39707 15.0567 7.49763 15.0567H8.43306C8.56714 15.0567 8.68117 14.9617 8.70208 14.8325L8.91582 13.5113C8.93644 13.382 9.05075 13.2871 9.18456 13.2871H9.80482C11.0955 13.2871 11.8404 12.6782 12.035 11.4716C12.1227 10.9437 12.0387 10.5289 11.7851 10.2384C11.5067 9.91948 11.0127 9.75068 10.3569 9.75068ZM10.583 11.5397C10.4758 12.2251 9.93863 12.2251 9.4192 12.2251H9.12353L9.33096 10.945C9.34327 10.8677 9.41203 10.8107 9.49226 10.8107H9.62777C9.9816 10.8107 10.3154 10.8107 10.4879 11.0073C10.5907 11.1247 10.6222 11.2989 10.583 11.5397ZM16.2139 11.5177H15.2756C15.1957 11.5177 15.1266 11.5747 15.1143 11.6521L15.0728 11.9079L15.0072 11.8153C14.804 11.5278 14.3511 11.4318 13.899 11.4318C12.8621 11.4318 11.9766 12.1973 11.8041 13.2713C11.7144 13.807 11.8418 14.3192 12.1536 14.6764C12.4395 15.0049 12.8487 15.1418 13.3354 15.1418C14.1708 15.1418 14.6342 14.618 14.6342 14.618L14.5923 14.8723C14.5765 14.9695 14.6533 15.0566 14.7533 15.0566H15.5985C15.7329 15.0566 15.8463 14.9616 15.8675 14.8323L16.3746 11.7015C16.3907 11.6052 16.3142 11.5177 16.2139 11.5177ZM14.906 13.2981C14.8154 13.8206 14.39 14.1714 13.8474 14.1714C13.575 14.1714 13.3572 14.0863 13.2174 13.9248C13.0787 13.7646 13.026 13.5363 13.0701 13.2822C13.1547 12.764 13.5873 12.4018 14.1216 12.4018C14.388 12.4018 14.6046 12.488 14.7473 12.6509C14.8902 12.8154 14.947 13.045 14.906 13.2981ZM20.2682 11.5176H21.2112C21.3432 11.5176 21.4203 11.662 21.3452 11.7676L18.2092 16.1806C18.1584 16.2521 18.0748 16.2946 17.9854 16.2946H17.0437C16.9111 16.2946 16.8336 16.149 16.9104 16.0432L17.8869 14.6995L16.8484 11.7281C16.8124 11.6249 16.8907 11.5176 17.0034 11.5176H17.9299C18.0502 11.5176 18.1564 11.5946 18.1912 11.7069L18.7423 13.5015L20.0428 11.634C20.0938 11.5611 20.1783 11.5176 20.2682 11.5176Z"
-                      fill="white"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M30.4918 14.8725L31.2959 9.88468C31.3083 9.80726 31.3771 9.75026 31.457 9.75H32.3623C32.4623 9.75 32.539 9.83738 32.5233 9.93406L31.7303 14.832C31.7096 14.9613 31.5956 15.0563 31.4613 15.0563H30.6528C30.5528 15.0563 30.476 14.9692 30.4918 14.8725ZM24.3334 9.75026H22.3737C22.2399 9.75026 22.1259 9.84526 22.1049 9.97426L21.3125 14.8725C21.2967 14.9692 21.3735 15.0563 21.4736 15.0563H22.4791C22.5725 15.0563 22.6525 14.9899 22.6671 14.8994L22.8919 13.5109C22.9126 13.3815 23.0269 13.2867 23.1607 13.2867H23.7807C25.0716 13.2867 25.8164 12.6777 26.0111 11.4712C26.099 10.9433 26.0146 10.5285 25.7611 10.2379C25.4828 9.91906 24.9892 9.75026 24.3334 9.75026ZM24.5595 11.5393C24.4526 12.2247 23.9154 12.2247 23.3956 12.2247H23.1002L23.308 10.9446C23.3203 10.8673 23.3885 10.8103 23.4689 10.8103H23.6044C23.958 10.8103 24.2922 10.8103 24.4645 11.0069C24.5674 11.1242 24.5987 11.2985 24.5595 11.5393ZM30.1899 11.5173H29.2523C29.1717 11.5173 29.1032 11.5743 29.0912 11.6517L29.0497 11.9075L28.9838 11.8148C28.7807 11.5274 28.328 11.4313 27.8759 11.4313C26.839 11.4313 25.9537 12.1969 25.7812 13.2709C25.6919 13.8065 25.8187 14.3188 26.1304 14.676C26.417 15.0045 26.8256 15.1413 27.3123 15.1413C28.1477 15.1413 28.611 14.6176 28.611 14.6176L28.5692 14.8718C28.5534 14.969 28.6302 15.0562 28.7308 15.0562H29.5756C29.7094 15.0562 29.8234 14.9612 29.8444 14.8319L30.3518 11.7011C30.3673 11.6048 30.2905 11.5173 30.1899 11.5173ZM28.8821 13.2977C28.7921 13.8202 28.3661 14.171 27.8234 14.171C27.5515 14.171 27.3332 14.0858 27.1934 13.9244C27.0547 13.7641 27.0026 13.5359 27.0462 13.2818C27.1312 12.7636 27.5633 12.4014 28.0976 12.4014C28.3641 12.4014 28.5806 12.4876 28.7234 12.6505C28.8668 12.815 28.9236 13.0446 28.8821 13.2977Z"
-                      fill="#179BD7"
-                    />
-                  </svg>
+                <div v-if="pOption.id == 3" class="d-flex flex-row gap-2 align-items-center">
+                  <img src="/assets/img/yape-logo.png" alt="yape-logo" style="width: 30px; height: 30px; border-radius: 0.3em;"/>
                   <span>Yape</span>
                 </div>
               </div>
@@ -643,6 +606,7 @@
                             cartItem.priceUsd.toFixed(2)
                           }})
                         </span>
+
                         <span
                           v-if="
                             !Number.isNaN(
@@ -653,7 +617,7 @@
                           S/.{{
                             applyCouponDiscount(isValidStudent?cartItem.pricePenStudent:cartItem.pricePen).toFixed(2)
                           }}
-                          $({{
+                          (${{
                             applyCouponDiscount(isValidStudent?cartItem.priceUsdStudent:cartItem.priceUsd).toFixed(2)
                           }})
                         </span>
@@ -685,22 +649,28 @@
           >
             <span style="font-size: 1.2em">Resumen</span>
             <div
-              class="price-info d-flex flex-column gap-2"
-              style="min-width: 300px;"
+              class="price-info d-flex flex-column gap-1 w-50"
+              style="min-width: 330px;"
             >
               <div
                 v-for="(payment, index) in getCarTotal()"
                 :key="index"
                 class="d-flex"
               >
-                <span style="width: 70%" class="">{{ payment.name }}</span>
-                <span
+                <div  class="d-flex flex-row gap-1 w-100"  v-if="!['carValueDolar','couponValueDolar','totalDolar'].includes(payment.key)"  >
+                  <span style="width: 70%" class="">{{ payment.name }}</span>
+                  <span
+                  
                   style="width: 50%; text-align: end; font-weight: 700"
                   :style="payment.key == 'couponValue' ? 'color: #D04036' : ''"
                   ><span class="me-2"
                     >{{ payment.key == "couponValue" ? "-" : "" }}PEN</span
-                  >{{ payment.value.toFixed(2) }}</span
+                  >{{ payment.value.toFixed(2) }}
+                  $({{ getCarTotalDolarValue(payment.key) }})
+                  
+                  <span></span></span
                 >
+                </div>
               </div>
             </div>
           </div>
@@ -903,11 +873,21 @@ const getCarTotal = () => {
     carValue = 0;
   }
   carValue = getCarItems.value.reduce((acc, item) => {
-    return acc + item.pricePen;
+    const priceCar=isValidStudent.value?item.pricePenStudent:item.pricePen;
+    return acc + priceCar
   }, 0);
-  const couponValue = cuponValue.value.hasOwnProperty("discountPercentage")
+  const couponValue = isValidStudent.value?0:cuponValue.value.hasOwnProperty("discountPercentage")
     ? carValue * (cuponValue.value.discountPercentage / 100)
     : 0;
+  const couponValueDolar = isValidStudent.value?0:cuponValue.value.hasOwnProperty("discountPercentage")
+    ? carValue * (cuponValue.value.discountPercentage / 100)
+    : 0;
+  
+  const carValueDolar = getCarItems.value.reduce((acc, item) => {
+    const priceCar=isValidStudent.value?item.priceUsdStudent:item.priceUsd;
+    return acc + priceCar;
+  }, 0);
+  const totalDolar = carValueDolar - couponValueDolar;
   const total = carValue - couponValue;
   paymentValue.value = total;
   return [
@@ -917,18 +897,43 @@ const getCarTotal = () => {
       value: carValue,
     },
     {
+      name :"Precio Regular Dólares:",
+      key: "carValueDolar",
+      value: carValueDolar,
+    },
+    {
       name: "Descuento:",
       key: "couponValue",
       value: couponValue,
+    },
+    {
+      name: "Descuento:",
+      key: "couponValueDolar",
+      value: couponValueDolar,
     },
     {
       name: "Total a pagar:",
       key: "total",
       value: total,
     },
+    {
+      name: "Total a pagar:",
+      key: "totalDolar",
+      value: totalDolar,
+    },
   ];
 };
-
+const getCarTotalDolarValue = (key) => {
+  if (key === "carValue") {
+    return getCarTotal()[1].value;
+  }
+  if (key === "couponValue") {
+    return getCarTotal()[3].value;
+  }
+  if (key === "total") {
+    return getCarTotal()[5].value;
+  }
+};
 /**
  * ?Check if user is Evi Alumno
  

@@ -5,7 +5,7 @@
       class="program-img-container"
       :style="`background:url(${program.img}) no-repeat;background-size: cover;width:100%;height:200px;border-radius:1em 1em 0 0;position:relative`"
     >
-      <div class="program-type">
+      <div class="program-type d-none">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="45"
@@ -60,11 +60,11 @@
         <span class="program-more-info" @click="redirectTo('/program-detail/' + program.id,'course-hero')">
           <span
             
-            style="color: #0393aa; text-decoration: underline"
-            >Mas información</span
+            style="color: #0393aa; text-decoration: underline;cursor: pointer;"
+            >Más información</span
           >
         </span>
-        <button class="btn-blue w-100">
+        <button class="btn-blue w-100" style="max-width: 200px!important;">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="15"
@@ -81,7 +81,7 @@
           </svg>
           <span class="d-flex flex-column" @click="addToCart(program)"
             >Agregar al carrito
-            <span>${{ program.priceUsd }} (S/.{{ program.pricePen }}) </span>
+            <span>S/.{{ program.pricePen }}(${{ program.priceUsd }}) </span>
           </span>
         </button>
       </div>

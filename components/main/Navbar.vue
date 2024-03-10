@@ -77,7 +77,7 @@
           "
         >
           <div
-            v-if="currentWindowWidth >= 1014"
+            v-if="currentWindowWidth >= 1014 &&selectedOption=='Inicio'"
             style="
               width: 4.907px;
               height: 4.907px;
@@ -92,8 +92,10 @@
               margin: 0 auto;
             "
           ></div>
-          <span style="color: #00a9c3">Inicio</span>
+          <span style="font-weight: 700;font-family: Axiforma;font-size: 14px;"
+          :style="selectedOption=='Inicio'?'color:#0393AA':'color:#515166'">Inicio</span>
           <svg
+            v-if="selectedOption == 'Inicio'"
             style="margin: 0 auto"
             width="37"
             height="6"
@@ -121,14 +123,15 @@
         </nuxt-link>
 
         <!--Courses-->
-        <div class="d-flex flex-row align-items-center gap-1">
-          <nuxt-link
+        <div class="d-flex flex-column align-items-center mx-auto">
+          <div class="w-100 d-flex flex-row align-items-center gap-2">
+            <nuxt-link
             :to="'/courses'"
-            class="d-flex align-items-center flex-row gap-1"
-            :style="selectedOption == 'Cursos' ? navbarOptionStyles() : ''"
+            class="d-flex align-items-center flex-column"
+            :style="selectedOption == 'Cursos' ? '' : ''"
           >
             <div
-              :style="selectedOption == 'Cursos' ? 'color:white' : ''"
+              :style="selectedOption == 'Cursos' ? navbarOptionStyles() : ''"
               @click="
                 () => {
                   openCourses = false;
@@ -139,7 +142,34 @@
             >
               Cursos
             </div>
+            <svg
+            v-if="selectedOption == 'Cursos' && currentWindowWidth >= 1014"
+            style="margin: 0 auto"
+            width="37"
+            height="6"
+            viewBox="0 0 37 6"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.11366 1C2.68202 1.00113 15.1094 1 15.1094 1C14.7354 1.7434 14.6691 2.4189 14.7651 3.99998C14.7651 3.99998 2.52274 3.99929 1.12365 3.99998C-0.275449 4.00067 -0.454689 0.998866 1.11366 1Z"
+              fill="#00A9C3"
+            />
+            <path
+              d="M35.8938 1C34.3469 1.00113 22.0898 1 22.0898 1C22.4635 1.74341 22.5333 2.4189 22.449 3.99998C22.449 3.99998 34.5235 3.9993 35.9035 3.99998C37.2834 4.00067 37.4406 0.998866 35.8938 1Z"
+              fill="#00A9C3"
+            />
+            <ellipse
+              cx="2.3925"
+              cy="2.50283"
+              rx="2.3925"
+              ry="2.50283"
+              transform="matrix(0.999982 0.00598748 -0.00210909 0.999998 16.8125 -0.00976562)"
+              fill="#00A9C3"
+            />
+          </svg>
           </nuxt-link>
+          
           <div
             style="position: relative; cursor: pointer"
             class="d-flex flex-column"
@@ -200,7 +230,10 @@
                 >Cursos de medicina basada en evidencias
               </span>
             </div>
+            
           </div>
+          </div>
+          
         </div>
         <nuxt-link
           v-for="(option, index) in navOptions.filter(
@@ -210,7 +243,9 @@
           :to="getRoute(option.path)"
           class="d-flex align-items-center flex-row gap-1"
         >
+        
           <component
+            class="d-flex flex-column" style="position: relative;"
             v-if="option.type != 'svg' && option.path != '/'"
             :is="getNavbarComponent(option)"
             :style="selectedOption == option.name ? navbarOptionStyles() : ''"
@@ -233,6 +268,22 @@
               }
             "
           >
+          <div
+            v-if="currentWindowWidth >= 1014 && selectedOption==option.name"
+            style="
+              width: 4.907px;
+              height: 4.907px;
+              transform: rotate(45.621deg);
+              flex-shrink: 0;
+              background: #00a9c3;
+              border-radius: 1px;
+              position: absolute;
+              top: -0.5em;
+              right: 0em;
+              text-align: center;
+              margin: 0 auto;
+            "
+          ></div>
             <lazy-auth-account-block
               v-if="option.path === '/login'"
               id="account-block"
@@ -252,7 +303,34 @@
                 }"
             />
             <span v-if="option.path != '/login'">{{ option.name }}</span>
+            <svg
+              v-if="selectedOption == option.name "
+            style="margin: 0 auto"
+            width="100%"
+            height="6"
+            viewBox="0 0 37 6"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.11366 1C2.68202 1.00113 15.1094 1 15.1094 1C14.7354 1.7434 14.6691 2.4189 14.7651 3.99998C14.7651 3.99998 2.52274 3.99929 1.12365 3.99998C-0.275449 4.00067 -0.454689 0.998866 1.11366 1Z"
+              fill="#00A9C3"
+            />
+            <path
+              d="M35.8938 1C34.3469 1.00113 22.0898 1 22.0898 1C22.4635 1.74341 22.5333 2.4189 22.449 3.99998C22.449 3.99998 34.5235 3.9993 35.9035 3.99998C37.2834 4.00067 37.4406 0.998866 35.8938 1Z"
+              fill="#00A9C3"
+            />
+            <ellipse
+              cx="2.3925"
+              cy="2.50283"
+              rx="2.3925"
+              ry="2.50283"
+              transform="matrix(0.999982 0.00598748 -0.00210909 0.999998 16.8125 -0.00976562)"
+              fill="#00A9C3"
+            />
+          </svg>
           </component>
+          
           <!-- <div
             v-if="option.mode == 'multi' && option.path == '/courses'"
             style="position: relative"
@@ -502,9 +580,9 @@ const isCollapsedOpen = ref(false);
 const openCourses = ref(false);
 const navbarOptionStyles = () => {
   if (currentWindowWidth.value >= 1014) {
-    return "color: white;";
+    return "color: #0393AA;";
   }
-  return "background: #00A9C3!important; border-radius: 1em; padding: 0.2em 0.8em;color:white;width:200px";
+  return "background: #00A9C3!important; border-radius: 1em; padding: 0.2em 0.8em;color:white!important;width:200px";
 };
 </script>
 <style scoped lang="scss">

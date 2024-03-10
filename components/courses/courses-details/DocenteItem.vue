@@ -212,7 +212,7 @@ export default {
   text-decoration-line: underline;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 0.5em;
 }
 .item-view-more:hover {

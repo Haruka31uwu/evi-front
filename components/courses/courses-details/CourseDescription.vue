@@ -56,11 +56,12 @@
               :style="{
                 background: courseInfo.value.color,
                 borderRadius: '1.5em',
-                width: '450px',
                 margin: '1.5em 0',
                 cursor: 'pointer',
+                width: '50%',
+                minWidth: '350px',
               }"
-              class="px-2 py-2 d-flex gap-2 align-items-center justify-content-center w-100"
+              class="px-2 py-2 d-flex gap-2 align-items-center justify-content-center "
             >
               <svg
                 width="11"
@@ -146,10 +147,10 @@
       </div>
     </div>
     <div
-      style="width: 80%; height: 1px; background: #515166"
+      style="width: 95%; height: 1px; background: #515166"
       class="my-5 mx-auto"
     ></div>
-    <div class="row mx-auto" style="width: 80%">
+    <div class="row mx-auto" style="width: 90%">
       <div class="col-sm-12 col-xl-6" v-if="currentWindowWidth > 1200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -233,7 +234,7 @@
       </div>
     </div>
     <div
-      style="width: 80%; height: 1px; background: #515166"
+      style="width: 95%; height: 1px; background: #515166"
       class="my-5 mx-auto"
     ></div>
     <div
@@ -249,7 +250,7 @@
         type="video/mp4"
       ></video> -->
       <iframe
-        width="80%"
+        width="90%"
         height="615"
         :src="courseInfo.value.videoUrl"
         frameborder="0"

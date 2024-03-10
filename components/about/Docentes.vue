@@ -1,14 +1,14 @@
 <template>
-  <section>
+  <section style="background: #13131A!important;">
     <div
       class="section-title d-flex flex-column justify-content-center align-items-center"
       id="docentes-title"
     >
       <div style="position: relative">
-        <h2 >Plana Docente</h2>
+        <h3  style="z-index: 3;position: relative;">Plana Docente</h3>
         <img
           src="/assets/img/courses/docentes-item.svg"
-          style="bottom: 0.3em; left:3.5rem; position: absolute;width:85%;"
+          style="bottom: 0.5em; left:3.5rem; position: absolute;width:85%;z-index: 1;"
           alt="docentes-item"
         />
       </div>
@@ -68,6 +68,13 @@ export default {
 </script>
   
   <style scoped>
+  span,h1,h2,h3,h4,p{
+  font-family: Axiforma;
+
+  }
+  h3{
+    font-size: 26px;
+  }
 section {
   background: var(--EVI-DARK-005, #1c1c24);
   box-shadow: 0px -4px 50px 0px rgba(0, 0, 0, 0.2);

@@ -1,12 +1,13 @@
 <template>
   <section style="width: auto;overflow-x: auto;">
+   <div class="w-100 d-flex flex-row">
     <v-text-field
       v-model="search"
       label="Search"
       single-line
       variant="outlined"
       hide-details
-      style="color: black; background-color: black"
+      style="color: black; background-color: black;width: 300px;"
     >
       <template #prepend-inner>
         <Icon
@@ -27,7 +28,16 @@
           style="cursor: pointer"
         />
       </template>
+      
     </v-text-field>
+    <div
+        style="cursor: pointer; width: auto; border-radius: 0.5em"
+        class="btn-blue"
+        @click="downloadUserReport"
+      >
+        <Icon name="icon-park-outline:excel" size="30"></Icon>
+      </div>
+   </div>
     <v-data-table-server
       class="table"
       v-model:items-per-page="paginationOptions.perPage"
@@ -162,6 +172,10 @@ const showImgViewer = ref(false);
 const imgSrc = ref("");
 const user = ref({});
 const openFile = (item) => {
+  if(item.carnet_img==null || item.carnet_img==""){
+    showImgViewer.value = false;
+    return;
+  }
   showImgViewer.value = true;
   imgSrc.value = item.carnet_img;
   user.value = item;
@@ -295,6 +309,20 @@ const fields = ref([
     label: "Acciones",
   },
 ]);
+const downloadUserReport = async () => {
+  try {
+    const response = await AdminHomeService.downloadUserReport();
+    hidePreloader();
+    if (response.status === 200) {
+      const s3Url = response.data.data;
+      window.open(s3Url);
+    } else {
+      console.error(`Error en la respuesta: ${response.status}`);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 </script>
 <style lang="scss" scoped>
 span,
@@ -321,4 +349,5 @@ p {
   font-family: Axiforma;
   width: 100%;
 }
+
 </style>

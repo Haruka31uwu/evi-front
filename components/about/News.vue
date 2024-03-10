@@ -1,6 +1,6 @@
 <template>
-  <section class="experiencies-section">
-    <div class="section-title text-center">
+  <section class="experiencies-section d-none">
+    <div class="section-title text-center ">
       <h2>Publicaciones recientes de nuestros docentes</h2>
       <div class="section-decorator" style="right: 0"></div>
     </div>

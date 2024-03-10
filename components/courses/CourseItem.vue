@@ -6,7 +6,7 @@
       :id="`course-${course.id}`"
       :style="`background:url(${course.img_small}) no-repeat;background-size: cover;width:100%;height:250px;border-radius:1em 1em 0 0;position:relative`"
     >
-      <div class="more-selled-course">
+      <div class="more-selled-course d-none">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="22"
@@ -40,7 +40,7 @@
           Vendido</span
         >
       </div>
-      <div class="course-type">
+      <div class="course-type d-none" >
         <svg
           v-if="course.type == 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -83,13 +83,14 @@
       <p class="course-description">
         {{ course.description }}
       </p>
-      <p class="course-schedule">
-        {{ course.schedule }}
+      <p class="course-schedule d-flex flex-column gap-1">
+        <span>Accede al contenido hoy</span>
+        <span>Reuniones sincronicas desde el {{ course.info.Inicio }}</span>
       </p>
       <div class="course-footer">
         <span @click="redirectTo('/course-detail/' + course.id,'course-hero')" 
         class="more-info"
-          >Mas información</span>
+          >Más información</span>
         <button class="btn-course" @click="addToCart(course)">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +107,7 @@
             />
           </svg>
           <span class="btn-course-price"
-            >$ {{ course.priceUsd }} (S/.{{ course.pricePen }})</span
+            >S/.{{ course.pricePen }} ($ {{ course.priceUsd }})</span
           >
         </button>
       </div>

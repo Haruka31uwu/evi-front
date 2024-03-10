@@ -77,5 +77,8 @@ export const authStore = defineStore('authStore', {
                 localStorage.removeItem('token');
             }
         },
+        setNewLogin(item){
+            this.newLogin = item;
+        }
     }
 });

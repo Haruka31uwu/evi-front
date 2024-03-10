@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section >
       <div  class="section-title d-flex flex-column justify-content-center align-items-center">
        <div style="position: relative;">
         <h2>Plana Docente</h2>
@@ -68,7 +68,7 @@
       align-items: center;
       flex-wrap: wrap;
       margin: 0 auto;
-      width: 70%;
+      width: 90%;
       margin-top: 2em;
       height: auto;
   }

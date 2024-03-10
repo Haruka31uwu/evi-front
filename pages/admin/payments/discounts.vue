@@ -1,7 +1,8 @@
 <template>
-  <section class="w-100"  style="max-width: 100vw;
-    overflow: auto;">
-    <select class="input-customized" v-model="selectedDiscount">
+  <section class="w-100"  style="max-width: 100vw;overflow: auto;"
+    >
+    
+    <select class="input-customized" v-model="selectedDiscount" @click="()=>{selectedItem={}}">
       <option
         v-for="(option, index) in discountSelectOptions"
         :key="index"
@@ -12,18 +13,24 @@
     </select>
     <div
       class="d-flex justify-content-between my-2 px-3 align-items-center"
-      @click="openCreateEditRow"
+      @click="()=>{
+        
+        selectedItem={}
+        }"
     >
       <span style="font-size: 1.5em"
         >Lista de {{ selectedDiscount.label }}</span
       >
       <span
+      @click="openCreateEditRow"
+
         style="color: #0393aa; font-weight: 600"
         v-if="selectedDiscount.value !== 1"
         >+ Agregar nuevos(as) {{ selectedDiscount.label }}</span
       >
     </div>
     <v-data-table-server
+      
       v-model:items-per-page="paginationOptions.perPage"
       :headers="getFields(selectedDiscount)"
       :items-length="totalRecords"
@@ -51,7 +58,7 @@
         >
       </template>
       <template v-slot:item.actions="{ item }">
-        <div style="position: relative">
+        <div style="position: relative;right: 5em;">
           <Icon
             name="mi:options-vertical"
             size="20"
@@ -68,7 +75,7 @@
               })"
               :key="index"
               @click="action.onClick(item)"
-              style="cursor: pointer">
+              style="cursor: pointer;white-space: nowrap">
               <span v-if="action.key=='expire'">
               {{ item.status == 0 ? "Expirar Codigo" : "Activar Codigo" }}
               </span>
