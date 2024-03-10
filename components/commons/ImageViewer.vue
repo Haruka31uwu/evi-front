@@ -17,7 +17,7 @@
         >
           <path
             d="M-4.37102e-07 9.99972C-4.47741e-07 10.2431 0.167831 10.5666 0.338169 10.7237L9.93811 19.6715C10.3864 20.078 11.1125 20.1249 11.6348 19.7127C12.1019 19.3437 12.1137 18.6245 11.6817 18.2239L3.97567 11.0526L34.8001 11.0526C35.463 11.0526 36 10.5812 36 10.0001C36 9.41851 35.4626 8.9475 34.8001 8.9475L3.97567 8.9475L11.6817 1.7762C12.1136 1.37566 12.0831 0.67402 11.6348 0.287828C11.1619 -0.120057 10.3792 -0.0837119 9.93811 0.328947L0.338169 9.2764C0.0560794 9.51908 0.00459628 9.75294 -4.37115e-07 10L-4.37102e-07 9.99972Z"
-            fill="#F0F0F0"
+            fill="none"
           />
         </svg>
         <span><slot name="title">Carnet de Estudiante</slot></span>
@@ -37,19 +37,21 @@
       </div>
       <div class="row mx-auto d-flex flex-column gap-5 mt-4" style="width: 90%">
         <div
-          class="d-flex flex-column justify-content-center align-items-center gap-2"
+          class="d-flex flex-column justify-content-start align-items-center gap-2" style=""
         >
-          <img
+          <div style="height: 80%;max-height: 70vh;overflow-y: auto;position: relative;">
+            <img
             :src="props.imgSrc"
             alt="img"
             style="
-              width: 50%;
-              height: 50%;
+              width: 100%;
+              height: 20%;
               object-fit: cover;
               border-radius: 2em;
             "
           />
-          <slot name="options">
+          </div>
+          <slot name="options" >
 
           </slot>
         </div>
@@ -89,6 +91,7 @@ const props = defineProps({
 .modal-customized-body {
   width: 50%;
   background-color: #1c1c24;
+  max-height: 90%;
 }
 @media (max-width: 768px) {
   .modal-customized-body {
