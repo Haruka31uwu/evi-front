@@ -104,7 +104,7 @@ export default defineComponent({
         {
           img: "/assets/img/resources/blog/Blog2.webp",
           title: "Argumento ad ignoratiam y toma de decisiones en salud",
-          description:'En investigación clínica, el "argumento ad ignorantiam" es creer que si no hay evidencia de que cierto fármaco tenga beneficios, significa que no tiene beneficios. 📉 Para no caer en esta falacia, debemos tener en cuenta que "la ausencia de prueba no es prueba de ausencia.',
+          description:'En investigación clínica, el "argumento ad ignorantiam" es creer que si no hay evidencia de que cierto fármaco tenga beneficios, significa que no tiene beneficios. Para no caer en esta falacia, debemos tener en cuenta que "la ausencia de prueba no es prueba de ausencia.',
           date: "Marzo 09, 2024",
 
         },
