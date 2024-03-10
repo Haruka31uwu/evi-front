@@ -105,20 +105,22 @@ export default defineComponent({
           img: "/assets/img/resources/blog/Blog2.webp",
           title: "Argumento ad ignoratiam y toma de decisiones en salud",
           description:'En investigación clínica, el "argumento ad ignorantiam" es creer que si no hay evidencia de que cierto fármaco tenga beneficios, significa que no tiene beneficios. 📉 Para no caer en esta falacia, debemos tener en cuenta que "la ausencia de prueba no es prueba de ausencia.',
+          date: "Marzo 09, 2024",
+
         },
         {
           img: "/assets/img/resources/blog/Blog3.webp",
           title: "¿Por qué lo más lógico es no brindar fármacos solo por plausibilidad fisiopatológica, sino hasta tener estudios bien diseñados?",
           description:
             "Primero, entender que existen intervenciones que debemos brindar debido a que su beneficio es muy obvio (ya tienen evidencia indirecta contundentes), como el uso de oxígeno en hipoxia, de antibióticos si el paciente presenta una infección sobreagredada, etc.",
-          date: "Marzo 15, 2023",
+            date: "Marzo 09, 2024",
         },
         {
           img: "/assets/img/resources/blog/Blog1.webp",
           title: "Medicina Basada en Evidencias: Innovación en el Cuidado de la Salud",
           description:
             "La Medicina Basada en Evidencias (MBE) ha emergido como un enfoque revolucionario en el campo de la salud, transformando la toma de decisiones clínicas mediante el análisis crítico de la mejor evidencia científica disponible. En este artículo, exploraremos los fundamentos de la MBE, su importancia en la práctica médica y cómo ha impactado positivamente la calidad del cuidado de los pacientes.",
-          date: "Marzo 15, 2023",
+            date: "Marzo 09, 2024",
         },
       ],
     });

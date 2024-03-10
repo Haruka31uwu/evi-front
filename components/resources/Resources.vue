@@ -1,6 +1,6 @@
 <template>
   <section class="d-flex flex-column align-items-center justify-content-center ">
-    <div class="section-title">
+    <div class="section-title mt-5">
       <h2>Recursos</h2>
       <div class="section-decorator" style="left: 1.5em"></div>
     </div>
@@ -14,7 +14,7 @@
           :class="tabSelected == 1 ? 'btn-blue' : 'btn-gray-outline'"
           @click="tabSelected = 1"
         >
-          <span>Infografias</span>
+          <span>Infografías</span>
         </div>
       </div>
       <!-- <div
@@ -87,7 +87,7 @@
       v-if="showImageViewer"
       @closeModal="showImageViewer = false">
       <template #title>
-        <h3>Infografias</h3>
+        <h3>Infografías</h3>
         </template>
       <template #options>
         <div
@@ -108,7 +108,7 @@ export default defineComponent({
     const downloadImage = (src) => {
       const link = document.createElement("a");
       link.href = src;
-      link.download = "infografia";
+      link.download = "infografías";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
