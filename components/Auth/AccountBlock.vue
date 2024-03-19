@@ -105,7 +105,7 @@ watch(newLogin, (val) => {
   checkstorage = setInterval(checkLocalStorage, 1000);
 });
 // Check local storage every 1 second (adjust as needed)
-const emit = defineEmits(["openProfileEditor","closeProfileEditor"]);
+const emit = defineEmits(["openProfileEditor","closeProfileEditor","openAccountDropdown"]);
 const isOpenDropdown = ref(false);
 const { showPreloader, hidePreloader } = usePreloader();
 const router = useRouter();
@@ -140,6 +140,7 @@ const closeOpenDropdown = () => {
     isOpenDropdown.value = false;
   } else {
     isOpenDropdown.value = true;
+    emit("openAccountDropdown");
   }
 };
 const viewProfile = () => {
@@ -149,12 +150,12 @@ const viewProfile = () => {
 };
 const accountOptions = ref([
   {
-    name: "Cerrar Sesion",
+    name: "Cerrar Sesión",
     key: "logout",
     onclick: closeSession,
   },
   {
-    name: "Ver Perfil",
+    name: "Ver perfil",
     key: "profile",
     onclick: viewProfile,
   },

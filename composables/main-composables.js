@@ -120,7 +120,7 @@ export const useSwall = () => {
 
             color: 'white',
             background: '#1C1C24',
-            confirmButtonText: '<div style="width:350px;margin:0;font-family:Axiforma;color:white"> Cerrar</div>',
+            confirmButtonText: '<div style="width:auto;min-width:300px;margin:0;font-family:Axiforma;color:white"> Cerrar</div>',
             width: "500px",
             html:
                 '<div class="text-center"><img style="height:400px" src="/assets/img/commons/evi-error.png" ></div><p class="text-center" style="font-family:Axiforma;margin-top:1em">' +
@@ -150,7 +150,7 @@ export const useSwall = () => {
 
 export const scrollIntoView = (id) => {
     const el = document.getElementById(id)
-    el.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' })
+    el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
 }
 export const redirectTo = (path, id) => {
     const router = useRouter()

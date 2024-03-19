@@ -1,6 +1,6 @@
 <template>
   <section class="d-flex justify-content-center flex-column align-items-center w-100">
-    <div class="section-title" style="margin-bottom: 2em">
+    <div class="section-title" style="margin-bottom: 2em;width: 90%;">
       <h2 class="text-center">
         ¿Por qué elegir un In-house para tu institución?
       </h2>
@@ -16,7 +16,7 @@
         <rect opacity="0.5" width="696" height="24" rx="12" fill="#0393AA" />
       </svg>
     </div>
-    <div class="row w-100" style="background: #13131a; row-gap: 1em">
+    <div class="row " style="background: #13131a; row-gap: 1em;width: 80%;">
       <div class="col-12 col-sm-12 col-md-6 col-xl-3 mb-1">
         <div
           style="border-radius: 1em"
@@ -28,7 +28,7 @@
           class="py-4 px-3 d-flex flex-column justify-content-start mx-auto text-xl-center"
         >
           <h5
-            style="color: #0393aa"
+            style="color: #0393aa;text-align: center;"
             :style="
               currentWindowWidth < 768 ? 'text-decoration:underline;' : ''
             "
@@ -53,11 +53,11 @@
           class="py-4 px-3 d-flex flex-column justify-content-start mx-auto text-xl-center"
         >
           <h5
-            style="color: #0393aa"
+            style="color: #0393aa;text-align: center;"
             :style="
               currentWindowWidth < 768 ? 'text-decoration:underline;' : ''
             "
-            class="d-flex align-items-center gap-1 mx-auto mb-2 mx-auto"
+            class="d-flex align-items-center gap-1 mx-auto mb-2 "
           >
             Flexibilidad en horarios
           </h5>
@@ -79,13 +79,13 @@
           class="py-4 px-3 d-flex flex-column justify-content-start mx-auto text-xl-center"
         >
           <h5
-            style="color: #0393aa"
+            style="color: #0393aa;text-align: center;"
             :style="
               currentWindowWidth < 768 ? 'text-decoration:underline;' : ''
             "
             class="d-flex align-items-center gap-1 mx-auto mb-2"
           >
-            Supervisión y seguimiento directo:
+            Supervisión y seguimiento directo
           </h5>
           <span style="color: white">
             Los supervisores de formación de la institución pueden monitorear de
@@ -105,13 +105,13 @@
           class="py-4 px-3 d-flex flex-column justify-content-start mx-auto text-xl-center"
         >
           <h5
-            style="color: #0393aa"
+            style="color: #0393aa;text-align: center;"
             :style="
               currentWindowWidth < 768 ? 'text-decoration:underline;' : ''
             "
             class="d-flex align-items-center gap-1 mx-auto mb-2"
           >
-            Mayor comodidad y motivación:
+            Mayor comodidad y motivación
           </h5>
           <span style="color: white">
             Los participantes suelen sentirse más cómodos y motivados cuando reciben formación con compañeros de su entorno laboral. Esto puede conducir a un aprendizaje más efectivo. </span
@@ -387,6 +387,7 @@
         margin-bottom: 2em;
         padding: 3em;
       "
+      :style="currentWindowWidth<600?'padding: 2em;width:90%!important':''"
     >
       <div class="col col-sm-12 col-md-12 col-lg-6 d-flex flex-column gap-2  align-items-center">
         <svg

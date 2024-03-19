@@ -7,6 +7,8 @@
         () => {
           getClaimForm = false;
           closeProfileEditor();
+          accountKey++;
+
         }
       "
     >
@@ -73,11 +75,13 @@
               isCollapsedOpen = false;
               openCourses = false;
               closeProfileEditor();
+              accountKey++;
+
             }
           "
         >
           <div
-            v-if="currentWindowWidth >= 1014 &&selectedOption=='Inicio'"
+            v-if="currentWindowWidth >= 1014 && selectedOption == 'Inicio'"
             style="
               width: 4.907px;
               height: 4.907px;
@@ -92,8 +96,13 @@
               margin: 0 auto;
             "
           ></div>
-          <span style="font-weight: 700;font-family: Axiforma;font-size: 14px;"
-          :style="selectedOption=='Inicio'?'color:#0393AA':'color:#515166'">Inicio</span>
+          <span
+            style="font-weight: 700; font-family: Axiforma; font-size: 14px"
+            :style="
+              selectedOption == 'Inicio' ? 'color:#0393AA' : 'color:#515166'
+            "
+            >Inicio</span
+          >
           <svg
             v-if="selectedOption == 'Inicio'"
             style="margin: 0 auto"
@@ -126,114 +135,134 @@
         <div class="d-flex flex-column align-items-center mx-auto">
           <div class="w-100 d-flex flex-row align-items-center gap-2">
             <nuxt-link
-            :to="'/courses'"
-            class="d-flex align-items-center flex-column"
-            :style="selectedOption == 'Cursos' ? '' : ''"
-          >
-            <div
-              :style="selectedOption == 'Cursos' ? navbarOptionStyles() : ''"
-              @click="
-                () => {
-                  openCourses = false;
-                  getClaimForm = false;
-                  isCollapsedOpen = false;
-                }
-              "
+              :to="'/courses'"
+              class="d-flex align-items-center flex-column"
+              :style="selectedOption == 'Cursos' ? '' : ''"
             >
-              Cursos
-            </div>
-            <svg
-            v-if="selectedOption == 'Cursos' && currentWindowWidth >= 1014"
-            style="margin: 0 auto"
-            width="37"
-            height="6"
-            viewBox="0 0 37 6"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1.11366 1C2.68202 1.00113 15.1094 1 15.1094 1C14.7354 1.7434 14.6691 2.4189 14.7651 3.99998C14.7651 3.99998 2.52274 3.99929 1.12365 3.99998C-0.275449 4.00067 -0.454689 0.998866 1.11366 1Z"
-              fill="#00A9C3"
-            />
-            <path
-              d="M35.8938 1C34.3469 1.00113 22.0898 1 22.0898 1C22.4635 1.74341 22.5333 2.4189 22.449 3.99998C22.449 3.99998 34.5235 3.9993 35.9035 3.99998C37.2834 4.00067 37.4406 0.998866 35.8938 1Z"
-              fill="#00A9C3"
-            />
-            <ellipse
-              cx="2.3925"
-              cy="2.50283"
-              rx="2.3925"
-              ry="2.50283"
-              transform="matrix(0.999982 0.00598748 -0.00210909 0.999998 16.8125 -0.00976562)"
-              fill="#00A9C3"
-            />
-          </svg>
-          </nuxt-link>
-          
-          <div
-            style="position: relative; cursor: pointer"
-            class="d-flex flex-column"
-            v-if="currentWindowWidth >= 1014"
-          >
-            <svg
-              @click="openCourses = !openCourses"
-              :style="
-                openCourses
-                  ? 'color: white; transform: rotate(180deg);'
-                  : 'color:#515166'
-              "
-              xmlns="http://www.w3.org/2000/svg"
-              width="11"
-              height="6"
-              viewBox="0 0 11 6"
-              fill="none"
-            >
-              <path
-                d="M1 1L5.5 5L10 1"
-                stroke="#515166"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <div
-              class="d-flex flex-column gap-2"
-              v-if="openCourses"
-              style="position: absolute;color:white;font-weight:400;font-family:'Axiforma';top: 1em;background: black;#1C1C24;width: 350px;z-index: 3;padding: 1em;border-bottom-left-radius: 1em;border-bottom-right-radius: 1em;"
-            >
-              <span
+              <div
+                :style="selectedOption == 'Cursos' ? navbarOptionStyles() : ''"
                 @click="
                   () => {
                     openCourses = false;
                     getClaimForm = false;
                     isCollapsedOpen = false;
-                    openCourses = false;
-                    closeProfileEditor();
+                    accountKey++;
 
-                    redirectTo('/courses', 'investigation-courses');
                   }
                 "
-                >Cursos de Investigacion
-              </span>
-              <div style="background: #515166; width: 95%; height: 1px" />
-              <span
-                @click="
-                  () => {
-                    openCourses = false;
-                    getClaimForm = false;
-                    isCollapsedOpen = false;
-                    openCourses = false;
-                    closeProfileEditor();
-                    redirectTo('/courses', 'evidences-courses');
-                  }
+              >
+                <div
+                  style="
+                    width: 4.907px;
+                    height: 4.907px;
+                    transform: rotate(45.621deg);
+                    flex-shrink: 0;
+                    background: #00a9c3;
+                    border-radius: 1px;
+                    position: absolute;
+                    top: -0.5em;
+                    right: 0em;
+                    text-align: center;
+                    margin: 0 auto;
+                  "
+                ></div>
+                Cursos
+              </div>
+              <svg
+                v-if="selectedOption == 'Cursos' && currentWindowWidth >= 1014"
+                style="margin: 0 auto"
+                width="37"
+                height="6"
+                viewBox="0 0 37 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.11366 1C2.68202 1.00113 15.1094 1 15.1094 1C14.7354 1.7434 14.6691 2.4189 14.7651 3.99998C14.7651 3.99998 2.52274 3.99929 1.12365 3.99998C-0.275449 4.00067 -0.454689 0.998866 1.11366 1Z"
+                  fill="#00A9C3"
+                />
+                <path
+                  d="M35.8938 1C34.3469 1.00113 22.0898 1 22.0898 1C22.4635 1.74341 22.5333 2.4189 22.449 3.99998C22.449 3.99998 34.5235 3.9993 35.9035 3.99998C37.2834 4.00067 37.4406 0.998866 35.8938 1Z"
+                  fill="#00A9C3"
+                />
+                <ellipse
+                  cx="2.3925"
+                  cy="2.50283"
+                  rx="2.3925"
+                  ry="2.50283"
+                  transform="matrix(0.999982 0.00598748 -0.00210909 0.999998 16.8125 -0.00976562)"
+                  fill="#00A9C3"
+                />
+              </svg>
+            </nuxt-link>
+
+            <div
+              style="position: relative; cursor: pointer"
+              class="d-flex flex-column"
+              v-if="currentWindowWidth >= 1014"
+            >
+              <svg
+                @click="()=>{
+                  openCourses = !openCourses
+                  accountKey++;
+                }"
+                :style="
+                  openCourses
+                    ? 'color: white; transform: rotate(180deg);'
+                    : 'color:#515166'
                 "
-                >Cursos de medicina basada en evidencias
-              </span>
+                xmlns="http://www.w3.org/2000/svg"
+                width="11"
+                height="6"
+                viewBox="0 0 11 6"
+                fill="none"
+              >
+                <path
+                  d="M1 1L5.5 5L10 1"
+                  stroke="#515166"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <div
+                class="d-flex flex-column gap-2"
+                v-if="openCourses"
+                style="position: absolute;color:white;font-weight:400;font-family:'Axiforma';top: 1em;background: black;#1C1C24;width: 350px;z-index: 3;padding: 1em;border-bottom-left-radius: 1em;border-bottom-right-radius: 1em;"
+              >
+                <span
+                  @click="
+                    () => {
+                      openCourses = false;
+                      getClaimForm = false;
+                      isCollapsedOpen = false;
+                      openCourses = false;
+                      closeProfileEditor();
+                      accountKey++;
+
+                      redirectTo('/courses', 'investigation-courses');
+                    }
+                  "
+                  >Cursos de Investigacion
+                </span>
+                <div style="background: #515166; width: 95%; height: 1px" />
+                <span
+                  @click="
+                    () => {
+                      openCourses = false;
+                      getClaimForm = false;
+                      isCollapsedOpen = false;
+                      openCourses = false;
+                      closeProfileEditor();
+                      accountKey++;
+                      redirectTo('/courses', 'evidences-courses');
+                    }
+                  "
+                  >Cursos de medicina basada en evidencias
+                </span>
+              </div>
             </div>
-            
           </div>
-          </div>
-          
         </div>
         <nuxt-link
           v-for="(option, index) in navOptions.filter(
@@ -243,9 +272,9 @@
           :to="getRoute(option.path)"
           class="d-flex align-items-center flex-row gap-1"
         >
-        
           <component
-            class="d-flex flex-column" style="position: relative;"
+            class="d-flex flex-column"
+            style="position: relative"
             v-if="option.type != 'svg' && option.path != '/'"
             :is="getNavbarComponent(option)"
             :style="selectedOption == option.name ? navbarOptionStyles() : ''"
@@ -260,6 +289,8 @@
                   e.preventDefault();
                   return;
                 }
+                accountKey++;
+
                 getClaimForm = false;
                 isCollapsedOpen = false;
 
@@ -268,25 +299,35 @@
               }
             "
           >
-          <div
-            v-if="currentWindowWidth >= 1014 && selectedOption==option.name"
-            style="
-              width: 4.907px;
-              height: 4.907px;
-              transform: rotate(45.621deg);
-              flex-shrink: 0;
-              background: #00a9c3;
-              border-radius: 1px;
-              position: absolute;
-              top: -0.5em;
-              right: 0em;
-              text-align: center;
-              margin: 0 auto;
-            "
-          ></div>
+            <div
+              v-if="currentWindowWidth >= 1014 && selectedOption == option.name"
+              style="
+                width: 4.907px;
+                height: 4.907px;
+                transform: rotate(45.621deg);
+                flex-shrink: 0;
+                background: #00a9c3;
+                border-radius: 1px;
+                position: absolute;
+                top: -0.5em;
+                right: 0em;
+                text-align: center;
+                margin: 0 auto;
+              "
+            ></div>
             <lazy-auth-account-block
               v-if="option.path === '/login'"
               id="account-block"
+              :key="accountKey"
+              @openAccountDropdown="
+                () => {
+                  if(currentWindowWidth > 1014) {
+                    isCollapsedOpen = false;
+                  }                  
+
+                  openCourses = false;
+                }
+              "
               @closeDropdown="
                 () => {
                   isCollapsedOpen = false;
@@ -295,42 +336,44 @@
               @openProfileEditor="
                 () => {
                   openProfileEditor();
+                  accountKey++;
                 }
               "
               @closeProfileEditor="
                 () => {
                   closeProfileEditor();
-                }"
+                }
+              "
             />
             <span v-if="option.path != '/login'">{{ option.name }}</span>
             <svg
-              v-if="selectedOption == option.name "
-            style="margin: 0 auto"
-            width="100%"
-            height="6"
-            viewBox="0 0 37 6"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1.11366 1C2.68202 1.00113 15.1094 1 15.1094 1C14.7354 1.7434 14.6691 2.4189 14.7651 3.99998C14.7651 3.99998 2.52274 3.99929 1.12365 3.99998C-0.275449 4.00067 -0.454689 0.998866 1.11366 1Z"
-              fill="#00A9C3"
-            />
-            <path
-              d="M35.8938 1C34.3469 1.00113 22.0898 1 22.0898 1C22.4635 1.74341 22.5333 2.4189 22.449 3.99998C22.449 3.99998 34.5235 3.9993 35.9035 3.99998C37.2834 4.00067 37.4406 0.998866 35.8938 1Z"
-              fill="#00A9C3"
-            />
-            <ellipse
-              cx="2.3925"
-              cy="2.50283"
-              rx="2.3925"
-              ry="2.50283"
-              transform="matrix(0.999982 0.00598748 -0.00210909 0.999998 16.8125 -0.00976562)"
-              fill="#00A9C3"
-            />
-          </svg>
+              v-if="selectedOption == option.name"
+              style="margin: 0 auto"
+              width="100%"
+              height="6"
+              viewBox="0 0 37 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.11366 1C2.68202 1.00113 15.1094 1 15.1094 1C14.7354 1.7434 14.6691 2.4189 14.7651 3.99998C14.7651 3.99998 2.52274 3.99929 1.12365 3.99998C-0.275449 4.00067 -0.454689 0.998866 1.11366 1Z"
+                fill="#00A9C3"
+              />
+              <path
+                d="M35.8938 1C34.3469 1.00113 22.0898 1 22.0898 1C22.4635 1.74341 22.5333 2.4189 22.449 3.99998C22.449 3.99998 34.5235 3.9993 35.9035 3.99998C37.2834 4.00067 37.4406 0.998866 35.8938 1Z"
+                fill="#00A9C3"
+              />
+              <ellipse
+                cx="2.3925"
+                cy="2.50283"
+                rx="2.3925"
+                ry="2.50283"
+                transform="matrix(0.999982 0.00598748 -0.00210909 0.999998 16.8125 -0.00976562)"
+                fill="#00A9C3"
+              />
+            </svg>
           </component>
-          
+
           <!-- <div
             v-if="option.mode == 'multi' && option.path == '/courses'"
             style="position: relative"
@@ -402,6 +445,7 @@
               () => {
                 isCollapsedOpen = false;
                 openCourses = false;
+                accountKey++;
                 closeProfileEditor();
               }
             "
@@ -412,6 +456,7 @@
             () => {
               openSidebarCart();
               isCollapsedOpen = false;
+              accountKey++;
             }
           "
           @closeCarSideBar="
@@ -433,6 +478,8 @@ const router = useRouter();
 const storeAuth = authStore();
 const isLogged = computed(() => storeAuth.isLogged);
 const userData = computed(() => storeAuth.getUserData);
+const accountKey = ref(0);
+//ref account block
 
 // const userData = computed(()=> storeAuth.getUserData);
 const getRoute = (path) => {
@@ -580,7 +627,7 @@ const isCollapsedOpen = ref(false);
 const openCourses = ref(false);
 const navbarOptionStyles = () => {
   if (currentWindowWidth.value >= 1014) {
-    return "color: #0393AA;";
+    return "color: #0393AA;position: relative;cursor: pointer;";
   }
   return "background: #00A9C3!important; border-radius: 1em; padding: 0.2em 0.8em;color:white!important;width:200px";
 };

@@ -280,9 +280,7 @@ span {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  .cart-mobile {
-    display: none;
-  }
+ 
   .cart-items {
     list-style: none;
     padding: 0;
@@ -378,7 +376,9 @@ span {
       border-radius: 0 !important;
     }
   }
-  .cart-mobile {
+  
+}
+.cart-mobile {
     display: flex !important;
     flex-direction: row;
     justify-content: space-between;
@@ -406,5 +406,4 @@ span {
       }
     }
   }
-}
 </style>

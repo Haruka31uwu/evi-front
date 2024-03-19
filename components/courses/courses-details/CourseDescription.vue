@@ -228,7 +228,7 @@
                 :fill="courseInfo.value.color"
               />
             </svg>
-            <span>{{ item }}</span>
+            <span style="width: 90%;">{{ item }}</span>
           </li>
         </ul>
       </div>

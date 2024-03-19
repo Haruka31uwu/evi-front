@@ -1,0 +1,150 @@
+{
+    "blogList": [
+        {
+            "id": 1,
+            "mainImg": "/assets/img/resources/blog/Blog1.webp",
+            "date": "Marzo 09, 2024",
+            "title": "Medicina Basada en Evidencias: Innovación en el Cuidado de la Salud",
+            "content":[
+                {
+                    "title":"",
+                    "value":"La Medicina Basada en Evidencias (MBE) ha emergido como un enfoque revolucionario en el campo de la salud, transformando la toma de decisiones clínicas mediante el análisis crítico de la mejor evidencia científica disponible. En este artículo, exploraremos los fundamentos de la MBE, su importancia en la práctica médica y cómo ha impactado positivamente la calidad del cuidado de los pacientes.",
+                    "type":"text"
+                },
+                {
+                    "title":"¿Qué es la Medicina Basada en Evidencias?",
+                    "value":"La Medicina Basada en Evidencias es un paradigma que integra la experiencia clínica del médico, los valores del paciente y la evidencia científica actualizada al tomar decisiones médicas. En lugar de depender únicamente de la intuición o la tradición, la MBE utiliza estudios de investigación, revisiones sistemáticas y metaanálisis para respaldar las elecciones clínicas.",
+                    "type":"text"
+                },
+                {
+                    "title":"Importancia de la Medicina Basada en Evidencias",
+                    "type":"list",
+                    "order":"none",
+                    "value":[
+                        {
+                            "title":"Mejora en la Toma de Decisiones",
+                            "value":"La MBE proporciona a los profesionales de la salud información objetiva y actualizada, permitiéndoles tomar decisiones informadas sobre diagnósticos y tratamientos."
+                        },
+                        {
+                            "title":"Reducción de la Variabilidad Clínica",
+                            "value":"Al basarse en evidencia sólida, la MBE ayuda a reducir la variabilidad en la práctica médica, promoviendo estándares de atención consistentes"
+                        },
+                        {
+                            "title":"Optimización de Recursos",
+                            "value":"Al adoptar enfoques respaldados por evidencia, se optimiza el uso de recursos médicos, evitando intervenciones innecesarias y reduciendo costos."
+                        },
+                        {
+                            "title":"Empoderamiento del Paciente",
+                            "value":"La MBE involucra a los pacientes en la toma de decisiones, al proporcionarles información transparente y comprensible sobre las opciones de tratamiento."
+                        },
+                        {
+                            "title":"",
+                            "value":"Finalmente, la Medicina Basada en Evidencias representa un cambio positivo en la forma en que los profesionales de la salud abordan la atención médica. Al integrar la evidencia científica más sólida en la toma de decisiones clínicas, la MBE eleva la calidad del cuidado y contribuye a avances significativos en la salud global. Adoptar este enfoque no solo beneficia a los pacientes, sino que también impulsa la innovación y la eficacia en el ámbito médico."
+                        }
+                    ]
+                },
+                {
+                    "title":"Cómo Implementar la Medicina Basada en Evidencias",
+                    "type":"list",
+                    "order":"numbered",
+                    "value":[
+                        {
+                            "title":"Identificación de Preguntas Clínicas",
+                            "value":" Formular preguntas específicas que guíen la búsqueda de evidencia relevante."
+                        },
+                        {
+                            "title":"Búsqueda Sistemática de Evidencia",
+                            "value":"Utilizar bases de datos confiables para encontrar estudios y revisiones sistemáticas pertinentes."
+                        },
+                        {
+                            "title":"Evaluación Crítica de la Evidencia",
+                            "value":"Aplicar herramientas de evaluación del riesgo de sesgo y metodología GRADE para evaluar la certeza de la evidencia."
+                        },
+                        {
+                            "title":"Aplicación en la Práctica Clínica",
+                            "value":"Integrar la evidencia en la toma de decisiones clínicas, considerando la situación individual de cada paciente."
+                        }
+                    ]
+                }
+            ],
+
+            "references":[
+                "Sackett DL, Rosenberg WM, Gray JA, Haynes RB, Richardson WS. Evidence based medicine: what it is and what it isn't. BMJ. 1996 Jan 13;312(7023):71-2. doi: 10.1136/bmj.312.7023.71. PMID: 8555924.",
+                "Guyatt GH, Oxman AD, Vist GE, Kunz R, Falck-Ytter Y, Alonso-Coello P, Schünemann HJ; GRADE Working Group. GRADE: an emerging consensus on rating quality of evidence and strength of recommendations. BMJ. 2008 Apr 26;336(7650):924-6. doi: 10.1136/bmj.39489.470347.AD. PMID: 18436948."
+            
+            ]
+        },
+        {
+            "id": 2,
+            "date": "Marzo 09, 2024",
+            "mainImg": "/assets/img/resources/blog/Blog2.webp",
+            "title": "Argumento ad ignoratiam y toma de decisiones en salud",
+            "content":[
+                {
+                    "title":"",
+                    "value":"En investigación clínica, el 'argumento ad ignorantiam' es creer que si no hay evidencia de que cierto fármaco tenga beneficios, significa que no tiene beneficios. 📉 Para no caer en esta falacia, debemos tener en cuenta que 'la ausencia de prueba no es prueba de ausencia'.",
+                    "type":"text"
+                },
+                {
+                    "title":"¿Qué significa el argumento ad ignoratiam?",
+                    "value":"Que si no tenemos ensayos clínicos aleatorizados (ECA) de calidad para avalar el beneficio de cierto fármaco, no significa que podamos afirmar que no tiene beneficios, o que sí los tiene... simplemente significa que no lo sabemos. Tomemos por ejemplo a la ivermectina, si no tenemos estudios claros, no significa que no tenga beneficios, puede tenerlos (como podrían tenerlos muchos otros tratamientos, incluso descabellados, pues aún sabemos poco sobre este mundo y menos aún sobre esta enfermedad). Ahora transportemos esto a la toma de decisiones. Si no sabemos si algo tiene beneficios o no, ¿Cómo decidimos si recetarlo o no? 😰 Tal vez la primera impresión que tengamos sea un 'sesgo de acción' (creer que ante la incertidumbre es mejor dar algo que no darlo).",
+                    "type":"text"
+                },
+                {
+                    "title":"¿Cuál es el problema con este razonamiento?",
+                    "type":"text",
+                    "value":"Que si no tenemos ECAs de calidad que nos muestren que algún tratamiento tiene más beneficios que daños, la posibilidad de que esto sea así es muy pequeña (solo 5% de los fármacos con plausibilidad biológica finalmente tienen algún beneficio). ¿Qué es lo más probable? Que los fármacos causen más daños que beneficios (ya vimos que todos los fármacos evaluados en el Solidarity no funcionaron, y la hidroxicloroquina en hospitalizados habría causado más muertes). ¿Y si tenemos fármacos que, cuando se usaron para otras condiciones, tuvieron pocos efectos adversos? Pues igual debemos tener cuidado, pues es posible que al dar estos fármacos a pacientes con COVID, tengan más eventos adversos, al tener el COVID una fisiopatología especial (esto es lo que pasó con hidroxicloroquina).Entonces, si seguimos nuestro 'sesgo de acción' y damos medicamentos a lo loco, lo más probable es que causemos más muertes y más gastos (hay fármacos bastante caros) sin beneficio. ¿Qué es lo más coherente entonces? Si estamos pensando en el bienestar de nuestros pacientes, lo más lógico y ético es no arriesgarlos sobremedicando, y realizar ECAs de buena calidad."
+                },
+                {
+                    "title":"Entonces, ¿siempre necesitaremos de ECAs de buena calidad antes de recetar un fármaco?",
+                    "type":"text",
+                    "value":"Pues nop, en situaciones extremas podemos usar evidencia indirecta (ECAs de buena calidad que hayan probado que el fármaco es efectivo en enfermedades similares). Sin embargo, si ni siquiera tenemos eso, debemos cuidarnos de no dañar. Recordar el primum non nocere"
+                }
+                
+            ],
+            "references":[
+                "Taype-Rondan Álvaro, Goicochea-Lugo Sergio. Toma de decisiones clínicas basadas en evidencias durante la pandemia de COVID-19. Acta méd. Peru  [Internet]. 2020  Jul [citado  2024  Mar  03] ;  37( 3 ): 357-365. Disponible en: http://www.scielo.org.pe/scielo.php?script=sci_arttext&pid=S1728-59172020000300357&lng=es.  http://dx.doi.org/10.35663/amp.2020.372.1043"
+            
+            ]
+        },
+        {
+            "id": 3,
+            "date": "Marzo 09, 2024",
+            "mainImg": "/assets/img/resources/blog/Blog3.webp",
+            "title": "¿Por qué lo más lógico es no brindar fármacos solo por plausibilidad fisiopatológica, sino hasta tener estudios bien diseñados?",
+            "content": [
+                {
+                    "title":"",
+                    "value":"Primero, entender que existen intervenciones que debemos brindar debido a que su beneficio es muy obvio (ya tienen evidencia indirecta contundentes), como el uso de oxígeno en hipoxia, de antibióticos si el paciente presenta una infección sobreagredada, etc. Otras intervenciones son experimentales, por lo cual no sabemos si causan más beneficios o daños (antivirales, hidroxicloroquina, ivermectina, azitromicina, entre otras para el caso, por ejemplo, de Covid-19).",
+                    "type":"text"
+                },
+                {
+                    "title":"¿Qué sucede generalmente cuando de proponen intervenciones?",
+                    "value":"Primero se evalúa si tienen plausibilidad fisiopatológica. Luego, se evalúan mediante estudios preclínicos (in vitro y en animales). Los que tengan estudios preclínicos favorecedores comienzan ensayos clínicos. En general, si comenzamos con 100 fármacos diferentes en fase 1, solo 7 superan la fase 3 (por mostrar más beneficios que daños). Sin embargo, incluso luego de ello, algunos son retirados post-comercialización. Claro que estos son promedios",
+                    "type":"text"
+                },
+                {
+                    "title":"Entonces, ¿qué pasa si recetamos todo aquello que tenga plausibilidad fisiopatologica y estudios preclinicos favorables ?",
+                    "type":"text",
+                    "value":"Que aún no sabemos si hacen más beneficios que daños (o sea, si salvan vidas o matan). Y estamos apostando con desventaja (pues en promedio solo 7 de cada 100, o 1 de cada 14, tendría más beneficios que daños). Esto es aún más grave si damos 'combos' de varios medicamentos (multiplicando la posibilidad de interacciones)."
+                },
+                {
+                    "title":"Cómo Implementar la Medicina Basada en Evidencias",
+                    "type":"img",
+                    "value":"/assets/img/resources/blog/blog3_img_1.png"
+                },
+                {
+                    "title":"",
+                    "type":"text",
+                    "value":"Aunque los fármacos parezcan tener pocos efectos adversos en otros pacientes, no sabemos qué pasará realmente.En una medicina centrada en el paciente (y no en la sobremedicación, la industria, o la desesperación por 'dar algo') debería preocuparnos mucho cuánto daño podemos hacer, cuántas más muertes podemos causar."
+                }
+            ],
+
+            "references":[
+                "FDA. Step 3: Clinical Research [Internet]. Silver Spring (MD): U.S. Food and Drug Administration. Disponible en: https://www.fda.gov/patients/drug-development-process/step-3-clinical-research",
+                "Taype-Rondan Álvaro, Goicochea-Lugo Sergio. Toma de decisiones clínicas basadas en evidencias durante la pandemia de COVID-19. Acta méd. Peru  [Internet]. 2020  Jul [citado  2024  Mar  03] ;  37( 3 ): 357-365. Disponible en: http://www.scielo.org.pe/scielo.php?script=sci_arttext&pid=S1728-59172020000300357&lng=es.  http://dx.doi.org/10.35663/amp.2020.372.1043"
+            
+            ]
+        }
+    ]
+}

@@ -13,7 +13,7 @@
     <VForm
       :validation-schema="schema"
       @submit="onSubmit"
-      class="row d-flex align-items-start"
+      class="row d-flex align-items-start w-100 mx-auto"
     >
       <h3
         class="mx-auto text-center mb-4"
@@ -21,39 +21,41 @@
       >
         Información de usuario
       </h3>
-      <div
-        class="profile-img-selector d-flex align-items-center flex-column"
-        @click="openFileInput"
-      >
-        <div class="profile-img" id="profile-img">
-          <img :src="fileUrl ? fileUrl : '/assets/img/profile.png'" alt="profile-selected" />
-          <input type="file" class="d-none" @change="handleFileInputChange" />
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="170"
-            height="170"
-            viewBox="0 0 100 100"
-            fill="none"
-          >
-            <circle
-              cx="50"
-              cy="50"
-              r="49.5"
-              stroke="#F0F0F0"
-              id="profile_img__border"
+      <div class="profile-img-selector d-flex align-items-center flex-column">
+        <div @click="openFileInput" class="d-flex justify-content-center flex-column">
+          <div class="profile-img" id="profile-img">
+            <img
+              :src="fileUrl ? fileUrl : '/assets/img/profile.png'"
+              alt="profile-selected"
             />
-          </svg>
+            <input type="file" class="d-none" @change="handleFileInputChange" />
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="170"
+              height="170"
+              viewBox="0 0 100 100"
+              fill="none"
+            >
+              <circle
+                cx="50"
+                cy="50"
+                r="49.5"
+                stroke="#F0F0F0"
+                id="profile_img__border"
+              />
+            </svg>
+          </div>
+          <span
+            style="
+              color: var(--EVI-DARK-001, #0393aa);
+              text-align: center;
+              text-decoration-line: underline;
+              margin-bottom: 2em;
+            "
+            >Agregar foto
+          </span>
         </div>
-        <span
-          style="
-            color: var(--EVI-DARK-001, #0393aa);
-            text-align: center;
-            text-decoration-line: underline;
-            margin-bottom: 2em;
-          "
-          >Agregar foto
-        </span>
       </div>
       <div class="col-12 col-lg-6 d-flex flex-column" style="row-gap: 1.2em">
         <div class="input-container">
@@ -350,7 +352,6 @@ export default defineComponent({
     const router = useRouter();
     const schema = yup.object().shape({
       email: yup.string().email((value) => {
-
         if (value.length == 0) {
           return "El correo es obligatorio";
         }

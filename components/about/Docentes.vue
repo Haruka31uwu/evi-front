@@ -6,11 +6,8 @@
     >
       <div style="position: relative">
         <h3  style="z-index: 3;position: relative;">Plana Docente</h3>
-        <img
-          src="/assets/img/courses/docentes-item.svg"
-          style="bottom: 0.5em; left:3.5rem; position: absolute;width:85%;z-index: 1;"
-          alt="docentes-item"
-        />
+        <div class="section-decorator" style="right: -3em;top:0.6em;" :style="currentWindowWidth<468?'':''"></div>
+
       </div>
       <input
         type="text"

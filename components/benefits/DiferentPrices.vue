@@ -51,9 +51,9 @@
             </p>
             </li>
           </ul>
-          <div style="width: 80%;background: white;height: 1px;margin: 0;"></div>
+          <!-- <div style="width: 80%;background: white;height: 1px;margin: 0;"></div>
           <p>Además, si eres estudiante de pregrado, sólo envíanos la foto de tu carné y obtén un precio diferenciado para que puedas capacitarte desde tu etapa universitaria.</p>
-          <div class="btn-white w-100" @click="openStudentRegisterModal()"><span>Registrarme como estudiante</span></div>
+          <div class="btn-white w-100" @click="openStudentRegisterModal()"><span>Registrarme como estudiante</span></div> -->
         </div>
       </div>
     </div>

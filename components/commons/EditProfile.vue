@@ -12,42 +12,48 @@
         calidad y tomar mejores decisiones en salud
       </p> -->
       <div class="row d-flex align-items-start" v-if="user">
-        <div
-          class="profile-img-selector d-flex align-items-center flex-column"
-          @click="openFileInput"
-        >
-          <div class="profile-img" id="profile-img">
-            <img
-              :src="fileUrl ? fileUrl : '/assets/img/profile.png'"
-              alt="profile-selected"
-            />
-            <input type="file" class="d-none" @change="handleFileInputChange" />
-
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="170"
-              height="170"
-              viewBox="0 0 100 100"
-              fill="none"
-            >
-              <circle
-                cx="50"
-                cy="50"
-                r="49.5"
-                stroke="#F0F0F0"
-                id="profile_img__border"
+        <div class="profile-img-selector d-flex align-items-center flex-column">
+          <div
+            @click="openFileInput"
+            class="d-flex flex-column justify-content-center align-items-center"
+          >
+            <div class="profile-img" id="profile-img">
+              <img
+                :src="fileUrl ? fileUrl : '/assets/img/profile.png'"
+                alt="profile-selected"
               />
-            </svg>
+              <input
+                type="file"
+                class="d-none"
+                @change="handleFileInputChange"
+              />
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="170"
+                height="170"
+                viewBox="0 0 100 100"
+                fill="none"
+              >
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="49.5"
+                  stroke="#F0F0F0"
+                  id="profile_img__border"
+                />
+              </svg>
+            </div>
+            <span
+              style="
+                color: var(--EVI-DARK-001, #0393aa);
+                text-align: center;
+                text-decoration-line: underline;
+                margin-bottom: 2em;
+              "
+              >Agregar foto
+            </span>
           </div>
-          <span
-            style="
-              color: var(--EVI-DARK-001, #0393aa);
-              text-align: center;
-              text-decoration-line: underline;
-              margin-bottom: 2em;
-            "
-            >Agregar foto
-          </span>
         </div>
         <h3
           class="mx-auto text-center mb-4"
@@ -330,25 +336,45 @@
             style="row-gap: 1.2em"
           ></div>
         </div>
-        <!-- <div class="payment-condition d-flex flex-row gap-2 mt-5">
-          <div
-            class="condition-checkbox"
-            :style="condition ? 'background:#179bd7' : ''"
-            @click="condition = !condition"
+        <div class="row mt-5">
+          <h3
+            class="mx-auto text-center mb-2"
+            style="font-size: 1.5em; color: #0393aa"
           >
-            <Icon
-              name="mingcute:check-fill"
-              color="white"
-              size="1.4em"
-              v-if="condition"
-            />
+           Refiere y gana
+          </h3>
+          <div
+            v-if="discountCode.hasOwnProperty('code')"
+            class="col-12 col-lg-6 d-flex flex-column"
+          >
+            <div class="input-container">
+              <span>Codigo de descuento</span>
+             <div class="d-flex flex-row gap-1 align-items-center">
+              <input
+                disabled
+                class="input-customized"
+                type="text"
+                v-model="discountCode.code"
+              />
+              <Icon
+            @click="saveInClipBoard"
+            name="tabler:clipboard"
+            size="30"
+          ></Icon>
+             </div>
+            </div>
           </div>
-          <span style="width: 80%"
-            >He leído y acepto los
-            <span class="primary-underline"> Términos y condiciones </span> y
-            <span class="primary-underline">Políticas de privacidad </span>
-          </span>
-        </div> -->
+        </div>
+        <!-- <span
+          v-if="discountCode.hasOwnProperty('code')"
+          class="d-flex flex-row align-items-center gap-2"
+        >
+          <Icon
+            @click="saveInClipBoard"
+            name="tabler:clipboard"
+            size="30"
+          ></Icon>
+        </span> -->
         <button
           @click="updateAccount"
           type="submit"
@@ -357,11 +383,6 @@
         >
           <span>Actualizar Datos</span>
         </button>
-        <span v-if=" discountCode.hasOwnProperty('code')" class="d-flex flex-row align-items-center gap-2">
-          Tu codigo de descuento es: <strong>{{ discountCode.code }}</strong>
-          <Icon @click="saveInClipBoard" name="tabler:clipboard" size="30"></Icon>  
-
-        </span>
       </div>
       <div v-else style="height: 100vh">
         <!--Loader!-->
@@ -390,7 +411,7 @@ export default defineComponent({
     const route = useRoute();
     const storeAuth = authStore();
     const userData = computed(() => storeAuth.getUserData);
-    const discountCode=ref({});
+    const discountCode = ref({});
     const user = ref(null);
     const { showPreloader, hidePreloader } = usePreloader();
     const { showSuccessSwall, showErrorSwall, showConfirmEmailSwall } =
@@ -404,10 +425,12 @@ export default defineComponent({
       showSuccessSwall("Exito", "Codigo copiado al portapapeles");
     };
     onMounted(async () => {
-      try{
-        const res=await AuthService.getUserDiscountCode({userId:userData.value.id});
-        discountCode.value=res.data.discountCode?res.data.discountCode:{};
-      }catch(e){
+      try {
+        const res = await AuthService.getUserDiscountCode({
+          userId: userData.value.id,
+        });
+        discountCode.value = res.data.discountCode ? res.data.discountCode : {};
+      } catch (e) {
         showErrorSwall("Error", e.response.data.message);
         console.error(e);
       }
@@ -432,7 +455,6 @@ export default defineComponent({
         }
         showErrorSwall("Error", e.message);
       }
-      
     });
     const countryOptions = [
       { name: "Perú", value: "PE", prefix: "+51" },
@@ -738,7 +760,7 @@ export default defineComponent({
         profileImgBorder.style.stroke = "#CB4335";
         const profileImgDiv = document.querySelector("#profile-img");
         profileImgDiv.scrollIntoView({ behavior: "smooth", block: "center" });
-        interval=setTimeout(() => {
+        interval = setTimeout(() => {
           profileImgBorder.style.stroke = "#F0F0F0";
         }, 3000);
         return;
@@ -814,7 +836,7 @@ export default defineComponent({
       updateAccount,
       user,
       discountCode,
-      saveInClipBoard
+      saveInClipBoard,
     };
   },
 });

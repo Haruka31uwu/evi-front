@@ -57,7 +57,7 @@ useHead({
     {
       rel: "icon",
       type: "image/x-icon",
-      href: "/assets/img/evi-07.png",
+      href: "/assets/img/x-icon.png",
     },
   ],
   script: [

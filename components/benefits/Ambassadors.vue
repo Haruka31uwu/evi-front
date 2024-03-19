@@ -2,15 +2,15 @@
   <section
     class="d-flex flex-column justify-content-center align-items-center py-5"
   >
-    <div class="row" style="width: 90%">
+    <div class="row" style="width: 100%">
       <div
         class="col-12 col-md-6 section-title d-flex flex-column justify-content-center align-items-center"
       >
-        <div style="width: 80%; position: relative; margin-bottom: 4em">
-          <h2 style="font-size: 2rem">Embajadores de EviSalud</h2>
-          <div class="section-decorator" style="left: 4em; width: 50%"></div>
+        <div style="width: 95%; position: relative; margin: 0 auto;margin-bottom: 4em;text-align: center;">
+          <h2 style="font-size: 2rem;">Embajadores de EviSalud</h2>
+          <div class="section-decorator" style="right: 4em; width: 50%"></div>
         </div>
-        <div style="width: 70%;margin-bottom: 1em;">
+        <div style="width: 100%;margin-bottom: 1em;text-align: center;">
           <p>
             Ingresa el código de tu influencer y obtén un descuento especial en
             el curso que elijas. 
@@ -26,7 +26,7 @@
       >
         <img src="/assets/img/benefits/evi-cell.png" width="40%"  alt="evi-cell"/>
         <div
-          style="width: 80%"
+          style="width: 100%"
           class="d-flex flex-column justify-content-center align-items-center"
         >
           <p class="text-center">

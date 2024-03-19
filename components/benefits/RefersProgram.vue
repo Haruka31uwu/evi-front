@@ -1,12 +1,12 @@
 <template>
   <section
-    class="d-flex justify-content-center d-flex flex-column justify-content-center align-items-center w-100"
+    class="d-flex justify-content-center d-flex flex-column justify-content-center align-items-center w-100 pb-5"
   >
     <div class="section-title">
       <h2>¿Qué es el Programa de referidos?</h2>
       <div class="section-decorator" :style="currentWindowWidth>468?'left:6em;width: 85%;':'right:0;width:320px'"></div>
     </div>
-    <div class="row section-container mt-5" style="width: 80%">
+    <div class="row section-container mt-5" style="width: 90%">
       <div class="col col-12 col-lg-6">
         <div
           style="width: 80%"
@@ -45,8 +45,7 @@
           "
         >
           <span
-            > Al registrarte dentro del programa de referidos, podrás obtener
-            los siguientes beneficios:</span
+            >Mediante el programa de referidos, podrás obtener los siguientes beneficios:</span
           >
           <ul>
             <li>
@@ -127,16 +126,17 @@
           <div class="time-line d-flex flex-column flex-lg-row">
             <div
               class="time-line-item d-flex flex-row flex-lg-column"
-              v-for="item in proccess"
+              v-for="(item,index) in proccess"
               :key="item"
             >
               <div
-                class="time-line-item-number d-flex align-items-center align-items-lg-center"
-                :class="currentWindowWidth > 991 ? 'flex-row' : 'flex-column'"
+                class="time-line-item-number d-flex align-items-center align-items-lg-center "
+                :class="index==0?'justify-content-end':'justify-content-start '"
+
                 :style="
                   currentWindowWidth > 991
-                    ? 'min-width: 200px'
-                    : 'min-width: 100px'
+                    ? 'min-width: 200px;flex-direction:row'
+                    : 'min-width: 100px;flex-direction:column'
                 "
               >
                 <span
@@ -155,13 +155,13 @@
                 <div
                   :style="
                     currentWindowWidth > 991
-                      ? 'width: 100% ;height: 1px;background: white;'
+                      ? 'width: 80% ;height: 1px;background: white;'
                       : 'width: 1px ;height:110px;background: white;'
                   "
                   v-if="item.step != proccess.length"
                 ></div>
               </div>
-              <div class="time-line-item-content mt-2" style="width: 60%">
+              <div class="time-line-item-content mt-2" style="width: 70%">
                 <p class="text-center" style="color: black; font-weight: 700">
                   {{ item.title }}
                 </p>

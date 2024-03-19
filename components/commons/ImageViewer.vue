@@ -39,7 +39,7 @@
         <div
           class="d-flex flex-column justify-content-start align-items-center gap-2" style=""
         >
-          <div style="height: 80%;max-height: 70vh;overflow-y: auto;position: relative;">
+          <div style="height: 80%;max-height: 60vh;overflow-y: auto;position: relative;">
             <img
             :src="props.imgSrc"
             alt="img"

@@ -6,7 +6,7 @@
     </div>
     <div class="our-courses-banner" style="position: relative;">
       <div class="our-courses-banner-text" >
-        <p style="line-height: 1.5;margin: 0;">
+        <p style="line-height: 1.5;margin: 0;word-break: normal;">
           Brindamos
           <span @click="scrollIntoView('courses-list')">cursos</span> y
           <span @click="scrollIntoView('programs-list')">programas </span> de
